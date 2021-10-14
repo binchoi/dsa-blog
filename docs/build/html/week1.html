@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="empty" href="week2.html" />
-    <link rel="prev" title="Welcome to LeetCodeDoc’s documentation!" href="index.html" /> 
+    <link rel="next" title="Week 2" href="week2.html" />
+    <link rel="prev" title="Welcome to Bin’s documentation of his LeetCode Journey!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,9 +46,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-3-search-insert-position">Question 3: Search Insert Position</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-2-14-oct">Day 2 [14 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-4-pow-x-n">Question 4: Pow(x,n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-5-maximum-subarray">Question 5: Maximum Subarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-6-is-subsequence">Question 6: Is Subsequence</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="week2.html">empty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2</a></li>
 </ul>
 
         </div>
@@ -67,7 +73,6 @@
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Week 1 [13-20 Oct 2021]</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/week1.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -88,29 +93,29 @@ Optimal solution:</p>
 <p><em>option 1 (using dictionary)</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos">2</span>     <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-<span class="linenos">3</span>             <span class="n">buffer_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="linenos">4</span>             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rangenums</span><span class="o">.</span><span class="n">__len</span><span class="p">()):</span>
-<span class="linenos">5</span>                     <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">buffer_dictionary</span><span class="p">:</span>
-<span class="linenos">6</span>                             <span class="k">return</span> <span class="p">[</span><span class="n">buffer_dictionary</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">i</span><span class="p">]</span>
-<span class="linenos">7</span>                     <span class="k">else</span><span class="p">:</span>
-<span class="linenos">8</span>                             <span class="n">buffer_dictionary</span><span class="p">[</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+<span class="linenos">3</span>         <span class="n">buffer_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos">4</span>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rangenums</span><span class="o">.</span><span class="n">__len</span><span class="p">()):</span>
+<span class="linenos">5</span>             <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">buffer_dictionary</span><span class="p">:</span>
+<span class="linenos">6</span>                 <span class="k">return</span> <span class="p">[</span><span class="n">buffer_dictionary</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">i</span><span class="p">]</span>
+<span class="linenos">7</span>             <span class="k">else</span><span class="p">:</span>
+<span class="linenos">8</span>                 <span class="n">buffer_dictionary</span><span class="p">[</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
 </pre></div>
 </div>
 <p><em>option 2 (more concise)</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="linenos">2</span> <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-<span class="linenos">3</span>     <span class="n">dic</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="linenos">4</span>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-<span class="linenos">5</span>         <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">:</span>
-<span class="linenos">6</span>             <span class="k">return</span> <span class="p">[</span><span class="n">dic</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">i</span><span class="p">]</span>
-<span class="linenos">7</span>         <span class="n">dic</span><span class="p">[</span><span class="n">target</span><span class="o">-</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+<span class="linenos">2</span>     <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="linenos">3</span>         <span class="n">dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos">4</span>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<span class="linenos">5</span>             <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">:</span>
+<span class="linenos">6</span>                 <span class="k">return</span> <span class="p">[</span><span class="n">dic</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">i</span><span class="p">]</span>
+<span class="linenos">7</span>             <span class="n">dic</span><span class="p">[</span><span class="n">target</span><span class="o">-</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
 </pre></div>
 </div>
-<p><strong>Take-aways</strong></p>
-<ul class="simple">
-<li><p>Difference between <code class="docutils literal notranslate"><span class="pre">hashtable</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code> data types (i.e. dict is larger umbrella)</p></li>
-<li><p>Increased time optimization comes at the cost of space (this is preferable as memory is cheaper than time)</p></li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The difference between <code class="docutils literal notranslate"><span class="pre">hashtable</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code> datatypes (i.e. <code class="docutils literal notranslate"><span class="pre">dict</span></code> is larger umbrella)</p>
+<p>Increased time optimization comes at the cost of space complexity (this is preferable as memory is cheaper than time)</p>
+</div>
 </section>
 <section id="question-2-valid-parentheses">
 <h3>Question 2: Valid Parentheses<a class="headerlink" href="#question-2-valid-parentheses" title="Permalink to this headline"></a></h3>
@@ -120,11 +125,11 @@ Optimal solution:</p>
 <ul class="simple">
 <li><p>using stack and a helper function that compares a open parenthesis with a closed one</p></li>
 </ul>
-<p><strong>Take-aways</strong></p>
-<ul class="simple">
-<li><p>No need to create class for stack when coding in Python (just use list operators)</p></li>
-<li><p>Could use dictionaries instead of helper function (would it help in memory/time?)</p></li>
-</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>No need to create class for stack when coding in Python (just use list operators)!</p>
+<p>You can use data structures like dictionaries and hashtables instead of helper functions to increase efficiency!</p>
+</div>
 </section>
 <section id="question-3-search-insert-position">
 <h3>Question 3: Search Insert Position<a class="headerlink" href="#question-3-search-insert-position" title="Permalink to this headline"></a></h3>
@@ -156,14 +161,204 @@ return the index where it would be if it were inserted in order.</em></p>
 </ul>
 </section>
 </section>
+<section id="day-2-14-oct">
+<h2>Day 2 [14 Oct]<a class="headerlink" href="#day-2-14-oct" title="Permalink to this headline"></a></h2>
+<section id="question-4-pow-x-n">
+<h3>Question 4: Pow(x,n)<a class="headerlink" href="#question-4-pow-x-n" title="Permalink to this headline"></a></h3>
+<p><em>Implement pow(x, n), which calculates x raised to the power n</em></p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Was a little too simple than expected</p></li>
+</ul>
+<p>My solution [O(1)]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos">2</span>     <span class="k">def</span> <span class="nf">myPow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="linenos">3</span>         <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="n">n</span>
+</pre></div>
+</div>
+<p>Two more do-it-myself solutions (Python):</p>
+<p><em>Recursive</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">myPow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">myPow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">myPow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">myPow</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Iterative</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">myPow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">x</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+        <span class="nb">pow</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="nb">pow</span> <span class="o">*=</span> <span class="n">x</span>
+            <span class="n">x</span> <span class="o">*=</span> <span class="n">x</span>
+            <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">pow</span>
+</pre></div>
+</div>
+<p>Solution in Java (for future reference):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>public class Solution {
+    public double pow(double x, int n) {
+        if(n == 0)
+            return 1;
+        if(n&lt;0){
+            n = -n;
+            x = 1/x;
+        }
+        return (n%2 == 0) ? pow(x*x, n/2) : x*pow(x*x, n/2);
+    }
+}
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Python is an efficient language for coding tests!</p>
+</div>
+</section>
+<section id="question-5-maximum-subarray">
+<h3>Question 5: Maximum Subarray<a class="headerlink" href="#question-5-maximum-subarray" title="Permalink to this headline"></a></h3>
+<p><em>Given an integer array nums, find the contiguous subarray (containing at least one number)
+which has the largest sum and return its sum.</em></p>
+<p><em>A subarray is a contiguous part of an array.</em></p>
+<p>Notes:
+* Implemented using the classic, basic form of Maximum Sub-array problem
+* I doubted if I fully understand the algorithm at heart but now I feel more comfortable with it</p>
+<p>My solution [O(n log(n))]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="k">def</span> <span class="nf">maxCrossingSubArray</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+<span class="linenos"> 2</span>     <span class="n">lsum</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+<span class="linenos"> 3</span>     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 4</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">low</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos"> 5</span>         <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="linenos"> 6</span>         <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">lsum</span><span class="p">:</span>
+<span class="linenos"> 7</span>             <span class="n">lsum</span> <span class="o">=</span> <span class="nb">sum</span>
+<span class="linenos"> 8</span>             <span class="n">maxLIdx</span> <span class="o">=</span> <span class="n">i</span>
+<span class="linenos"> 9</span>     <span class="n">rsum</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+<span class="linenos">10</span>     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">11</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">12</span>         <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="linenos">13</span>         <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">rsum</span><span class="p">:</span>
+<span class="linenos">14</span>             <span class="n">rsum</span> <span class="o">=</span> <span class="nb">sum</span>
+<span class="linenos">15</span>             <span class="n">maxRIdx</span> <span class="o">=</span> <span class="n">i</span>
+<span class="linenos">16</span>     <span class="k">return</span> <span class="p">(</span><span class="n">maxLIdx</span><span class="p">,</span> <span class="n">maxRIdx</span><span class="p">,</span> <span class="n">lsum</span><span class="o">+</span><span class="n">rsum</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span> <span class="k">def</span> <span class="nf">maxSubArrayHelper</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+<span class="linenos">19</span>     <span class="k">if</span> <span class="n">high</span> <span class="o">==</span> <span class="n">low</span><span class="p">:</span>
+<span class="linenos">20</span>         <span class="k">return</span> <span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">low</span><span class="p">])</span>
+<span class="linenos">21</span>     <span class="k">else</span><span class="p">:</span>
+<span class="linenos">22</span>         <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="linenos">23</span>         <span class="p">(</span><span class="n">lLow</span><span class="p">,</span> <span class="n">lHigh</span><span class="p">,</span> <span class="n">lsum</span><span class="p">)</span> <span class="o">=</span> <span class="n">maxSubArrayHelper</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+<span class="linenos">24</span>         <span class="p">(</span><span class="n">rLow</span><span class="p">,</span> <span class="n">rHigh</span><span class="p">,</span> <span class="n">rsum</span><span class="p">)</span> <span class="o">=</span> <span class="n">maxSubArrayHelper</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+<span class="linenos">25</span>         <span class="p">(</span><span class="n">cLow</span><span class="p">,</span> <span class="n">cHigh</span><span class="p">,</span> <span class="n">csum</span><span class="p">)</span> <span class="o">=</span> <span class="n">maxCrossingSubArray</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+<span class="linenos">26</span>         <span class="k">if</span> <span class="n">lsum</span> <span class="o">&gt;=</span> <span class="n">rsum</span> <span class="ow">and</span> <span class="n">lsum</span> <span class="o">&gt;=</span> <span class="n">csum</span><span class="p">:</span>
+<span class="linenos">27</span>             <span class="k">return</span> <span class="p">(</span><span class="n">lLow</span><span class="p">,</span> <span class="n">lHigh</span><span class="p">,</span> <span class="n">lsum</span><span class="p">)</span>
+<span class="linenos">28</span>         <span class="k">elif</span> <span class="n">lsum</span> <span class="o">&lt;=</span> <span class="n">rsum</span> <span class="ow">and</span> <span class="n">rsum</span> <span class="o">&gt;=</span> <span class="n">csum</span><span class="p">:</span>
+<span class="linenos">29</span>             <span class="k">return</span> <span class="p">(</span><span class="n">rLow</span><span class="p">,</span> <span class="n">rHigh</span><span class="p">,</span> <span class="n">rsum</span><span class="p">)</span>
+<span class="linenos">30</span>         <span class="k">else</span><span class="p">:</span>
+<span class="linenos">31</span>             <span class="k">return</span> <span class="p">(</span><span class="n">cLow</span><span class="p">,</span> <span class="n">cHigh</span><span class="p">,</span> <span class="n">csum</span><span class="p">)</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span> <span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos">34</span>     <span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">35</span>         <span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">maxSum</span><span class="p">)</span> <span class="o">=</span> <span class="n">maxSubArrayHelper</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">36</span>         <span class="k">return</span> <span class="n">maxSum</span>
+</pre></div>
+</div>
+<p>My Python adaptation of a O(n) solution (credit: <a class="reference external" href="https://leetcode.com/problems/maximum-subarray/discuss/20211/Accepted-O(n)-solution-in-java">cbmbbz</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">maxSoFar</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">maxIncludingThis</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+        <span class="c1"># maxIncludingThis added not maxSoFar b/c contiguous sub-array</span>
+        <span class="n">maxIncludingThis</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxIncludingThis</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">maxSoFar</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxSoFar</span><span class="p">,</span> <span class="n">maxIncludingThis</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">maxSoFar</span>
+</pre></div>
+</div>
+<p>Kadane’s algorithm (Python):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Java solution (for later) by <a class="reference external" href="https://leetcode.com/problems/maximum-subarray/discuss/20193/DP-solution-and-some-thoughts">FujiwaranoSai</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>public int maxSubArray(int[] A) {
+        int n = A.length;
+        int[] dp = new int[n];//dp[i] means the maximum subarray ending with A[i];
+        dp[0] = A[0];
+        int max = dp[0];
+
+        for(int i = 1; i &lt; n; i++){
+            dp[i] = A[i] + (dp[i - 1] &gt; 0 ? dp[i - 1] : 0);
+            max = Math.max(max, dp[i]);
+        }
+
+        return max;
+}
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Critically analyze the problem and search for ways to optimize the solution (efficiency is key)! Dynamic Programming
+is a wonderful tool to increase the efficiency of many algorithms.</p>
+</div>
+</section>
+<section id="question-6-is-subsequence">
+<h3>Question 6: Is Subsequence<a class="headerlink" href="#question-6-is-subsequence" title="Permalink to this headline"></a></h3>
+<p><em>Given two strings s and t, return true if s is a subsequence of t, or false otherwise.</em></p>
+<p><em>A subsequence of a string is a new string that is formed from the original string by
+deleting some (can be none) of the characters without disturbing the relative positions
+of the remaining characters. (i.e., “ace” is a subsequence of “abcde” while “aec” is not).</em></p>
+<p>My quick solution [O(n) where n is len(t)]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>     <span class="k">def</span> <span class="nf">isSubsequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos"> 3</span>         <span class="n">tList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 4</span>         <span class="n">tIdx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 5</span>         <span class="k">for</span> <span class="n">charS</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="linenos"> 6</span>             <span class="k">if</span> <span class="n">tIdx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">tList</span><span class="p">):</span>
+<span class="linenos"> 7</span>                     <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos"> 8</span>             <span class="k">while</span> <span class="n">tList</span><span class="p">[</span><span class="n">tIdx</span><span class="p">]</span> <span class="o">!=</span> <span class="n">charS</span><span class="p">:</span>
+<span class="linenos"> 9</span>                 <span class="n">tIdx</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">10</span>                 <span class="k">if</span> <span class="n">tIdx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">tList</span><span class="p">):</span>
+<span class="linenos">11</span>                     <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">12</span>             <span class="n">tIdx</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">13</span>         <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Doesn’t feel as elegant or organized as I hope</p></li>
+</ul>
+<p>Really short solution (cred: <a class="reference external" href="https://leetcode.com/problems/is-subsequence/discuss/87258/2-lines-Python">StefanPochmann</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">isSubsequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">Iter()</span></code> returns an iterator for a given object (e.g. list, sets, tuples, …). More on <a class="reference external" href="https://www.mygreatlearning.com/blog/iterator-in-python/">iterator type</a>.
+In our example, it is like a list whose elements we can see one-by-one (and we have to discard it after seeing it)</p>
+<p><code class="docutils literal notranslate"><span class="pre">all()</span></code> takes an <em>iterable</em> (e.g. list, tuple, dictionary, iterator, etc…) and returns True if all items in the
+iterable are True, else it returns False. Its counterpart is <code class="docutils literal notranslate"><span class="pre">any()</span></code>, which returns True if any item in an iterable is True, else it returns False.</p>
+</div>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to LeetCodeDoc’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="week2.html" class="btn btn-neutral float-right" title="empty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Bin’s documentation of his LeetCode Journey!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="week2.html" class="btn btn-neutral float-right" title="Week 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
