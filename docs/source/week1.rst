@@ -414,5 +414,67 @@ Using Kadane's algorithm (adapted)::
 
 Question 9: Reverse Linked List
 -------------------------------------
-*Given the head of a singly linked list, reverse the list, and return the reversed list.*
+*Given the head of a singly linked list, reverse the list, and return the reversed list.* 
+
+*Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?*
+
+My solution (iterative program):
+
+.. code-block:: python
+   :linenos:
+
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None: 
+            return None
+        
+        nextNodeRev = ListNode(head.val, None)
+        currNode = head.next
+        headNodeRev = nextNodeRev
+        
+        while currNode is not None: 
+            headNodeRev = ListNode(currNode.val, nextNodeRev)
+            nextNodeRev = headNodeRev
+            currNode = currNode.next
+            
+        return headNodeRev
+
+Remarks:
+ * I felt quite confident with the above implementation. 
+   Credit to careful and critical reading!
+ * The iterative logic came more naturally than the recursive algorithm logic.
+
+Simple and elegant solution (cred: `tusizi <https://leetcode.com/problems/reverse-linked-list/discuss/58127/Python-Iterative-and-Recursive-Solution>`_)::
+     
+    # iterative
+    def reverseList(self, head):
+    prev = None
+    while head:
+        curr = head
+        head = head.next
+        curr.next = prev
+        prev = curr
+    return prev
+
+    # recursive 
+    def reverseList(self, head):
+        return self._reverse(head)
+
+    def _reverse(self, node, prev=None):
+        if not node:
+            return prev
+        n = node.next
+        node.next = prev
+        return self._reverse(n, node)
+
+
+.. admonition:: Recursive vs. Iterative Programs
+
+    **Recursion** is a method call in which the method being called is the same as the one 
+    making the call (i.e. when an entity *calls itself*). **Iteration** is when a *loop* is 
+    repeatedly executed until a certain condition is met. 
+
+    * Infinite recursion can lead to system crash vs. Infinite iteration consumes CPU cycles.
+    * Unlike iteration, recursion repeatedly invokes the mechanism, and thereby the overhead, 
+      of method calls. This can be expensive in processor time and memory space. 
+
 

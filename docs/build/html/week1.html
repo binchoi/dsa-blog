@@ -485,6 +485,66 @@ profit by choosing a single day to buy one stock and choosing a different day in
 <section id="question-9-reverse-linked-list">
 <h3>Question 9: Reverse Linked List<a class="headerlink" href="#question-9-reverse-linked-list" title="Permalink to this headline"></a></h3>
 <p><em>Given the head of a singly linked list, reverse the list, and return the reversed list.</em></p>
+<p><em>Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?</em></p>
+<p>My solution (iterative program):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="k">def</span> <span class="nf">reverseList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+<span class="linenos"> 2</span>     <span class="k">if</span> <span class="n">head</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 3</span>         <span class="k">return</span> <span class="kc">None</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>     <span class="n">nextNodeRev</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="linenos"> 6</span>     <span class="n">currNode</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos"> 7</span>     <span class="n">headNodeRev</span> <span class="o">=</span> <span class="n">nextNodeRev</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>     <span class="k">while</span> <span class="n">currNode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">10</span>         <span class="n">headNodeRev</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">currNode</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">nextNodeRev</span><span class="p">)</span>
+<span class="linenos">11</span>         <span class="n">nextNodeRev</span> <span class="o">=</span> <span class="n">headNodeRev</span>
+<span class="linenos">12</span>         <span class="n">currNode</span> <span class="o">=</span> <span class="n">currNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>     <span class="k">return</span> <span class="n">headNodeRev</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>I felt quite confident with the above implementation.
+Credit to careful and critical reading!</p></li>
+<li><p>The iterative logic came more naturally than the recursive algorithm logic.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Simple and elegant solution (cred: <a class="reference external" href="https://leetcode.com/problems/reverse-linked-list/discuss/58127/Python-Iterative-and-Recursive-Solution">tusizi</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterative</span>
+<span class="k">def</span> <span class="nf">reverseList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">):</span>
+<span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">while</span> <span class="n">head</span><span class="p">:</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+    <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span>
+    <span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span>
+<span class="k">return</span> <span class="n">prev</span>
+
+<span class="c1"># recursive</span>
+<span class="k">def</span> <span class="nf">reverseList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reverse</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">prev</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">prev</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reverse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-recursive-vs-iterative-programs admonition">
+<p class="admonition-title">Recursive vs. Iterative Programs</p>
+<p><strong>Recursion</strong> is a method call in which the method being called is the same as the one
+making the call (i.e. when an entity <em>calls itself</em>). <strong>Iteration</strong> is when a <em>loop</em> is
+repeatedly executed until a certain condition is met.</p>
+<ul class="simple">
+<li><p>Infinite recursion can lead to system crash vs. Infinite iteration consumes CPU cycles.</p></li>
+<li><p>Unlike iteration, recursion repeatedly invokes the mechanism, and thereby the overhead,
+of method calls. This can be expensive in processor time and memory space.</p></li>
+</ul>
+</div>
 </section>
 </section>
 </section>

@@ -6,6 +6,11 @@
 Welcome to Bin's LeetCode Learning Notebook!
 ========================================================
 
+The rules are simple: minimum 3 LeetCode questions per day. I will use this website to document the lessons 
+learned along the way. 
+
+**First Goal:** 100 continuous days of leetcode practice (300+ questions!)
+
 .. toctree::
    :maxdepth: 2
    :caption: Daily Exercise & Reflections:
