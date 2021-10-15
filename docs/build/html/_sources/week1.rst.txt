@@ -51,8 +51,7 @@ Question 2: Valid Parentheses
 '[' and ']', determine if the input string is valid.*
 
 My solution: O(n)
-
-* using stack and a helper function that compares a open parenthesis with a closed one
+ * using stack and a helper function that compares a open parenthesis with a closed one
 
 .. tip::
     No need to create class for stack when coding in Python (just use list operators)! 
@@ -89,8 +88,7 @@ My solution:
 * Regular binary search but nuances/details are critical
 
 **Take-aways**
-
-* Review binary search (trees)! 
+ * Review binary search (trees)! 
 
 
 
@@ -101,8 +99,7 @@ Question 4: Pow(x,n)
 *Implement pow(x, n), which calculates x raised to the power n*
 
 Notes: 
-
-* Was a little too simple than expected
+ * Was a little too simple than expected
 
 My solution [O(1)]:
 
@@ -290,10 +287,132 @@ Really short solution (cred: `StefanPochmann <https://leetcode.com/problems/is-s
         return all(c in t for c in s)
              
 .. tip::
-    ``Iter()`` returns an iterator for a given object (e.g. list, sets, tuples, ...). More on `iterator type <https://www.mygreatlearning.com/blog/iterator-in-python/>`_. 
+    ``Iter()`` returns an iterator for a given object (e.g. list, sets, tuples, ...). 
+    More on `iterator type <https://www.mygreatlearning.com/blog/iterator-in-python/>`_. 
     In our example, it is like a list whose elements we can see one-by-one (and we have to discard it after seeing it)
 
     ``all()`` takes an *iterable* (e.g. list, tuple, dictionary, iterator, etc...) and returns True if all items in the 
     iterable are True, else it returns False. Its counterpart is ``any()``, which returns True if any item in an iterable is True, else it returns False.
 
+
+Day 3 [15 Oct]
+========================
+Question 7: Path Sum
+---------------------
+*Given the root of a binary tree and an integer targetSum, return true if the tree 
+has a root-to-leaf path such that adding up all the values along the path equals targetSum. A leaf is a node with no children.*
+
+Remarks: 
+ * I'm realizing the importance of spending more time thinking about the algorithm and problem and not rushing to code the solution
+ * Solution took a lots of tries to get right
+
+.. code-block:: python
+    :linenos:
+
+    class Solution:
+        def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+            if (root is None): 
+                return False # in case else-branch called on leaf-node
+            elif (targetSum == root.val and not root.left and not root.right): 
+                return True # leaf node reached with pathSum==targetSum ; key=leaf node has no children
+            else: 
+                return self.hasPathSum(root.left, targetSum-root.val) or self.hasPathSum(root.right, targetSum-root.val)
+
+.. tip::
+    Reading and understanding every definition and instruction is critical to problem solving (e.g. 'A leaf is a node with no children'). 
+
+    Think about test cases first before attempting to devise a solution! 
+
+    "Premature optimization is the root of all evil" - Donald Knuth
+
+Different Approaches (cred: `OldCodingFarmer <https://leetcode.com/problems/path-sum/discuss/36486/Python-solutions-(DFS-recursively-DFS%2Bstack-BFS%2Bqueue)>`_)::
+
+    # Recursive
+    def hasPathSum1(self, root, sum):
+        if not root:
+            return False
+        if not root.left and not root.right and root.val == sum:
+            return True
+        return self.hasPathSum(root.left, sum-root.val) or self.hasPathSum(root.right, sum-root.val)
+    
+    # DFS + stack   
+    def hasPathSum(self, root, sum):
+        stack = [(root, sum)]
+        while stack:
+            node, value = stack.pop()
+            if node:
+                if not node.left and not node.right and node.val == value:
+                    return True
+                stack.append((node.right, value-node.val))
+                stack.append((node.left, value-node.val))
+        return False
+
+    # BFS with queue
+    def hasPathSum(self, root, sum):
+        if not root:
+            return False
+        queue = [(root, sum-root.val)]
+        while queue:
+            curr, val = queue.pop(0)
+            if not curr.left and not curr.right and val == 0:
+                return True
+            if curr.left:
+                queue.append((curr.left, val-curr.left.val))
+            if curr.right:
+                queue.append((curr.right, val-curr.right.val))
+        return False
+
+* May be slightly over-engineered, but for reference!
+
+Question 8: Best Time to Buy and Sell Stock
+--------------------------------------------
+*You are given an array prices where ``prices[i]`` is the price of a given stock on the ith day. You want to maximize your 
+profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.*
+
+*Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.*
+
+Remarks: 
+ * Much easier after having done :ref:`Question 5: Maximum Subarray`. 
+ * I used one of the optimized maximum subarray algorithms (Kadane's algorithm) I read in the discussion forum
+
+.. code-block:: python
+    :linenos:
+
+    class Solution:
+        def maxProfit(self, prices: List[int]) -> int:
+            # no profit can be gained from one or zero days
+            if len(prices) <= 1: 
+                return 0
+
+            #transform list -> change in price
+            priceChange = [0] # initialize -> no profit
+            for i in range(len(prices)-1): 
+                priceChange.append(prices[i+1] - prices[i])
+            
+            maxSoFar = priceChange[0]
+            maxEndingHere = priceChange[0]
+            for delta in priceChange[1:]: 
+                maxEndingHere = max(maxEndingHere + delta, delta)
+                maxSoFar = max(maxEndingHere, maxSoFar)
+            return maxSoFar
+            # day to buy and sell, could be recorded and returned too
+
+Using Kadane's algorithm (adapted):: 
+
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) <= 1: 
+            return 0
+        priceChange = [0] # initialize -> no profit
+        for i in range(len(prices)-1): 
+            priceChange.append(prices[i+1] - prices[i])
+        
+        # Kadaane's algorithm    
+        for i in range(1,len(priceChange)): 
+            if priceChange[i-1] > 0: 
+                priceChange[i] += priceChange[i-1]
+        return max(priceChange)
+
+Question 9: Reverse Linked List
+-------------------------------------
+*Given the head of a singly linked list, reverse the list, and return the reversed list.*
 

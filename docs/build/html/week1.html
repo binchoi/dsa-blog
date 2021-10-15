@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Week 2" href="week2.html" />
-    <link rel="prev" title="Welcome to Bin’s documentation of his LeetCode Journey!" href="index.html" /> 
+    <link rel="prev" title="Welcome to Bin’s LeetCode Learning Notebook!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,6 +50,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-4-pow-x-n">Question 4: Pow(x,n)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-5-maximum-subarray">Question 5: Maximum Subarray</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-6-is-subsequence">Question 6: Is Subsequence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-3-15-oct">Day 3 [15 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-7-path-sum">Question 7: Path Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-8-best-time-to-buy-and-sell-stock">Question 8: Best Time to Buy and Sell Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-9-reverse-linked-list">Question 9: Reverse Linked List</a></li>
 </ul>
 </li>
 </ul>
@@ -121,10 +127,12 @@ Optimal solution:</p>
 <h3>Question 2: Valid Parentheses<a class="headerlink" href="#question-2-valid-parentheses" title="Permalink to this headline"></a></h3>
 <p><em>Given a string s containing just the characters ‘(’, ‘)’, ‘{’, ‘}’,
 ‘[’ and ‘]’, determine if the input string is valid.</em></p>
-<p>My solution: O(n)</p>
-<ul class="simple">
+<dl class="simple">
+<dt>My solution: O(n)</dt><dd><ul class="simple">
 <li><p>using stack and a helper function that compares a open parenthesis with a closed one</p></li>
 </ul>
+</dd>
+</dl>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>No need to create class for stack when coding in Python (just use list operators)!</p>
@@ -155,10 +163,12 @@ return the index where it would be if it were inserted in order.</em></p>
 <li><p>Struggled a lot for some reason</p></li>
 <li><p>Regular binary search but nuances/details are critical</p></li>
 </ul>
-<p><strong>Take-aways</strong></p>
-<ul class="simple">
+<dl class="simple">
+<dt><strong>Take-aways</strong></dt><dd><ul class="simple">
 <li><p>Review binary search (trees)!</p></li>
 </ul>
+</dd>
+</dl>
 </section>
 </section>
 <section id="day-2-14-oct">
@@ -166,10 +176,12 @@ return the index where it would be if it were inserted in order.</em></p>
 <section id="question-4-pow-x-n">
 <h3>Question 4: Pow(x,n)<a class="headerlink" href="#question-4-pow-x-n" title="Permalink to this headline"></a></h3>
 <p><em>Implement pow(x, n), which calculates x raised to the power n</em></p>
-<p>Notes:</p>
-<ul class="simple">
+<dl class="simple">
+<dt>Notes:</dt><dd><ul class="simple">
 <li><p>Was a little too simple than expected</p></li>
 </ul>
+</dd>
+</dl>
 <p>My solution [O(1)]:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos">2</span>     <span class="k">def</span> <span class="nf">myPow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -344,11 +356,135 @@ of the remaining characters. (i.e., “ace” is a subsequence of “abcde” wh
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><code class="docutils literal notranslate"><span class="pre">Iter()</span></code> returns an iterator for a given object (e.g. list, sets, tuples, …). More on <a class="reference external" href="https://www.mygreatlearning.com/blog/iterator-in-python/">iterator type</a>.
+<p><code class="docutils literal notranslate"><span class="pre">Iter()</span></code> returns an iterator for a given object (e.g. list, sets, tuples, …).
+More on <a class="reference external" href="https://www.mygreatlearning.com/blog/iterator-in-python/">iterator type</a>.
 In our example, it is like a list whose elements we can see one-by-one (and we have to discard it after seeing it)</p>
 <p><code class="docutils literal notranslate"><span class="pre">all()</span></code> takes an <em>iterable</em> (e.g. list, tuple, dictionary, iterator, etc…) and returns True if all items in the
 iterable are True, else it returns False. Its counterpart is <code class="docutils literal notranslate"><span class="pre">any()</span></code>, which returns True if any item in an iterable is True, else it returns False.</p>
 </div>
+</section>
+</section>
+<section id="day-3-15-oct">
+<h2>Day 3 [15 Oct]<a class="headerlink" href="#day-3-15-oct" title="Permalink to this headline"></a></h2>
+<section id="question-7-path-sum">
+<h3>Question 7: Path Sum<a class="headerlink" href="#question-7-path-sum" title="Permalink to this headline"></a></h3>
+<p><em>Given the root of a binary tree and an integer targetSum, return true if the tree
+has a root-to-leaf path such that adding up all the values along the path equals targetSum. A leaf is a node with no children.</em></p>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>I’m realizing the importance of spending more time thinking about the algorithm and problem and not rushing to code the solution</p></li>
+<li><p>Solution took a lots of tries to get right</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="k">def</span> <span class="nf">hasPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">],</span> <span class="n">targetSum</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos">3</span>        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+<span class="linenos">4</span>            <span class="k">return</span> <span class="kc">False</span> <span class="c1"># in case else-branch called on leaf-node</span>
+<span class="linenos">5</span>        <span class="k">elif</span> <span class="p">(</span><span class="n">targetSum</span> <span class="o">==</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">):</span>
+<span class="linenos">6</span>            <span class="k">return</span> <span class="kc">True</span> <span class="c1"># leaf node reached with pathSum==targetSum ; key=leaf node has no children</span>
+<span class="linenos">7</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">8</span>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">targetSum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">targetSum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reading and understanding every definition and instruction is critical to problem solving (e.g. ‘A leaf is a node with no children’).</p>
+<p>Think about test cases first before attempting to devise a solution!</p>
+<p>“Premature optimization is the root of all evil” - Donald Knuth</p>
+</div>
+<p>Different Approaches (cred: <a class="reference external" href="https://leetcode.com/problems/path-sum/discuss/36486/Python-solutions-(DFS-recursively-DFS%2Bstack-BFS%2Bqueue)">OldCodingFarmer</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recursive</span>
+<span class="k">def</span> <span class="nf">hasPathSum1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="nb">sum</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+
+<span class="c1"># DFS + stack</span>
+<span class="k">def</span> <span class="nf">hasPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="p">):</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">value</span><span class="o">-</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">value</span><span class="o">-</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+<span class="c1"># BFS with queue</span>
+<span class="k">def</span> <span class="nf">hasPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">curr</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">curr</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">curr</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">curr</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">val</span><span class="o">-</span><span class="n">curr</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">curr</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">val</span><span class="o">-</span><span class="n">curr</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>May be slightly over-engineered, but for reference!</p></li>
+</ul>
+</section>
+<section id="question-8-best-time-to-buy-and-sell-stock">
+<h3>Question 8: Best Time to Buy and Sell Stock<a class="headerlink" href="#question-8-best-time-to-buy-and-sell-stock" title="Permalink to this headline"></a></h3>
+<p><em>You are given an array prices where ``prices[i]`` is the price of a given stock on the ith day. You want to maximize your
+profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.</em></p>
+<p><em>Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.</em></p>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>Much easier after having done <a class="reference internal" href="#question-5-maximum-subarray"><span class="std std-ref">Question 5: Maximum Subarray</span></a>.</p></li>
+<li><p>I used one of the optimized maximum subarray algorithms (Kadane’s algorithm) I read in the discussion forum</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">maxProfit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="c1"># no profit can be gained from one or zero days</span>
+<span class="linenos"> 4</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos"> 5</span>            <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>        <span class="c1">#transform list -&gt; change in price</span>
+<span class="linenos"> 8</span>        <span class="n">priceChange</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># initialize -&gt; no profit</span>
+<span class="linenos"> 9</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">10</span>            <span class="n">priceChange</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>        <span class="n">maxSoFar</span> <span class="o">=</span> <span class="n">priceChange</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">13</span>        <span class="n">maxEndingHere</span> <span class="o">=</span> <span class="n">priceChange</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">14</span>        <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="n">priceChange</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+<span class="linenos">15</span>            <span class="n">maxEndingHere</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxEndingHere</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+<span class="linenos">16</span>            <span class="n">maxSoFar</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxEndingHere</span><span class="p">,</span> <span class="n">maxSoFar</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="k">return</span> <span class="n">maxSoFar</span>
+<span class="linenos">18</span>        <span class="c1"># day to buy and sell, could be recorded and returned too</span>
+</pre></div>
+</div>
+<p>Using Kadane’s algorithm (adapted):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxProfit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">priceChange</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># initialize -&gt; no profit</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">priceChange</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># Kadaane&#39;s algorithm</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">priceChange</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">priceChange</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">priceChange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">priceChange</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">priceChange</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="question-9-reverse-linked-list">
+<h3>Question 9: Reverse Linked List<a class="headerlink" href="#question-9-reverse-linked-list" title="Permalink to this headline"></a></h3>
+<p><em>Given the head of a singly linked list, reverse the list, and return the reversed list.</em></p>
 </section>
 </section>
 </section>
@@ -357,7 +493,7 @@ iterable are True, else it returns False. Its counterpart is <code class="docuti
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Bin’s documentation of his LeetCode Journey!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Bin’s LeetCode Learning Notebook!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="week2.html" class="btn btn-neutral float-right" title="Week 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
