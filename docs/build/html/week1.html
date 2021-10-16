@@ -58,6 +58,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-9-reverse-linked-list">Question 9: Reverse Linked List</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-4-16-oct">Day 4 [16 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-10-unique-paths">Question 10: Unique Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-11-move-zeroes">Question 11: Move Zeroes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-12-unique-email-addresses">Question 12: Unique Email Addresses</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2</a></li>
@@ -544,6 +550,156 @@ repeatedly executed until a certain condition is met.</p>
 <li><p>Unlike iteration, recursion repeatedly invokes the mechanism, and thereby the overhead,
 of method calls. This can be expensive in processor time and memory space.</p></li>
 </ul>
+</div>
+</section>
+</section>
+<section id="day-4-16-oct">
+<h2>Day 4 [16 Oct]<a class="headerlink" href="#day-4-16-oct" title="Permalink to this headline"></a></h2>
+<section id="question-10-unique-paths">
+<h3>Question 10: Unique Paths<a class="headerlink" href="#question-10-unique-paths" title="Permalink to this headline"></a></h3>
+<p><em>A robot is located at the top-left corner of a</em> <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">x</span> <span class="pre">n</span></code> <em>grid.
+The robot can only move either down or right at any point in time. The robot is trying to reach the
+bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</em></p>
+<p><em>How many possible unique paths are there?</em></p>
+<p>My solution (iterative - <code class="docutils literal notranslate"><span class="pre">O(m</span> <span class="pre">x</span> <span class="pre">n)</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">def</span> <span class="nf">uniquePaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">4</span>    <span class="c1"># initialize the memoization matrix</span>
+<span class="linenos">5</span>    <span class="n">memoMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="linenos">6</span>    <span class="k">for</span> <span class="n">rowIdx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">7</span>        <span class="k">for</span> <span class="n">colIdx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">8</span>            <span class="n">memoMatrix</span><span class="p">[</span><span class="n">rowIdx</span><span class="p">][</span><span class="n">colIdx</span><span class="p">]</span> <span class="o">=</span> <span class="n">memoMatrix</span><span class="p">[</span><span class="n">rowIdx</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">colIdx</span><span class="p">]</span> <span class="o">+</span> <span class="n">memoMatrix</span><span class="p">[</span><span class="n">rowIdx</span><span class="p">][</span><span class="n">colIdx</span> <span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">9</span>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">memoMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>I am happy that I recognized the presence of sub-problems that could be solved and stored
+through memoization (Dynamic Programming)</p></li>
+<li><p>I am dissatisfied because I knew there is a mathematical formula that could compute the solution
+in <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> time.</p></li>
+<li><p>Numpy is not all that neccessary here (could have done <code class="docutils literal notranslate"><span class="pre">[[1]</span> <span class="pre">*</span> <span class="pre">n]</span> <span class="pre">*</span> <span class="pre">m</span></code> instead of <code class="docutils literal notranslate"><span class="pre">np.ones((m,n))</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Math Solution (<code class="docutils literal notranslate"><span class="pre">O(1)</span></code>) using permutation (cred: <a class="reference external" href="https://leetcode.com/problems/unique-paths/discuss/22958/Math-solution-O(1)-space">whitehat</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">uniquePaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="c1"># (m+n-2)! / [(m-1)! (n-1)!]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If importing math is prohibited:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">uniquePaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="c1"># (m+n-2)! / [(m-1)! (n-1)!]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">*=</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">/=</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="question-11-move-zeroes">
+<h3>Question 11: Move Zeroes<a class="headerlink" href="#question-11-move-zeroes" title="Permalink to this headline"></a></h3>
+<p><em>Given an integer array nums, move all 0’s to the end of it while maintaining the relative order
+of the non-zero elements. Note that you must do this in-place without making a copy of the array.</em></p>
+<p>My solution (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="n">popIdx</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 3</span>    <span class="n">zeros</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="n">popIdx</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">popIdx</span>
+<span class="linenos"> 8</span>            <span class="n">zeros</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos"> 9</span>    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">popIdx</span><span class="p">:</span>
+<span class="linenos">10</span>        <span class="n">nums</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nums</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">zeros</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>Could be more concise and could maybe cut down the constant factor (on time complexity), but I am
+satisfied with a <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> solution</p></li>
+</ul>
+</dd>
+</dl>
+<p>Revised solution (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code> with reduced constant factor; cred: <a class="reference external" href="https://leetcode.com/problems/move-zeroes/discuss/72011/Simple-O(N)-Java-Solution-Using-Insert-Index">Kurteck</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">nums</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="n">insertPos</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># for non-Zero elements</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nums</span><span class="p">[</span><span class="n">insertPos</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">insertPos</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">insertPos</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+        <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="question-12-unique-email-addresses">
+<h3>Question 12: Unique Email Addresses<a class="headerlink" href="#question-12-unique-email-addresses" title="Permalink to this headline"></a></h3>
+<p><em>Every valid email consists of a local name and a domain name, separated by the ‘&#64;’ sign. Besides lowercase
+letters, the email may contain one or more ‘.’ or ‘+’. For example, in “alice&#64;leetcode.com”, “alice” is
+the local name, and “leetcode.com” is the domain name. If you add periods ‘.’ between some characters in
+the local name part of an email address, mail sent there will be forwarded to the same address without
+dots in the local name.</em></p>
+<p><em>Note that this rule does not apply to domain names. For example,
+“alice.z&#64;leetcode.com” and “alicez&#64;leetcode.com” forward to the same email address. If you add a plus ‘+’
+in the local name, everything after the first plus sign will be ignored. This allows certain emails to
+be filtered. Note that this rule does not apply to domain names. For example, “m.y+name&#64;email.com” will
+be forwarded to “my&#64;email.com”. It is possible to use both of these rules at the same time.</em></p>
+<p><em>Given an array of strings emails where we send one email to each email[i], return the number of different
+addresses that actually receive mails.</em></p>
+<p>My initial solution (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">numUniqueEmails</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emails</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="n">emailDict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos"> 3</span>    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+<span class="linenos"> 4</span>        <span class="p">[</span><span class="n">local</span><span class="p">,</span> <span class="n">domain</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>        <span class="n">local</span> <span class="o">=</span> <span class="n">local</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>        <span class="k">if</span> <span class="n">domain</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">emailDict</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">emailDict</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">local</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">11</span>            <span class="n">emailDict</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">local</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">14</span>    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">emailDict</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+<span class="linenos">15</span>        <span class="n">res</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<p>My revised solution (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code> and better space complexity):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">numUniqueEmails</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emails</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="n">emailSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+<span class="linenos">4</span>        <span class="p">[</span><span class="n">local</span><span class="p">,</span> <span class="n">domain</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span>
+<span class="linenos">5</span>        <span class="n">local</span> <span class="o">=</span> <span class="n">local</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="linenos">6</span>        <span class="n">emailSet</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">local</span> <span class="o">+</span> <span class="s2">&quot;@&quot;</span> <span class="o">+</span> <span class="n">domain</span><span class="p">)</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">emailSet</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>There are so many useful python methods (built-in) that can help optimize the performance of many algorithms.
+Make sure to be familiar with them so that you don’t have to search on Google every time you are doing a question.</p></li>
+<li><p>I don’t think there are many ways to make the algorithm more efficient.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Consider the nature of the problem carefully and think about the various data structures that can be
+used to solve the problem. Which one is most efficient? Which is most natural or easy to understand? Which
+one is most compatible with the devised algorithm?</p>
 </div>
 </section>
 </section>

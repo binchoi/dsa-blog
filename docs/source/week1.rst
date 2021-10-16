@@ -478,3 +478,159 @@ Simple and elegant solution (cred: `tusizi <https://leetcode.com/problems/revers
       of method calls. This can be expensive in processor time and memory space. 
 
 
+Day 4 [16 Oct]
+========================
+Question 10: Unique Paths
+--------------------------
+*A robot is located at the top-left corner of a* ``m x n`` *grid. 
+The robot can only move either down or right at any point in time. The robot is trying to reach the 
+bottom-right corner of the grid (marked 'Finish' in the diagram below).*
+
+*How many possible unique paths are there?*
+
+My solution (iterative - ``O(m x n)``):
+
+.. code-block:: python
+    :linenos:
+
+    import numpy as np
+
+    def uniquePaths(self, m: int, n: int) -> int:
+        # initialize the memoization matrix
+        memoMatrix = np.ones((m,n))
+        for rowIdx in range(m-2, -1, -1): 
+            for colIdx in range(n-2, -1, -1): 
+                memoMatrix[rowIdx][colIdx] = memoMatrix[rowIdx+1][colIdx] + memoMatrix[rowIdx][colIdx +1]  
+        return int(memoMatrix[0][0])
+
+Remarks:
+ * I am happy that I recognized the presence of sub-problems that could be solved and stored 
+   through memoization (Dynamic Programming)
+ * I am dissatisfied because I knew there is a mathematical formula that could compute the solution 
+   in ``O(1)`` time. 
+ * Numpy is not all that neccessary here (could have done ``[[1] * n] * m`` instead of ``np.ones((m,n))``)
+
+Math Solution (``O(1)``) using permutation (cred: `whitehat <https://leetcode.com/problems/unique-paths/discuss/22958/Math-solution-O(1)-space>`_)::
+
+    import math
+    
+    def uniquePaths(self, m: int, n: int) -> int:
+        # (m+n-2)! / [(m-1)! (n-1)!]
+        res = math.factorial(m+n-2)/(math.factorial(m-1)*math.factorial(n-1))
+        return int(res)
+
+If importing math is prohibited:: 
+
+    def uniquePaths(self, m: int, n: int) -> int:
+        # (m+n-2)! / [(m-1)! (n-1)!]
+        res = 1
+        for i in range(m, m+n-1): 
+            res *= i
+        for j in range(2, n): 
+            res /= j
+        return int(res) 
+
+Question 11: Move Zeroes
+--------------------------
+*Given an integer array nums, move all 0's to the end of it while maintaining the relative order 
+of the non-zero elements. Note that you must do this in-place without making a copy of the array.*
+
+My solution (``O(n)``):
+
+.. code-block:: python
+    :linenos:
+
+    def moveZeroes(self, nums: List[int]) -> None:
+        popIdx = []
+        zeros = 0
+        
+        for i, n in enumerate(nums): 
+            if n==0: 
+                popIdx = [i] + popIdx
+                zeros += 1
+        for idx in popIdx:
+            nums.pop(idx)
+        nums += [0] * zeros
+
+Remarks:
+ * Could be more concise and could maybe cut down the constant factor (on time complexity), but I am 
+   satisfied with a ``O(n)`` solution
+
+Revised solution (``O(n)`` with reduced constant factor; cred: `Kurteck <https://leetcode.com/problems/move-zeroes/discuss/72011/Simple-O(N)-Java-Solution-Using-Insert-Index>`_):: 
+
+    def moveZeroes(self, nums: List[int]) -> None:
+        if (nums is None or len(nums)==1): 
+            return
+        
+        insertPos = 0 # for non-Zero elements
+        for i in range(len(nums)): 
+            if nums[i] != 0:
+                nums[insertPos] = nums[i]
+                insertPos += 1
+        for j in range(insertPos, len(nums)): 
+            nums[j] = 0
+
+
+Question 12: Unique Email Addresses
+------------------------------------
+*Every valid email consists of a local name and a domain name, separated by the '@' sign. Besides lowercase 
+letters, the email may contain one or more '.' or '+'. For example, in "alice@leetcode.com", "alice" is 
+the local name, and "leetcode.com" is the domain name. If you add periods '.' between some characters in 
+the local name part of an email address, mail sent there will be forwarded to the same address without 
+dots in the local name.* 
+
+*Note that this rule does not apply to domain names. For example, 
+"alice.z@leetcode.com" and "alicez@leetcode.com" forward to the same email address. If you add a plus '+' 
+in the local name, everything after the first plus sign will be ignored. This allows certain emails to 
+be filtered. Note that this rule does not apply to domain names. For example, "m.y+name@email.com" will 
+be forwarded to "my@email.com". It is possible to use both of these rules at the same time.*
+
+*Given an array of strings emails where we send one email to each email[i], return the number of different 
+addresses that actually receive mails.*
+
+My initial solution (``O(n)``):
+
+.. code-block:: python
+    :linenos:
+
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        emailDict = {}
+        for e in emails: 
+            [local, domain] = e.split("@")
+            
+            local = local.split("+")[0].replace(".", "")
+            
+            if domain in list(emailDict): 
+                emailDict[domain].add(local)
+            else: 
+                emailDict[domain] = {local}
+                
+        res = 0
+        for s in list(emailDict.values()): 
+            res += len(s)
+        return res
+
+My revised solution (``O(n)`` and better space complexity):
+
+.. code-block:: python
+    :linenos:
+
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        emailSet = set()
+        for e in emails: 
+            [local, domain] = e.split("@")
+            local = local.split("+")[0].replace(".", "")
+            emailSet.add(local + "@" + domain)
+        return len(emailSet)
+
+Remarks: 
+ * There are so many useful python methods (built-in) that can help optimize the performance of many algorithms. 
+   Make sure to be familiar with them so that you don't have to search on Google every time you are doing a question.
+ * I don't think there are many ways to make the algorithm more efficient. 
+
+.. tip:: 
+
+    Consider the nature of the problem carefully and think about the various data structures that can be 
+    used to solve the problem. Which one is most efficient? Which is most natural or easy to understand? Which 
+    one is most compatible with the devised algorithm? 
+
