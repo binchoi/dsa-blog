@@ -17,7 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'LeetCodeDoc'
+project = 'AlgoVenture'
+
 copyright = '2021, Bin Choi'
 author = 'Bin Choi'
 

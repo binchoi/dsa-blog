@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Week 1 [13-20 Oct 2021] &mdash; LeetCodeDoc 0.1 documentation</title>
+  <title>Week 1 [13-17 Oct 2021] &mdash; AlgoVenture 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,11 +15,12 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Week 2" href="week2.html" />
-    <link rel="prev" title="Welcome to Bin’s LeetCode Learning Notebook!" href="index.html" /> 
+    <link rel="next" title="Week 2 [17-24 Oct 2021]" href="week2.html" />
+    <link rel="prev" title="Welcome to Bin’s Algorithm Study Notebook!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -27,7 +28,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> LeetCodeDoc
+            <a href="index.html" class="icon icon-home"> AlgoVenture
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -39,7 +40,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Daily Exercise &amp; Reflections:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 1 [13-20 Oct 2021]</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 1 [13-17 Oct 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#day-1-13-oct">Day 1 [13 Oct]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-1-two-sum">Question 1: Two Sum</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-2-valid-parentheses">Question 2: Valid Parentheses</a></li>
@@ -64,9 +65,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-12-unique-email-addresses">Question 12: Unique Email Addresses</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-5-17-oct">Day 5 [17 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-13-generate-parentheses">Question 13: Generate Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-14-zigzag-conversion">Question 14: ZigZag Conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-15-palindrome-number">Question 15: Palindrome Number</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2 [17-24 Oct 2021]</a></li>
 </ul>
 
         </div>
@@ -75,7 +82,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">LeetCodeDoc</a>
+          <a href="index.html">AlgoVenture</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -83,7 +90,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Week 1 [13-20 Oct 2021]</li>
+      <li>Week 1 [13-17 Oct 2021]</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -92,8 +99,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="week-1-13-20-oct-2021">
-<h1>Week 1 [13-20 Oct 2021]<a class="headerlink" href="#week-1-13-20-oct-2021" title="Permalink to this headline"></a></h1>
+  <section id="week-1-13-17-oct-2021">
+<h1>Week 1 [13-17 Oct 2021]<a class="headerlink" href="#week-1-13-17-oct-2021" title="Permalink to this headline"></a></h1>
 <section id="day-1-13-oct">
 <h2>Day 1 [13 Oct]<a class="headerlink" href="#day-1-13-oct" title="Permalink to this headline"></a></h2>
 <section id="question-1-two-sum">
@@ -703,14 +710,270 @@ one is most compatible with the devised algorithm?</p>
 </div>
 </section>
 </section>
+<section id="day-5-17-oct">
+<h2>Day 5 [17 Oct]<a class="headerlink" href="#day-5-17-oct" title="Permalink to this headline"></a></h2>
+<section id="question-13-generate-parentheses">
+<h3>Question 13: Generate Parentheses<a class="headerlink" href="#question-13-generate-parentheses" title="Permalink to this headline"></a></h3>
+<p><em>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</em></p>
+<p>My recursive solution (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code>… I think?):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">genParHelper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">openPar</span><span class="p">,</span> <span class="n">closePar</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">currString</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="n">openPar</span> <span class="o">+</span> <span class="n">closePar</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="k">if</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 4</span>            <span class="k">if</span> <span class="n">openPar</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>                <span class="bp">self</span><span class="o">.</span><span class="n">genParHelper</span><span class="p">(</span><span class="n">openPar</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">closePar</span><span class="p">,</span> <span class="n">acc</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">currString</span><span class="o">+</span><span class="s2">&quot;(&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="linenos"> 6</span>            <span class="k">if</span> <span class="n">closePar</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 7</span>                <span class="bp">self</span><span class="o">.</span><span class="n">genParHelper</span><span class="p">(</span><span class="n">openPar</span><span class="p">,</span> <span class="n">closePar</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">acc</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">currString</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 9</span>            <span class="bp">self</span><span class="o">.</span><span class="n">genParHelper</span><span class="p">(</span><span class="n">openPar</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">closePar</span><span class="p">,</span> <span class="n">acc</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">currString</span><span class="o">+</span><span class="s2">&quot;(&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">11</span>        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="n">currString</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="linenos">14</span>    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">15</span>    <span class="bp">self</span><span class="o">.</span><span class="n">genParHelper</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl>
+<dt>Remarks:</dt><dd><ul>
+<li><p>It helped to study the test cases provided and to walk through the steps I would take to solve the problem.
+Then, I tried to implement as many know-hows discovered into my code.</p></li>
+<li><p>I considered a math (combination/permutation solution) but decided against it as I would have to provide
+a list of strings rather than a numerical count of them.</p></li>
+<li><p>Time complexity is difficult to compute.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>According to LeetCode, the time/space complexity is approximately <code class="docutils literal notranslate"><span class="pre">O(4^n</span> <span class="pre">/</span> <span class="pre">sqrt(n))</span></code> because of Catalan
+numbers’ asymptotic bound … yeah.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p>LeetCode’s Brute Force solution (<code class="docutils literal notranslate"><span class="pre">O(2^(2n)</span> <span class="pre">*</span> <span class="pre">n)</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="p">[]):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">valid</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span>
+            <span class="n">generate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+            <span class="n">generate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="n">bal</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span> <span class="n">bal</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span> <span class="n">bal</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">bal</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">bal</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">generate</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+<p>LeetCode’s Backtracking solution (<code class="docutils literal notranslate"><span class="pre">O(2^(2n)</span> <span class="pre">*</span> <span class="pre">n)</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python</span>
+<span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">S</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+            <span class="n">S</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
+            <span class="n">S</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">S</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">backtrack</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+<p>LeetCode’s Backtracking solution (<code class="docutils literal notranslate"><span class="pre">O(2^(2n)</span> <span class="pre">*</span> <span class="pre">n)</span></code>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">,</span> <span class="n">StringBuilder</span> <span class="n">cur</span><span class="p">,</span> <span class="kt">int</span> <span class="n">open</span><span class="p">,</span> <span class="kt">int</span> <span class="n">close</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">==</span> <span class="n">max</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ans</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">open</span> <span class="o">&lt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cur</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;(&quot;</span><span class="p">);</span>
+        <span class="n">backtrack</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">cur</span><span class="p">,</span> <span class="n">open</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">close</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
+        <span class="n">cur</span><span class="p">.</span><span class="na">deleteCharAt</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">close</span> <span class="o">&lt;</span> <span class="n">open</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cur</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;)&quot;</span><span class="p">);</span>
+        <span class="n">backtrack</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">cur</span><span class="p">,</span> <span class="n">open</span><span class="p">,</span> <span class="n">close</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
+        <span class="n">cur</span><span class="p">.</span><span class="na">deleteCharAt</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-14-zigzag-conversion">
+<h3>Question 14: ZigZag Conversion<a class="headerlink" href="#question-14-zigzag-conversion" title="Permalink to this headline"></a></h3>
+<p><em>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</em></p>
+<p><em>The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span>   <span class="n">A</span>   <span class="n">H</span>   <span class="n">N</span>
+<span class="n">A</span> <span class="n">P</span> <span class="n">L</span> <span class="n">S</span> <span class="n">I</span> <span class="n">I</span> <span class="n">G</span>
+<span class="n">Y</span>   <span class="n">I</span>   <span class="n">R</span>
+</pre></div>
+</div>
+<p><em>And then read line by line: “PAHNAPLSIIGYIR”. Write the code that will take a string and make this
+conversion given a number of rows</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">numRows</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="n">numRows</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="k">return</span> <span class="n">s</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numRows</span><span class="p">)]</span>
+<span class="linenos"> 6</span>    <span class="n">strLen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">pointer</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">while</span> <span class="n">strLen</span> <span class="o">&gt;</span> <span class="n">pointer</span><span class="p">:</span>
+<span class="linenos">10</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">numRows</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+<span class="linenos">11</span>            <span class="k">if</span> <span class="n">pointer</span> <span class="o">==</span> <span class="n">strLen</span><span class="p">:</span>
+<span class="linenos">12</span>                <span class="k">break</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numRows</span><span class="p">:</span>
+<span class="linenos">15</span>                <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">pointer</span><span class="p">])</span>
+<span class="linenos">16</span>                <span class="n">pointer</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">17</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">18</span>                <span class="n">rows</span><span class="p">[</span><span class="n">numRows</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">pointer</span><span class="p">])</span>
+<span class="linenos">19</span>                <span class="n">pointer</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">20</span>    <span class="n">flatten</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+<span class="linenos">21</span>    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">flatten</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks &amp; Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Once again, drawing it out made me realize that a data structure that categorizes the characters by their
+row would be effective.</p></li>
+<li><p>Thinking creatively and mathematically in the beginning of the process can make a problem so much easier
+to solve. Don’t rush into typing your code (you might be stuck for a while!). Instead take some time to think
+and devise a mission plan!</p></li>
+<li><p>Could have been more conservative by creating only the neccessary number of sub-arrays (<code class="docutils literal notranslate"><span class="pre">min(len(s),</span> <span class="pre">numRows)</span></code>)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=len(s)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Similar LeetCode solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numRows</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">numRows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">StringBuilder</span><span class="o">&gt;</span> <span class="n">rows</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">numRows</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">rows</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">StringBuilder</span><span class="p">());</span>
+
+    <span class="kt">int</span> <span class="n">curRow</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">boolean</span> <span class="n">goingDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">rows</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">curRow</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">curRow</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">curRow</span> <span class="o">==</span> <span class="n">numRows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">goingDown</span> <span class="o">=</span> <span class="o">!</span><span class="n">goingDown</span><span class="p">;</span>
+        <span class="n">curRow</span> <span class="o">+=</span> <span class="n">goingDown</span> <span class="o">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">StringBuilder</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">StringBuilder</span> <span class="n">row</span> <span class="p">:</span> <span class="n">rows</span><span class="p">)</span> <span class="n">ret</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">row</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Another interesting LeetCode solution (visit by row):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numRows</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">numRows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="n">StringBuilder</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">cycleLen</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numRows</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numRows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">cycleLen</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ret</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">));</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">numRows</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">+</span> <span class="n">cycleLen</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>
+                <span class="n">ret</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">cycleLen</span> <span class="o">-</span> <span class="n">i</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>The above algorithm works as, for all whole numbers <span class="math notranslate nohighlight">\(k\)</span>,</dt><dd><ul class="simple">
+<li><p>Characters in row 0 are located at indexes <span class="math notranslate nohighlight">\(k \; (2 \cdot \text{numRows} - 2)\)</span></p></li>
+<li><p>Characters in row <span class="math notranslate nohighlight">\(\text{numRows}-1\)</span> are located at indexes <span class="math notranslate nohighlight">\(k \; (2 \cdot \text{numRows} - 2) + \text{numRows} - 1\)</span></p></li>
+<li><p>Characters in inner row <span class="math notranslate nohighlight">\(i\)</span> are located at indexes <span class="math notranslate nohighlight">\(k \; (2 \cdot \text{numRows}-2)+i\)</span> and <span class="math notranslate nohighlight">\((k+1)(2 \cdot \text{numRows}-2)- i\)</span>.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-15-palindrome-number">
+<h3>Question 15: Palindrome Number<a class="headerlink" href="#question-15-palindrome-number" title="Permalink to this headline"></a></h3>
+<p><em>Given an integer x, return true if x is palindrome integer. An integer is a palindrome when it reads the same backward
+as forward. For example, 121 is palindrome while 123 is not.</em></p>
+<p>My Solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks &amp; Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Remarkably simple question, I purposely chose this because I am low on time… (everyone needs a cheat day)</p></li>
+<li><p>Didn’t complete the follow-up challenge (do it without converting the <code class="docutils literal notranslate"><span class="pre">int</span></code> into a <code class="docutils literal notranslate"><span class="pre">str</span></code>)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=len(str(x))</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>LeetCode’s Solution:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// C++</span>
+<span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">IsPalindrome</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Special cases:</span>
+<span class="w">    </span><span class="c1">// As discussed above, when x &lt; 0, x is not a palindrome.</span>
+<span class="w">    </span><span class="c1">// Also if the last digit of the number is 0, in order to be a palindrome,</span>
+<span class="w">    </span><span class="c1">// the first digit of the number also needs to be 0.</span>
+<span class="w">    </span><span class="c1">// Only 0 satisfy this property.</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">revertedNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">revertedNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">revertedNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revertedNumber</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// When the length is an odd number, we can get rid of the middle digit by revertedNumber/10</span>
+<span class="w">    </span><span class="c1">// For example when the input is 12321, at the end of the while loop we get x = 12, revertedNumber = 123,</span>
+<span class="w">    </span><span class="c1">// since the middle digit doesn&#39;t matter in palidrome(it will always equal to itself), we can simply get rid of it.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">revertedNumber</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">revertedNumber</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Bin’s LeetCode Learning Notebook!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="week2.html" class="btn btn-neutral float-right" title="Week 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Bin’s Algorithm Study Notebook!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="week2.html" class="btn btn-neutral float-right" title="Week 2 [17-24 Oct 2021]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

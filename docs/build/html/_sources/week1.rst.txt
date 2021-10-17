@@ -1,5 +1,5 @@
 ************************
-Week 1 [13-20 Oct 2021]
+Week 1 [13-17 Oct 2021]
 ************************
 
 Day 1 [13 Oct]
@@ -633,4 +633,262 @@ Remarks:
     Consider the nature of the problem carefully and think about the various data structures that can be 
     used to solve the problem. Which one is most efficient? Which is most natural or easy to understand? Which 
     one is most compatible with the devised algorithm? 
+
+Day 5 [17 Oct]
+========================
+Question 13: Generate Parentheses
+-----------------------------------
+*Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.*
+
+My recursive solution (``O(n)``... I think?):
+
+.. code-block:: python
+    :linenos:
+
+    def genParHelper(self,openPar, closePar, acc, currString, res): 
+        if openPar + closePar != 0: 
+            if acc > 0:
+                if openPar > 0:
+                    self.genParHelper(openPar-1, closePar, acc+1, currString+"(", res)
+                if closePar > 0: 
+                    self.genParHelper(openPar, closePar-1, acc-1, currString+")", res)
+            else: 
+                self.genParHelper(openPar-1, closePar, acc+1, currString+"(", res)
+        else: 
+            res.append("(" + currString + ")")
+        
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        self.genParHelper(n-1, n-1, 1, "", res)
+        return res
+
+Remarks: 
+ * It helped to study the test cases provided and to walk through the steps I would take to solve the problem. 
+   Then, I tried to implement as many know-hows discovered into my code. 
+ * I considered a math (combination/permutation solution) but decided against it as I would have to provide 
+   a list of strings rather than a numerical count of them. 
+ * Time complexity is difficult to compute.
+
+    * According to LeetCode, the time/space complexity is approximately ``O(4^n / sqrt(n))`` because of Catalan 
+      numbers' asymptotic bound ... yeah.
+
+LeetCode's Brute Force solution (``O(2^(2n) * n)``)::
+
+    def generateParenthesis(self, n):
+        def generate(A = []):
+            if len(A) == 2*n:
+                if valid(A):
+                    ans.append("".join(A))
+            else:
+                A.append('(')
+                generate(A)
+                A.pop()
+                A.append(')')
+                generate(A)
+                A.pop()
+
+        def valid(A):
+            bal = 0
+            for c in A:
+                if c == '(': bal += 1
+                else: bal -= 1
+                if bal < 0: return False
+            return bal == 0
+
+        ans = []
+        generate()
+        return ans
+
+LeetCode's Backtracking solution (``O(2^(2n) * n)``)::
+
+    # Python
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans = []
+        def backtrack(S = [], left = 0, right = 0):
+            if len(S) == 2 * n:
+                ans.append("".join(S))
+                return
+            if left < n:
+                S.append("(")
+                backtrack(S, left+1, right)
+                S.pop()
+            if right < left:
+                S.append(")")
+                backtrack(S, left, right+1)
+                S.pop()
+        backtrack()
+        return ans
+
+LeetCode's Backtracking solution (``O(2^(2n) * n)``):
+
+.. code-block:: Java
+
+    // Java
+    public void backtrack(List<String> ans, StringBuilder cur, int open, int close, int max){
+        if (cur.length() == max * 2) {
+            ans.add(cur.toString());
+            return;
+        }
+
+        if (open < max) {
+            cur.append("(");
+            backtrack(ans, cur, open+1, close, max);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+        if (close < open) {
+            cur.append(")");
+            backtrack(ans, cur, open, close+1, max);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+    }
+
+
+Question 14: ZigZag Conversion
+-----------------------------------
+*Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.*
+
+*The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this*::
+
+   P   A   H   N
+   A P L S I I G
+   Y   I   R
+
+*And then read line by line: "PAHNAPLSIIGYIR". Write the code that will take a string and make this 
+conversion given a number of rows*
+
+My solution:
+
+.. code-block:: python
+    :linenos:
+
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows <= 1: 
+            return s
+        
+        rows = [[] for i in range(numRows)]
+        strLen = len(s)
+        pointer = 0
+        
+        while strLen > pointer: 
+            for i in range(2*numRows - 2): 
+                if pointer == strLen: 
+                    break
+                    
+                if i < numRows: 
+                    rows[i].append(s[pointer])
+                    pointer += 1
+                else: 
+                    rows[numRows-2-i].append(s[pointer])
+                    pointer += 1
+        flatten = [item for sublist in rows for item in sublist]
+        return "".join(flatten)
+
+Remarks & Complexity Analysis: 
+ * Once again, drawing it out made me realize that a data structure that categorizes the characters by their 
+   row would be effective. 
+ * Thinking creatively and mathematically in the beginning of the process can make a problem so much easier 
+   to solve. Don't rush into typing your code (you might be stuck for a while!). Instead take some time to think 
+   and devise a mission plan!
+ * Could have been more conservative by creating only the neccessary number of sub-arrays (``min(len(s), numRows)``)
+ * **Time Complexity**: ``O(n)`` where ``n=len(s)``.
+
+Similar LeetCode solution:
+
+.. code-block:: Java
+
+    // Java
+    public String convert(String s, int numRows) {
+
+        if (numRows == 1) return s;
+
+        List<StringBuilder> rows = new ArrayList<>();
+        for (int i = 0; i < Math.min(numRows, s.length()); i++)
+            rows.add(new StringBuilder());
+
+        int curRow = 0;
+        boolean goingDown = false;
+
+        for (char c : s.toCharArray()) {
+            rows.get(curRow).append(c);
+            if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;
+            curRow += goingDown ? 1 : -1;
+        }
+
+        StringBuilder ret = new StringBuilder();
+        for (StringBuilder row : rows) ret.append(row);
+        return ret.toString();
+    }
+
+Another interesting LeetCode solution (visit by row):
+
+.. code-block:: Java
+
+    // Java
+    public String convert(String s, int numRows) {
+
+        if (numRows == 1) return s;
+
+        StringBuilder ret = new StringBuilder();
+        int n = s.length();
+        int cycleLen = 2 * numRows - 2;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j + i < n; j += cycleLen) {
+                ret.append(s.charAt(j + i));
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n)
+                    ret.append(s.charAt(j + cycleLen - i));
+            }
+        }
+        return ret.toString();
+    }
+
+The above algorithm works as, for all whole numbers :math:`k`,
+ * Characters in row 0 are located at indexes :math:`k \; (2 \cdot \text{numRows} - 2)`
+ * Characters in row :math:`\text{numRows}-1` are located at indexes :math:`k \; (2 \cdot \text{numRows} - 2) + \text{numRows} - 1`
+ * Characters in inner row :math:`i` are located at indexes :math:`k \; (2 \cdot \text{numRows}-2)+i` and :math:`(k+1)(2 \cdot \text{numRows}-2)- i`.
+
+Question 15: Palindrome Number
+-----------------------------------
+*Given an integer x, return true if x is palindrome integer. An integer is a palindrome when it reads the same backward 
+as forward. For example, 121 is palindrome while 123 is not.*
+
+My Solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def isPalindrome(self, x: int) -> bool:
+        return str(x) == str(x)[::-1]
+
+Remarks & Complexity Analysis: 
+ * Remarkably simple question, I purposely chose this because I am low on time... (everyone needs a cheat day)
+ * Didn't complete the follow-up challenge (do it without converting the ``int`` into a ``str``)
+ * **Time Complexity**: ``O(n)`` where ``n=len(str(x))``
+
+LeetCode's Solution:
+
+.. code-block:: C++
+    
+    // C++
+    public bool IsPalindrome(int x) {
+        // Special cases:
+        // As discussed above, when x < 0, x is not a palindrome.
+        // Also if the last digit of the number is 0, in order to be a palindrome,
+        // the first digit of the number also needs to be 0.
+        // Only 0 satisfy this property.
+        if(x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int revertedNumber = 0;
+        while(x > revertedNumber) {
+            revertedNumber = revertedNumber * 10 + x % 10;
+            x /= 10;
+        }
+
+        // When the length is an odd number, we can get rid of the middle digit by revertedNumber/10
+        // For example when the input is 12321, at the end of the while loop we get x = 12, revertedNumber = 123,
+        // since the middle digit doesn't matter in palidrome(it will always equal to itself), we can simply get rid of it.
+        return x == revertedNumber || x == revertedNumber/10;
+    }
 

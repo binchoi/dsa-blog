@@ -3,9 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Bin's LeetCode Learning Notebook!
+Welcome to Bin's Algorithm Study Notebook!
 ========================================================
 
+**FIRST CHAPTER:**
 The rules are simple: minimum 3 LeetCode questions per day. I will use this website to document the lessons 
 learned along the way. 
 
