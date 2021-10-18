@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Toolkit &mdash; AlgoVenture 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 2 [17-24 Oct 2021]" href="week2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> AlgoVenture
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Daily Algo Exercise</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2 [17-24 Oct 2021]</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Toolkit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dictionary">Dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list">List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collections">Collections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AlgoVenture</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Python Toolkit</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-toolkit">
+<h1>Python Toolkit<a class="headerlink" href="#python-toolkit" title="Permalink to this headline"></a></h1>
+<section id="general-purpose-built-in-containers">
+<h2>General Purpose Built-in Containers<a class="headerlink" href="#general-purpose-built-in-containers" title="Permalink to this headline"></a></h2>
+<section id="dictionary">
+<h3>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline"></a></h3>
+<p>[From Python Documentation:] Dictionaries are sometimes found in other languages as “associative memories” or “associative arrays”. Unlike sequences,
+which are indexed by a range of numbers, dictionaries are indexed by keys, which can be any <em>immutable type</em>; strings and
+numbers can always be keys. Tuples can be used as keys if they contain only strings, numbers, or tuples; if a tuple
+contains any mutable object either directly or indirectly, it cannot be used as a key. You can’t use lists as keys,
+since lists can be modified in place using index assignments, slice assignments, or methods like <code class="docutils literal notranslate"><span class="pre">append()</span></code> and <code class="docutils literal notranslate"><span class="pre">extend()</span></code>.</p>
+<p>It is best to think of a dictionary as a <em>set of key: value pairs</em>, with the requirement that the keys are unique
+(within one dictionary). A pair of braces creates an empty dictionary: <code class="docutils literal notranslate"><span class="pre">{}</span></code>. Placing a comma-separated list of key:value
+pairs within the braces adds initial key:value pairs to the dictionary; this is also the way dictionaries are written on
+output.</p>
+<p>The main operations on a dictionary are storing a value with some key and extracting the value given the key. It is also
+possible to delete a key:value pair with <code class="docutils literal notranslate"><span class="pre">del</span></code>. If you store using a key that is already in use, the old value associated
+with that key is forgotten. It is an error to extract a value using a non-existent key.</p>
+<p>Performing <code class="docutils literal notranslate"><span class="pre">list(d)</span></code> on a dictionary returns a list of all the keys used in the dictionary, in insertion order (if you
+want it sorted, just use <code class="docutils literal notranslate"><span class="pre">sorted(d)</span></code> instead). To check whether a single key is in the dictionary, use the <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">d.keys()</span></code></dt><dd><p>Returns iterator of the dictionary keys (different from list of keys given by <code class="docutils literal notranslate"><span class="pre">list(d)</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">d.values()</span></code></dt><dd><p>Returns iterator of the dictionary values (to get list of values -&gt; <code class="docutils literal notranslate"><span class="pre">list(d.values())</span></code>)</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">d.get(...)</span></code></p>
+</section>
+<section id="list">
+<h3>List<a class="headerlink" href="#list" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="specialized-built-in-containers">
+<h2>Specialized Built-in Containers<a class="headerlink" href="#specialized-built-in-containers" title="Permalink to this headline"></a></h2>
+<section id="collections">
+<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline"></a></h3>
+<p>Fill in soon <cite>link &lt;https://docs.python.org/3/library/collections.html#module-collections&gt;_</cite></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week2.html" class="btn btn-neutral float-left" title="Week 2 [17-24 Oct 2021]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bin Choi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
