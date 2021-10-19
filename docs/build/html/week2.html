@@ -48,7 +48,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-7-19-oct">Day 7 [19 Oct]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-19-xyz">Question 19: XYZ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-19-combination-sum">Question 19: Combination Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-20-next-greater-element-i">Question 20: Next Greater Element I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-21-length-of-last-word">Question 21: Length of Last Word</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-8-20-oct">Day 8 [20 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-22-xxx">Question 22: XXX</a></li>
 </ul>
 </li>
 </ul>
@@ -57,6 +63,7 @@
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbox.html#test">test</a></li>
 </ul>
 
         </div>
@@ -405,8 +412,154 @@ calling <code class="docutils literal notranslate"><span class="pre">reversed()<
 </section>
 <section id="day-7-19-oct">
 <h2>Day 7 [19 Oct]<a class="headerlink" href="#day-7-19-oct" title="Permalink to this headline"></a></h2>
-<section id="question-19-xyz">
-<h3>Question 19: XYZ<a class="headerlink" href="#question-19-xyz" title="Permalink to this headline"></a></h3>
+<section id="question-19-combination-sum">
+<h3>Question 19: Combination Sum<a class="headerlink" href="#question-19-combination-sum" title="Permalink to this headline"></a></h3>
+<p><em>Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations
+of candidates where the chosen numbers sum to target. You may return the combinations in any order. The same number may be chosen
+from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers
+is different. It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for
+the given input.</em></p>
+<p>My brute-force solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">combinationSumHelper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">resSet</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="n">resSet</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">acc</span><span class="p">)))</span>
+<span class="linenos"> 4</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+<span class="linenos"> 6</span>            <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">target</span><span class="p">:</span>
+<span class="linenos"> 7</span>                <span class="n">newAcc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span>
+<span class="linenos"> 8</span>                <span class="bp">self</span><span class="o">.</span><span class="n">combinationSumHelper</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="n">newAcc</span><span class="p">,</span> <span class="n">resSet</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">def</span> <span class="nf">combinationSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="linenos">11</span>    <span class="n">resSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="linenos">12</span>    <span class="bp">self</span><span class="o">.</span><span class="n">combinationSumHelper</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="p">[],</span> <span class="n">resSet</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">resSet</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Brute-force, recursive algorithm… I couldn’t think of other ways.</p></li>
+<li><p>Disappointing that I had to call operations like <code class="docutils literal notranslate"><span class="pre">list()</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple()</span></code> so much (undermining the inefficiency)</p></li>
+<li><p>Depth First Search (DFS) algorithm</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> (not certain)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> (not certain)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Alternative solution (cred: <a class="reference external" href="https://leetcode.com/problems/combination-sum/discuss/16510/Python-dfs-solution./509814">oldCodingFarmer</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">combinationSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 3</span>    <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="p">[],</span> <span class="n">ret</span><span class="p">)</span>
+<span class="linenos"> 4</span>    <span class="k">return</span> <span class="n">ret</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">ret</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">if</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="k">return</span>
+<span class="linenos"> 9</span>    <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">10</span>        <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="k">return</span>
+<span class="linenos">12</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+<span class="linenos">13</span>        <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">:],</span> <span class="n">target</span><span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">path</span><span class="o">+</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">ret</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Duplicates are taken into account as the candidates (nums) are sliced as the for-loop proceeds. This nullifies the use of a set (and reduces related overhead).</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To prevent duplicate elements in DFS algorithms, consider iterating through increasingly smaller sub-sets (excluding prev). Consider the example above!</p>
+</div>
+</section>
+<section id="question-20-next-greater-element-i">
+<h3>Question 20: Next Greater Element I<a class="headerlink" href="#question-20-next-greater-element-i" title="Permalink to this headline"></a></h3>
+<p><em>The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.
+You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2. For each 0 &lt;= i &lt; nums1.length,
+find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater
+element, then the answer for this query is -1. Return an array ans of length nums1.length such that ans[i] is the next
+greater element as described above.</em></p>
+<p>My brute-force solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">nextGreaterElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos"> 2</span>        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 3</span>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums1</span><span class="p">:</span>
+<span class="linenos"> 4</span>            <span class="n">nIdx</span> <span class="o">=</span> <span class="n">nums2</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="linenos"> 5</span>            <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 6</span>            <span class="k">for</span> <span class="n">cand</span> <span class="ow">in</span> <span class="n">nums2</span><span class="p">[</span><span class="n">nIdx</span><span class="p">:]:</span>
+<span class="linenos"> 7</span>                <span class="k">if</span> <span class="n">cand</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+<span class="linenos"> 8</span>                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span>
+<span class="linenos"> 9</span>                    <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">10</span>                    <span class="k">break</span>
+<span class="linenos">11</span>            <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+<span class="linenos">12</span>                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Brute-force, iterative algorithm… I couldn’t think of other ways.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*m*)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=len(nums1),</span> <span class="pre">m=len(nums2)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Alternative, linear-time solution (cred: <a class="reference external" href="https://leetcode.com/problems/next-greater-element-i/discuss/97595/Java-10-lines-linear-time-complexity-O(n)-with-explanation">yuxiang</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">nextGreaterElement</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">findNums</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span> <span class="c1">// map from x to next greater element of x</span>
+    <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span> <span class="p">:</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">stack</span><span class="p">.</span><span class="na">peek</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">)</span>
+            <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">(),</span> <span class="n">num</span><span class="p">);</span>
+        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">findNums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">findNums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">findNums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">findNums</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python</span>
+<span class="k">def</span> <span class="nf">nextGreaterElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">findNums</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+    <span class="n">st</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">st</span> <span class="ow">and</span> <span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">st</span><span class="o">.</span><span class="n">pop</span><span class="p">()]</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">findNums</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Very clever solution (come back to it!)</p></li>
+<li><p>Learn about “monotone stack”</p></li>
+</ul>
+</section>
+<section id="question-21-length-of-last-word">
+<h3>Question 21: Length of Last Word<a class="headerlink" href="#question-21-length-of-last-word" title="Permalink to this headline"></a></h3>
+<p><em>Given a string s consisting of some words separated by some number of spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">def</span> <span class="nf">lengthOfLastWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">2</span>         <span class="k">for</span> <span class="n">cand</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos">3</span>             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+<span class="linenos">4</span>                 <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span> <span class="c1"># more simple</span>
+<span class="linenos">7</span> <span class="k">def</span> <span class="nf">lengthOfLastWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">8</span>     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Very simple question</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-8-20-oct">
+<h2>Day 8 [20 Oct]<a class="headerlink" href="#day-8-20-oct" title="Permalink to this headline"></a></h2>
+<section id="question-22-xxx">
+<h3>Question 22: XXX<a class="headerlink" href="#question-22-xxx" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 </section>

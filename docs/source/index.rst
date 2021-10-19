@@ -25,6 +25,12 @@ learned along the way.
 
    toolbox
 
+
+TODO:    
+   * q20 review
+   * backtracking 
+   * make page for concepts
+
 Indices and tables
 ==================
 

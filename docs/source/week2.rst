@@ -338,5 +338,157 @@ Remarks and Complexity Analysis:
 
 Day 7 [19 Oct]
 ========================
-Question 19: XYZ
-----------------------------
+Question 19: Combination Sum
+-----------------------------
+
+*Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations 
+of candidates where the chosen numbers sum to target. You may return the combinations in any order. The same number may be chosen 
+from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers 
+is different. It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for 
+the given input.*
+
+My brute-force solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def combinationSumHelper(self, candidates, target, acc, resSet): 
+        if target == 0: 
+            resSet.add(tuple(sorted(acc)))
+        else: 
+            for c in candidates: 
+                if c <= target: 
+                    newAcc = acc + [c]
+                    self.combinationSumHelper(candidates, target-c, newAcc, resSet)
+
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        resSet = set()
+        self.combinationSumHelper(candidates, target, [], resSet)
+        return list(list(s) for s in resSet)
+
+Remarks and Complexity Analysis: 
+ * Brute-force, recursive algorithm... I couldn't think of other ways. 
+ * Disappointing that I had to call operations like ``list()`` and ``tuple()`` so much (undermining the inefficiency)
+ * Depth First Search (DFS) algorithm
+ * **Time Complexity**: ``O(n^2)`` (not certain)
+ * **Space Complexity**: ``O(n^2)`` (not certain)
+
+Alternative solution (cred: `oldCodingFarmer <https://leetcode.com/problems/combination-sum/discuss/16510/Python-dfs-solution./509814>`_): 
+
+.. code-block:: python
+    :linenos:
+
+    def combinationSum(self, candidates, target):
+        ret = []
+        self.dfs(candidates, target, [], ret)
+        return ret
+    
+    def dfs(self, nums, target, path, ret):
+        if target < 0:
+            return 
+        if target == 0:
+            ret.append(path)
+            return 
+        for i in range(len(nums)):
+            self.dfs(nums[i:], target-nums[i], path+[nums[i]], ret)
+
+* Duplicates are taken into account as the candidates (nums) are sliced as the for-loop proceeds. This nullifies the use of a set (and reduces related overhead).
+
+.. tip:: 
+
+    To prevent duplicate elements in DFS algorithms, consider iterating through increasingly smaller sub-sets (excluding prev). Consider the example above! 
+
+Question 20: Next Greater Element I
+-------------------------------------
+*The next greater element of some element x in an array is the first greater element that is to the right of x in the same array. 
+You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2. For each 0 <= i < nums1.length, 
+find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater 
+element, then the answer for this query is -1. Return an array ans of length nums1.length such that ans[i] is the next 
+greater element as described above.*
+
+My brute-force solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+            res = []
+            for n in nums1:
+                nIdx = nums2.index(n)
+                found = False
+                for cand in nums2[nIdx:]: 
+                    if cand > n: 
+                        res.append(cand)
+                        found = True
+                        break
+                if not found: 
+                    res.append(-1)
+            return res 
+
+Remarks and Complexity Analysis: 
+ * Brute-force, iterative algorithm... I couldn't think of other ways. 
+ * **Time Complexity**: ``O(n*m*)`` where ``n=len(nums1), m=len(nums2)``
+ * **Space Complexity**: ``O(n)`` 
+
+Alternative, linear-time solution (cred: `yuxiang <https://leetcode.com/problems/next-greater-element-i/discuss/97595/Java-10-lines-linear-time-complexity-O(n)-with-explanation>`_):
+
+.. code-block:: Java
+
+    // Java
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>(); // map from x to next greater element of x
+        Stack<Integer> stack = new Stack<>();
+        for (int num : nums) {
+            while (!stack.isEmpty() && stack.peek() < num)
+                map.put(stack.pop(), num);
+            stack.push(num);
+        }   
+        for (int i = 0; i < findNums.length; i++)
+            findNums[i] = map.getOrDefault(findNums[i], -1);
+        return findNums;
+    }
+
+.. code-block:: python
+
+    # Python
+    def nextGreaterElement(self, findNums, nums):
+        st, d = [], {}
+        for n in nums:
+            while st and st[-1] < n:
+                d[st.pop()] = n
+            st.append(n)
+        
+        return [d.get(x, -1) for x in findNums]
+
+* Very clever solution (come back to it!)
+* Learn about "monotone stack" 
+
+
+Question 21: Length of Last Word
+-------------------------------------
+*Given a string s consisting of some words separated by some number of spaces, return the length of the last word in the string. 
+A word is a maximal substring consisting of non-space characters only.*
+
+.. code-block:: python
+   :linenos:
+
+    def lengthOfLastWord(self, s: str) -> int:
+            for cand in s.split(" ")[::-1]:
+                if len(cand)>0: 
+                    return len(cand)
+    
+    # more simple
+    def lengthOfLastWord(self, s: str) -> int:
+        return len(s.strip().split(" ")[-1])
+
+
+
+Remarks and Complexity Analysis: 
+ * Very simple question
+ * **Time Complexity**: ``O(1)``
+ * **Space Complexity**: ``O(1)`` 
+
+Day 8 [20 Oct]
+========================
+Question 22: XXX
+-----------------------------
