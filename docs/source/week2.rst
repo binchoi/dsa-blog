@@ -714,7 +714,37 @@ Alleged Facebook Solution (cred: `hasan <https://leetcode.com/problems/intersect
         return intersections;
     }
 
-Question 24: Intersection of Two Arrays
+Question 24: Longest Common Prefix
 ----------------------------------------
-*Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in 
-the result must be unique and you may return the result in any order.*
+*Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, 
+return an empty string* ``""``.
+
+My iterative solution: 
+
+.. code-block:: python
+    :linenos:
+    
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        res = ""
+        i = 0
+        maxIdx = min(len(s) for s in strs) - 1
+        while True: 
+            if i > maxIdx: 
+                return res
+            if all(c==strs[0][i] for c in [s[i] for s in strs]): 
+                res += strs[0][i]
+                i += 1
+            else: 
+                return res
+
+Remarks and Complexity Analysis: 
+ * Pleased to have applied some of the skills I have learnt through LeetCode in an unseen problem
+ * **Time Complexity**: ``O(n)`` where ``n=min(len(s))`` - i.e. minimum number of characters in string elements of ``strs``.
+ * **Space Complexity**: ``O(n)`` where ``n=min(len(s))`` 
+ * LeetCode solution is not that helpful and is mostly overkill (with worse time/space-complexity)
+
+
+Day 9 [21 Oct]
+========================
+Question 25: XXXX
+-----------------------------

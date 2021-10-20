@@ -56,6 +56,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#day-8-20-oct">Day 8 [20 Oct]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-22-add-two-numbers">Question 22: Add Two Numbers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-23-intersection-of-two-arrays">Question 23: Intersection of Two Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-24-longest-common-prefix">Question 24: Longest Common Prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-9-21-oct">Day 9 [21 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-25-xxxx">Question 25: XXXX</a></li>
 </ul>
 </li>
 </ul>
@@ -754,6 +759,63 @@ the result must be unique and you may return the result in any order.</em></p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Alleged Facebook Solution (cred: <a class="reference external" href="https://leetcode.com/problems/intersection-of-two-arrays/solution/">hasan</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">intersections</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">l1</span><span class="o">.</span><span class="n">sort</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">//</span> <span class="n">assume</span> <span class="nb">sorted</span>
+    <span class="n">l2</span><span class="o">.</span><span class="n">sort</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">//</span> <span class="n">assume</span> <span class="nb">sorted</span>
+    <span class="n">const</span> <span class="n">intersections</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">let</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">l2</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">l1</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="o">!==</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l1</span><span class="p">[</span><span class="n">r</span><span class="p">],</span> <span class="n">right</span> <span class="o">=</span> <span class="n">l2</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">===</span> <span class="n">left</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">intersections</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">===</span> <span class="n">l1</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="n">r</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">right</span> <span class="o">===</span> <span class="n">l2</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="n">l</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">&gt;</span> <span class="n">left</span><span class="p">)</span> <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">===</span> <span class="n">l1</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="n">r</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">while</span> <span class="p">(</span><span class="n">right</span> <span class="o">===</span> <span class="n">l2</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="n">l</span><span class="o">++</span><span class="p">;</span>
+
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">intersections</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-24-longest-common-prefix">
+<h3>Question 24: Longest Common Prefix<a class="headerlink" href="#question-24-longest-common-prefix" title="Permalink to this headline"></a></h3>
+<p><em>Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix,
+return an empty string</em> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>.</p>
+<p>My iterative solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">longestCommonPrefix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos"> 3</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 4</span>    <span class="n">maxIdx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos"> 6</span>        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">maxIdx</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="k">return</span> <span class="n">res</span>
+<span class="linenos"> 8</span>        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">]):</span>
+<span class="linenos"> 9</span>            <span class="n">res</span> <span class="o">+=</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+<span class="linenos">10</span>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">11</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">12</span>            <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pleased to have applied some of the skills I have learnt through LeetCode in an unseen problem</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=min(len(s))</span></code> - i.e. minimum number of characters in string elements of <code class="docutils literal notranslate"><span class="pre">strs</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=min(len(s))</span></code></p></li>
+<li><p>LeetCode solution is not that helpful and is mostly overkill (with worse time/space-complexity)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-9-21-oct">
+<h2>Day 9 [21 Oct]<a class="headerlink" href="#day-9-21-oct" title="Permalink to this headline"></a></h2>
+<section id="question-25-xxxx">
+<h3>Question 25: XXXX<a class="headerlink" href="#question-25-xxxx" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 </section>
