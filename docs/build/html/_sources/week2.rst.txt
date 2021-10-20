@@ -490,5 +490,205 @@ Remarks and Complexity Analysis:
 
 Day 8 [20 Oct]
 ========================
-Question 22: XXX
+Question 22: Add Two Numbers
 -----------------------------
+*You are given two non-empty linked lists representing two non-negative integers. The digits are stored in 
+reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as 
+a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos:
+        
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        topNode = l1
+        botNode = l2
+        
+        firstIt = True
+        carryOver = 0
+        while  topNode is not None or botNode is not None: 
+            if topNode is None: 
+                topVal = 0
+                botVal = botNode.val
+            elif botNode is None: 
+                botVal = 0 
+                topVal = topNode.val
+            else: 
+                topVal = topNode.val 
+                botVal = botNode.val
+            
+            newNode = ListNode((topVal+botVal+carryOver)%10)
+            carryOver = (topVal+botVal+carryOver) // 10
+            if firstIt: 
+                retNode = newNode
+                firstIt = False
+            else: 
+                prevNode.next = newNode
+            prevNode = newNode
+            
+            if topNode is None: 
+                botNode = botNode.next
+            elif botNode is None: 
+                topNode = topNode.next
+            else:                 
+                topNode = topNode.next
+                botNode = botNode.next
+        if carryOver != 0: 
+            newNode = ListNode(carryOver)
+            prevNode.next = newNode
+        return retNode
+
+Remarks and Complexity Analysis: 
+ * Not too difficult to solve using the elementary math method
+ * **Time Complexity**: ``O(n)`` where ``n=max(len(l1), len(l2))``
+ * **Space Complexity**: ``O(n)`` where ``n=max(len(l1), len(l2))`` 
+
+LeetCode's solution:
+
+.. code-block:: Java
+
+    // Java
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
+        }
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+    }
+
+* Same algorithm, more concise!
+
+Revised solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def addTwoNumbers(self, l1, l2):
+        sentinelNode = ListNode(0)
+        result_tail = sentinelNode
+        carryOver = 0
+                
+        while l1 or l2 or carryOver:            
+            val1  = (l1.val if l1 else 0)
+            val2  = (l2.val if l2 else 0)
+            carryOver, out = divmod(val1+val2 + carryOver, 10)    
+                      
+            result_tail.next = ListNode(out)
+            result_tail = result_tail.next                      
+            
+            l1 = (l1.next if l1 else None)
+            l2 = (l2.next if l2 else None)
+               
+        return sentinelNode.next
+
+* Useful function ``divmod()``!
+
+.. tip:: 
+
+    Always consider using a sentinel node/element when implementing a linked list!
+
+
+Question 23: Intersection of Two Arrays
+----------------------------------------
+*Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in 
+the result must be unique and you may return the result in any order.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+            set1 = set(nums1)
+            set2 = set(nums2)
+            
+            resSet = set()
+            for s in set1: 
+                if s in set2: 
+                    resSet.add(s)
+            return list(resSet)
+
+Remarks and Complexity Analysis: 
+ * Simple algorithm
+ * Thought about optimizing by iterating over the set with less elements but concluded that it would not help the time complexity significantly
+ * **Time Complexity**: ``O(n)`` where ``n=max(len(nums1), len(nums2))``. ``in`` / ``contain`` operators are ``O(1)`` average case in python sets.
+ * **Space Complexity**: ``O(n)`` where ``n=min(len(set1), len(set2))``
+
+LeetCode's implementation::
+
+    def set_intersection(self, set1, set2):
+        return [x for x in set1 if x in set2]
+        
+    def intersection(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """  
+        set1 = set(nums1)
+        set2 = set(nums2)
+        
+        if len(set1) < len(set2):
+            return self.set_intersection(set1, set2)
+        else:
+            return self.set_intersection(set2, set1)
+
+.. code-block:: Java
+
+    // Java
+    public int[] set_intersection(HashSet<Integer> set1, HashSet<Integer> set2) {
+        int [] output = new int[set1.size()];
+        int idx = 0;
+        for (Integer s : set1)
+        if (set2.contains(s)) output[idx++] = s;
+
+        return Arrays.copyOf(output, idx);
+    }
+
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<Integer>();
+        for (Integer n : nums1) set1.add(n);
+        HashSet<Integer> set2 = new HashSet<Integer>();
+        for (Integer n : nums2) set2.add(n);
+
+        if (set1.size() < set2.size()) return set_intersection(set1, set2);
+        else return set_intersection(set2, set1);
+    }
+
+LeetCode's implementation using **built-in** operator::
+
+    def intersection(self, nums1, nums2):
+        set1 = set(nums1)
+        set2 = set(nums2)
+        return list(set2 & set1)
+
+.. code-block:: Java
+
+    // Java
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<Integer>();
+        for (Integer n : nums1) set1.add(n);
+        HashSet<Integer> set2 = new HashSet<Integer>();
+        for (Integer n : nums2) set2.add(n);
+
+        set1.retainAll(set2);
+
+        int [] output = new int[set1.size()];
+        int idx = 0;
+        for (int s : set1) output[idx++] = s;
+        return output;
+    }
+

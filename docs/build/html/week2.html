@@ -54,7 +54,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-8-20-oct">Day 8 [20 Oct]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-22-xxx">Question 22: XXX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-22-add-two-numbers">Question 22: Add Two Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-23-intersection-of-two-arrays">Question 23: Intersection of Two Arrays</a></li>
 </ul>
 </li>
 </ul>
@@ -558,8 +559,201 @@ A word is a maximal substring consisting of non-space characters only.</em></p>
 </section>
 <section id="day-8-20-oct">
 <h2>Day 8 [20 Oct]<a class="headerlink" href="#day-8-20-oct" title="Permalink to this headline"></a></h2>
-<section id="question-22-xxx">
-<h3>Question 22: XXX<a class="headerlink" href="#question-22-xxx" title="Permalink to this headline"></a></h3>
+<section id="question-22-add-two-numbers">
+<h3>Question 22: Add Two Numbers<a class="headerlink" href="#question-22-add-two-numbers" title="Permalink to this headline"></a></h3>
+<p><em>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in
+reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as
+a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+<span class="linenos"> 2</span>    <span class="n">topNode</span> <span class="o">=</span> <span class="n">l1</span>
+<span class="linenos"> 3</span>    <span class="n">botNode</span> <span class="o">=</span> <span class="n">l2</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="n">firstIt</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 6</span>    <span class="n">carryOver</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 7</span>    <span class="k">while</span>  <span class="n">topNode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">botNode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="k">if</span> <span class="n">topNode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 9</span>            <span class="n">topVal</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">10</span>            <span class="n">botVal</span> <span class="o">=</span> <span class="n">botNode</span><span class="o">.</span><span class="n">val</span>
+<span class="linenos">11</span>        <span class="k">elif</span> <span class="n">botNode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">12</span>            <span class="n">botVal</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">13</span>            <span class="n">topVal</span> <span class="o">=</span> <span class="n">topNode</span><span class="o">.</span><span class="n">val</span>
+<span class="linenos">14</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">15</span>            <span class="n">topVal</span> <span class="o">=</span> <span class="n">topNode</span><span class="o">.</span><span class="n">val</span>
+<span class="linenos">16</span>            <span class="n">botVal</span> <span class="o">=</span> <span class="n">botNode</span><span class="o">.</span><span class="n">val</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>        <span class="n">newNode</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">((</span><span class="n">topVal</span><span class="o">+</span><span class="n">botVal</span><span class="o">+</span><span class="n">carryOver</span><span class="p">)</span><span class="o">%</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">carryOver</span> <span class="o">=</span> <span class="p">(</span><span class="n">topVal</span><span class="o">+</span><span class="n">botVal</span><span class="o">+</span><span class="n">carryOver</span><span class="p">)</span> <span class="o">//</span> <span class="mi">10</span>
+<span class="linenos">20</span>        <span class="k">if</span> <span class="n">firstIt</span><span class="p">:</span>
+<span class="linenos">21</span>            <span class="n">retNode</span> <span class="o">=</span> <span class="n">newNode</span>
+<span class="linenos">22</span>            <span class="n">firstIt</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">23</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">24</span>            <span class="n">prevNode</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newNode</span>
+<span class="linenos">25</span>        <span class="n">prevNode</span> <span class="o">=</span> <span class="n">newNode</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="k">if</span> <span class="n">topNode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">28</span>            <span class="n">botNode</span> <span class="o">=</span> <span class="n">botNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">29</span>        <span class="k">elif</span> <span class="n">botNode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">30</span>            <span class="n">topNode</span> <span class="o">=</span> <span class="n">topNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">31</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">32</span>            <span class="n">topNode</span> <span class="o">=</span> <span class="n">topNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">33</span>            <span class="n">botNode</span> <span class="o">=</span> <span class="n">botNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">34</span>    <span class="k">if</span> <span class="n">carryOver</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">35</span>        <span class="n">newNode</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">carryOver</span><span class="p">)</span>
+<span class="linenos">36</span>        <span class="n">prevNode</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newNode</span>
+<span class="linenos">37</span>    <span class="k">return</span> <span class="n">retNode</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Not too difficult to solve using the elementary math method</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=max(len(l1),</span> <span class="pre">len(l2))</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=max(len(l1),</span> <span class="pre">len(l2))</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>LeetCode’s solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ListNode</span> <span class="n">dummyHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">ListNode</span> <span class="n">p</span> <span class="o">=</span> <span class="n">l1</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">l2</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">q</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">?</span> <span class="n">p</span><span class="p">.</span><span class="na">val</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">?</span> <span class="n">q</span><span class="p">.</span><span class="na">val</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">carry</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">sum</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">q</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">carry</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">carry</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">dummyHead</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Same algorithm, more concise!</p></li>
+</ul>
+<p>Revised solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">sentinelNode</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 3</span>    <span class="n">result_tail</span> <span class="o">=</span> <span class="n">sentinelNode</span>
+<span class="linenos"> 4</span>    <span class="n">carryOver</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">while</span> <span class="n">l1</span> <span class="ow">or</span> <span class="n">l2</span> <span class="ow">or</span> <span class="n">carryOver</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="n">val1</span>  <span class="o">=</span> <span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">val</span> <span class="k">if</span> <span class="n">l1</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">val2</span>  <span class="o">=</span> <span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">val</span> <span class="k">if</span> <span class="n">l2</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">carryOver</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">val1</span><span class="o">+</span><span class="n">val2</span> <span class="o">+</span> <span class="n">carryOver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="n">result_tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">result_tail</span> <span class="o">=</span> <span class="n">result_tail</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>        <span class="n">l1</span> <span class="o">=</span> <span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">l1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">l2</span> <span class="o">=</span> <span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">l2</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">return</span> <span class="n">sentinelNode</span><span class="o">.</span><span class="n">next</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Useful function <code class="docutils literal notranslate"><span class="pre">divmod()</span></code>!</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Always consider using a sentinel node/element when implementing a linked list!</p>
+</div>
+</section>
+<section id="question-23-intersection-of-two-arrays">
+<h3>Question 23: Intersection of Two Arrays<a class="headerlink" href="#question-23-intersection-of-two-arrays" title="Permalink to this headline"></a></h3>
+<p><em>Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in
+the result must be unique and you may return the result in any order.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos">2</span>        <span class="n">set1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span>
+<span class="linenos">3</span>        <span class="n">set2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums2</span><span class="p">)</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span>        <span class="n">resSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="linenos">6</span>        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">set1</span><span class="p">:</span>
+<span class="linenos">7</span>            <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">set2</span><span class="p">:</span>
+<span class="linenos">8</span>                <span class="n">resSet</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="linenos">9</span>        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">resSet</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Simple algorithm</p></li>
+<li><p>Thought about optimizing by iterating over the set with less elements but concluded that it would not help the time complexity significantly</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=max(len(nums1),</span> <span class="pre">len(nums2))</span></code>. <code class="docutils literal notranslate"><span class="pre">in</span></code> / <code class="docutils literal notranslate"><span class="pre">contain</span></code> operators are <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> average case in python sets.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=min(len(set1),</span> <span class="pre">len(set2))</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>LeetCode’s implementation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">set1</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">set2</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">nums2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :type nums1: List[int]</span>
+<span class="sd">    :type nums2: List[int]</span>
+<span class="sd">    :rtype: List[int]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">set1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span>
+    <span class="n">set2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">set2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_intersection</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_intersection</span><span class="p">(</span><span class="n">set2</span><span class="p">,</span> <span class="n">set1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">set_intersection</span><span class="p">(</span><span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set1</span><span class="p">,</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="o">[]</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">set1</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">s</span> <span class="p">:</span> <span class="n">set1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">set2</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="n">output</span><span class="o">[</span><span class="n">idx</span><span class="o">++]</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">intersection</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums1</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">n</span> <span class="p">:</span> <span class="n">nums1</span><span class="p">)</span> <span class="n">set1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">n</span> <span class="p">:</span> <span class="n">nums2</span><span class="p">)</span> <span class="n">set2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">set2</span><span class="p">.</span><span class="na">size</span><span class="p">())</span> <span class="k">return</span> <span class="n">set_intersection</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="n">set_intersection</span><span class="p">(</span><span class="n">set2</span><span class="p">,</span> <span class="n">set1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>LeetCode’s implementation using <strong>built-in</strong> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">nums2</span><span class="p">):</span>
+    <span class="n">set1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span>
+    <span class="n">set2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">set2</span> <span class="o">&amp;</span> <span class="n">set1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">intersection</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums1</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">n</span> <span class="p">:</span> <span class="n">nums1</span><span class="p">)</span> <span class="n">set1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">n</span> <span class="p">:</span> <span class="n">nums2</span><span class="p">)</span> <span class="n">set2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+    <span class="n">set1</span><span class="p">.</span><span class="na">retainAll</span><span class="p">(</span><span class="n">set2</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="o">[]</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">set1</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s</span> <span class="p">:</span> <span class="n">set1</span><span class="p">)</span> <span class="n">output</span><span class="o">[</span><span class="n">idx</span><span class="o">++]</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
