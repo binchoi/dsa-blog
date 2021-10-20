@@ -708,7 +708,7 @@ Alleged Facebook Solution (cred: `hasan <https://leetcode.com/problems/intersect
                 continue;
             }
             if (right > left) while (left === l1[r]) r++;
-            else while (right === l2[l]) l++;
+            else while (right === l2[l]) l++;   
             
         }
         return intersections;
@@ -739,8 +739,9 @@ My iterative solution:
 
 Remarks and Complexity Analysis: 
  * Pleased to have applied some of the skills I have learnt through LeetCode in an unseen problem
- * **Time Complexity**: ``O(n)`` where ``n=min(len(s))`` - i.e. minimum number of characters in string elements of ``strs``.
- * **Space Complexity**: ``O(n)`` where ``n=min(len(s))`` 
+ * **Time Complexity**: ``O(n*m)`` where ``n=min(len(s))`` - i.e. minimum number of characters in string elements of ``strs``, 
+   and ``m=len(strs)``
+ * **Space Complexity**: ``O(n)`` where ``n=min(len(s))`` (uncertain)
  * LeetCode solution is not that helpful and is mostly overkill (with worse time/space-complexity)
 
 
