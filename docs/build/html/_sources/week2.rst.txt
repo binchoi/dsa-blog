@@ -747,5 +747,74 @@ Remarks and Complexity Analysis:
 
 Day 9 [21 Oct]
 ========================
-Question 25: XXXX
+Question 25: Subsets
 -----------------------------
+*Given an integer array nums of unique elements, return all possible subsets (the power set). 
+The solution set must not contain duplicate subsets. Return the solution in any order.*
+
+Solution Investigation
+ * Similar problem as permutation and combination. All three questions have a large solution set (permutation: :math:`N!`, 
+   combination: :math:`\binom{n}{k}`, subset: :math:`2^N`)
+ * Can be difficult to generate complete and non-redundant solutions
+ * **Three Approaches**: *Recursion*, *Backtracking*, and *Lexicographic generation based on mapping between binary bitmasks 
+   and the corresponding permutations/combinations/subsets* [very efficient, robust, and comprehensible!]
+
+Appraoch 1: My Cascading Algorithm:
+
+.. code-block:: python
+    :linenos:
+
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for n in nums: 
+            addLater = [[]]
+            for r in res: 
+                addLater += [r + [n]]
+            res += addLater[1:]
+        return res
+
+Remarks and Complexity Analysis: 
+ * Interesting algorithm (which makes a lot of sense!) - glad to have learnt it
+ * **Time Complexity**: ``O(n*2^n)`` where ``n=(len(nums))`` - i.e. for each n, iterate through 2^(n-1) 
+   elements in res (so far)
+ * **Space Complexity**: ``O(n*2^n)`` - i.e. 2^n subsets in total, times number of element in each subset (0~n; n)
+
+LeetCode's solution::
+
+    # Python
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        output = [[]]
+        
+        for num in nums:
+            output += [curr + [num] for curr in output]
+        
+        return output
+
+.. code-block:: Java
+
+    // Java
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> output = new ArrayList();
+        output.add(new ArrayList<Integer>());
+
+        for (int num : nums) {
+        List<List<Integer>> newSubsets = new ArrayList();
+        for (List<Integer> curr : output) {
+            newSubsets.add(new ArrayList<Integer>(curr){{add(num);}});
+        }
+        for (List<Integer> curr : newSubsets) {
+            output.add(curr);
+        }
+        }
+        return output;
+    }
+
+Appraoch 2: Backtracking:
+
+.. note:: 
+
+    `Backtracking <https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/>`_ is an algorithm 
+    for finding all solutions by exploring all potential candidates. If the solution candidate turns to be 
+    not a solution (or at least not the last one), backtracking algoithm discards it by making some changes on the 
+    previous step, i.e. backtracks and then try again!
