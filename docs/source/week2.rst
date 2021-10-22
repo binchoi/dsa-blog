@@ -810,6 +810,8 @@ LeetCode's solution::
         return output;
     }
 
+* LeetCode's implementation for this problem is quite elegant, concise, and easy-to-read (take notes!)
+
 Appraoch 2: Backtracking:
 
 .. note:: 
@@ -817,4 +819,9 @@ Appraoch 2: Backtracking:
     `Backtracking <https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/>`_ is an algorithm 
     for finding all solutions by exploring all potential candidates. If the solution candidate turns to be 
     not a solution (or at least not the last one), backtracking algoithm discards it by making some changes on the 
-    previous step, i.e. backtracks and then try again!
+    previous step, i.e. backtracks and then try again! Refer to my summary at :ref:`Backtracking`. 
+
+NOT DONE YET
+
+
+

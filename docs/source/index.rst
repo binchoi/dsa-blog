@@ -24,6 +24,7 @@ learned along the way.
    :caption: Miscellaneous
 
    toolbox
+   algosummary
 
 
 TODO:    
