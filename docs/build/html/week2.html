@@ -64,13 +64,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-25-subsets">Question 25: Subsets</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-10-22-oct">Day 10 [22 Oct]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#day-11-23-oct">Day 11 [23 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-26-implement-strstr">Question 26: Implement strStr()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-27-sqrt-x">Question 27: Sqrt(x)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="toolbox.html#test">test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="algosummary.html">Useful Algorithms</a></li>
 </ul>
 
@@ -892,7 +897,229 @@ for finding all solutions by exploring all potential candidates. If the solution
 not a solution (or at least not the last one), backtracking algoithm discards it by making some changes on the
 previous step, i.e. backtracks and then try again! Refer to my summary at <a class="reference internal" href="algosummary.html#backtracking"><span class="std std-ref">Backtracking</span></a>.</p>
 </div>
-<p>NOT DONE YET</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">first</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="p">[]):</span>
+<span class="linenos"> 3</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+<span class="linenos"> 4</span>            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">[:])</span>
+<span class="linenos"> 5</span>            <span class="k">return</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="linenos"> 7</span>            <span class="n">curr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="linenos"> 8</span>            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">curr</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="n">curr</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">10</span>            <span class="c1"># in order to replace what I just added with another element</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">13</span>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># each iteration, sublist of length k</span>
+<span class="linenos">15</span>        <span class="n">backtrack</span><span class="p">()</span>
+<span class="linenos">16</span>    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">curr</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// if the combination is done</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">output</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">curr</span><span class="p">));</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// add i into the current combination</span>
+        <span class="n">curr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+        <span class="c1">// use next integers to complete the combination</span>
+        <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">curr</span><span class="p">,</span> <span class="n">nums</span><span class="p">);</span>
+        <span class="c1">// backtrack</span>
+        <span class="n">curr</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">subsets</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Very clever algorithm but I am still quite unfamiliar with it (need more practice!)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*2^n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=(len(nums))</span></code> - i.e. for each n, iterate through 2^(n-1)
+elements in res (so far)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - i.e. <code class="docutils literal notranslate"><span class="pre">curr</span></code> is maintained with maximum <code class="docutils literal notranslate"><span class="pre">n</span></code> elements throughout
+the whole execution. Note: for space complexity analysis, we do not count the space that is <em>only</em>
+used for the purpose of returning the output (i.e. <code class="docutils literal notranslate"><span class="pre">res</span></code> array is ignored)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Approach 3: Lexicographic (Binary Sorted) Subsets:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The idea is that we map each subset to a bitmask of length <code class="docutils literal notranslate"><span class="pre">n</span></code>, where <code class="docutils literal notranslate"><span class="pre">1</span></code> on the <code class="docutils literal notranslate"><span class="pre">ith</span></code> position in
+bitmask means the presence of <code class="docutils literal notranslate"><span class="pre">nums[i]</span></code> in the subset, and <code class="docutils literal notranslate"><span class="pre">0</span></code> means its absence.</p>
+<p>For instance, the bitmask <code class="docutils literal notranslate"><span class="pre">0..00</span></code> (all zeros) corresponds to an empty subset, and the bitmask
+<code class="docutils literal notranslate"><span class="pre">1..11</span></code> (all ones) corresponds to the entire input array <code class="docutils literal notranslate"><span class="pre">nums</span></code>.</p>
+</div>
+<p>But there is a problem here: how do we deal with zero left padding, because one has to generate bitmasks
+of fixed length, i.e. <code class="docutils literal notranslate"><span class="pre">001</span></code> and not just <code class="docutils literal notranslate"><span class="pre">1</span></code>. For that one could use standard bit manipulation trick:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nth_bit</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># generate bitmask, from 0..00 to 1..11</span>
+    <span class="n">bitmask</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span> <span class="o">|</span> <span class="n">nth_bit</span><span class="p">)[</span><span class="mi">3</span><span class="p">:]</span>
+
+<span class="c1"># or even simpler...</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="c1"># generate bitmask, from 0..00 to 1..11</span>
+    <span class="n">bitmask</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// In Java...</span>
+<span class="kt">int</span> <span class="n">nthBit</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// generate bitmask, from 0..00 to 1..11</span>
+    <span class="n">String</span> <span class="n">bitmask</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">i</span> <span class="o">|</span> <span class="n">nthBit</span><span class="p">).</span><span class="na">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// or even simpler...</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// generate bitmask, from 0..00 to 1..11</span>
+    <span class="n">String</span> <span class="n">bitmask</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Algorithm:</dt><dd><ul class="simple">
+<li><p>Generate all possible binary bitmasks of length <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p>Map a subset to each bitmask: <code class="docutils literal notranslate"><span class="pre">1</span></code> on the <code class="docutils literal notranslate"><span class="pre">i``th</span> <span class="pre">position</span> <span class="pre">in</span> <span class="pre">bitmask</span> <span class="pre">means</span> <span class="pre">the</span> <span class="pre">presence</span> <span class="pre">of</span> <span class="pre">``nums[i]</span></code> in
+the subset, and <code class="docutils literal notranslate"><span class="pre">0</span></code> means its absence.</p></li>
+<li><p>Return output list.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="linenos"> 2</span>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="linenos"> 3</span>    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+<span class="linenos"> 6</span>        <span class="c1"># generate bitmask, from 0..00 to 1..11</span>
+<span class="linenos"> 7</span>        <span class="n">bitmask</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">3</span><span class="p">:]</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>        <span class="c1"># append subset corresponding to that bitmask</span>
+<span class="linenos">10</span>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">bitmask</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">subsets</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// generate bitmask, from 0..00 to 1..11</span>
+        <span class="n">String</span> <span class="n">bitmask</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="c1">// append subset corresponding to that bitmask</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">curr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">bitmask</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="n">curr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">output</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">curr</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I have not fully implemented the solutions above (because of time restraint), note: try again!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*2^n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=(len(nums))</span></code> - i.e. for each n, iterate through 2^(n-1)
+elements in res (so far)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*2^n)</span></code> to keep all the subsets of length n, since each of n elements
+could be present or absent.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-10-22-oct">
+<h2>Day 10 [22 Oct]<a class="headerlink" href="#day-10-22-oct" title="Permalink to this headline"></a></h2>
+<p>I have taken this day to review and organize notes for <a class="reference internal" href="algosummary.html#backtracking"><span class="std std-ref">Backtracking</span></a>.</p>
+</section>
+<section id="day-11-23-oct">
+<h2>Day 11 [23 Oct]<a class="headerlink" href="#day-11-23-oct" title="Permalink to this headline"></a></h2>
+<section id="question-26-implement-strstr">
+<h3>Question 26: Implement strStr()<a class="headerlink" href="#question-26-implement-strstr" title="Permalink to this headline"></a></h3>
+<p><em>Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if
+needle is not part of haystack.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">strStr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">haystack</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">needle</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="n">lenNeedle</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">needle</span><span class="p">)</span>
+<span class="linenos"> 3</span>    <span class="n">lenHaystack</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">haystack</span><span class="p">)</span>
+<span class="linenos"> 4</span>    <span class="c1"># handle edge case</span>
+<span class="linenos"> 5</span>    <span class="k">if</span> <span class="n">lenNeedle</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 6</span>        <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos"> 7</span>    <span class="k">if</span> <span class="n">lenNeedle</span><span class="o">&gt;</span><span class="n">lenHaystack</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 9</span>    <span class="c1"># main</span>
+<span class="linenos">10</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lenHaystack</span><span class="o">-</span><span class="n">lenNeedle</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="k">if</span> <span class="n">haystack</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">lenNeedle</span><span class="p">]</span> <span class="o">==</span> <span class="n">needle</span><span class="p">:</span>
+<span class="linenos">12</span>            <span class="k">return</span> <span class="n">i</span>
+<span class="linenos">13</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Similar Java solution (cred: <a class="reference external" href="https://leetcode.com/problems/implement-strstr/discuss/12807/Elegant-Java-solution">cdai</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">strStr</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="n">String</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// edge case: &quot;&quot;,&quot;&quot;=&gt;0  &quot;a&quot;,&quot;&quot;=&gt;0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="n">t</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="p">);</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">t</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty easy question!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*m)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=len(haystack)</span></code> and <code class="docutils literal notranslate"><span class="pre">m=len(needle)</span></code> - i.e. worst-case, we would iterate through
+nearly all of the characters of <code class="docutils literal notranslate"><span class="pre">haystack</span></code> and slice the haystack to <code class="docutils literal notranslate"><span class="pre">len(needle)</span></code> each time (slice operator in python is
+<code class="docutils literal notranslate"><span class="pre">O(len(sliced_object))</span></code>)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-27-sqrt-x">
+<h3>Question 27: Sqrt(x)<a class="headerlink" href="#question-27-sqrt-x" title="Permalink to this headline"></a></h3>
+<p><em>Given a non-negative integer x, compute and return the square root of x. Since the return type is an integer, the decimal digits
+are truncated, and only the integer part of the result is returned. Note: You are not allowed to use any built-in exponent
+function or operator</em></p>
+<p>My solution (cred: <a class="reference external" href="https://leetcode.com/problems/sqrtx/discuss/25057/3-4-short-lines-Integer-Newton-Every-Language">Stefan</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">mySqrt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="n">r</span> <span class="o">=</span> <span class="n">x</span>
+<span class="linenos">3</span>    <span class="k">while</span> <span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">):</span>
+<span class="linenos">4</span>        <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">x</span><span class="o">//</span><span class="n">r</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="linenos">5</span>    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kt">long</span> <span class="n">r</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">r</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">x</span><span class="o">/</span><span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">r</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Difficult question. I was unaware of Integer Newton method previous to seeing this problem</p></li>
+<li><p><strong>Time/Space Complexity</strong>: (uncertain)</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

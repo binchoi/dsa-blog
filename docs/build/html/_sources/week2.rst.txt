@@ -821,7 +821,230 @@ Appraoch 2: Backtracking:
     not a solution (or at least not the last one), backtracking algoithm discards it by making some changes on the 
     previous step, i.e. backtracks and then try again! Refer to my summary at :ref:`Backtracking`. 
 
-NOT DONE YET
+.. code-block:: python
+    :linenos: 
+
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def backtrack(first = 0, curr = []): 
+            if len(curr) == k: 
+                res.append(curr[:])
+                return 
+            for i in range(first, n): 
+                curr.append(nums[i])
+                backtrack(i+1, curr)
+                curr.pop() 
+                # in order to replace what I just added with another element
+        
+        res = []
+        n = len(nums)
+        for k in range(n+1): # each iteration, sublist of length k
+            backtrack()
+        return res
+
+.. code-block:: Java
+
+    // Java
+    List<List<Integer>> output = new ArrayList();
+    int n, k;
+
+    public void backtrack(int first, ArrayList<Integer> curr, int[] nums) {
+        // if the combination is done
+        if (curr.size() == k) {
+            output.add(new ArrayList(curr));
+            return;
+        }
+        for (int i = first; i < n; ++i) {
+            // add i into the current combination
+            curr.add(nums[i]);
+            // use next integers to complete the combination
+            backtrack(i + 1, curr, nums);
+            // backtrack
+            curr.remove(curr.size() - 1);
+        }
+    }
+
+    public List<List<Integer>> subsets(int[] nums) {
+        n = nums.length;
+        for (k = 0; k < n + 1; ++k) {
+            backtrack(0, new ArrayList<Integer>(), nums);
+        }
+        return output;
+    }
+
+Remarks and Complexity Analysis: 
+ * Very clever algorithm but I am still quite unfamiliar with it (need more practice!)
+ * **Time Complexity**: ``O(n*2^n)`` where ``n=(len(nums))`` - i.e. for each n, iterate through 2^(n-1) 
+   elements in res (so far)
+ * **Space Complexity**: ``O(n)`` - i.e. ``curr`` is maintained with maximum ``n`` elements throughout 
+   the whole execution. Note: for space complexity analysis, we do not count the space that is *only* 
+   used for the purpose of returning the output (i.e. ``res`` array is ignored)
+
+Approach 3: Lexicographic (Binary Sorted) Subsets:
+
+.. note:: 
+    
+    The idea is that we map each subset to a bitmask of length ``n``, where ``1`` on the ``ith`` position in 
+    bitmask means the presence of ``nums[i]`` in the subset, and ``0`` means its absence.
+
+    For instance, the bitmask ``0..00`` (all zeros) corresponds to an empty subset, and the bitmask 
+    ``1..11`` (all ones) corresponds to the entire input array ``nums``.
+
+But there is a problem here: how do we deal with zero left padding, because one has to generate bitmasks 
+of fixed length, i.e. ``001`` and not just ``1``. For that one could use standard bit manipulation trick::
+
+    nth_bit = 1 << n
+    for i in range(2**n):
+        # generate bitmask, from 0..00 to 1..11
+        bitmask = bin(i | nth_bit)[3:]
+    
+    # or even simpler...
+    for i in range(2**n, 2**(n + 1)):
+        # generate bitmask, from 0..00 to 1..11
+        bitmask = bin(i)[3:]
+
+.. code-block:: Java
+
+    // In Java... 
+    int nthBit = 1 << n;
+    for (int i = 0; i < (int)Math.pow(2, n); ++i) {
+        // generate bitmask, from 0..00 to 1..11
+        String bitmask = Integer.toBinaryString(i | nthBit).substring(1);
+    }
+    
+    // or even simpler... 
+    for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
+        // generate bitmask, from 0..00 to 1..11
+        String bitmask = Integer.toBinaryString(i).substring(1);
+    }
+
+Algorithm:
+ * Generate all possible binary bitmasks of length ``n``.
+ * Map a subset to each bitmask: ``1`` on the ``i``th position in bitmask means the presence of ``nums[i]`` in 
+   the subset, and ``0`` means its absence.
+ * Return output list.
+
+.. code-block:: python
+    :linenos: 
+
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        output = []
+        
+        for i in range(2**n, 2**(n + 1)):
+            # generate bitmask, from 0..00 to 1..11
+            bitmask = bin(i)[3:]
+            
+            # append subset corresponding to that bitmask
+            output.append([nums[j] for j in range(n) if bitmask[j] == '1'])
+        
+        return output
+
+.. code-block:: Java 
+    
+    // Java
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> output = new ArrayList();
+        int n = nums.length;
+
+        for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
+            // generate bitmask, from 0..00 to 1..11
+            String bitmask = Integer.toBinaryString(i).substring(1);
+
+            // append subset corresponding to that bitmask
+            List<Integer> curr = new ArrayList();
+            for (int j = 0; j < n; ++j) {
+                if (bitmask.charAt(j) == '1') curr.add(nums[j]);
+            }
+            output.add(curr);
+        }
+        return output;
+    }
+
+Remarks and Complexity Analysis: 
+ * I have not fully implemented the solutions above (because of time restraint), note: try again!
+ * **Time Complexity**: ``O(n*2^n)`` where ``n=(len(nums))`` - i.e. for each n, iterate through 2^(n-1) 
+   elements in res (so far)
+ * **Space Complexity**: ``O(n*2^n)`` to keep all the subsets of length n, since each of n elements 
+   could be present or absent.
+
+Day 10 [22 Oct]
+========================
+
+I have taken this day to review and organize notes for :ref:`Backtracking`. 
+
+Day 11 [23 Oct]
+========================
+Question 26: Implement strStr()
+--------------------------------
+*Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if 
+needle is not part of haystack.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    def strStr(self, haystack: str, needle: str) -> int:
+        lenNeedle = len(needle)
+        lenHaystack = len(haystack)
+        # handle edge case
+        if lenNeedle == 0: 
+            return 0
+        if lenNeedle>lenHaystack: 
+            return -1
+        # main
+        for i in range(lenHaystack-lenNeedle+1):
+            if haystack[i:i+lenNeedle] == needle: 
+                return i
+        return -1
+
+Similar Java solution (cred: `cdai <https://leetcode.com/problems/implement-strstr/discuss/12807/Elegant-Java-solution>`_):
+
+.. code-block:: Java
+
+    public int strStr(String s, String t) {
+        if (t.isEmpty()) return 0; // edge case: "",""=>0  "a",""=>0
+        for (int i = 0; i <= s.length() - t.length(); i++) {
+            for (int j = 0; j < t.length() && s.charAt(i + j) == t.charAt(j); j++)
+                if (j == t.length() - 1) return i;
+        }
+        return -1;
+    }
+
+Remarks and Complexity Analysis: 
+ * Pretty easy question!
+ * **Time Complexity**: ``O(n*m)`` where ``n=len(haystack)`` and ``m=len(needle)`` - i.e. worst-case, we would iterate through 
+   nearly all of the characters of ``haystack`` and slice the haystack to ``len(needle)`` each time (slice operator in python is 
+   ``O(len(sliced_object))``)
+ * **Space Complexity**: ``O(1)`` 
+
+Question 27: Sqrt(x)
+--------------------------------
+*Given a non-negative integer x, compute and return the square root of x. Since the return type is an integer, the decimal digits 
+are truncated, and only the integer part of the result is returned. Note: You are not allowed to use any built-in exponent 
+function or operator*
+
+My solution (cred: `Stefan <https://leetcode.com/problems/sqrtx/discuss/25057/3-4-short-lines-Integer-Newton-Every-Language>`_):
+
+.. code-block:: python
+    :linenos:
+
+    def mySqrt(self, x: int) -> int:
+        r = x
+        while (r*r > x):
+            r = (r + x//r) // 2
+        return r
+
+.. code-block:: Java
+
+    // Java 
+    long r = x;
+    while (r*r > x)
+        r = (r + x/r) / 2;
+    return (int) r;
 
 
-
+Remarks and Complexity Analysis: 
+ * Difficult question. I was unaware of Integer Newton method previous to seeing this problem
+ * **Time/Space Complexity**: (uncertain)
+ 

@@ -18,6 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Useful Algorithms" href="algosummary.html" />
     <link rel="prev" title="Week 2 [17-24 Oct 2021]" href="week2.html" /> 
 </head>
 
@@ -55,7 +56,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#test">test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algosummary.html">Useful Algorithms</a></li>
 </ul>
 
         </div>
@@ -121,170 +122,13 @@ want it sorted, just use <code class="docutils literal notranslate"><span class=
 </section>
 </section>
 </section>
-<section id="test">
-<h1>test<a class="headerlink" href="#test" title="Permalink to this headline"></a></h1>
-<p>A general approach to backtracking questions</p>
-<p>Cred: <a class="reference external" href="https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)">issac</a></p>
-<p><a class="reference external" href="https://leetcode.com/problems/subsets/">Subsets</a></p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">subsets</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">){</span>
-    <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-        <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">Subsets</span> <span class="nf">II</span> <span class="p">(</span><span class="n">contains</span> <span class="n">duplicates</span><span class="p">)</span> <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="c1">//leetcode.com/problems/subsets-ii/</span>
-
-<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">subsetsWithDup</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">){</span>
-    <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// skip duplicates</span>
-        <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-        <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="https://leetcode.com/problems/permutations/">Permutations</a></p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">permute</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="c1">// Arrays.sort(nums); // not necessary</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">nums</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">){</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// element already exists, skip</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-            <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">nums</span><span class="p">);</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">Permutations</span> <span class="nf">II</span> <span class="p">(</span><span class="n">contains</span> <span class="n">duplicates</span><span class="p">)</span> <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="c1">//leetcode.com/problems/permutations-ii/</span>
-
-<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">permuteUnique</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">,</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">boolean</span> <span class="o">[]</span> <span class="n">used</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">){</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">used</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">used</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-            <span class="n">used</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-            <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">used</span><span class="p">);</span>
-            <span class="n">used</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="https://leetcode.com/problems/combination-sum/">Combination Sum</a></p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">combinationSum</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">remain</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">remain</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">remain</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="k">else</span><span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-            <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">remain</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// not i + 1 because we can reuse same elements</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="https://leetcode.com/problems/combination-sum-ii/">Combination Sum II (can’t reuse same element)</a></p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">combinationSum2</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">remain</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">remain</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">remain</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="k">else</span><span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// skip duplicates</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-            <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">remain</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-            <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="https://leetcode.com/problems/palindrome-partitioning/">Palindrome Partitioning</a></p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="nf">partition</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">start</span> <span class="o">==</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">())</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
-    <span class="k">else</span><span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">isPalindrome</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">i</span><span class="p">)){</span>
-                <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
-                <span class="n">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-                <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">low</span><span class="p">,</span> <span class="kt">int</span> <span class="n">high</span><span class="p">){</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">)</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">low</span><span class="o">++</span><span class="p">)</span> <span class="o">!=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">high</span><span class="o">--</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="week2.html" class="btn btn-neutral float-left" title="Week 2 [17-24 Oct 2021]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="algosummary.html" class="btn btn-neutral float-right" title="Useful Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
