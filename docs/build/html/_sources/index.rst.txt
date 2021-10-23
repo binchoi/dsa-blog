@@ -26,15 +26,9 @@ learned along the way.
    toolbox
    algosummary
 
+.. Indices and tables
+.. ==================
 
-TODO:    
-   * q20 review
-   * backtracking 
-   * make page for concepts
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
