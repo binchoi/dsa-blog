@@ -1047,4 +1047,7 @@ My solution (cred: `Stefan <https://leetcode.com/problems/sqrtx/discuss/25057/3-
 Remarks and Complexity Analysis: 
  * Difficult question. I was unaware of Integer Newton method previous to seeing this problem
  * **Time/Space Complexity**: (uncertain)
- 
+
+Day 12 [24 Oct]
+================
+
