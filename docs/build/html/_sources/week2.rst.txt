@@ -1228,4 +1228,3 @@ Remarks and Complexity Analysis:
    single comparisons computable during ``push`` can be leveraged to give us a big picture of the whole stack 
  * **Time Complexity**: ``O(1)`` for all operations
  * **Space Complexity**: ``O(1)`` for ``push()``
-

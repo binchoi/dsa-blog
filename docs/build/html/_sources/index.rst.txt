@@ -18,6 +18,7 @@ learned along the way.
 
    week1
    week2
+   week3
 
 .. toctree::
    :maxdepth: 1
