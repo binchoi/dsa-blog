@@ -1050,4 +1050,182 @@ Remarks and Complexity Analysis:
 
 Day 12 [24 Oct]
 ================
+Question 28: Permutations
+--------------------------------
+*Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.*
+
+My backtracking solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def permuteHelper(numsRemaining: List[int], soFar: List[int]): 
+            if len(soFar) == len(nums): 
+                res.append(soFar.copy()) 
+            for i in range(len(numsRemaining)): 
+                soFar += [numsRemaining[i]]
+                permuteHelper([x for x in numsRemaining if x != numsRemaining[i]], soFar)
+                soFar.pop()
+        permuteHelper(nums, [])
+        return res
+
+Remarks and Complexity Analysis: 
+ * Nice to apply what I have learned about backtracking to an unseen question. 
+ * Unhappy that I had to use ``.copy()`` - little bit confused as to why as well.
+ * **Time Complexity**: ``O(n!)`` where ``n=len(nums)`` as there are a total of ``n!`` permutations for a list of ``n`` items. 
+ * **Space Complexity**: ``O(n)`` - ignoring the ``res`` array, the same ``soFar`` array of length ``n`` has been used to solve. 
+
+ Interesting alternative solutions::
+
+    # Recursive - take any element as first 
+    def permute(self, nums):
+        return [[n] + p
+                for i, n in enumerate(nums)
+                for p in self.permute(nums[:i] + nums[i+1:])] or [[]]
+    
+    # Recursive - insert first element anywhere
+    def permute(self, nums):
+        return nums and [p[:i] + [nums[0]] + p[i:]
+                        for p in self.permute(nums[1:])
+                        for i in range(len(nums))] or [[]]
+
+    # Using the library
+    def permute(self, nums) -> List[tuple[int]]:
+        return list(itertools.permutations(nums))
+
+    def permute(self, nums) -> List[List[int]]:
+        return map(list, itertools.permutations(nums)
+
+Question 29: Plus One
+--------------------------------
+*You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. 
+The digits are ordered from most significant to least significant in left-to-right order. The large integer does not 
+contain any leading 0's. Increment the large integer by one and return the resulting array of digits.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    def plusOne(self, digits: List[int]) -> List[int]:
+        numDigit = len(digits)
+        carryOver = 1
+        for i in range(numDigit-1, -1, -1): 
+            if digits[i] + carryOver == 10: 
+                digits[i] = 0
+                carryOver = 1
+            else: 
+                digits[i] += carryOver
+                carryOver = 0
+                break
+        if carryOver: 
+            digits = [1] + digits
+        return digits
+
+My second solution (much faster): 
+
+.. code-block:: python
+    :linenos: 
+
+    def plusOne(self, digits: List[int]) -> List[int]:
+        numDigit = len(digits)
+        beforeEnd = False
+        for i in range(numDigit-1, -1, -1): 
+            if digits[i] != 9: 
+                digits[i] += 1
+                beforeEnd = True
+                break
+            else: 
+                digits[i] = 0
+        if not beforeEnd: 
+            digits = [1] + digits
+        return digits
+
+Remarks and Complexity Analysis: 
+ * Surprised to see that my solution (which seemed like the obvious method) is faster than 98+% of the solutions in terms of runtime. 
+ * **Time Complexity**: ``O(n)`` where ``n=number of trailing 9's``
+ * **Space Complexity**: ``O(1)`` - all changes were in-line
+
+
+Question 30: Plus One
+--------------------------------
+*Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    class MinStack:
+
+        def __init__(self):
+            self.stack = Node(None, float(inf), None)
+
+        def push(self, val: int) -> None:
+            self.stack = Node(val, min(val, self.stack.minval), self.stack)
+
+        def pop(self) -> None:
+            res = self.stack.val
+            self.stack = self.stack.nextNode    
+            return res
+                
+        def top(self) -> int:
+            return self.stack.val
+
+        def getMin(self) -> int:
+            return self.stack.minval
+            
+    class Node: 
+        
+        def __init__(self, val, minval, nextNode): 
+            self.val = val
+            self.minval = minval
+            self.nextNode = nextNode
+
+Above solution is inspired by `ivtoskov <https://leetcode.com/problems/min-stack/discuss/49010/Clean-6ms-Java-solution>`_: 
+
+.. code-block:: Java
+
+    class MinStack {
+        private Node head;
+            
+        public void push(int x) {
+            if (head == null) 
+                head = new Node(x, x, null);
+            else 
+                head = new Node(x, Math.min(x, head.min), head);
+        }
+        
+        public void pop() {
+            head = head.next;
+        }
+        
+        public int top() {
+            return head.val;
+        }
+        
+        public int getMin() {
+            return head.min;
+        }
+            
+        private class Node {
+            int val;
+            int min;
+            Node next;
+                
+            private Node(int val, int min, Node next) {
+                this.val = val;
+                this.min = min;
+                this.next = next;
+            }
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Found the question slightly difficult at first. For something to be constant time, we need to think innovatively about how 
+   single comparisons computable during ``push`` can be leveraged to give us a big picture of the whole stack 
+ * **Time Complexity**: ``O(1)`` for all operations
+ * **Space Complexity**: ``O(1)`` for ``push()``
 

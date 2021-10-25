@@ -70,7 +70,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-27-sqrt-x">Question 27: Sqrt(x)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#day-12-24-oct">Day 12 [24 Oct]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#day-12-24-oct">Day 12 [24 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-28-permutations">Question 28: Permutations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-29-plus-one">Question 29: Plus One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-30-plus-one">Question 30: Plus One</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1125,6 +1130,179 @@ function or operator</em></p>
 </section>
 <section id="day-12-24-oct">
 <h2>Day 12 [24 Oct]<a class="headerlink" href="#day-12-24-oct" title="Permalink to this headline"></a></h2>
+<section id="question-28-permutations">
+<h3>Question 28: Permutations<a class="headerlink" href="#question-28-permutations" title="Permalink to this headline"></a></h3>
+<p><em>Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.</em></p>
+<p>My backtracking solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="linenos"> 2</span>    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 3</span>    <span class="k">def</span> <span class="nf">permuteHelper</span><span class="p">(</span><span class="n">numsRemaining</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">soFar</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+<span class="linenos"> 4</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">soFar</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<span class="linenos"> 5</span>            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">soFar</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numsRemaining</span><span class="p">)):</span>
+<span class="linenos"> 7</span>            <span class="n">soFar</span> <span class="o">+=</span> <span class="p">[</span><span class="n">numsRemaining</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+<span class="linenos"> 8</span>            <span class="n">permuteHelper</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">numsRemaining</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">numsRemaining</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">soFar</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="n">soFar</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">10</span>    <span class="n">permuteHelper</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="p">[])</span>
+<span class="linenos">11</span>    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl>
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Nice to apply what I have learned about backtracking to an unseen question.</p></li>
+<li><p>Unhappy that I had to use <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> - little bit confused as to why as well.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n!)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=len(nums)</span></code> as there are a total of <code class="docutils literal notranslate"><span class="pre">n!</span></code> permutations for a list of <code class="docutils literal notranslate"><span class="pre">n</span></code> items.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - ignoring the <code class="docutils literal notranslate"><span class="pre">res</span></code> array, the same <code class="docutils literal notranslate"><span class="pre">soFar</span></code> array of length <code class="docutils literal notranslate"><span class="pre">n</span></code> has been used to solve.</p></li>
+</ul>
+<p>Interesting alternative solutions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recursive - take any element as first</span>
+<span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">nums</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:])]</span> <span class="ow">or</span> <span class="p">[[]]</span>
+
+<span class="c1"># Recursive - insert first element anywhere</span>
+<span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">nums</span> <span class="ow">and</span> <span class="p">[</span><span class="n">p</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
+                    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">))]</span> <span class="ow">or</span> <span class="p">[[]]</span>
+
+<span class="c1"># Using the library</span>
+<span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="question-29-plus-one">
+<h3>Question 29: Plus One<a class="headerlink" href="#question-29-plus-one" title="Permalink to this headline"></a></h3>
+<p><em>You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer.
+The digits are ordered from most significant to least significant in left-to-right order. The large integer does not
+contain any leading 0’s. Increment the large integer by one and return the resulting array of digits.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">plusOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos"> 2</span>    <span class="n">numDigit</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class="linenos"> 3</span>    <span class="n">carryOver</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 4</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numDigit</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos"> 5</span>        <span class="k">if</span> <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">carryOver</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+<span class="linenos"> 6</span>            <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 7</span>            <span class="n">carryOver</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 8</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 9</span>            <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">carryOver</span>
+<span class="linenos">10</span>            <span class="n">carryOver</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">11</span>            <span class="k">break</span>
+<span class="linenos">12</span>    <span class="k">if</span> <span class="n">carryOver</span><span class="p">:</span>
+<span class="linenos">13</span>        <span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">digits</span>
+<span class="linenos">14</span>    <span class="k">return</span> <span class="n">digits</span>
+</pre></div>
+</div>
+<p>My second solution (much faster):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">plusOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos"> 2</span>    <span class="n">numDigit</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class="linenos"> 3</span>    <span class="n">beforeEnd</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 4</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numDigit</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos"> 5</span>        <span class="k">if</span> <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
+<span class="linenos"> 6</span>            <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos"> 7</span>            <span class="n">beforeEnd</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 8</span>            <span class="k">break</span>
+<span class="linenos"> 9</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">10</span>            <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">11</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">beforeEnd</span><span class="p">:</span>
+<span class="linenos">12</span>        <span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">digits</span>
+<span class="linenos">13</span>    <span class="k">return</span> <span class="n">digits</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Surprised to see that my solution (which seemed like the obvious method) is faster than 98+% of the solutions in terms of runtime.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=number</span> <span class="pre">of</span> <span class="pre">trailing</span> <span class="pre">9's</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - all changes were in-line</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-30-plus-one">
+<h3>Question 30: Plus One<a class="headerlink" href="#question-30-plus-one" title="Permalink to this headline"></a></h3>
+<p><em>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">MinStack</span><span class="p">:</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 4</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">inf</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">minval</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">10</span>        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">val</span>
+<span class="linenos">11</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">nextNode</span>
+<span class="linenos">12</span>        <span class="k">return</span> <span class="n">res</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">15</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">val</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">def</span> <span class="nf">getMin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">18</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">minval</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">minval</span><span class="p">,</span> <span class="n">nextNode</span><span class="p">):</span>
+<span class="linenos">23</span>        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+<span class="linenos">24</span>        <span class="bp">self</span><span class="o">.</span><span class="n">minval</span> <span class="o">=</span> <span class="n">minval</span>
+<span class="linenos">25</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nextNode</span> <span class="o">=</span> <span class="n">nextNode</span>
+</pre></div>
+</div>
+<p>Above solution is inspired by <a class="reference external" href="https://leetcode.com/problems/min-stack/discuss/49010/Clean-6ms-Java-solution">ivtoskov</a>:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MinStack</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">head</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">head</span><span class="p">.</span><span class="na">min</span><span class="p">),</span> <span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">top</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">head</span><span class="p">.</span><span class="na">val</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getMin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">head</span><span class="p">.</span><span class="na">min</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">min</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>
+
+        <span class="kd">private</span> <span class="nf">Node</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="n">Node</span> <span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">min</span> <span class="o">=</span> <span class="n">min</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Found the question slightly difficult at first. For something to be constant time, we need to think innovatively about how
+single comparisons computable during <code class="docutils literal notranslate"><span class="pre">push</span></code> can be leveraged to give us a big picture of the whole stack</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for all operations</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for <code class="docutils literal notranslate"><span class="pre">push()</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
 </section>
 </section>
 
