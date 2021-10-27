@@ -12,6 +12,8 @@ learned along the way.
 
 **First Goal:** 100 continuous days of leetcode practice (300+ questions!)
 
+
+
 .. toctree::
    :maxdepth: 1
    :caption: Daily Algo Exercise
