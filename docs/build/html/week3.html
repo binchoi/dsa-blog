@@ -116,7 +116,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-14-26-oct">Day 14 [26 Oct]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-33-xxx">Question 33: XXX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-33-k-th-symbol-in-grammar">Question 33: K-th Symbol in Grammar</a></li>
 </ul>
 </li>
 </ul>
@@ -574,8 +574,37 @@ expensive due to the additional overhead of method calls.</p></li>
 </section>
 <section id="day-14-26-oct">
 <h2>Day 14 [26 Oct]<a class="headerlink" href="#day-14-26-oct" title="Permalink to this headline"></a></h2>
-<section id="question-33-xxx">
-<h3>Question 33: XXX<a class="headerlink" href="#question-33-xxx" title="Permalink to this headline"></a></h3>
+<section id="question-33-k-th-symbol-in-grammar">
+<h3>Question 33: K-th Symbol in Grammar<a class="headerlink" href="#question-33-k-th-symbol-in-grammar" title="Permalink to this headline"></a></h3>
+<p><em>We build a table of ``n`` rows (1-indexed). We start by writing ``0`` in the 1st row. Now in every subsequent row, we look at the previous row
+and replace each occurrence of ``0`` with ``01``, and each occurrence of ``1`` with ``10``. For example, for ``n = 3``, the 1st row is ``0``, the
+2nd row is ``01``, and the 3rd row is ``0110``. Given two integer ``n`` and ``k``, return the kth (1-indexed) symbol in the nth row of a table of n rows.</em></p>
+<p>My recursive solution (inspired by <a class="reference external" href="https://leetcode.com/problems/k-th-symbol-in-grammar/discuss/113697/My-3-lines-C%2B%2B-recursive-solution">grandyang</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">kthGrammar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+<span class="linenos">3</span>        <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos">4</span>    <span class="c1"># else we determine by considering the parent&#39;s value and</span>
+<span class="linenos">5</span>    <span class="c1"># knowing if node is left/right branch</span>
+<span class="linenos">6</span>    <span class="k">elif</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span> <span class="c1"># even =&gt; right child</span>
+<span class="linenos">7</span>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kthGrammar</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="linenos">8</span>    <span class="k">else</span><span class="p">:</span> <span class="c1"># odd =&gt; left child</span>
+<span class="linenos">9</span>        <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kthGrammar</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Initially, I tried to write down the first few rows in hopes of finding a pattern that will allow me to implement a constant time
+solution. Such pattern did not exist (or, more accurately, I was unable to identify it).</p></li>
+<li><p>The key to the solution above is realizing that each row can be represented as a level in a binary tree. One could notice this
+from how the number of digits/nodes double in every successive row. Furthermore, the second key lies in understanding that
+the <code class="docutils literal notranslate"><span class="pre">k</span></code> parameter provides us with the information of whether the node is a left or right child (from the parity of 1-indexed <code class="docutils literal notranslate"><span class="pre">k</span></code> parameter).
+Finally, knowing that a <code class="docutils literal notranslate"><span class="pre">0</span></code>-parent node has a <code class="docutils literal notranslate"><span class="pre">0</span></code> left-child and a <code class="docutils literal notranslate"><span class="pre">1</span></code> right-child (while vice versa for <code class="docutils literal notranslate"><span class="pre">1</span></code>-parent), we can then deduce the value
+of a given node by the identity of its parent node – <em>Recursion</em>!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - we would make <code class="docutils literal notranslate"><span class="pre">n-1</span></code> recursive calls for any parameter <code class="docutils literal notranslate"><span class="pre">()n,</span> <span class="pre">k)</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - (uncertain!)</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

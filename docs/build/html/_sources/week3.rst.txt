@@ -407,5 +407,36 @@ Alternative iterative solution (cred: `home <https://leetcode.com/problems/same-
 
 Day 14 [26 Oct]
 ================
-Question 33: XXX
---------------------------------
+Question 33: K-th Symbol in Grammar
+-------------------------------------
+*We build a table of ``n`` rows (1-indexed). We start by writing ``0`` in the 1st row. Now in every subsequent row, we look at the previous row 
+and replace each occurrence of ``0`` with ``01``, and each occurrence of ``1`` with ``10``. For example, for ``n = 3``, the 1st row is ``0``, the 
+2nd row is ``01``, and the 3rd row is ``0110``. Given two integer ``n`` and ``k``, return the kth (1-indexed) symbol in the nth row of a table of n rows.*
+
+My recursive solution (inspired by `grandyang <https://leetcode.com/problems/k-th-symbol-in-grammar/discuss/113697/My-3-lines-C%2B%2B-recursive-solution>`_):
+
+.. code-block:: python
+    :linenos: 
+
+    def kthGrammar(self, n: int, k: int) -> int:
+        if (n == 1 and k == 1): 
+            return 0
+        # else we determine by considering the parent's value and 
+        # knowing if node is left/right branch
+        elif (k%2==0): # even => right child
+            return 1 if (self.kthGrammar(n-1, k/2)==0) else 0
+        else: # odd => left child
+            return 0 if (self.kthGrammar(n-1, (k+1)/2)==0) else 1
+
+Remarks and Complexity Analysis: 
+ * Initially, I tried to write down the first few rows in hopes of finding a pattern that will allow me to implement a constant time 
+   solution. Such pattern did not exist (or, more accurately, I was unable to identify it).
+ * The key to the solution above is realizing that each row can be represented as a level in a binary tree. One could notice this 
+   from how the number of digits/nodes double in every successive row. Furthermore, the second key lies in understanding that 
+   the ``k`` parameter provides us with the information of whether the node is a left or right child (from the parity of 1-indexed ``k`` parameter). 
+   Finally, knowing that a ``0``-parent node has a ``0`` left-child and a ``1`` right-child (while vice versa for ``1``-parent), we can then deduce the value 
+   of a given node by the identity of its parent node -- *Recursion*!
+ * **Time Complexity**: ``O(n)`` - we would make ``n-1`` recursive calls for any parameter ``()n, k)``. 
+ * **Space Complexity**: ``O(1)`` - (uncertain!)
+
+
