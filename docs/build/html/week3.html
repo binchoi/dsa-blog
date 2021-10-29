@@ -119,6 +119,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-33-k-th-symbol-in-grammar">Question 33: K-th Symbol in Grammar</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-15-27-oct">Day 15 [27 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-34">Question 34: …</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -141,6 +145,7 @@
 <li class="toctree-l3"><a class="reference internal" href="algosummary.html#useful-reference-backtracking">Useful Reference (Backtracking)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a></li>
 </ul>
 </li>
 </ul>
@@ -576,9 +581,9 @@ expensive due to the additional overhead of method calls.</p></li>
 <h2>Day 14 [26 Oct]<a class="headerlink" href="#day-14-26-oct" title="Permalink to this headline"></a></h2>
 <section id="question-33-k-th-symbol-in-grammar">
 <h3>Question 33: K-th Symbol in Grammar<a class="headerlink" href="#question-33-k-th-symbol-in-grammar" title="Permalink to this headline"></a></h3>
-<p><em>We build a table of ``n`` rows (1-indexed). We start by writing ``0`` in the 1st row. Now in every subsequent row, we look at the previous row
-and replace each occurrence of ``0`` with ``01``, and each occurrence of ``1`` with ``10``. For example, for ``n = 3``, the 1st row is ``0``, the
-2nd row is ``01``, and the 3rd row is ``0110``. Given two integer ``n`` and ``k``, return the kth (1-indexed) symbol in the nth row of a table of n rows.</em></p>
+<p><em>We build a table of</em> <code class="docutils literal notranslate"><span class="pre">n</span></code> <em>rows (1-indexed). We start by writing</em> <code class="docutils literal notranslate"><span class="pre">0</span></code> <em>in the 1st row. Now in every subsequent row, we look at the previous row
+and replace each occurrence of</em> <code class="docutils literal notranslate"><span class="pre">0</span></code> <em>with</em> <code class="docutils literal notranslate"><span class="pre">01</span></code>  <em>, and each occurrence of</em> <code class="docutils literal notranslate"><span class="pre">1</span></code>  <em>with</em> <code class="docutils literal notranslate"><span class="pre">10</span></code> <em>. For example, for</em> <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">3</span></code> <em>, the 1st row is</em> <code class="docutils literal notranslate"><span class="pre">0</span></code> <em>, the
+2nd row is</em> <code class="docutils literal notranslate"><span class="pre">01</span></code> <em>, and the 3rd row is</em> <code class="docutils literal notranslate"><span class="pre">0110</span></code> <em>. Given two integer</em> <code class="docutils literal notranslate"><span class="pre">n</span></code> <em>and</em> <code class="docutils literal notranslate"><span class="pre">k</span></code> <em>, return the kth (1-indexed) symbol in the nth row of a table of n rows.</em></p>
 <p>My recursive solution (inspired by <a class="reference external" href="https://leetcode.com/problems/k-th-symbol-in-grammar/discuss/113697/My-3-lines-C%2B%2B-recursive-solution">grandyang</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">kthGrammar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="linenos">2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
@@ -605,6 +610,45 @@ of a given node by the identity of its parent node – <em>Recursion</em>!</p></
 </ul>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <em>further observation</em> would have made the algorithm more concise and efficient: Realize that the parity of <code class="docutils literal notranslate"><span class="pre">k</span></code> (in the main and recursive calls of
+<code class="docutils literal notranslate"><span class="pre">kthGrammar</span></code>) is the critical information that determines the output of our function. If we were to trace our value at <code class="docutils literal notranslate"><span class="pre">(n,k)</span></code> from the root
+node, we realize that our value <em>switches</em> every time we move down to the right-child (from <code class="docutils literal notranslate"><span class="pre">0</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">0</span></code>).  Hence, given parameter <code class="docutils literal notranslate"><span class="pre">k</span></code>,
+we can repeatedly (ceil) divide it while keeping track of the number of times it is odd (i.e. right-child) before we reach 0. If we find this number to be, say <code class="docutils literal notranslate"><span class="pre">y</span></code>,
+we can simply switch our initial value 0 <code class="docutils literal notranslate"><span class="pre">y</span></code> times to compute our output (i.e. return <code class="docutils literal notranslate"><span class="pre">y%2</span></code>). This process can be simplified by converting our decimal value <code class="docutils literal notranslate"><span class="pre">k</span></code>
+into its binary counterpart (! due to indexing, we convert <code class="docutils literal notranslate"><span class="pre">k-1</span></code> !) which are conveniently base-2.</p>
+<p>For instance, for <code class="docutils literal notranslate"><span class="pre">k=4</span></code>, the binary conversion (of 3) would be <code class="docutils literal notranslate"><span class="pre">b'11'</span></code>. This is exactly the route that we take to reach <code class="docutils literal notranslate"><span class="pre">k=4</span></code> (regardless of <code class="docutils literal notranslate"><span class="pre">n</span></code>) - i.e. only two
+right-child path is taken. Granted there could be a long trail of left-child nodes (e.g. for params: <code class="docutils literal notranslate"><span class="pre">(100,4)</span></code>), but there will only be exactly two right-child path taken
+- i.e. exactly two <em>switches</em> (<code class="docutils literal notranslate"><span class="pre">0</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">1</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">0</span></code>). Hence, for any <code class="docutils literal notranslate"><span class="pre">k</span></code>, we can simply find the binary representation of <code class="docutils literal notranslate"><span class="pre">k-1</span></code> and count the number of <code class="docutils literal notranslate"><span class="pre">1</span></code>’s in it,
+finally return its modulo 2.</p>
+<p>Learn more about Python’s bit-wise operators <a class="reference external" href="https://realpython.com/python-bitwise-operators/">here</a>!</p>
+</div>
+<p>Sample solution (cred: <a class="reference external" href="https://leetcode.com/problems/k-th-symbol-in-grammar/discuss/113705/JAVA-one-line">tyuan</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">kthGrammar</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span> <span class="n">K</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">bitCount</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>My adaptation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">countSetBits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span>
+        <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+
+<span class="k">def</span> <span class="nf">kthGrammar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">countSetBits</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="day-15-27-oct">
+<h2>Day 15 [27 Oct]<a class="headerlink" href="#day-15-27-oct" title="Permalink to this headline"></a></h2>
+<section id="question-34">
+<h3>Question 34: …<a class="headerlink" href="#question-34" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 </section>

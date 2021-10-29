@@ -409,9 +409,9 @@ Day 14 [26 Oct]
 ================
 Question 33: K-th Symbol in Grammar
 -------------------------------------
-*We build a table of ``n`` rows (1-indexed). We start by writing ``0`` in the 1st row. Now in every subsequent row, we look at the previous row 
-and replace each occurrence of ``0`` with ``01``, and each occurrence of ``1`` with ``10``. For example, for ``n = 3``, the 1st row is ``0``, the 
-2nd row is ``01``, and the 3rd row is ``0110``. Given two integer ``n`` and ``k``, return the kth (1-indexed) symbol in the nth row of a table of n rows.*
+*We build a table of* ``n`` *rows (1-indexed). We start by writing* ``0`` *in the 1st row. Now in every subsequent row, we look at the previous row 
+and replace each occurrence of* ``0`` *with* ``01``  *, and each occurrence of* ``1``  *with* ``10`` *. For example, for* ``n = 3`` *, the 1st row is* ``0`` *, the 
+2nd row is* ``01`` *, and the 3rd row is* ``0110`` *. Given two integer* ``n`` *and* ``k`` *, return the kth (1-indexed) symbol in the nth row of a table of n rows.*
 
 My recursive solution (inspired by `grandyang <https://leetcode.com/problems/k-th-symbol-in-grammar/discuss/113697/My-3-lines-C%2B%2B-recursive-solution>`_):
 
@@ -439,4 +439,45 @@ Remarks and Complexity Analysis:
  * **Time Complexity**: ``O(n)`` - we would make ``n-1`` recursive calls for any parameter ``()n, k)``. 
  * **Space Complexity**: ``O(1)`` - (uncertain!)
 
+.. note:: 
+
+    A *further observation* would have made the algorithm more concise and efficient: Realize that the parity of ``k`` (in the main and recursive calls of 
+    ``kthGrammar``) is the critical information that determines the output of our function. If we were to trace our value at ``(n,k)`` from the root 
+    node, we realize that our value *switches* every time we move down to the right-child (from ``0`` => ``1`` or ``1`` => ``0``).  Hence, given parameter ``k``, 
+    we can repeatedly (ceil) divide it while keeping track of the number of times it is odd (i.e. right-child) before we reach 0. If we find this number to be, say ``y``, 
+    we can simply switch our initial value 0 ``y`` times to compute our output (i.e. return ``y%2``). This process can be simplified by converting our decimal value ``k`` 
+    into its binary counterpart (! due to indexing, we convert ``k-1`` !) which are conveniently base-2. 
+
+    For instance, for ``k=4``, the binary conversion (of 3) would be ``b'11'``. This is exactly the route that we take to reach ``k=4`` (regardless of ``n``) - i.e. only two 
+    right-child path is taken. Granted there could be a long trail of left-child nodes (e.g. for params: ``(100,4)``), but there will only be exactly two right-child path taken 
+    - i.e. exactly two *switches* (``0`` => ``1`` => ``0``). Hence, for any ``k``, we can simply find the binary representation of ``k-1`` and count the number of ``1``'s in it, 
+    finally return its modulo 2. 
+
+    Learn more about Python's bit-wise operators `here <https://realpython.com/python-bitwise-operators/>`_!
+
+Sample solution (cred: `tyuan <https://leetcode.com/problems/k-th-symbol-in-grammar/discuss/113705/JAVA-one-line>`_): 
+
+.. code-block:: Java
+
+    // Java
+    public int kthGrammar(int N, int K) {
+        return Integer.bitCount(K-1) & 1;
+    }
+
+My adaptation:: 
+
+    def countSetBits(self,n):
+        count = 0
+        while (n):
+            count += n & 1
+            n >>= 1
+        return count
+    
+    def kthGrammar(self, n: int, k: int) -> int:
+        return self.countSetBits(k-1) % 2
+
+Day 15 [27 Oct]
+================
+Question 34: ...
+-------------------------------------
 
