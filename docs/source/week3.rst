@@ -478,6 +478,119 @@ My adaptation::
 
 Day 15 [27 Oct]
 ================
-Question 34: ...
--------------------------------------
+Question 34: Remove Duplicates from Sorted List
+------------------------------------------------
+*Given the head of a sorted linked list, delete all duplicates such that each element appears only 
+once. Return the linked list sorted as well.*
 
+My iterative solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        headNode = head
+        if headNode is None: 
+            return headNode
+    
+        prevNode = head
+        currNode = head.next
+        while currNode is not None: 
+            if prevNode.val == currNode.val: 
+                prevNode.next = currNode.next
+            else: 
+                prevNode = currNode
+            currNode = currNode.next
+        return headNode
+
+Remarks and Complexity Analysis: 
+ * The solution above is the first implementation that came to mind. It's quite simple (and far from *incisive*), but 
+   fairly efficient and easy-to-understand. 
+ * **Time Complexity**: ``O(n)`` - where ``n=len(linked_list)`` as all nodes have to be traversed once.
+ * **Space Complexity**: ``O(1)`` - the only memory we store is the object ``prevNode`` (which is updated as neccessary)
+
+Similar Java solution (cred: `san89 <https://leetcode.com/problems/remove-duplicates-from-sorted-list/discuss/28614/My-pretty-solution.-Java.>`_):
+
+.. code-block:: Java
+    
+    public ListNode deleteDuplicates2(ListNode head) {
+        if(head == null || head.next == null) return head;
+        
+        ListNode list = head;
+         while(list.next != null) 
+         {
+             if (list.val == list.next.val)
+                 list.next = list.next.next;
+             else 
+                 list = list.next;
+         }
+
+         return head;
+    }
+
+Question 35: Pascal's Triangle
+------------------------------------------------
+*Given an integer numRows, return the first numRows of Pascal's triangle. In Pascal's triangle, each number 
+is the sum of the two numbers directly above it.*
+
+My iterative solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    import math
+    def getNthRow(self, nRow: int) -> List[int]: 
+        def calcBinom(nVal, rVal): 
+            return int((math.factorial(nVal))/(math.factorial(rVal)*math.factorial(nVal-rVal)))
+        res = [] 
+        for i in range(nRow): 
+            res.append(calcBinom(nRow-1, i)) # nVal = nRow - 1 => b/c first row nVal=0
+        return res
+    
+    def generate(self, numRows: int) -> List[List[int]]:
+        res = []
+        for i in range(1,numRows+1): 
+            res.append(self.getNthRow(i))
+        return res
+
+Remarks and Complexity Analysis: 
+ * My concern is whether the use of the Binomial Theorem (which involves factorials) instead of memoization simplifies the algorithm at the cost of 
+   time complexity. My understanding is that ``math.factorial`` is implemented using 
+   lower-level languages like C (and by result, is faster) - how would I describe the time complexity of algorithms which use such 
+   features?
+ * **Time Complexity**: ``O(n^2)`` - where ``n=numRows`` thanks to the nested for-loops.
+ * **Space Complexity**: ``O(n^2)`` - (uncertain)
+
+Alternative solution (cred: `rheaxu <https://leetcode.com/problems/pascals-triangle/discuss/38141/My-concise-solution-in-Java>`_): 
+
+.. code-block:: Java
+
+    public List<List<Integer>> generate(int numRows)
+    {
+        List<List<Integer>> allrows = new ArrayList<List<Integer>>();
+        ArrayList<Integer> row = new ArrayList<Integer>();
+        for(int i=0;i<numRows;i++)
+        {
+            row.add(0, 1);
+            for(int j=1;j<row.size()-1;j++)
+                row.set(j, row.get(j)+row.get(j+1));
+            allrows.add(new ArrayList<Integer>(row));
+        }
+        return allrows;
+    }
+
+Another very creative solution (cred: `sherlock <https://leetcode.com/problems/pascals-triangle/discuss/38128/Python-4-lines-short-solution-using-map.>`_)::
+
+    def generate(self, numRows):
+        res = [[1]]
+        for i in range(1, numRows):
+            res += [map(lambda x, y: x+y, res[-1] + [0], [0] + res[-1])]
+        return res[:numRows]
+
+The reason the above algorithm works is that the offset sum of the previous pascal row can directly produce the next pascal row (i.e. ``1 3 3 1 0`` + ``0 1 3 3 1`` => ``1 4 6 4 1``). 
+
+
+Day 16 [28 Oct]
+================
+Question 35: XXXXXX
+-----------------------

@@ -120,7 +120,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-15-27-oct">Day 15 [27 Oct]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-34">Question 34: …</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-34-remove-duplicates-from-sorted-list">Question 34: Remove Duplicates from Sorted List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-35-pascal-s-triangle">Question 35: Pascal’s Triangle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-16-28-oct">Day 16 [28 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-35-xxxxxx">Question 35: XXXXXX</a></li>
 </ul>
 </li>
 </ul>
@@ -647,8 +652,117 @@ finally return its modulo 2.</p>
 </section>
 <section id="day-15-27-oct">
 <h2>Day 15 [27 Oct]<a class="headerlink" href="#day-15-27-oct" title="Permalink to this headline"></a></h2>
-<section id="question-34">
-<h3>Question 34: …<a class="headerlink" href="#question-34" title="Permalink to this headline"></a></h3>
+<section id="question-34-remove-duplicates-from-sorted-list">
+<h3>Question 34: Remove Duplicates from Sorted List<a class="headerlink" href="#question-34-remove-duplicates-from-sorted-list" title="Permalink to this headline"></a></h3>
+<p><em>Given the head of a sorted linked list, delete all duplicates such that each element appears only
+once. Return the linked list sorted as well.</em></p>
+<p>My iterative solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">deleteDuplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+<span class="linenos"> 2</span>    <span class="n">headNode</span> <span class="o">=</span> <span class="n">head</span>
+<span class="linenos"> 3</span>    <span class="k">if</span> <span class="n">headNode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 4</span>        <span class="k">return</span> <span class="n">headNode</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="n">prevNode</span> <span class="o">=</span> <span class="n">head</span>
+<span class="linenos"> 7</span>    <span class="n">currNode</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos"> 8</span>    <span class="k">while</span> <span class="n">currNode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 9</span>        <span class="k">if</span> <span class="n">prevNode</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">currNode</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+<span class="linenos">10</span>            <span class="n">prevNode</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">currNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">11</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">12</span>            <span class="n">prevNode</span> <span class="o">=</span> <span class="n">currNode</span>
+<span class="linenos">13</span>        <span class="n">currNode</span> <span class="o">=</span> <span class="n">currNode</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">14</span>    <span class="k">return</span> <span class="n">headNode</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>The solution above is the first implementation that came to mind. It’s quite simple (and far from <em>incisive</em>), but
+fairly efficient and easy-to-understand.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=len(linked_list)</span></code> as all nodes have to be traversed once.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - the only memory we store is the object <code class="docutils literal notranslate"><span class="pre">prevNode</span></code> (which is updated as neccessary)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Similar Java solution (cred: <a class="reference external" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/discuss/28614/My-pretty-solution.-Java.">san89</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">deleteDuplicates2</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+
+    <span class="n">ListNode</span> <span class="n">list</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+     <span class="k">while</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">list</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">val</span><span class="p">)</span>
+             <span class="n">list</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+         <span class="k">else</span>
+             <span class="n">list</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-35-pascal-s-triangle">
+<h3>Question 35: Pascal’s Triangle<a class="headerlink" href="#question-35-pascal-s-triangle" title="Permalink to this headline"></a></h3>
+<p><em>Given an integer numRows, return the first numRows of Pascal’s triangle. In Pascal’s triangle, each number
+is the sum of the two numbers directly above it.</em></p>
+<p>My iterative solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">math</span>
+<span class="linenos"> 2</span><span class="k">def</span> <span class="nf">getNthRow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nRow</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos"> 3</span>    <span class="k">def</span> <span class="nf">calcBinom</span><span class="p">(</span><span class="n">nVal</span><span class="p">,</span> <span class="n">rVal</span><span class="p">):</span>
+<span class="linenos"> 4</span>        <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">nVal</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">rVal</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">nVal</span><span class="o">-</span><span class="n">rVal</span><span class="p">)))</span>
+<span class="linenos"> 5</span>    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRow</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calcBinom</span><span class="p">(</span><span class="n">nRow</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="c1"># nVal = nRow - 1 =&gt; b/c first row nVal=0</span>
+<span class="linenos"> 8</span>    <span class="k">return</span> <span class="n">res</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numRows</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="linenos">11</span>    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">12</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">numRows</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">13</span>        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getNthRow</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="linenos">14</span>    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>My concern is whether the use of the Binomial Theorem (which involves factorials) instead of memoization simplifies the algorithm at the cost of
+time complexity. My understanding is that <code class="docutils literal notranslate"><span class="pre">math.factorial</span></code> is implemented using
+lower-level languages like C (and by result, is faster) - how would I describe the time complexity of algorithms which use such
+features?</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=numRows</span></code> thanks to the nested for-loops.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> - (uncertain)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Alternative solution (cred: <a class="reference external" href="https://leetcode.com/problems/pascals-triangle/discuss/38141/My-concise-solution-in-Java">rheaxu</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">generate</span><span class="p">(</span><span class="kt">int</span> <span class="n">numRows</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">allrows</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">row</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numRows</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">row</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">row</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">row</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">row</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="n">row</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+        <span class="n">allrows</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">row</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">allrows</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Another very creative solution (cred: <a class="reference external" href="https://leetcode.com/problems/pascals-triangle/discuss/38128/Python-4-lines-short-solution-using-map.">sherlock</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numRows</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numRows</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="n">numRows</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The reason the above algorithm works is that the offset sum of the previous pascal row can directly produce the next pascal row (i.e. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">3</span> <span class="pre">3</span> <span class="pre">1</span> <span class="pre">0</span></code> + <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">3</span> <span class="pre">3</span> <span class="pre">1</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">4</span> <span class="pre">6</span> <span class="pre">4</span> <span class="pre">1</span></code>).</p>
+</section>
+</section>
+<section id="day-16-28-oct">
+<h2>Day 16 [28 Oct]<a class="headerlink" href="#day-16-28-oct" title="Permalink to this headline"></a></h2>
+<section id="question-35-xxxxxx">
+<h3>Question 35: XXXXXX<a class="headerlink" href="#question-35-xxxxxx" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 </section>
