@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; AlgoVenture 0.1 documentation</title>
+  <title>Week 4 [1-7 Nov 2021] &mdash; AlgoVenture 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,10 +16,10 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Toolkit" href="toolbox.html" />
+    <link rel="prev" title="Week 3 [25-31 Oct 2021]" href="week3.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> AlgoVenture
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -38,7 +38,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Daily Algo Exercise</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
@@ -127,9 +127,9 @@
 <li class="toctree-l2"><a class="reference internal" href="week3.html#day-28-oct">Day ___ [28 Oct]</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="week4.html">Week 4 [1-7 Nov 2021]</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="week4.html#day-16-1-nov">Day 16 [1 Nov]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="week4.html#question-31-merge-two-sorted-lists">Question 31: Merge Two Sorted Lists</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 4 [1-7 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#day-16-1-nov">Day 16 [1 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-31-merge-two-sorted-lists">Question 31: Merge Two Sorted Lists</a></li>
 </ul>
 </li>
 </ul>
@@ -173,7 +173,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Search</li>
+      <li>Week 4 [1-7 Nov 2021]</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -182,22 +182,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search functionality.
-    </p>
-  </div>
-  </noscript>
+  <section id="week-4-1-7-nov-2021">
+<h1>Week 4 [1-7 Nov 2021]<a class="headerlink" href="#week-4-1-7-nov-2021" title="Permalink to this headline"></a></h1>
+<section id="day-16-1-nov">
+<h2>Day 16 [1 Nov]<a class="headerlink" href="#day-16-1-nov" title="Permalink to this headline"></a></h2>
+<section id="question-31-merge-two-sorted-lists">
+<h3>Question 31: Merge Two Sorted Lists<a class="headerlink" href="#question-31-merge-two-sorted-lists" title="Permalink to this headline"></a></h3>
+<p><em>Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing
+together the nodes of the first two lists.</em></p>
+<p>My iterative solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+<span class="linenos"> 2</span>    <span class="c1"># list: no node =&gt; None</span>
+<span class="linenos"> 3</span>    <span class="c1"># save head of the merged list to return</span>
+<span class="linenos"> 4</span>    <span class="n">resHead</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos"> 5</span>    <span class="n">currNodeOne</span> <span class="o">=</span> <span class="n">l1</span>
+<span class="linenos"> 6</span>    <span class="n">currNodeTwo</span> <span class="o">=</span> <span class="n">l2</span>
+<span class="linenos"> 7</span>    <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos"> 8</span>    <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">l2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="n">resHead</span>
+<span class="linenos">10</span>    <span class="k">elif</span> <span class="n">l1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="n">l2</span>
+<span class="linenos">12</span>    <span class="k">elif</span> <span class="n">l2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="n">l1</span>
+<span class="linenos">14</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">15</span>        <span class="k">if</span> <span class="n">l1</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">l2</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+<span class="linenos">16</span>            <span class="n">resHead</span> <span class="o">=</span> <span class="n">l2</span>
+<span class="linenos">17</span>            <span class="n">currNodeTwo</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">18</span>            <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="n">l2</span>
+<span class="linenos">19</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">20</span>            <span class="n">resHead</span> <span class="o">=</span> <span class="n">l1</span>
+<span class="linenos">21</span>            <span class="n">currNodeOne</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">22</span>            <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="n">l1</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>    <span class="k">while</span> <span class="n">currNodeOne</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">currNodeTwo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">25</span>        <span class="k">if</span> <span class="n">currNodeOne</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">currNodeTwo</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+<span class="linenos">26</span>            <span class="n">prevNodeRes</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">currNodeTwo</span>
+<span class="linenos">27</span>            <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="n">currNodeTwo</span>
+<span class="linenos">28</span>            <span class="n">currNodeTwo</span> <span class="o">=</span> <span class="n">currNodeTwo</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">29</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">30</span>            <span class="n">prevNodeRes</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">currNodeOne</span>
+<span class="linenos">31</span>            <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="n">currNodeOne</span>
+<span class="linenos">32</span>            <span class="n">currNodeOne</span> <span class="o">=</span> <span class="n">currNodeOne</span><span class="o">.</span><span class="n">next</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>    <span class="k">if</span> <span class="n">currNodeOne</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">35</span>        <span class="n">prevNodeRes</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">currNodeTwo</span>
+<span class="linenos">36</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">37</span>        <span class="n">prevNodeRes</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">currNodeOne</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>    <span class="k">return</span> <span class="n">resHead</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>The code is quite long. I do think that there is a clear, readable structure to it but I am wondering if there would have been a way
+to simplify the code.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=len(l1)+len(l2)</span></code> as all nodes of both lists must be traversed in the worst-case scenario.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - we need to store <code class="docutils literal notranslate"><span class="pre">resHead</span></code> and <code class="docutils literal notranslate"><span class="pre">prevNodeRes</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+</section>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week3.html" class="btn btn-neutral float-left" title="Week 3 [25-31 Oct 2021]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
@@ -219,14 +273,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-  <script>
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>

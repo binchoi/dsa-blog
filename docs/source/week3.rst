@@ -589,9 +589,7 @@ Another very creative solution (cred: `sherlock <https://leetcode.com/problems/p
 
 The reason the above algorithm works is that the offset sum of the previous pascal row can directly produce the next pascal row (i.e. ``1 3 3 1 0`` + ``0 1 3 3 1`` => ``1 4 6 4 1``). 
 
-
-Day 16 [28 Oct]
+Day ___ [28 Oct]
 ================
-Question 35: XXXXXX
------------------------
-Break day... will get back asap
+My apologies for the lack of consistency in my daily leetcode practice (to myself! as it's me who is not improving). Consistency is key and I will continue to try to 
+complete at least one question per day!
