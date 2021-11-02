@@ -132,6 +132,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-31-merge-two-sorted-lists">Question 31: Merge Two Sorted Lists</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-17-2-nov">Day 17 [2 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-32-merge-sorted-array">Question 32: Merge Sorted Array</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-18-3-nov">Day 18 [3 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-33-xxxx">Question 33: XXXX</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -214,7 +222,7 @@ together the nodes of the first two lists.</em></p>
 <span class="linenos">21</span>            <span class="n">currNodeOne</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="n">next</span>
 <span class="linenos">22</span>            <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="n">l1</span>
 <span class="linenos">23</span>
-<span class="linenos">24</span>    <span class="k">while</span> <span class="n">currNodeOne</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">currNodeTwo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">24</span>    <span class="k">while</span> <span class="n">currNodeOne</span> <span class="ow">and</span> <span class="n">currNodeTwo</span><span class="p">:</span>
 <span class="linenos">25</span>        <span class="k">if</span> <span class="n">currNodeOne</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">currNodeTwo</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
 <span class="linenos">26</span>            <span class="n">prevNodeRes</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">currNodeTwo</span>
 <span class="linenos">27</span>            <span class="n">prevNodeRes</span> <span class="o">=</span> <span class="n">currNodeTwo</span>
@@ -241,6 +249,142 @@ to simplify the code.</p></li>
 </ul>
 </dd>
 </dl>
+<p>Neat recursive solution (cred: <a class="reference external" href="https://leetcode.com/problems/merge-two-sorted-lists/discuss/9715/Java-1-ms-4-lines-codes-using-recursion">yang</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">l2</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l2</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">l1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="p">.</span><span class="na">val</span><span class="p">){</span>
+        <span class="n">l1</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">mergeTwoLists</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="na">next</span><span class="p">,</span> <span class="n">l2</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">l1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+        <span class="n">l2</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">mergeTwoLists</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">.</span><span class="na">next</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">l2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>My adaptation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">l2</span>
+    <span class="k">elif</span> <span class="n">l2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">l1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">l1</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">l1</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mergeTwoLists</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">next</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">l1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">l2</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mergeTwoLists</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">l2</span>
+</pre></div>
+</div>
+<p>Iterative (in-place) solution (inspired by: <a class="reference external" href="https://leetcode.com/problems/merge-two-sorted-lists/discuss/9735/Python-solutions-(iteratively-recursively-iteratively-in-place).">OldCodingFarmer</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+    <span class="n">sentinel</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">l1</span> <span class="ow">and</span> <span class="n">l2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">l1</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span>
+            <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">l2</span>
+            <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+    <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="ow">or</span> <span class="n">l2</span>
+    <span class="k">return</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">next</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>Although the actual runtime does not differ too significantly, I noticed interesting tools for implementation in the OldCodingFarmer’s solution that I had
+to give it a try myself:</p></li>
+</ul>
+</dd>
+</dl>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sentinel</span> <span class="pre">=</span> <span class="pre">curr</span> <span class="pre">=</span> <span class="pre">ListNode(0)</span></code> is a clever way to initialize both the <code class="docutils literal notranslate"><span class="pre">curr</span></code> traversing pointer-node and the <code class="docutils literal notranslate"><span class="pre">sentinel</span></code> node. I feel like I don’t use
+sentinel nodes as often as I should because it clearly simplifies the implementation of certain algorithms.</p></li>
+<li><p>Using the given parameters <code class="docutils literal notranslate"><span class="pre">l1</span></code> and <code class="docutils literal notranslate"><span class="pre">l2</span></code> instead of creating new variables would help with memory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curr.next</span> <span class="pre">=</span> <span class="pre">l1</span> <span class="pre">or</span> <span class="pre">l2</span></code> is a concise way of assigning the next node as the node that is not None (of the two)</p></li>
+</ol>
+</section>
+</section>
+<section id="day-17-2-nov">
+<h2>Day 17 [2 Nov]<a class="headerlink" href="#day-17-2-nov" title="Permalink to this headline"></a></h2>
+<section id="question-32-merge-sorted-array">
+<h3>Question 32: Merge Sorted Array<a class="headerlink" href="#question-32-merge-sorted-array" title="Permalink to this headline"></a></h3>
+<p><em>You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements
+denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.</em></p>
+<p>My solution (inspired by <a class="reference external" href="https://leetcode.com/problems/merge-sorted-array/discuss/29522/This-is-my-AC-code-may-help-you">chun</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span><span class="sd">    Do not return anything, modify nums1 in-place instead.</span>
+<span class="linenos"> 4</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 5</span>    <span class="n">pOne</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 6</span>    <span class="n">pTwo</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 7</span>    <span class="n">pRes</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">while</span> <span class="n">pTwo</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">10</span>        <span class="k">if</span> <span class="n">pOne</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">11</span>            <span class="n">nums1</span><span class="p">[</span><span class="n">pRes</span><span class="p">]</span> <span class="o">=</span>  <span class="n">nums2</span><span class="p">[</span><span class="n">pTwo</span><span class="p">]</span>
+<span class="linenos">12</span>            <span class="n">pRes</span> <span class="o">-=</span><span class="mi">1</span>
+<span class="linenos">13</span>            <span class="n">pTwo</span> <span class="o">-=</span><span class="mi">1</span>
+<span class="linenos">14</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">15</span>            <span class="k">if</span> <span class="n">nums2</span><span class="p">[</span><span class="n">pTwo</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nums1</span><span class="p">[</span><span class="n">pOne</span><span class="p">]:</span>
+<span class="linenos">16</span>                <span class="n">nums1</span><span class="p">[</span><span class="n">pRes</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums1</span><span class="p">[</span><span class="n">pOne</span><span class="p">]</span>
+<span class="linenos">17</span>                <span class="n">pRes</span> <span class="o">-=</span><span class="mi">1</span>
+<span class="linenos">18</span>                <span class="n">pOne</span> <span class="o">-=</span><span class="mi">1</span>
+<span class="linenos">19</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">20</span>                <span class="n">nums1</span><span class="p">[</span><span class="n">pRes</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">pTwo</span><span class="p">]</span>
+<span class="linenos">21</span>                <span class="n">pRes</span> <span class="o">-=</span><span class="mi">1</span>
+<span class="linenos">22</span>                <span class="n">pTwo</span> <span class="o">-=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I am confident that this is the most time-efficient algorithm. The implementation can definitely be cleaned up more though!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n+m)</span></code> - the <code class="docutils literal notranslate"><span class="pre">nums1</span></code> is traversed only once from back to front</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - in-place modifications (still uncertain about space complexity)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Elegant Java solution (cred: <a class="reference external" href="https://leetcode.com/problems/merge-sorted-array/discuss/29522/This-is-my-AC-code-may-help-you">chun</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">B</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">B</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span>
+                            <span class="n">A</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">--]</span><span class="p">;</span>
+                    <span class="k">else</span>
+                            <span class="n">A</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">B</span><span class="o">[</span><span class="n">j</span><span class="o">--]</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">A</span><span class="o">[</span><span class="n">k</span><span class="o">--]</span> <span class="o">=</span> <span class="n">B</span><span class="o">[</span><span class="n">j</span><span class="o">--]</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Elegant Python Solution (cred: <a class="reference external" href="https://leetcode.com/problems/merge-sorted-array/discuss/29503/Beautiful-Python-Solution">cffls</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">nums2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nums1</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">nums1</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums1</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">m</span> <span class="o">-=</span> <span class="mi">1</span>                      <span class="c1"># modify given param/variables</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nums1</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">nums1</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>           <span class="c1"># modify in bulk!</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="day-18-3-nov">
+<h2>Day 18 [3 Nov]<a class="headerlink" href="#day-18-3-nov" title="Permalink to this headline"></a></h2>
+<section id="question-33-xxxx">
+<h3>Question 33: XXXX<a class="headerlink" href="#question-33-xxxx" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 </section>
