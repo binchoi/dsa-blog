@@ -193,3 +193,4 @@ Day 18 [3 Nov]
 ================
 Question 33: XXXX
 -----------------------------------
+*Explain the question*
