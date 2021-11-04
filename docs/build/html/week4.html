@@ -137,7 +137,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-18-3-nov">Day 18 [3 Nov]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-33-xxxx">Question 33: XXXX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-33-valid-palindrome">Question 33: Valid Palindrome</a></li>
 </ul>
 </li>
 </ul>
@@ -383,9 +383,25 @@ denote the elements that should be merged, and the last n elements are set to 0 
 </section>
 <section id="day-18-3-nov">
 <h2>Day 18 [3 Nov]<a class="headerlink" href="#day-18-3-nov" title="Permalink to this headline"></a></h2>
-<section id="question-33-xxxx">
-<h3>Question 33: XXXX<a class="headerlink" href="#question-33-xxxx" title="Permalink to this headline"></a></h3>
-<p><em>Explain the question</em></p>
+<section id="question-33-valid-palindrome">
+<h3>Question 33: Valid Palindrome<a class="headerlink" href="#question-33-valid-palindrome" title="Permalink to this headline"></a></h3>
+<p><em>A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters,
+it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrome, or false otherwise.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="n">strippedStr</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()])</span>
+<span class="linenos">3</span>    <span class="k">return</span> <span class="p">(</span><span class="n">strippedStr</span> <span class="o">==</span> <span class="n">strippedStr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty simple question - learned about <code class="docutils literal notranslate"><span class="pre">.isalnum()</span></code></p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(s)</span></code> each character is traversed at least once.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(s)</span></code> – worst-case: the size of <code class="docutils literal notranslate"><span class="pre">strippedStr</span></code> is equal to that of <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

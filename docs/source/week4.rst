@@ -191,6 +191,24 @@ Elegant Python Solution (cred: `cffls <https://leetcode.com/problems/merge-sorte
 
 Day 18 [3 Nov]
 ================
-Question 33: XXXX
+Question 33: Valid Palindrome
 -----------------------------------
-*Explain the question*
+*A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, 
+it reads the same forward and backward. Alphanumeric characters include letters and numbers. 
+Given a string s, return true if it is a palindrome, or false otherwise.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def isPalindrome(self, s: str) -> bool:
+        strippedStr = "".join([c for c in s.lower() if c.isalnum()])
+        return (strippedStr == strippedStr[::-1])
+
+Remarks and Complexity Analysis: 
+ * Pretty simple question - learned about ``.isalnum()``
+ * **Time Complexity**: ``O(n)`` where ``n = len(s)`` each character is traversed at least once. 
+ * **Space Complexity**: ``O(n)`` where ``n = len(s)`` -- worst-case: the size of ``strippedStr`` is equal to that of ``s``. 
+
+ 
