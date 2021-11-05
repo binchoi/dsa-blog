@@ -15,6 +15,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -140,6 +141,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-33-valid-palindrome">Question 33: Valid Palindrome</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-19-4-nov">Day 19 [4 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-34-top-k-frequent-elements">Question 34: Top K Frequent Elements</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -153,6 +158,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="toolbox.html#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="toolbox.html#collections">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#counter">Counter</a></li>
 </ul>
 </li>
 </ul>
@@ -398,10 +404,289 @@ Given a string s, return true if it is a palindrome, or false otherwise.</em></p
 <dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
 <li><p>Pretty simple question - learned about <code class="docutils literal notranslate"><span class="pre">.isalnum()</span></code></p></li>
 <li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(s)</span></code> each character is traversed at least once.</p></li>
-<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(s)</span></code> – worst-case: the size of <code class="docutils literal notranslate"><span class="pre">strippedStr</span></code> is equal to that of <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(s)</span></code> - worst-case: the size of <code class="docutils literal notranslate"><span class="pre">strippedStr</span></code> is equal to that of <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-19-4-nov">
+<h2>Day 19 [4 Nov]<a class="headerlink" href="#day-19-4-nov" title="Permalink to this headline"></a></h2>
+<section id="question-34-top-k-frequent-elements">
+<h3>Question 34: Top K Frequent Elements<a class="headerlink" href="#question-34-top-k-frequent-elements" title="Permalink to this headline"></a></h3>
+<p><em>Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">topKFrequent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos">2</span>    <span class="n">myDict</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span><span class="n">nums</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)}</span>
+<span class="linenos">3</span>    <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">myDict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)[:</span><span class="n">k</span><span class="p">]]</span>
+</pre></div>
+</div>
+<dl>
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Surprisingly slow performance (as compiled in leetcode server). Perhaps due to the sorting?</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(nlog(n))</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(nums)</span></code> - worst-case: sorting <code class="docutils literal notranslate"><span class="pre">n</span></code> items (all unique)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(nums)</span></code> - worst-case: <code class="docutils literal notranslate"><span class="pre">myDict</span></code> contains <code class="docutils literal notranslate"><span class="pre">n</span></code> items (all unique)</p></li>
+</ul>
+<p>LeetCode’s solution 1: Heap</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="k">def</span> <span class="nf">topKFrequent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="c1"># O(1) time</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nums</span>
+
+    <span class="c1"># 1. build hash map : character and how often it appears</span>
+    <span class="c1"># O(N) time</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="c1"># 2-3. build heap of top k frequent elements and</span>
+    <span class="c1"># convert it into an output array</span>
+    <span class="c1"># O(N log k) time</span>
+    <span class="k">return</span> <span class="n">heapq</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">count</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">topKFrequent</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// O(1) time</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">nums</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 1. build hash map : character and how often it appears</span>
+    <span class="c1">// O(N) time</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">count</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">:</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// init heap &#39;the less frequent element first&#39;</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">heap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span> <span class="o">-</span> <span class="n">count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">n2</span><span class="p">));</span>
+
+    <span class="c1">// 2. keep k top frequent elements in the heap</span>
+    <span class="c1">// O(N log k) &lt; O(N log N) time</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">:</span> <span class="n">count</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">heap</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">heap</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">heap</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 3. build an output array</span>
+    <span class="c1">// O(k log k) time</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">top</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">top</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">heap</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">top</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Effective <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> best-case implementation (first two lines)</p></li>
+<li><p>In Python, library <code class="docutils literal notranslate"><span class="pre">heapq</span></code> provides a method <code class="docutils literal notranslate"><span class="pre">nlargest</span></code>, which combines the last two steps under the hood and has
+the same <span class="math notranslate nohighlight">\(\mathcal{O}(N \log k)\)</span> time complexity.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(nlog(k))</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n+k)</span></code> to store a hash map with no more than <code class="docutils literal notranslate"><span class="pre">n</span></code> elements and a heap with <code class="docutils literal notranslate"><span class="pre">k</span></code> elements.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">collections.Counter</span></code> is a dictionary subclass for counting hashable objects. Elements are stored as dictionary keys
+and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or
+negative counts. The Counter class is similar to bags or multisets in other languages. Please refer to the summary I created
+at <a class="reference internal" href="toolbox.html#counter"><span class="std std-ref">Counter</span></a>.</p>
+</div>
+<p>LeetCode’s solution 2: Quickselect (Hoare’s selection algorithm)</p>
+<p><strong>From LeetCode:</strong> Quickselect is a textbook algorthm typically used to solve the problems “find <code class="docutils literal notranslate"><span class="pre">k</span></code> th something”: <code class="docutils literal notranslate"><span class="pre">k</span></code> th smallest, <code class="docutils literal notranslate"><span class="pre">k</span></code> th largest, <code class="docutils literal notranslate"><span class="pre">k</span></code> th most
+frequent, <code class="docutils literal notranslate"><span class="pre">k</span></code> th less frequent, etc. Like quicksort, quickselect was developed by Tony Hoare, and also known as Hoare’s selection algorithm.</p>
+<p>It has <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> average time complexity and widely used in practice. It worth to note that its worth case time complexity
+is <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>, although the probability of this worst-case is negligible.</p>
+<p>As an output, we have an array where the pivot is on its perfect position in the ascending sorted array, sorted by the frequency.
+All elements on the left of the pivot are less frequent than the pivot, and all elements on the right are more frequent or have the same frequency.</p>
+<p>Hence the array is now split into two parts. If by chance our pivot element took <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">-</span> <span class="pre">k</span></code> th final position, then kk elements on the right are
+these top k frequent we’re looking for. If not, we can choose one more pivot and place it in its perfect position.</p>
+<p>If that were a quicksort algorithm, one would have to process both parts of the array. That would result in <span class="math notranslate nohighlight">\(\mathcal{O}(N \log N)\)</span>
+time complexity. In this case, there is no need to deal with both parts since one knows in which part to search for N - kth less frequent
+element, and that reduces the average time complexity to <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span>.</p>
+<dl class="simple">
+<dt>Algorithm</dt><dd><ul class="simple">
+<li><p>Build a hash map element -&gt; its frequency and convert its keys into the array unique of unique elements. Note that elements are
+unique, but their frequencies are not. That means we need a partition algorithm that works fine with duplicates.</p></li>
+<li><p>Work with unique array. Use a partition scheme (please check the next section) to place the pivot into its perfect position
+pivot_index in the sorted array, move less frequent elements to the left of pivot, and more frequent or of the same frequency - to the right.</p></li>
+<li><p>Compare pivot_index and N - k:</p></li>
+<li><p>If pivot_index == N - k, the pivot is N - kth most frequent element, and all elements on the right are more frequent or of the same frequency.
+Return these top k frequent elements.</p></li>
+<li><p>Otherwise, choose the side of the array to proceed recursively.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="k">def</span> <span class="nf">topKFrequent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+     <span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+     <span class="n">unique</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+     <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">pivot_index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+         <span class="n">pivot_frequency</span> <span class="o">=</span> <span class="n">count</span><span class="p">[</span><span class="n">unique</span><span class="p">[</span><span class="n">pivot_index</span><span class="p">]]</span>
+         <span class="c1"># 1. move pivot to end</span>
+         <span class="n">unique</span><span class="p">[</span><span class="n">pivot_index</span><span class="p">],</span> <span class="n">unique</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">unique</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="n">unique</span><span class="p">[</span><span class="n">pivot_index</span><span class="p">]</span>
+
+         <span class="c1"># 2. move all less frequent elements to the left</span>
+         <span class="n">store_index</span> <span class="o">=</span> <span class="n">left</span>
+         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+             <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="n">unique</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">pivot_frequency</span><span class="p">:</span>
+                 <span class="n">unique</span><span class="p">[</span><span class="n">store_index</span><span class="p">],</span> <span class="n">unique</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">unique</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">unique</span><span class="p">[</span><span class="n">store_index</span><span class="p">]</span>
+                 <span class="n">store_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+         <span class="c1"># 3. move pivot to its final place</span>
+         <span class="n">unique</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="n">unique</span><span class="p">[</span><span class="n">store_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">unique</span><span class="p">[</span><span class="n">store_index</span><span class="p">],</span> <span class="n">unique</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+
+         <span class="k">return</span> <span class="n">store_index</span>
+
+     <span class="k">def</span> <span class="nf">quickselect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">k_smallest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         Sort a list within left..right till kth less frequent element</span>
+<span class="sd">         takes its place.</span>
+<span class="sd">         &quot;&quot;&quot;</span>
+         <span class="c1"># base case: the list contains only one element</span>
+         <span class="k">if</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>
+             <span class="k">return</span>
+
+         <span class="c1"># select a random pivot_index</span>
+         <span class="n">pivot_index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+
+         <span class="c1"># find the pivot position in a sorted list</span>
+         <span class="n">pivot_index</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">pivot_index</span><span class="p">)</span>
+
+         <span class="c1"># if the pivot is in its final sorted position</span>
+         <span class="k">if</span> <span class="n">k_smallest</span> <span class="o">==</span> <span class="n">pivot_index</span><span class="p">:</span>
+              <span class="k">return</span>
+         <span class="c1"># go left</span>
+         <span class="k">elif</span> <span class="n">k_smallest</span> <span class="o">&lt;</span> <span class="n">pivot_index</span><span class="p">:</span>
+             <span class="n">quickselect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">pivot_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k_smallest</span><span class="p">)</span>
+         <span class="c1"># go right</span>
+         <span class="k">else</span><span class="p">:</span>
+             <span class="n">quickselect</span><span class="p">(</span><span class="n">pivot_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">k_smallest</span><span class="p">)</span>
+
+     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique</span><span class="p">)</span>
+     <span class="c1"># kth top frequent element is (n - k)th less frequent.</span>
+     <span class="c1"># Do a partial sort: from less frequent to the most frequent, till</span>
+     <span class="c1"># (n - k)th less frequent element takes its place (n - k) in a sorted array.</span>
+     <span class="c1"># All element on the left are less frequent.</span>
+     <span class="c1"># All the elements on the right are more frequent.</span>
+     <span class="n">quickselect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+     <span class="c1"># Return top k frequent elements</span>
+     <span class="k">return</span> <span class="n">unique</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">:]</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">unique</span><span class="p">;</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">count</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">unique</span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">unique</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">unique</span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">unique</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">partition</span><span class="p">(</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pivot_index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">pivot_frequency</span> <span class="o">=</span> <span class="n">count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">unique</span><span class="o">[</span><span class="n">pivot_index</span><span class="o">]</span><span class="p">);</span>
+    <span class="c1">// 1. move pivot to end</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">pivot_index</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">store_index</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+
+    <span class="c1">// 2. move all less frequent elements to the left</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">unique</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">pivot_frequency</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">store_index</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+            <span class="n">store_index</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 3. move pivot to its final place</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">store_index</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">store_index</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">quickselect</span><span class="p">(</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k_smallest</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/*</span>
+<span class="cm">    Sort a list within left..right till kth less frequent element</span>
+<span class="cm">    takes its place.</span>
+<span class="cm">    */</span>
+
+    <span class="c1">// base case: the list contains only one element</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="c1">// select a random pivot_index</span>
+    <span class="n">Random</span> <span class="n">random_num</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">pivot_index</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">random_num</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">);</span>
+
+    <span class="c1">// find the pivot position in a sorted list</span>
+    <span class="n">pivot_index</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">pivot_index</span><span class="p">);</span>
+
+    <span class="c1">// if the pivot is in its final sorted position</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">k_smallest</span> <span class="o">==</span> <span class="n">pivot_index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">k_smallest</span> <span class="o">&lt;</span> <span class="n">pivot_index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// go left</span>
+        <span class="n">quickselect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">pivot_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k_smallest</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// go right</span>
+        <span class="n">quickselect</span><span class="p">(</span><span class="n">pivot_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">k_smallest</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">topKFrequent</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// build hash map : character and how often it appears</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">:</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">count</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// array of unique elements</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">count</span><span class="p">.</span><span class="na">size</span><span class="p">();</span>
+    <span class="n">unique</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">:</span> <span class="n">count</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">unique</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// kth top frequent element is (n - k)th less frequent.</span>
+    <span class="c1">// Do a partial sort: from less frequent to the most frequent, till</span>
+    <span class="c1">// (n - k)th less frequent element takes its place (n - k) in a sorted array.</span>
+    <span class="c1">// All element on the left are less frequent.</span>
+    <span class="c1">// All the elements on the right are more frequent.</span>
+    <span class="n">quickselect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">);</span>
+    <span class="c1">// Return top k frequent elements</span>
+    <span class="k">return</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOfRange</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Effective <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> average-case <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> implementation (first two lines)</p></li>
+<li><p>In Python, library <code class="docutils literal notranslate"><span class="pre">heapq</span></code> provides a method <code class="docutils literal notranslate"><span class="pre">nlargest</span></code>, which combines the last two steps under the hood and has
+the same <span class="math notranslate nohighlight">\(\mathcal{O}(N \log k)\)</span> time complexity.</p></li>
+<li><p><strong>Time Complexity</strong>: average-case - <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> ; worst-case - <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> : In the worst-case of constantly bad chosen pivots, the
+problem is not divided by half at each step, it becomes just one element less, that leads to <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span> time
+complexity. It happens, for example, if at each step you choose the pivot not randomly, but take the rightmost element. For
+the random pivot choice the probability of having such a worst-case is negligibly small.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> to store hash map and array of unique elements.</p></li>
+</ul>
+</dd>
+</dl>
+<p>An <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> solution: Bucket Sort (cred: <a class="reference external" href="https://leetcode.com/problems/top-k-frequent-elements/discuss/740374/Python-5-lines-O(n)-buckets-solution-explained">DBabi</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">topKFrequent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">Count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">Count</span><span class="p">:</span> <span class="n">bucket</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="n">flat_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">bucket</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">flat_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">k</span><span class="p">]</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

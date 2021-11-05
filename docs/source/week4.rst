@@ -209,6 +209,285 @@ My solution:
 Remarks and Complexity Analysis: 
  * Pretty simple question - learned about ``.isalnum()``
  * **Time Complexity**: ``O(n)`` where ``n = len(s)`` each character is traversed at least once. 
- * **Space Complexity**: ``O(n)`` where ``n = len(s)`` -- worst-case: the size of ``strippedStr`` is equal to that of ``s``. 
+ * **Space Complexity**: ``O(n)`` where ``n = len(s)`` - worst-case: the size of ``strippedStr`` is equal to that of ``s``. 
 
+Day 19 [4 Nov]
+================
+Question 34: Top K Frequent Elements
+--------------------------------------
+*Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos: 
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        myDict = {n:nums.count(n) for n in set(nums)}
+        return [key for (key,v) in sorted(myDict.items(), key= lambda x: x[1], reverse = True)[:k]] 
+
+Remarks and Complexity Analysis: 
+ * Surprisingly slow performance (as compiled in leetcode server). Perhaps due to the sorting?
+ * **Time Complexity**: ``O(nlog(n))`` where ``n = len(nums)`` - worst-case: sorting ``n`` items (all unique)
+ * **Space Complexity**: ``O(n)`` where ``n = len(nums)`` - worst-case: ``myDict`` contains ``n`` items (all unique)
+
+ LeetCode's solution 1: Heap
+
+.. code-block:: python
+
+   from collections import Counter
+   def topKFrequent(self, nums: List[int], k: int) -> List[int]: 
+       # O(1) time 
+       if k == len(nums):
+           return nums
+       
+       # 1. build hash map : character and how often it appears
+       # O(N) time
+       count = Counter(nums)   
+       # 2-3. build heap of top k frequent elements and
+       # convert it into an output array
+       # O(N log k) time
+       return heapq.nlargest(k, count.keys(), key=count.get) 
+
+.. code-block:: Java
+
+    // Java
+    public int[] topKFrequent(int[] nums, int k) {
+        // O(1) time
+        if (k == nums.length) {
+            return nums;
+        }
+        
+        // 1. build hash map : character and how often it appears
+        // O(N) time
+        Map<Integer, Integer> count = new HashMap();
+        for (int n: nums) {
+          count.put(n, count.getOrDefault(n, 0) + 1);
+        }
+
+        // init heap 'the less frequent element first'
+        Queue<Integer> heap = new PriorityQueue<>(
+            (n1, n2) -> count.get(n1) - count.get(n2));
+
+        // 2. keep k top frequent elements in the heap
+        // O(N log k) < O(N log N) time
+        for (int n: count.keySet()) {
+          heap.add(n);
+          if (heap.size() > k) heap.poll();    
+        }
+
+        // 3. build an output array
+        // O(k log k) time
+        int[] top = new int[k];
+        for(int i = k - 1; i >= 0; --i) {
+            top[i] = heap.poll();
+        }
+        return top;
+    } 
+
+Remarks and Complexity Analysis: 
+ * Effective ``O(1)`` best-case implementation (first two lines)
+ * In Python, library ``heapq`` provides a method ``nlargest``, which combines the last two steps under the hood and has 
+   the same :math:`\mathcal{O}(N \log k)` time complexity.
+ * **Time Complexity**: ``O(nlog(k))`` 
+ * **Space Complexity**: ``O(n+k)`` to store a hash map with no more than ``n`` elements and a heap with ``k`` elements.
+
+.. note:: 
+
+    ``collections.Counter`` is a dictionary subclass for counting hashable objects. Elements are stored as dictionary keys 
+    and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or 
+    negative counts. The Counter class is similar to bags or multisets in other languages. Please refer to the summary I created 
+    at :ref:`Counter`.
  
+
+LeetCode's solution 2: Quickselect (Hoare's selection algorithm)
+
+**From LeetCode:** Quickselect is a textbook algorthm typically used to solve the problems "find ``k`` th something": ``k`` th smallest, ``k`` th largest, ``k`` th most 
+frequent, ``k`` th less frequent, etc. Like quicksort, quickselect was developed by Tony Hoare, and also known as Hoare's selection algorithm.
+
+It has :math:`\mathcal{O}(N)` average time complexity and widely used in practice. It worth to note that its worth case time complexity 
+is :math:`\mathcal{O}(N^2)`, although the probability of this worst-case is negligible.
+
+As an output, we have an array where the pivot is on its perfect position in the ascending sorted array, sorted by the frequency. 
+All elements on the left of the pivot are less frequent than the pivot, and all elements on the right are more frequent or have the same frequency.
+
+Hence the array is now split into two parts. If by chance our pivot element took ``N - k`` th final position, then kk elements on the right are 
+these top k frequent we're looking for. If not, we can choose one more pivot and place it in its perfect position.
+
+If that were a quicksort algorithm, one would have to process both parts of the array. That would result in :math:`\mathcal{O}(N \log N)` 
+time complexity. In this case, there is no need to deal with both parts since one knows in which part to search for N - kth less frequent 
+element, and that reduces the average time complexity to :math:`\mathcal{O}(N)`.
+
+Algorithm
+ * Build a hash map element -> its frequency and convert its keys into the array unique of unique elements. Note that elements are 
+   unique, but their frequencies are not. That means we need a partition algorithm that works fine with duplicates.
+ * Work with unique array. Use a partition scheme (please check the next section) to place the pivot into its perfect position 
+   pivot_index in the sorted array, move less frequent elements to the left of pivot, and more frequent or of the same frequency - to the right.
+ * Compare pivot_index and N - k:
+ * If pivot_index == N - k, the pivot is N - kth most frequent element, and all elements on the right are more frequent or of the same frequency. 
+   Return these top k frequent elements.
+ * Otherwise, choose the side of the array to proceed recursively.
+
+.. code-block:: python
+
+   from collections import Counter
+   def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
+        unique = list(count.keys())
+        
+        def partition(left, right, pivot_index) -> int:
+            pivot_frequency = count[unique[pivot_index]]
+            # 1. move pivot to end
+            unique[pivot_index], unique[right] = unique[right], unique[pivot_index]  
+            
+            # 2. move all less frequent elements to the left
+            store_index = left
+            for i in range(left, right):
+                if count[unique[i]] < pivot_frequency:
+                    unique[store_index], unique[i] = unique[i], unique[store_index]
+                    store_index += 1
+
+            # 3. move pivot to its final place
+            unique[right], unique[store_index] = unique[store_index], unique[right]  
+            
+            return store_index
+        
+        def quickselect(left, right, k_smallest) -> None:
+            """
+            Sort a list within left..right till kth less frequent element
+            takes its place. 
+            """
+            # base case: the list contains only one element
+            if left == right: 
+                return
+            
+            # select a random pivot_index
+            pivot_index = random.randint(left, right)     
+                            
+            # find the pivot position in a sorted list   
+            pivot_index = partition(left, right, pivot_index)
+            
+            # if the pivot is in its final sorted position
+            if k_smallest == pivot_index:
+                 return 
+            # go left
+            elif k_smallest < pivot_index:
+                quickselect(left, pivot_index - 1, k_smallest)
+            # go right
+            else:
+                quickselect(pivot_index + 1, right, k_smallest)
+         
+        n = len(unique) 
+        # kth top frequent element is (n - k)th less frequent.
+        # Do a partial sort: from less frequent to the most frequent, till
+        # (n - k)th less frequent element takes its place (n - k) in a sorted array. 
+        # All element on the left are less frequent.
+        # All the elements on the right are more frequent.  
+        quickselect(0, n - 1, n - k)
+        # Return top k frequent elements
+        return unique[n - k:]
+
+.. code-block:: Java
+
+    // Java
+    int[] unique;
+    Map<Integer, Integer> count;
+
+    public void swap(int a, int b) {
+        int tmp = unique[a];
+        unique[a] = unique[b];
+        unique[b] = tmp;
+    }
+
+    public int partition(int left, int right, int pivot_index) {
+        int pivot_frequency = count.get(unique[pivot_index]);
+        // 1. move pivot to end
+        swap(pivot_index, right);
+        int store_index = left;
+
+        // 2. move all less frequent elements to the left
+        for (int i = left; i <= right; i++) {
+            if (count.get(unique[i]) < pivot_frequency) {
+                swap(store_index, i);
+                store_index++;
+            }
+        }
+
+        // 3. move pivot to its final place
+        swap(store_index, right);
+
+        return store_index;
+    }
+    
+    public void quickselect(int left, int right, int k_smallest) {
+        /*
+        Sort a list within left..right till kth less frequent element
+        takes its place. 
+        */
+
+        // base case: the list contains only one element
+        if (left == right) return;
+        
+        // select a random pivot_index
+        Random random_num = new Random();
+        int pivot_index = left + random_num.nextInt(right - left); 
+
+        // find the pivot position in a sorted list
+        pivot_index = partition(left, right, pivot_index);
+
+        // if the pivot is in its final sorted position
+        if (k_smallest == pivot_index) {
+            return;    
+        } else if (k_smallest < pivot_index) {
+            // go left
+            quickselect(left, pivot_index - 1, k_smallest);     
+        } else {
+            // go right 
+            quickselect(pivot_index + 1, right, k_smallest);  
+        }
+    }
+    
+    public int[] topKFrequent(int[] nums, int k) {
+        // build hash map : character and how often it appears
+        count = new HashMap();
+        for (int num: nums) {
+            count.put(num, count.getOrDefault(num, 0) + 1);
+        }
+        
+        // array of unique elements
+        int n = count.size();
+        unique = new int[n]; 
+        int i = 0;
+        for (int num: count.keySet()) {
+            unique[i] = num;
+            i++;
+        }
+        
+        // kth top frequent element is (n - k)th less frequent.
+        // Do a partial sort: from less frequent to the most frequent, till
+        // (n - k)th less frequent element takes its place (n - k) in a sorted array. 
+        // All element on the left are less frequent.
+        // All the elements on the right are more frequent. 
+        quickselect(0, n - 1, n - k);
+        // Return top k frequent elements
+        return Arrays.copyOfRange(unique, n - k, n);
+    }
+
+Remarks and Complexity Analysis: 
+ * Effective ``O(n)`` average-case ``O(n)`` implementation (first two lines)
+ * In Python, library ``heapq`` provides a method ``nlargest``, which combines the last two steps under the hood and has 
+   the same :math:`\mathcal{O}(N \log k)` time complexity.
+ * **Time Complexity**: average-case - ``O(n)`` ; worst-case - ``O(n^2)`` : In the worst-case of constantly bad chosen pivots, the 
+   problem is not divided by half at each step, it becomes just one element less, that leads to :math:`\mathcal{O}(N^2)` time 
+   complexity. It happens, for example, if at each step you choose the pivot not randomly, but take the rightmost element. For 
+   the random pivot choice the probability of having such a worst-case is negligibly small.
+ * **Space Complexity**: ``O(n)`` to store hash map and array of unique elements.
+
+An ``O(n)`` solution: Bucket Sort (cred: `DBabi <https://leetcode.com/problems/top-k-frequent-elements/discuss/740374/Python-5-lines-O(n)-buckets-solution-explained>`_):: 
+
+    def topKFrequent(self, nums, k):
+        bucket = [[] for _ in range(len(nums) + 1)]
+        Count = Counter(nums).items()  
+        for num, freq in Count: bucket[freq].append(num) 
+        flat_list = [item for sublist in bucket for item in sublist]
+        return flat_list[::-1][:k]

@@ -1,7 +1,6 @@
 ************************
 Python Toolkit
 ************************
-
 General Purpose Built-in Containers
 =========================================
 Dictionary
@@ -42,5 +41,11 @@ Specialized Built-in Containers
 =========================================
 Collections
 -------------
-Fill in soon `link <https://docs.python.org/3/library/collections.html#module-collections>_`
+Fill in soon `link <https://docs.python.org/3/library/collections.html#module-collections>`_
+
+
+Counter 
+----------
+Fill in soon `link <https://docs.python.org/3/library/collections.html#collections.Counter>`_
+
 
