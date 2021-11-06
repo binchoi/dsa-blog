@@ -145,6 +145,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-34-top-k-frequent-elements">Question 34: Top K Frequent Elements</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-20-5-nov">Day 20 [5 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-35-remove-duplicates-from-sorted-list-ii">Question 35: Remove Duplicates from Sorted List II</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -687,6 +691,109 @@ the random pivot choice the probability of having such a worst-case is negligibl
     <span class="k">return</span> <span class="n">flat_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">k</span><span class="p">]</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="day-20-5-nov">
+<h2>Day 20 [5 Nov]<a class="headerlink" href="#day-20-5-nov" title="Permalink to this headline"></a></h2>
+<section id="question-35-remove-duplicates-from-sorted-list-ii">
+<h3>Question 35: Remove Duplicates from Sorted List II<a class="headerlink" href="#question-35-remove-duplicates-from-sorted-list-ii" title="Permalink to this headline"></a></h3>
+<p><em>Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct
+numbers from the original list. Return the linked list sorted as well.</em></p>
+<p>My failed solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">deleteDuplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+    <span class="n">dummyHead</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">()</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">dummyHead</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span>
+    <span class="k">while</span> <span class="n">curr</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
+            <span class="n">shift</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">curr</span>
+            <span class="k">return</span> <span class="n">dummyHead</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">shift</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">curr</span>
+            <span class="n">shift</span> <span class="o">=</span> <span class="n">curr</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">curr_val</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">val</span>
+            <span class="k">while</span> <span class="n">curr_val</span> <span class="o">==</span> <span class="n">curr</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">curr</span><span class="p">:</span>
+                    <span class="k">break</span>
+    <span class="k">return</span> <span class="n">dummyHead</span><span class="o">.</span><span class="n">next</span>
+</pre></div>
+</div>
+<p>LeetCode’s Solution 1: Sentinel Head + Predecessor</p>
+<p><em>LeetCode:</em> Sentinel nodes are widely used for trees and linked lists as pseudo-heads, pseudo-tails, etc. They are
+purely functional and usually don’t hold any data. Their primary purpose is to standardize the situation to avoid edge
+case handling. For example, let’s use here pseudo-head with zero value to ensure that the situation “delete the list
+head” could never happen, and all nodes to delete are “inside” the list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">deleteDuplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+    <span class="c1"># attach sentinel head to the given list</span>
+    <span class="n">sentinel</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+
+    <span class="c1"># predecessor = the last node before the sublist of duplicates</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">sentinel</span>
+
+    <span class="k">while</span> <span class="n">head</span><span class="p">:</span>
+        <span class="c1"># if it&#39;s a beginning of duplicates sublist</span>
+        <span class="c1"># skip all duplicates</span>
+        <span class="k">if</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">and</span> <span class="n">head</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="c1"># move till the end of duplicates sublist</span>
+            <span class="k">while</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">and</span> <span class="n">head</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+            <span class="c1"># skip all duplicates</span>
+            <span class="n">pred</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+        <span class="c1"># otherwise, move predecessor</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="c1"># move forward</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+
+    <span class="k">return</span> <span class="n">sentinel</span><span class="o">.</span><span class="n">next</span>
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">deleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// sentinel</span>
+    <span class="n">ListNode</span> <span class="n">sentinel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+
+    <span class="c1">// predecessor = the last node</span>
+    <span class="c1">// before the sublist of duplicates</span>
+    <span class="n">ListNode</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">sentinel</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">head</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// if it&#39;s a beginning of duplicates sublist</span>
+        <span class="c1">// skip all duplicates</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">head</span><span class="p">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// move till the end of duplicates sublist</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">head</span><span class="p">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// skip all duplicates</span>
+            <span class="n">pred</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="c1">// otherwise, move predecessor</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// move forward</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">sentinel</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>It’s always important to think about the algorithm critically and extensively before implementing it with code. The more
+you take to think about the problem and your algorithm (without coding), the more structured, organized and efficient your
+code will be.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - one pass through the list!</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - we don’t allocate any additional data structure</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

@@ -491,3 +491,108 @@ An ``O(n)`` solution: Bucket Sort (cred: `DBabi <https://leetcode.com/problems/t
         for num, freq in Count: bucket[freq].append(num) 
         flat_list = [item for sublist in bucket for item in sublist]
         return flat_list[::-1][:k]
+
+
+Day 20 [5 Nov]
+================
+Question 35: Remove Duplicates from Sorted List II
+----------------------------------------------------
+*Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct 
+numbers from the original list. Return the linked list sorted as well.*
+
+My failed solution:: 
+    
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummyHead = ListNode()
+        shift = dummyHead
+        curr = head
+        while curr: 
+            if not curr.next: 
+                shift.next = curr
+                return dummyHead.next
+            if curr.val != curr.next.val: 
+                shift.next = curr
+                shift = curr
+                curr = curr.next
+                continue
+            else: 
+                curr_val = curr.val
+                while curr_val == curr.val: 
+                    curr = curr.next
+                    if not curr: 
+                        break
+        return dummyHead.next
+
+LeetCode's Solution 1: Sentinel Head + Predecessor
+
+*LeetCode:* Sentinel nodes are widely used for trees and linked lists as pseudo-heads, pseudo-tails, etc. They are 
+purely functional and usually don't hold any data. Their primary purpose is to standardize the situation to avoid edge 
+case handling. For example, let's use here pseudo-head with zero value to ensure that the situation "delete the list 
+head" could never happen, and all nodes to delete are "inside" the list.
+
+.. code-block:: python
+
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        # attach sentinel head to the given list
+        sentinel = ListNode(0, head)
+
+        # predecessor = the last node before the sublist of duplicates
+        pred = sentinel
+        
+        while head:
+            # if it's a beginning of duplicates sublist 
+            # skip all duplicates
+            if head.next and head.val == head.next.val:
+                # move till the end of duplicates sublist
+                while head.next and head.val == head.next.val:
+                    head = head.next
+                # skip all duplicates
+                pred.next = head.next 
+            # otherwise, move predecessor
+            else:
+                pred = pred.next 
+                
+            # move forward
+            head = head.next
+            
+        return sentinel.next
+
+.. code-block:: Java
+    
+    // Java
+    public ListNode deleteDuplicates(ListNode head) {
+        // sentinel
+        ListNode sentinel = new ListNode(0, head);
+
+        // predecessor = the last node 
+        // before the sublist of duplicates
+        ListNode pred = sentinel;
+        
+        while (head != null) {
+            // if it's a beginning of duplicates sublist 
+            // skip all duplicates
+            if (head.next != null && head.val == head.next.val) {
+                // move till the end of duplicates sublist
+                while (head.next != null && head.val == head.next.val) {
+                    head = head.next;    
+                }
+                // skip all duplicates
+                pred.next = head.next;     
+            // otherwise, move predecessor
+            } else {
+                pred = pred.next;    
+            }
+                
+            // move forward
+            head = head.next;    
+        }  
+        return sentinel.next;
+    }
+
+Remarks and Complexity Analysis: 
+ * It's always important to think about the algorithm critically and extensively before implementing it with code. The more 
+   you take to think about the problem and your algorithm (without coding), the more structured, organized and efficient your 
+   code will be. 
+ * **Time Complexity**: ``O(n)`` - one pass through the list!
+ * **Space Complexity**: ``O(1)`` - we don't allocate any additional data structure
+
