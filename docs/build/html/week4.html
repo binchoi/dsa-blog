@@ -149,6 +149,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-35-remove-duplicates-from-sorted-list-ii">Question 35: Remove Duplicates from Sorted List II</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-21-6-nov">Day 21 [6 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-36-excel-sheet-column-title">Question 36: Excel Sheet Column Title</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -794,6 +798,57 @@ code will be.</p></li>
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-21-6-nov">
+<h2>Day 21 [6 Nov]<a class="headerlink" href="#day-21-6-nov" title="Permalink to this headline"></a></h2>
+<section id="question-36-excel-sheet-column-title">
+<h3>Question 36: Excel Sheet Column Title<a class="headerlink" href="#question-36-excel-sheet-column-title" title="Permalink to this headline"></a></h3>
+<p><em>Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">convertToTitle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columnNumber</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="linenos"> 2</span>        <span class="k">if</span> <span class="n">columnNumber</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 3</span>            <span class="k">return</span> <span class="kc">None</span>
+<span class="linenos"> 4</span>        <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos"> 5</span>        <span class="k">while</span> <span class="n">columnNumber</span><span class="p">:</span>
+<span class="linenos"> 6</span>            <span class="n">resNum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">columnNumber</span><span class="o">%</span><span class="mi">26</span><span class="p">)</span> <span class="o">+</span> <span class="mi">64</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="n">resNum</span><span class="o">==</span><span class="mi">64</span><span class="p">:</span>
+<span class="linenos"> 8</span>                <span class="n">resNum</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="linenos"> 9</span>            <span class="n">res</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">resNum</span><span class="p">)</span> <span class="o">+</span> <span class="n">res</span>
+<span class="linenos">10</span>            <span class="n">columnNumber</span> <span class="o">//=</span> <span class="mi">26</span>
+<span class="linenos">11</span>            <span class="k">if</span> <span class="n">resNum</span> <span class="o">==</span> <span class="mi">90</span><span class="p">:</span>
+<span class="linenos">12</span>                <span class="n">columnNumber</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Surprisingly a great question that made me think for a while. There were several “edge-cases” that appeared
+while implementing my solution.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(?)</span></code> - uncertain</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - we don’t allocate any additional data structure</p></li>
+</ul>
+</dd>
+</dl>
+<p>Alternative solutions (cred: <a class="reference external" href="https://leetcode.com/problems/excel-sheet-column-title/discuss/51398/My-1-lines-code-in-Java-C%2B%2B-and-Python">xcv</a>):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Java</span>
+<span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="s">&quot;&quot;</span> <span class="p">:</span> <span class="n">convertToTitle</span><span class="p">(</span><span class="o">--</span><span class="n">n</span> <span class="o">/</span> <span class="mi">26</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="kt">char</span><span class="p">)(</span><span class="sc">&#39;A&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">26</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python</span>
+<span class="k">return</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">convertToTitle</span><span class="p">((</span><span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">26</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">((</span><span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
+
+<span class="c1"># Alternatively...</span>
+<span class="k">def</span> <span class="nf">convertToTitle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="n">capitals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">capitals</span><span class="p">[(</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="p">])</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">26</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

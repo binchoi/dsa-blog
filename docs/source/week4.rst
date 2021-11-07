@@ -596,3 +596,57 @@ Remarks and Complexity Analysis:
  * **Time Complexity**: ``O(n)`` - one pass through the list!
  * **Space Complexity**: ``O(1)`` - we don't allocate any additional data structure
 
+
+Day 21 [6 Nov]
+================
+Question 36: Excel Sheet Column Title
+----------------------------------------------------
+*Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def convertToTitle(self, columnNumber: int) -> str:
+            if columnNumber == 0:
+                return None
+            res = ""
+            while columnNumber:
+                resNum = int(columnNumber%26) + 64 
+                if resNum==64: 
+                    resNum = 90
+                res = chr(resNum) + res
+                columnNumber //= 26
+                if resNum == 90: 
+                    columnNumber -= 1
+            return res
+
+Remarks and Complexity Analysis: 
+ * Surprisingly a great question that made me think for a while. There were several "edge-cases" that appeared 
+   while implementing my solution. 
+ * **Time Complexity**: ``O(?)`` - uncertain
+ * **Space Complexity**: ``O(1)`` - we don't allocate any additional data structure
+
+Alternative solutions (cred: `xcv <https://leetcode.com/problems/excel-sheet-column-title/discuss/51398/My-1-lines-code-in-Java-C%2B%2B-and-Python>`_):
+
+.. code-block:: Java
+
+    // Java
+    return n == 0 ? "" : convertToTitle(--n / 26) + (char)('A' + (n % 26));
+
+.. code-block:: python
+
+    # Python 
+    return "" if num == 0 else self.convertToTitle((num - 1) / 26) + chr((num - 1) % 26 + ord('A'))
+
+    # Alternatively... 
+    def convertToTitle(self, num):
+        capitals = [chr(x) for x in range(ord('A'), ord('Z')+1)]
+        result = []
+        while num > 0:
+            result.append(capitals[(num-1)%26])
+            num = (num-1) // 26
+        result.reverse()
+        return ''.join(result)
+
