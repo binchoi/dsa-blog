@@ -160,7 +160,11 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Week 5 [8-14 Nov 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#day-23-8-nov">Day 23 [8 Nov]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-38-xxxx">Question 38: XXXX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-38-excel-sheet-column-number">Question 38: Excel Sheet Column Number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-24-9-nov">Day 24 [9 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-39-xxxx">Question 39: XXXX</a></li>
 </ul>
 </li>
 </ul>
@@ -218,8 +222,33 @@
 <h1>Week 5 [8-14 Nov 2021]<a class="headerlink" href="#week-5-8-14-nov-2021" title="Permalink to this headline"></a></h1>
 <section id="day-23-8-nov">
 <h2>Day 23 [8 Nov]<a class="headerlink" href="#day-23-8-nov" title="Permalink to this headline"></a></h2>
-<section id="question-38-xxxx">
-<h3>Question 38: XXXX<a class="headerlink" href="#question-38-xxxx" title="Permalink to this headline"></a></h3>
+<section id="question-38-excel-sheet-column-number">
+<h3>Question 38: Excel Sheet Column Number<a class="headerlink" href="#question-38-excel-sheet-column-number" title="Permalink to this headline"></a></h3>
+<p><em>Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">titleToNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columnTitle</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="n">order</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">columnTitle</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="linenos">3</span>    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">4</span>    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columnTitle</span><span class="p">:</span>
+<span class="linenos">5</span>        <span class="n">res</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">26</span><span class="o">**</span><span class="p">(</span><span class="n">order</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">-</span><span class="mi">64</span><span class="p">))</span>
+<span class="linenos">6</span>        <span class="n">order</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Simple question. Significantly easier than implementing the converse operation: <a class="reference internal" href="week4.html#question-36-excel-sheet-column-title"><span class="std std-ref">Question 36: Excel Sheet Column Title</span></a>.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=len(columnTitle)-1</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - only the <code class="docutils literal notranslate"><span class="pre">res</span></code> integer field is used for storage.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-24-9-nov">
+<h2>Day 24 [9 Nov]<a class="headerlink" href="#day-24-9-nov" title="Permalink to this headline"></a></h2>
+<section id="question-39-xxxx">
+<h3>Question 39: XXXX<a class="headerlink" href="#question-39-xxxx" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 </section>
