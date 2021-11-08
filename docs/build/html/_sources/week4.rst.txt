@@ -650,3 +650,53 @@ Alternative solutions (cred: `xcv <https://leetcode.com/problems/excel-sheet-col
         result.reverse()
         return ''.join(result)
 
+Day 22 [7 Nov]
+================
+Question 37: Isomorphic Strings
+----------------------------------------------------
+*Given two strings s and t, determine if they are isomorphic. Two strings s and t are isomorphic if the characters 
+in s can be replaced to get t. All occurrences of a character must be replaced with another character while preserving 
+the order of characters. No two characters may map to the same character, but a character may map to itself.*
+
+My solution: 
+
+.. code-block:: python
+    :linenos:
+
+    def isIsomorphic(self, s: str, t: str) -> bool:
+            if len(s) != len(t): 
+                return False
+            s_to_t = {}
+            for s_elt, t_elt in zip(s, t):
+                if s_elt in s_to_t.keys(): 
+                    if s_to_t[s_elt] != t_elt: 
+                        return False
+                    else: 
+                        continue
+                        
+                if t_elt in s_to_t.values(): 
+                    return False
+                s_to_t[s_elt] = t_elt
+            return True
+
+Remarks and Complexity Analysis: 
+ * Pretty simple question
+ * **Time Complexity**: ``O(n)`` - where ``n=min(len(s), len(t))``
+ * **Space Complexity**: ``O(n)`` - we keep a dictionary of all the unique characters in ``s`` (and their values)
+
+Alternative solution (cred: LeetCode):: 
+
+    def transformString(self, s: str) -> str:
+        index_mapping = {}
+        new_str = []
+        
+        for i, c in enumerate(s):
+            if c not in index_mapping:
+                index_mapping[c] = i
+            new_str.append(str(index_mapping[c]))
+        
+        return " ".join(new_str)
+    
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return self.transformString(s) == self.transformString(t)
+

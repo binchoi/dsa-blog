@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python Toolkit" href="toolbox.html" />
+    <link rel="next" title="Week 4 [8-14 Nov 2021]" href="week5.html" />
     <link rel="prev" title="Week 3 [25-31 Oct 2021]" href="week3.html" /> 
 </head>
 
@@ -151,6 +151,17 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-21-6-nov">Day 21 [6 Nov]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-36-excel-sheet-column-title">Question 36: Excel Sheet Column Title</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-22-7-nov">Day 22 [7 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-37-isomorphic-strings">Question 37: Isomorphic Strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week5.html">Week 4 [8-14 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-23-8-nov">Day 23 [8 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-38-xxxx">Question 38: XXXX</a></li>
 </ul>
 </li>
 </ul>
@@ -851,6 +862,57 @@ while implementing my solution.</p></li>
 </div>
 </section>
 </section>
+<section id="day-22-7-nov">
+<h2>Day 22 [7 Nov]<a class="headerlink" href="#day-22-7-nov" title="Permalink to this headline"></a></h2>
+<section id="question-37-isomorphic-strings">
+<h3>Question 37: Isomorphic Strings<a class="headerlink" href="#question-37-isomorphic-strings" title="Permalink to this headline"></a></h3>
+<p><em>Given two strings s and t, determine if they are isomorphic. Two strings s and t are isomorphic if the characters
+in s can be replaced to get t. All occurrences of a character must be replaced with another character while preserving
+the order of characters. No two characters may map to the same character, but a character may map to itself.</em></p>
+<p>My solution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">isIsomorphic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos"> 2</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="linenos"> 3</span>            <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos"> 4</span>        <span class="n">s_to_t</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos"> 5</span>        <span class="k">for</span> <span class="n">s_elt</span><span class="p">,</span> <span class="n">t_elt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="linenos"> 6</span>            <span class="k">if</span> <span class="n">s_elt</span> <span class="ow">in</span> <span class="n">s_to_t</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+<span class="linenos"> 7</span>                <span class="k">if</span> <span class="n">s_to_t</span><span class="p">[</span><span class="n">s_elt</span><span class="p">]</span> <span class="o">!=</span> <span class="n">t_elt</span><span class="p">:</span>
+<span class="linenos"> 8</span>                    <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos"> 9</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">10</span>                    <span class="k">continue</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>            <span class="k">if</span> <span class="n">t_elt</span> <span class="ow">in</span> <span class="n">s_to_t</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+<span class="linenos">13</span>                <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">14</span>            <span class="n">s_to_t</span><span class="p">[</span><span class="n">s_elt</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_elt</span>
+<span class="linenos">15</span>        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty simple question</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=min(len(s),</span> <span class="pre">len(t))</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - we keep a dictionary of all the unique characters in <code class="docutils literal notranslate"><span class="pre">s</span></code> (and their values)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Alternative solution (cred: LeetCode):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">index_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">new_str</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">index_mapping</span><span class="p">:</span>
+            <span class="n">index_mapping</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">new_str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">index_mapping</span><span class="p">[</span><span class="n">c</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">new_str</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">isIsomorphic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformString</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformString</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -858,7 +920,7 @@ while implementing my solution.</p></li>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="week3.html" class="btn btn-neutral float-left" title="Week 3 [25-31 Oct 2021]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="week5.html" class="btn btn-neutral float-right" title="Week 4 [8-14 Nov 2021]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
