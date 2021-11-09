@@ -12,6 +12,10 @@ learned along the way.
 
 **First Goal:** 100 continuous days of leetcode practice (300+ questions!)
 
+edit: school work has been brutal. consistency is still key... hence, 
+**REVISED: First Goal:** 100 continuous days of leetcode practice (150+ questions!)
+
+
 
 
 .. toctree::
