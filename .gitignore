@@ -1,1 +1,3 @@
-lcdvenv/
+lcvenv/
+docs/build/doctrees/
+docs/source/_templates/
