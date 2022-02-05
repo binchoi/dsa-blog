@@ -171,7 +171,11 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Week 6 [10-16 Jan 2022]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#day-24-13-jan">Day 24 [13 Jan]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#question-39">Question 39:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-39-minsubarraylen">Question 39: MinSubArrayLen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-25-5-feb">Day 25 [5 Feb]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-40-two-sum">Question 40: Two Sum</a></li>
 </ul>
 </li>
 </ul>
@@ -236,8 +240,8 @@ winter break with my family, enjoyed a wonderful three-to-four weeks, traveled t
 in Sweden, flew to Helsinki to begin my exchange semester at Aalto University School of Computer Science, and
 successfully completed my first week of school in Finland. Now that you’re all caught up - let the grind the
 continue.</p>
-<section id="question-39">
-<h3>Question 39:<a class="headerlink" href="#question-39" title="Permalink to this headline"></a></h3>
+<section id="question-39-minsubarraylen">
+<h3>Question 39: MinSubArrayLen<a class="headerlink" href="#question-39-minsubarraylen" title="Permalink to this headline"></a></h3>
 <p>Failed Bruteforce attempt (Time Limit Exceeded):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minSubArrayLen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="n">arr_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
@@ -286,6 +290,39 @@ continue.</p>
 <li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=len(nums)</span></code></p></li>
 <li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p></li>
 <li><p>overall, I am feeling real rusty. Let’s keep up the consistency now!</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-25-5-feb">
+<h2>Day 25 [5 Feb]<a class="headerlink" href="#day-25-5-feb" title="Permalink to this headline"></a></h2>
+<p>Well that’s a little embarrassing. It’s okay – what matters is that I am back :-) Today I tried my first
+leetcode question in Java.</p>
+<section id="question-40-two-sum">
+<h3>Question 40: Two Sum<a class="headerlink" href="#question-40-two-sum" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">lookingFor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="p">();</span> <span class="c1">// val, idx</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="k">if</span> <span class="p">(</span><span class="n">lookingFor</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="n">res</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos"> 8</span>            <span class="n">res</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">lookingFor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 9</span>            <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>        <span class="n">lookingFor</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>    <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="linenos">14</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Didn’t see the <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> solution at first!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=nums.length</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>.</p></li>
+<li><p>Wow, Java is verbose!</p></li>
 </ul>
 </dd>
 </dl>

@@ -12,7 +12,7 @@ in Sweden, flew to Helsinki to begin my exchange semester at Aalto University Sc
 successfully completed my first week of school in Finland. Now that you're all caught up - let the grind the 
 continue. 
 
-Question 39: 
+Question 39: MinSubArrayLen
 ---------------------------------------
 Failed Bruteforce attempt (Time Limit Exceeded)::
 
@@ -64,4 +64,35 @@ Remarks and Complexity Analysis:
  * **Space Complexity**: ``O(1)``.
  * overall, I am feeling real rusty. Let's keep up the consistency now!
 
- 
+Day 25 [5 Feb]
+===============
+Well that's a little embarrassing. It's okay -- what matters is that I am back :-) Today I tried my first 
+leetcode question in Java. 
+
+Question 40: Two Sum
+---------------------
+
+.. code-block:: Java
+    :linenos: 
+
+    public int[] twoSum(int[] nums, int target) {
+        
+        int[] res = new int[2];
+        HashMap<Integer,Integer> lookingFor = new HashMap(); // val, idx
+        for (int i=0; i<nums.length; i++) {
+            if (lookingFor.containsKey(nums[i])) {
+                res[0] = i;
+                res[1] = lookingFor.get(nums[i]);
+                return res;
+            }
+            lookingFor.put(target-nums[i], i);
+        }
+        return new int[] {0,0};
+    }
+
+
+Remarks and Complexity Analysis: 
+ * Didn't see the ``O(n)`` solution at first!
+ * **Time Complexity**: ``O(n)`` - where ``n=nums.length`` 
+ * **Space Complexity**: ``O(n)``.
+ * Wow, Java is verbose!

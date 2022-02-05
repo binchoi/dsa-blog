@@ -10,23 +10,8 @@ Question 1: Two Sum
 the two numbers such that they add up to target.*
 
 My initial solution: O(n^2)
-Optimal solution:
 
-*option 1 (using dictionary)*
-
-.. code-block:: python
-   :linenos:
-
-    class Solution(object):
-        def twoSum(self, nums, target):
-            buffer_dictionary = {}
-            for i in rangenums.__len()):
-                if nums[i] in buffer_dictionary:
-                    return [buffer_dictionary[nums[i]], i] 
-                else: 
-                    buffer_dictionary[target - nums[i]] = i 
-
-*option 2 (more concise)*
+Alternative solution:
 
 .. code-block:: python
    :linenos:
@@ -51,6 +36,7 @@ Question 2: Valid Parentheses
 '[' and ']', determine if the input string is valid.*
 
 My solution: O(n)
+
  * using stack and a helper function that compares a open parenthesis with a closed one
 
 .. tip::
