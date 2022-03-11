@@ -182,6 +182,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-41-longest-palindromic-substring">Question 41: Longest Palindromic Substring</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-27-10-mar">Day 27 [10 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-42-container-with-most-water">Question 42: Container With Most Water</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -432,6 +436,116 @@ leetcode question in Java.</p>
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-27-10-mar">
+<h2>Day 27 [10 Mar]<a class="headerlink" href="#day-27-10-mar" title="Permalink to this headline"></a></h2>
+<section id="question-42-container-with-most-water">
+<h3>Question 42: Container With Most Water<a class="headerlink" href="#question-42-container-with-most-water" title="Permalink to this headline"></a></h3>
+<p>You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+Return the maximum amount of water a container can store. Notice that you may not slant the container.</p>
+<p>My Inefficient (Time Limit Exceeded) Bruteforce Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">convertIdx</span><span class="p">(</span><span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arrSize</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isStart</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="k">if</span> <span class="p">(</span><span class="n">isStart</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+<span class="linenos"> 8</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 9</span>            <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">arrSize</span><span class="o">-</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="kd">public</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">find_candidates</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">height</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isStart</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">candidates</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>        <span class="n">candidates</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">convertIdx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">.</span><span class="na">length</span><span class="p">,</span> <span class="n">isStart</span><span class="p">),</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">height</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>        <span class="kt">int</span> <span class="n">highestSoFar</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">19</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">height</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">20</span>            <span class="k">if</span> <span class="p">(</span><span class="n">height</span><span class="o">[</span><span class="n">i</span><span class="o">]&gt;</span><span class="n">highestSoFar</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">21</span>                <span class="n">candidates</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">convertIdx</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">height</span><span class="p">.</span><span class="na">length</span><span class="p">,</span><span class="n">isStart</span><span class="p">),</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">height</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos">22</span>                <span class="n">highestSoFar</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">23</span>            <span class="p">}</span>
+<span class="linenos">24</span>        <span class="p">}</span>
+<span class="linenos">25</span>        <span class="k">return</span> <span class="n">candidates</span><span class="p">;</span>
+<span class="linenos">26</span>    <span class="p">}</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxArea</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">29</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">start_candidates</span> <span class="o">=</span> <span class="n">find_candidates</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">revHeight</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">height</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">32</span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">height</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos">33</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">34</span>            <span class="n">revHeight</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">35</span>            <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">36</span>        <span class="p">}</span>
+<span class="linenos">37</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">end_candidates</span> <span class="o">=</span> <span class="n">find_candidates</span><span class="p">(</span><span class="n">revHeight</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="linenos">38</span>        <span class="kt">int</span> <span class="n">bestSoFar</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">39</span>        <span class="k">for</span> <span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">start_set</span><span class="p">:</span><span class="n">start_candidates</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">40</span>            <span class="k">for</span> <span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">end_set</span><span class="p">:</span><span class="n">end_candidates</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">41</span>                <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">end_set</span><span class="p">.</span><span class="na">getValue</span><span class="p">(),</span> <span class="n">start_set</span><span class="p">.</span><span class="na">getValue</span><span class="p">())</span><span class="o">*</span><span class="p">(</span><span class="n">end_set</span><span class="p">.</span><span class="na">getKey</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_set</span><span class="p">.</span><span class="na">getKey</span><span class="p">());</span>
+<span class="linenos">42</span>                <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="o">&gt;</span><span class="n">bestSoFar</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">43</span>                    <span class="n">bestSoFar</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="linenos">44</span>                <span class="p">}</span>
+<span class="linenos">45</span>            <span class="p">}</span>
+<span class="linenos">46</span>        <span class="p">}</span>
+<span class="linenos">47</span>        <span class="k">return</span> <span class="n">bestSoFar</span><span class="p">;</span>
+<span class="linenos">48</span>    <span class="p">}</span>
+<span class="linenos">49</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Again, not the cleanest code I’ve written</p></li>
+<li><p>I learned a lot about Java as a programming language. For one, why is it so difficult to reverse an array? Well to be fair, it is mostly
+a problem with LeetCode not permitting me to import certain packages like ArrayUtil or Collections (which really got me thinking that I should
+use Python for any algo interview) but I feel like there are more choices in Java. And navigating them wisely seems to require
+experience and understanding of what each offers or doesn’t offer.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> - worst case scenario is probably triangle shape (increasing then decreasing lines) which would correspond to ~``O(1/4 n^2)``</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+<dt>Two Pointer O(n) solutions:</dt><dd><ul class="simple">
+<li><p>Using two pointer is extremely efficient and powerful in many algorithm problems</p></li>
+<li><p>continue working on algorithms and coding tests!!</p></li>
+</ul>
+</dd>
+</dl>
+<p>Python Two-pointer Solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">water</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">water</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">water</span>
+</pre></div>
+</div>
+<p>Java Two-pointer Solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="nb">int</span> <span class="n">maxArea</span><span class="p">(</span><span class="nb">int</span><span class="p">[]</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">maxArea</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">maxArea</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">maxArea</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+                <span class="o">*</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">maxArea</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

@@ -201,3 +201,111 @@ Remarks and Complexity Analysis:
  * **Space Complexity**: ``O(1)``
  * I am practicing Java's syntax with these coding questions, but I am wondering if I should later focus on strictly using python.
 
+Day 27 [10 Mar]
+================
+Question 42: Container With Most Water
+---------------------------------------
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]). 
+Find two lines that together with the x-axis form a container, such that the container contains the most water. 
+Return the maximum amount of water a container can store. Notice that you may not slant the container.
+
+My Inefficient (Time Limit Exceeded) Bruteforce Solution: 
+
+.. code-block:: Java
+    :linenos: 
+
+    import java.util.*;
+
+    class Solution {
+        
+        public Integer convertIdx(int idx, int arrSize, boolean isStart) {
+            if (isStart) {
+                return Integer.valueOf(idx);
+            } else {
+                return Integer.valueOf(arrSize-idx-1);
+            }
+        }
+        
+        public HashMap<Integer,Integer> find_candidates(int[] height, boolean isStart) {
+            HashMap<Integer,Integer> candidates = new HashMap<>();
+            
+            candidates.put(convertIdx(0, height.length, isStart), Integer.valueOf(height[0]));
+
+            int highestSoFar = height[0];
+            for (int i=1; i<height.length; i++) {
+                if (height[i]>highestSoFar) {
+                    candidates.put(convertIdx(i,height.length,isStart), Integer.valueOf(height[i]));
+                    highestSoFar = height[i];
+                }
+            }
+            return candidates;
+        }
+        
+        public int maxArea(int[] height) {
+            HashMap<Integer,Integer> start_candidates = find_candidates(height, true);
+            
+            int[] revHeight = new int[height.length];
+            int j = height.length;
+            for (int i = 0; i < height.length; i++) {
+                revHeight[j - 1] = height[i];
+                j--;
+            }
+            HashMap<Integer,Integer> end_candidates = find_candidates(revHeight, false);      
+            int bestSoFar = 0;
+            for (Map.Entry<Integer, Integer> start_set:start_candidates.entrySet()) {
+                for (Map.Entry<Integer, Integer> end_set:end_candidates.entrySet()) {
+                    int temp = Math.min(end_set.getValue(), start_set.getValue())*(end_set.getKey() - start_set.getKey());
+                    if (temp>bestSoFar) {
+                        bestSoFar = temp;
+                    }
+                }
+            }
+            return bestSoFar;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Again, not the cleanest code I've written
+ * I learned a lot about Java as a programming language. For one, why is it so difficult to reverse an array? Well to be fair, it is mostly 
+   a problem with LeetCode not permitting me to import certain packages like ArrayUtil or Collections (which really got me thinking that I should 
+   use Python for any algo interview) but I feel like there are more choices in Java. And navigating them wisely seems to require 
+   experience and understanding of what each offers or doesn't offer. 
+ * **Time Complexity**: ``O(n^2)`` - worst case scenario is probably triangle shape (increasing then decreasing lines) which would correspond to ~``O(1/4 n^2)``
+ * **Space Complexity**: ``O(n)``
+
+Two Pointer O(n) solutions: 
+ * Using two pointer is extremely efficient and powerful in many algorithm problems
+ * continue working on algorithms and coding tests!!
+
+
+Python Two-pointer Solution::
+
+    class Solution:
+        def maxArea(self, height):
+            i, j = 0, len(height) - 1
+            water = 0
+            while i < j:
+                water = max(water, (j - i) * min(height[i], height[j]))
+                if height[i] < height[j]:
+                    i += 1
+                else:
+                    j -= 1
+            return water
+
+Java Two-pointer Solution:: 
+
+    public int maxArea(int[] height) {
+        int left = 0, right = height.length - 1;
+        int maxArea = 0;
+
+        while (left < right) {
+            maxArea = Math.max(maxArea, Math.min(height[left], height[right])
+                    * (right - left));
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
+        }
+
+        return maxArea;
+    }
