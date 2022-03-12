@@ -35,6 +35,7 @@ edit: school work has been brutal. consistency is still key... hence,
 
    toolbox
    algosummary
+   datastructure
 
 .. Indices and tables
 .. ==================
