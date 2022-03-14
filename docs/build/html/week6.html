@@ -186,6 +186,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-42-container-with-most-water">Question 42: Container With Most Water</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-28-14-mar">Day 28 [14 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-43-valid-parentheses">Question 43: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-44-climbing-stairs">Question 44: Climbing Stairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-45-valid-palindrome">Question 45: Valid Palindrome</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -210,6 +216,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datastructure.html">Data Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#abstract-data-type-adt">Abstract Data Type (ADT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#static-and-dynamic-arrays">Static and Dynamic Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#linked-list">Linked List</a></li>
 </ul>
 </li>
 </ul>
@@ -546,6 +558,161 @@ experience and understanding of what each offers or doesn’t offer.</p></li>
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="day-28-14-mar">
+<h2>Day 28 [14 Mar]<a class="headerlink" href="#day-28-14-mar" title="Permalink to this headline"></a></h2>
+<section id="question-43-valid-parentheses">
+<h3>Question 43: Valid Parentheses<a class="headerlink" href="#question-43-valid-parentheses" title="Permalink to this headline"></a></h3>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">();</span>
+<span class="linenos"> 4</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">Character</span><span class="o">&gt;</span> <span class="n">parsMatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 5</span>        <span class="n">parsMatch</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="sc">&#39;]&#39;</span><span class="p">,</span> <span class="sc">&#39;[&#39;</span><span class="p">);</span>
+<span class="linenos"> 6</span>        <span class="n">parsMatch</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">);</span>
+<span class="linenos"> 7</span>        <span class="n">parsMatch</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="sc">&#39;}&#39;</span><span class="p">,</span> <span class="sc">&#39;{&#39;</span><span class="p">);</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 9</span>            <span class="k">if</span> <span class="p">(</span><span class="n">parsMatch</span><span class="p">.</span><span class="na">containsValue</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">10</span>                <span class="n">stk</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="linenos">11</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">12</span>                <span class="k">if</span> <span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">||</span> <span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">()</span> <span class="o">!=</span> <span class="p">(</span><span class="n">parsMatch</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="p">{</span>
+<span class="linenos">13</span>                    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">14</span>                <span class="p">}</span>
+<span class="linenos">15</span>            <span class="p">}</span>
+<span class="linenos">16</span>        <span class="p">}</span>
+<span class="linenos">17</span>        <span class="k">return</span> <span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">());</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Had a little struggle with reference vs. primitive types. I now understand the casting between primitives and wrappers better.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Casting to-and-fro primitive/wrapper:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="o">//</span><span class="mi">5</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">primitive</span> <span class="nb">int</span>
+<span class="n">Integer</span> <span class="n">iRef</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="o">//</span> <span class="n">convert</span> <span class="n">to</span> <span class="n">wrapper</span>
+
+<span class="n">Integer</span> <span class="n">iRef</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="o">//</span> <span class="n">starts</span> <span class="n">life</span> <span class="k">as</span> <span class="n">wrapper</span>
+<span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="o">//</span><span class="n">ok</span><span class="p">,</span> <span class="n">unboxed</span> <span class="n">to</span> <span class="n">primitive</span>
+</pre></div>
+</div>
+</section>
+<section id="question-44-climbing-stairs">
+<h3>Question 44: Climbing Stairs<a class="headerlink" href="#question-44-climbing-stairs" title="Permalink to this headline"></a></h3>
+<p>You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">private</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">memoTable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">memoTable</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">memoTable</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="linenos">10</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="kt">int</span> <span class="n">sol</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">climbStairs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">climbStairs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">12</span>        <span class="k">this</span><span class="p">.</span><span class="na">memoTable</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">sol</span><span class="p">);</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">climbStairs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">climbStairs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+<span class="linenos">14</span>    <span class="p">}</span>
+<span class="linenos">15</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Even better solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="o">--&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="kt">int</span> <span class="n">tempB</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="linenos">12</span>        <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<span class="linenos">13</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">tempB</span><span class="p">;</span>
+<span class="linenos">14</span>    <span class="p">}</span>
+<span class="linenos">15</span>    <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+<span class="linenos">16</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>The key was realizing the pattern and the recursive nature (it’s fibonacci!)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-45-valid-palindrome">
+<h3>Question 45: Valid Palindrome<a class="headerlink" href="#question-45-valid-palindrome" title="Permalink to this headline"></a></h3>
+<p>A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers. Given a string s, return true if it is a palindrome, or false otherwise.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">filteredArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 3</span>    <span class="k">for</span> <span class="p">(</span><span class="n">Character</span> <span class="n">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isLetter</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">||</span> <span class="n">Character</span><span class="p">.</span><span class="na">isDigit</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 5</span>            <span class="n">filteredArr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+<span class="linenos"> 6</span>        <span class="p">}</span>
+<span class="linenos"> 7</span>    <span class="p">}</span>
+<span class="linenos"> 8</span>    <span class="k">if</span> <span class="p">(</span><span class="n">filteredArr</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span>    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">origArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">filteredArr</span><span class="p">);</span>
+<span class="linenos">12</span>    <span class="n">Collections</span><span class="p">.</span><span class="na">reverse</span><span class="p">(</span><span class="n">filteredArr</span><span class="p">);</span>
+<span class="linenos">13</span>    <span class="k">return</span> <span class="n">origArr</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">filteredArr</span><span class="p">);</span>
+<span class="linenos">14</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Alternative solutions:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&quot;[^A-Za-z0-9]&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">).</span><span class="na">toLowerCase</span><span class="p">();</span>
+    <span class="n">String</span> <span class="n">rev</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="p">(</span><span class="n">actual</span><span class="p">).</span><span class="na">reverse</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">actual</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">rev</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cHead</span><span class="p">,</span> <span class="n">cTail</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">head</span> <span class="o">&lt;=</span> <span class="n">tail</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cHead</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+            <span class="n">cTail</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">tail</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Character</span><span class="p">.</span><span class="na">isLetterOrDigit</span><span class="p">(</span><span class="n">cHead</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="n">head</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">Character</span><span class="p">.</span><span class="na">isLetterOrDigit</span><span class="p">(</span><span class="n">cTail</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="n">tail</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">(</span><span class="n">cHead</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Character</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">(</span><span class="n">cTail</span><span class="p">))</span> <span class="p">{</span>
+                            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">head</span><span class="o">++</span><span class="p">;</span>
+                    <span class="n">tail</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I think the better way to solve this problem is not regex (or my solution) but using two-pointers. It is more space-efficient and seems more approprite.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for two-pointer; <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> otherwise</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

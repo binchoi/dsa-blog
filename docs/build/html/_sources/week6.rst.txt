@@ -309,3 +309,166 @@ Java Two-pointer Solution::
 
         return maxArea;
     }
+
+Day 28 [14 Mar]
+================
+Question 43: Valid Parentheses
+---------------------------------------
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos: 
+
+    class Solution {
+        public boolean isValid(String s) {
+            Stack<Character> stk = new Stack();
+            HashMap<Character, Character> parsMatch = new HashMap<>();
+            parsMatch.put(']', '[');
+            parsMatch.put(')', '(');
+            parsMatch.put('}', '{');
+            for (char c : s.toCharArray()) {
+                if (parsMatch.containsValue(c)) {
+                    stk.push(c);
+                } else {
+                    if (stk.isEmpty() || stk.pop() != (parsMatch.get(c))) {
+                        return false;
+                    }
+                }
+            }
+            return (stk.isEmpty());
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Had a little struggle with reference vs. primitive types. I now understand the casting between primitives and wrappers better.
+ * **Time Complexity**: ``O(n)`` 
+ * **Space Complexity**: ``O(n)``
+
+Casting to-and-fro primitive/wrapper::
+
+    int i = 5; //5 is a primitive int
+    Integer iRef = i; // convert to wrapper
+
+    Integer iRef = new Integer(5); // starts life as wrapper
+    int j = i; //ok, unboxed to primitive
+
+Question 44: Climbing Stairs
+---------------------------------------
+You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+My solution:
+
+.. code-block:: Java
+    :linenos: 
+
+    private HashMap<Integer, Integer> memoTable = new HashMap<>();
+    
+    public int climbStairs(int n) {
+        if (n==1) {
+            return 1;
+        } else if (n==2) {
+            return 2;
+        } else if (this.memoTable.containsKey(n)) {
+            return this.memoTable.get(n);
+        } else {
+            int sol = this.climbStairs(n-2) + this.climbStairs(n-1);
+            this.memoTable.put(n,sol);
+            return (this.climbStairs(n-2) + this.climbStairs(n-1));
+        }
+    }
+
+Even better solution:
+
+.. code-block:: Java
+    :linenos: 
+
+    public int climbStairs(int n) {
+        if (n==1) {
+            return 1;
+        } else if (n==2) {
+            return 2;
+        }
+        
+        int a = 1;
+        int b = 2;
+        while (n-->2) {
+            int tempB = b;
+            b = a+b;
+            a = tempB;
+        }
+        return b;
+    }
+
+
+Remarks and Complexity Analysis: 
+ * The key was realizing the pattern and the recursive nature (it's fibonacci!)
+ * **Time Complexity**: ``O(n)`` 
+ * **Space Complexity**: ``O(1)``
+
+
+Question 45: Valid Palindrome
+---------------------------------------
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers. Given a string s, return true if it is a palindrome, or false otherwise.
+
+My solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public boolean isPalindrome(String s) {
+        ArrayList<Character> filteredArr = new ArrayList<>();
+        for (Character c : s.toCharArray()) {
+            if (Character.isLetter(c) || Character.isDigit(c)) {
+                filteredArr.add(Character.toLowerCase(c));
+            }
+        }
+        if (filteredArr.isEmpty()) {
+            return true;
+        }
+        ArrayList<Character> origArr = new ArrayList<>(filteredArr);
+        Collections.reverse(filteredArr);
+        return origArr.equals(filteredArr);
+    }
+
+Alternative solutions:
+
+.. code-block:: Java
+
+    public boolean isPalindrome(String s) {
+        String actual = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
+        String rev = new StringBuffer(actual).reverse().toString();
+        return actual.equals(rev);
+    }
+
+    public boolean isPalindrome(String s) {
+        if (s.isEmpty()) {
+        	return true;
+        }
+        int head = 0, tail = s.length() - 1;
+        char cHead, cTail;
+        while(head <= tail) {
+        	cHead = s.charAt(head);
+        	cTail = s.charAt(tail);
+        	if (!Character.isLetterOrDigit(cHead)) {
+        		head++;
+        	} else if(!Character.isLetterOrDigit(cTail)) {
+        		tail--;
+        	} else {
+        		if (Character.toLowerCase(cHead) != Character.toLowerCase(cTail)) {
+        			return false;
+        		}
+        		head++;
+        		tail--;
+        	}
+        }
+        
+        return true;
+    }
+
+Remarks and Complexity Analysis: 
+ * I think the better way to solve this problem is not regex (or my solution) but using two-pointers. It is more space-efficient and seems more approprite.
+ * **Time Complexity**: ``O(n)`` 
+ * **Space Complexity**: ``O(1)`` for two-pointer; ``O(n)`` otherwise
+
+
