@@ -472,3 +472,180 @@ Remarks and Complexity Analysis:
  * **Space Complexity**: ``O(1)`` for two-pointer; ``O(n)`` otherwise
 
 
+Day 29 [15 Mar]
+================
+For a change, I tried out the 283rd LeetCode Weekly Contest. I managed to solve two questions: one perfectly and one imperfectly. 
+
+Question 46: Cells in a Range on an Excel Sheet
+------------------------------------------------------
+A cell (r, c) of an excel sheet is represented as a string "<col><row>" where:
+
+<col> denotes the column number c of the cell. It is represented by alphabetical letters.
+For example, the 1st column is denoted by 'A', the 2nd by 'B', the 3rd by 'C', and so on.
+<row> is the row number r of the cell. The rth row is represented by the integer r.
+You are given a string s in the format "<col1><row1>:<col2><row2>", where <col1> represents the column c1, <row1> represents the row r1, <col2> represents the column c2, and <row2> represents the row r2, such that r1 <= r2 and c1 <= c2. 
+Return the list of cells (x, y) such that r1 <= x <= r2 and c1 <= y <= c2. The cells should be represented as strings in the format mentioned above and be sorted in non-decreasing order first by columns and then by rows.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    class Solution {
+        public List<String> cellsInRange(String s) {
+            List<String> res = new ArrayList<String>();
+            char[] alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+            
+            Character x_i = Character.toUpperCase(s.charAt(0));
+            char x_f = Character.toUpperCase(s.charAt(3));
+            int row_i = Character.getNumericValue(s.charAt(1));
+            int row_f = Character.getNumericValue(s.charAt(4));
+            
+            int downStep = row_f-row_i;
+            int idx = 0;
+            while (alphabets[idx]!=x_i) {idx++;}
+            do {
+                String letter = Character.toString(alphabets[idx]);
+                for (int j = row_i; j<=row_f; j++) {
+                    res.add(letter+j);
+                }
+            } while (alphabets[idx++]!=x_f);
+            return res;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Still trying to get familiar with the methods of Java's classes (e.g. arr.length, Character.toUpperCase(), string.charAt(), Integer.valueOf(), etc...)
+ * **Time Complexity**: ``O(n*m)`` - where ``n,m`` are the vertical and horizontal distance between the two given positions
+ * **Space Complexity**: ``O(1)`` for two-pointer; ``O(n)`` otherwise
+ * I found out that in Java, you can do ``char c++;`` to increment the value of char variable ``c`` from 'a' to 'b' or from 'D' to 'E' or even from '3' to '4'.
+
+My revised solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public List<String> cellsInRange(String s) {
+        List<String> res = new ArrayList<String>();
+        for (char c = s.charAt(0); c<=s.charAt(3); c++) {
+            for (int i=Character.getNumericValue(s.charAt(1)); i<=Character.getNumericValue(s.charAt(4));i++) {
+              res.add(Character.toString(c)+i);
+          }
+        }
+        return res;
+    }
+    
+    // Version 3
+    public List<String> cellsInRange(String s) {
+        List<String> res = new ArrayList<String>();
+        for (char c = s.charAt(0); c<=s.charAt(3); c++) {
+            for (char i=s.charAt(1); i<=s.charAt(4);i++) {
+              res.add(""+c+i);
+          }
+        }
+        return res;
+    }
+
+Question 47: Append K Integers With Minimal Sum
+------------------------------------------------------
+You are given an integer array nums and an integer k. Append k unique positive integers that do not appear in nums to nums such that the resulting total sum is minimum. Return the sum of the k integers appended to nums
+
+My (faulty) solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    class Solution {
+        public long minimalKSum(int[] nums, int k) {
+            long res = 0;
+            
+            Arrays.sort(nums);
+            int numChecking = 1;
+            int arrIdx = 0;
+            while (k>0) {
+                if (arrIdx>=nums.length) {
+                    break;
+                }
+                while (numChecking < nums[arrIdx] && k>0) {
+                    res+=numChecking;
+                    numChecking++;
+                    k--;
+                }
+                arrIdx++;
+                numChecking++;
+            }
+            if (k==0) {
+                return res;
+            } else {
+                return res + (k*(2*numChecking+k-1)/2);
+            }
+        }
+    }
+
+    // Second try
+    public long minimalKSum(int[] nums, int k) {
+        long res = (k*(k+1))/2;
+        Set<Integer> seen = new HashSet<>();
+        for (int n:nums) {
+            if (n<=k) {
+                if (seen.contains(Integer.valueOf(n))) {
+                    continue;
+                } else {
+                    res+=((++k)-n);
+                    seen.add(Integer.valueOf(n));
+                }
+            }
+        }
+        return res;
+    }
+
+Remarks and Complexity Analysis: 
+ * Second try is much closer but not quite there. 
+ * **Time Complexity**: ``O(n)`` - where ``n=nums.length``
+ * **Space Complexity**: ``O(1)``
+
+Alternative (correct) solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public long minimalKSum(int[] nums, int k) {
+        Arrays.sort(nums);
+        Set<Integer> set = new HashSet<>();
+        long sum = 0;
+
+        for (int num: nums) {
+            if (!set.contains(num) && num <= k) {
+                k++;
+                sum += num;        
+            }            
+            set.add(num);
+        }
+
+        long res = (long)(1 + k) * k / 2 - sum;
+        return res;   
+    }
+
+Question 48: Counting Bits
+------------------------------------------------------
+Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
+
+I am not familiar with bit operations in Java, so I looked at the discuss earlier!
+
+Solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public int[] countBits(int num) {
+        int[] f = new int[num + 1];
+        for (int i=1; i<=num; i++) f[i] = f[i >> 1] + (i & 1);
+        return f;
+    }
+
+Remarks and Complexity Analysis: 
+ * line 2 creates the return array, line 3 starts from ``i=1`` and by doing so initialized ``f[0]=0``
+ * ``i >> 1`` is equivalent to ``i/2`` (i.e. f[i/2])
+ * ``i & 1`` is equivalent to ``i%2`` -> if the number is odd, we add one to f[i >> 1] as one 1 is removed when shifting to right
+ * **Time Complexity**: ``O(n)``
+ * **Space Complexity**: ``O(1)`` apart from the returned array (of size ``num.length``)

@@ -192,6 +192,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-45-valid-palindrome">Question 45: Valid Palindrome</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-29-15-mar">Day 29 [15 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-46-cells-in-a-range-on-an-excel-sheet">Question 46: Cells in a Range on an Excel Sheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-47-append-k-integers-with-minimal-sum">Question 47: Append K Integers With Minimal Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-48-counting-bits">Question 48: Counting Bits</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -710,6 +716,176 @@ experience and understanding of what each offers or doesn’t offer.</p></li>
 <li><p>I think the better way to solve this problem is not regex (or my solution) but using two-pointers. It is more space-efficient and seems more approprite.</p></li>
 <li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
 <li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for two-pointer; <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> otherwise</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-29-15-mar">
+<h2>Day 29 [15 Mar]<a class="headerlink" href="#day-29-15-mar" title="Permalink to this headline"></a></h2>
+<p>For a change, I tried out the 283rd LeetCode Weekly Contest. I managed to solve two questions: one perfectly and one imperfectly.</p>
+<section id="question-46-cells-in-a-range-on-an-excel-sheet">
+<h3>Question 46: Cells in a Range on an Excel Sheet<a class="headerlink" href="#question-46-cells-in-a-range-on-an-excel-sheet" title="Permalink to this headline"></a></h3>
+<p>A cell (r, c) of an excel sheet is represented as a string “&lt;col&gt;&lt;row&gt;” where:</p>
+<p>&lt;col&gt; denotes the column number c of the cell. It is represented by alphabetical letters.
+For example, the 1st column is denoted by ‘A’, the 2nd by ‘B’, the 3rd by ‘C’, and so on.
+&lt;row&gt; is the row number r of the cell. The rth row is represented by the integer r.
+You are given a string s in the format “&lt;col1&gt;&lt;row1&gt;:&lt;col2&gt;&lt;row2&gt;”, where &lt;col1&gt; represents the column c1, &lt;row1&gt; represents the row r1, &lt;col2&gt; represents the column c2, and &lt;row2&gt; represents the row r2, such that r1 &lt;= r2 and c1 &lt;= c2.
+Return the list of cells (x, y) such that r1 &lt;= x &lt;= r2 and c1 &lt;= y &lt;= c2. The cells should be represented as strings in the format mentioned above and be sorted in non-decreasing order first by columns and then by rows.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cellsInRange</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos"> 4</span>        <span class="kt">char</span><span class="o">[]</span> <span class="n">alphabets</span> <span class="o">=</span> <span class="s">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>        <span class="n">Character</span> <span class="n">x_i</span> <span class="o">=</span> <span class="n">Character</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="linenos"> 7</span>        <span class="kt">char</span> <span class="n">x_f</span> <span class="o">=</span> <span class="n">Character</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+<span class="linenos"> 8</span>        <span class="kt">int</span> <span class="n">row_i</span> <span class="o">=</span> <span class="n">Character</span><span class="p">.</span><span class="na">getNumericValue</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="linenos"> 9</span>        <span class="kt">int</span> <span class="n">row_f</span> <span class="o">=</span> <span class="n">Character</span><span class="p">.</span><span class="na">getNumericValue</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="kt">int</span> <span class="n">downStep</span> <span class="o">=</span> <span class="n">row_f</span><span class="o">-</span><span class="n">row_i</span><span class="p">;</span>
+<span class="linenos">12</span>        <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">13</span>        <span class="k">while</span> <span class="p">(</span><span class="n">alphabets</span><span class="o">[</span><span class="n">idx</span><span class="o">]!=</span><span class="n">x_i</span><span class="p">)</span> <span class="p">{</span><span class="n">idx</span><span class="o">++</span><span class="p">;}</span>
+<span class="linenos">14</span>        <span class="k">do</span> <span class="p">{</span>
+<span class="linenos">15</span>            <span class="n">String</span> <span class="n">letter</span> <span class="o">=</span> <span class="n">Character</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">alphabets</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">16</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">row_i</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">row_f</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>                <span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">letter</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+<span class="linenos">18</span>            <span class="p">}</span>
+<span class="linenos">19</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">alphabets</span><span class="o">[</span><span class="n">idx</span><span class="o">++]!=</span><span class="n">x_f</span><span class="p">);</span>
+<span class="linenos">20</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Still trying to get familiar with the methods of Java’s classes (e.g. arr.length, Character.toUpperCase(), string.charAt(), Integer.valueOf(), etc…)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*m)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n,m</span></code> are the vertical and horizontal distance between the two given positions</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for two-pointer; <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> otherwise</p></li>
+<li><p>I found out that in Java, you can do <code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">c++;</span></code> to increment the value of char variable <code class="docutils literal notranslate"><span class="pre">c</span></code> from ‘a’ to ‘b’ or from ‘D’ to ‘E’ or even from ‘3’ to ‘4’.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My revised solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cellsInRange</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos"> 3</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">c</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">Character</span><span class="p">.</span><span class="na">getNumericValue</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">Character</span><span class="p">.</span><span class="na">getNumericValue</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>          <span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos"> 6</span>      <span class="p">}</span>
+<span class="linenos"> 7</span>    <span class="p">}</span>
+<span class="linenos"> 8</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="p">}</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">// Version 3</span>
+<span class="linenos">12</span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cellsInRange</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">14</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">c</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">15</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">i</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>          <span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos">17</span>      <span class="p">}</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">20</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-47-append-k-integers-with-minimal-sum">
+<h3>Question 47: Append K Integers With Minimal Sum<a class="headerlink" href="#question-47-append-k-integers-with-minimal-sum" title="Permalink to this headline"></a></h3>
+<p>You are given an integer array nums and an integer k. Append k unique positive integers that do not appear in nums to nums such that the resulting total sum is minimum. Return the sum of the k integers appended to nums</p>
+<p>My (faulty) solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">minimalKSum</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
+<span class="linenos"> 6</span>        <span class="kt">int</span> <span class="n">numChecking</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="kt">int</span> <span class="n">arrIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="k">while</span> <span class="p">(</span><span class="n">k</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>            <span class="k">if</span> <span class="p">(</span><span class="n">arrIdx</span><span class="o">&gt;=</span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos">11</span>            <span class="p">}</span>
+<span class="linenos">12</span>            <span class="k">while</span> <span class="p">(</span><span class="n">numChecking</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">arrIdx</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="n">k</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>                <span class="n">res</span><span class="o">+=</span><span class="n">numChecking</span><span class="p">;</span>
+<span class="linenos">14</span>                <span class="n">numChecking</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">15</span>                <span class="n">k</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">16</span>            <span class="p">}</span>
+<span class="linenos">17</span>            <span class="n">arrIdx</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">18</span>            <span class="n">numChecking</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">19</span>        <span class="p">}</span>
+<span class="linenos">20</span>        <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">21</span>            <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">22</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">23</span>            <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">numChecking</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">24</span>        <span class="p">}</span>
+<span class="linenos">25</span>    <span class="p">}</span>
+<span class="linenos">26</span><span class="p">}</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="c1">// Second try</span>
+<span class="linenos">29</span><span class="kd">public</span> <span class="kt">long</span> <span class="nf">minimalKSum</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">30</span>    <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">31</span>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">seen</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">32</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">:</span><span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">33</span>        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;=</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">34</span>            <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span> <span class="p">{</span>
+<span class="linenos">35</span>                <span class="k">continue</span><span class="p">;</span>
+<span class="linenos">36</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">37</span>                <span class="n">res</span><span class="o">+=</span><span class="p">((</span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="o">-</span><span class="n">n</span><span class="p">);</span>
+<span class="linenos">38</span>                <span class="n">seen</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+<span class="linenos">39</span>            <span class="p">}</span>
+<span class="linenos">40</span>        <span class="p">}</span>
+<span class="linenos">41</span>    <span class="p">}</span>
+<span class="linenos">42</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">43</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Second try is much closer but not quite there.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - where <code class="docutils literal notranslate"><span class="pre">n=nums.length</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Alternative (correct) solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">long</span> <span class="nf">minimalKSum</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
+<span class="linenos"> 3</span>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 4</span>    <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">:</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">set</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 9</span>            <span class="n">sum</span> <span class="o">+=</span> <span class="n">num</span><span class="p">;</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>        <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">sum</span><span class="p">;</span>
+<span class="linenos">15</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">16</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-48-counting-bits">
+<h3>Question 48: Counting Bits<a class="headerlink" href="#question-48-counting-bits" title="Permalink to this headline"></a></h3>
+<p>Given an integer n, return an array ans of length n + 1 such that for each i (0 &lt;= i &lt;= n), ans[i] is the number of 1’s in the binary representation of i.</p>
+<p>I am not familiar with bit operations in Java, so I looked at the discuss earlier!</p>
+<p>Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">countBits</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
+<span class="linenos">4</span>    <span class="k">return</span> <span class="n">f</span><span class="p">;</span>
+<span class="linenos">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>line 2 creates the return array, line 3 starts from <code class="docutils literal notranslate"><span class="pre">i=1</span></code> and by doing so initialized <code class="docutils literal notranslate"><span class="pre">f[0]=0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&gt;&gt;</span> <span class="pre">1</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">i/2</span></code> (i.e. f[i/2])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&amp;</span> <span class="pre">1</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">i%2</span></code> -&gt; if the number is odd, we add one to f[i &gt;&gt; 1] as one 1 is removed when shifting to right</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> apart from the returned array (of size <code class="docutils literal notranslate"><span class="pre">num.length</span></code>)</p></li>
 </ul>
 </dd>
 </dl>
