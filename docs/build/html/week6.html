@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python Toolkit" href="toolbox.html" />
+    <link rel="next" title="Week 7 [16-23 Mar 2022]" href="week7.html" />
     <link rel="prev" title="Week 5 [8-14 Nov 2021]" href="week5.html" /> 
 </head>
 
@@ -124,7 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="week3.html#question-35-pascal-s-triangle">Question 35: Pascal’s Triangle</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="week3.html#day-28-oct">Day ___ [28 Oct]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-00-28-oct">Day 00 [28 Oct]</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="week4.html">Week 4 [1-7 Nov 2021]</a><ul>
@@ -196,6 +196,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-46-cells-in-a-range-on-an-excel-sheet">Question 46: Cells in a Range on an Excel Sheet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-47-append-k-integers-with-minimal-sum">Question 47: Append K Integers With Minimal Sum</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-48-counting-bits">Question 48: Counting Bits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week7.html">Week 7 [16-23 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-30-16-mar">Day 30 [16 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-49-missing-number">Question 49: Missing Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-50-missing-number">Question 50: Missing Number</a></li>
 </ul>
 </li>
 </ul>
@@ -871,12 +879,14 @@ Return the list of cells (x, y) such that r1 &lt;= x &lt;= r2 and c1 &lt;= y &lt
 <h3>Question 48: Counting Bits<a class="headerlink" href="#question-48-counting-bits" title="Permalink to this headline"></a></h3>
 <p>Given an integer n, return an array ans of length n + 1 such that for each i (0 &lt;= i &lt;= n), ans[i] is the number of 1’s in the binary representation of i.</p>
 <p>I am not familiar with bit operations in Java, so I looked at the discuss earlier!</p>
-<p>Solution:</p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">countBits</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">2</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
-<span class="linenos">3</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
-<span class="linenos">4</span>    <span class="k">return</span> <span class="n">f</span><span class="p">;</span>
-<span class="linenos">5</span><span class="p">}</span>
+<p>My adapted solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">countBits</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">4</span>        <span class="n">res</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">5</span>    <span class="p">}</span>
+<span class="linenos">6</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">7</span><span class="p">}</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -898,7 +908,7 @@ Return the list of cells (x, y) such that r1 &lt;= x &lt;= r2 and c1 &lt;= y &lt
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="week5.html" class="btn btn-neutral float-left" title="Week 5 [8-14 Nov 2021]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="week7.html" class="btn btn-neutral float-right" title="Week 7 [16-23 Mar 2022]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -632,15 +632,17 @@ Given an integer n, return an array ans of length n + 1 such that for each i (0 
 
 I am not familiar with bit operations in Java, so I looked at the discuss earlier!
 
-Solution:
+My adapted solution:
 
 .. code-block:: Java
     :linenos:
 
-    public int[] countBits(int num) {
-        int[] f = new int[num + 1];
-        for (int i=1; i<=num; i++) f[i] = f[i >> 1] + (i & 1);
-        return f;
+    public int[] countBits(int n) {
+        int[] res = new int[n+1];
+        for (int i=1;i<n+1;i++) {
+            res[i] = res[i>>1] + (i&1);
+        }
+        return res;
     }
 
 Remarks and Complexity Analysis: 
@@ -649,3 +651,4 @@ Remarks and Complexity Analysis:
  * ``i & 1`` is equivalent to ``i%2`` -> if the number is odd, we add one to f[i >> 1] as one 1 is removed when shifting to right
  * **Time Complexity**: ``O(n)``
  * **Space Complexity**: ``O(1)`` apart from the returned array (of size ``num.length``)
+

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 7 [16-23 Mar 2022] &mdash; AlgoVenture 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Toolkit" href="toolbox.html" />
+    <link rel="prev" title="Week 6 [10-16 Jan 2022]" href="week6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> AlgoVenture
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Daily Algo Exercise</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-2-valid-parentheses">Question 2: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-3-search-insert-position">Question 3: Search Insert Position</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-2-14-oct">Day 2 [14 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-4-pow-x-n">Question 4: Pow(x,n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-5-maximum-subarray">Question 5: Maximum Subarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-6-is-subsequence">Question 6: Is Subsequence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-3-15-oct">Day 3 [15 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-7-path-sum">Question 7: Path Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-8-best-time-to-buy-and-sell-stock">Question 8: Best Time to Buy and Sell Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-9-reverse-linked-list">Question 9: Reverse Linked List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-4-16-oct">Day 4 [16 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-10-unique-paths">Question 10: Unique Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-11-move-zeroes">Question 11: Move Zeroes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-12-unique-email-addresses">Question 12: Unique Email Addresses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-5-17-oct">Day 5 [17 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-13-generate-parentheses">Question 13: Generate Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-14-zigzag-conversion">Question 14: ZigZag Conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-15-palindrome-number">Question 15: Palindrome Number</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2 [17-24 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-6-18-oct">Day 6 [18 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-16-group-anagrams">Question 16: Group Anagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-17-longest-substring-without-repeating-characters">Question 17: Longest Substring Without Repeating Characters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-18-remove-element">Question 18: Remove Element</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-7-19-oct">Day 7 [19 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-19-combination-sum">Question 19: Combination Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-20-next-greater-element-i">Question 20: Next Greater Element I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-21-length-of-last-word">Question 21: Length of Last Word</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-8-20-oct">Day 8 [20 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-22-add-two-numbers">Question 22: Add Two Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-23-intersection-of-two-arrays">Question 23: Intersection of Two Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-24-longest-common-prefix">Question 24: Longest Common Prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-9-21-oct">Day 9 [21 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-25-subsets">Question 25: Subsets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-10-22-oct">Day 10 [22 Oct]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-11-23-oct">Day 11 [23 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-26-implement-strstr">Question 26: Implement strStr()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-27-sqrt-x">Question 27: Sqrt(x)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-12-24-oct">Day 12 [24 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-28-permutations">Question 28: Permutations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-29-plus-one">Question 29: Plus One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-30-plus-one">Question 30: Plus One</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week3.html">Week 3 [25-31 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-13-25-oct">Day 13 [25 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-31-word-break">Question 31: Word Break</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-32-same-tree">Question 32: Same Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-14-26-oct">Day 14 [26 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-33-k-th-symbol-in-grammar">Question 33: K-th Symbol in Grammar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-15-27-oct">Day 15 [27 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-34-remove-duplicates-from-sorted-list">Question 34: Remove Duplicates from Sorted List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-35-pascal-s-triangle">Question 35: Pascal’s Triangle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-00-28-oct">Day 00 [28 Oct]</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week4.html">Week 4 [1-7 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-16-1-nov">Day 16 [1 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-31-merge-two-sorted-lists">Question 31: Merge Two Sorted Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-17-2-nov">Day 17 [2 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-32-merge-sorted-array">Question 32: Merge Sorted Array</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-18-3-nov">Day 18 [3 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-33-valid-palindrome">Question 33: Valid Palindrome</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-19-4-nov">Day 19 [4 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-34-top-k-frequent-elements">Question 34: Top K Frequent Elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-20-5-nov">Day 20 [5 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-35-remove-duplicates-from-sorted-list-ii">Question 35: Remove Duplicates from Sorted List II</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-21-6-nov">Day 21 [6 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-36-excel-sheet-column-title">Question 36: Excel Sheet Column Title</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-22-7-nov">Day 22 [7 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-37-isomorphic-strings">Question 37: Isomorphic Strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week5.html">Week 5 [8-14 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-23-8-nov">Day 23 [8 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-38-excel-sheet-column-number">Question 38: Excel Sheet Column Number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-24-9-nov">Day 24 [9 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-39-xxxx">Question 39: XXXX</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week6.html">Week 6 [10-16 Jan 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-24-13-jan">Day 24 [13 Jan]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-39-minsubarraylen">Question 39: MinSubArrayLen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-25-5-feb">Day 25 [5 Feb]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-40-two-sum">Question 40: Two Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-26-9-mar">Day 26 [9 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-41-longest-palindromic-substring">Question 41: Longest Palindromic Substring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-27-10-mar">Day 27 [10 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-42-container-with-most-water">Question 42: Container With Most Water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-28-14-mar">Day 28 [14 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-43-valid-parentheses">Question 43: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-44-climbing-stairs">Question 44: Climbing Stairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-45-valid-palindrome">Question 45: Valid Palindrome</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-29-15-mar">Day 29 [15 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-46-cells-in-a-range-on-an-excel-sheet">Question 46: Cells in a Range on an Excel Sheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-47-append-k-integers-with-minimal-sum">Question 47: Append K Integers With Minimal Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-48-counting-bits">Question 48: Counting Bits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 7 [16-23 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#day-30-16-mar">Day 30 [16 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-49-missing-number">Question 49: Missing Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-51-invert-binary-tree">Question 51: Invert Binary Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-52-reverse-bits">Question 52: Reverse Bits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolbox.html#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#dictionary">Dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#list">List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="toolbox.html#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#collections">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#counter">Counter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algosummary.html">Useful Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#backtracking">Backtracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algosummary.html#useful-reference-backtracking">Useful Reference (Backtracking)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datastructure.html">Data Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#abstract-data-type-adt">Abstract Data Type (ADT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#static-and-dynamic-arrays">Static and Dynamic Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#linked-list">Linked List</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AlgoVenture</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Week 7 [16-23 Mar 2022]</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="week-7-16-23-mar-2022">
+<h1>Week 7 [16-23 Mar 2022]<a class="headerlink" href="#week-7-16-23-mar-2022" title="Permalink to this headline"></a></h1>
+<section id="day-30-16-mar">
+<h2>Day 30 [16 Mar]<a class="headerlink" href="#day-30-16-mar" title="Permalink to this headline"></a></h2>
+<section id="question-49-missing-number">
+<h3>Question 49: Missing Number<a class="headerlink" href="#question-49-missing-number" title="Permalink to this headline"></a></h3>
+<p>Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">missingNumber</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">4</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">:</span><span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">5</span>        <span class="n">res</span><span class="o">-=</span><span class="n">num</span><span class="p">;</span>
+<span class="linenos">6</span>    <span class="p">}</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>It took me more time than it should have to solve this question in <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> (~10 min). I had a confusion where
+I wondered if there is a data structure that permits <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> deletion – there isn’t.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=nums.length</span></code>. Only one traversal across the <code class="docutils literal notranslate"><span class="pre">nums</span></code> array is required</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Interesting aproach using <strong>XOR</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="nb">int</span> <span class="n">missingNumber</span><span class="p">(</span><span class="nb">int</span><span class="p">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">int</span> <span class="n">xor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">xor</span> <span class="o">=</span> <span class="n">xor</span> <span class="o">^</span> <span class="n">i</span> <span class="o">^</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">xor</span> <span class="o">^</span> <span class="n">nums</span><span class="o">.</span><span class="n">length</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Bit manipulation isn’t my forte, but here goes my attempt at an explanation - xor is short for exclusive or (i.e. like regular or but 1 and 1 =&gt; 0).
+Hence, when we take <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a</span></code> and take the xor of itself - <code class="docutils literal notranslate"><span class="pre">a^a</span></code> – the result will be <code class="docutils literal notranslate"><span class="pre">0</span></code>. As xor of 0 and any integer <code class="docutils literal notranslate"><span class="pre">z</span></code> is <code class="docutils literal notranslate"><span class="pre">z</span></code>, we can say
+that 0 behaves like an additive identity in our scenario. Hence, if we xor all integers from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code> and all integer elements of the <code class="docutils literal notranslate"><span class="pre">nums</span></code> array,
+we should be left with the one number that hasn’t been ‘cancelled out’ which is our result!</p>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Clever solution!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=nums.length</span></code>. Only one traversal across the <code class="docutils literal notranslate"><span class="pre">nums</span></code> array is required</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-51-invert-binary-tree">
+<h3>Question 51: Invert Binary Tree<a class="headerlink" href="#question-51-invert-binary-tree" title="Permalink to this headline"></a></h3>
+<p>Given the root of a binary tree, invert the tree, and return its root.</p>
+<p>My recursive solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">invertTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="k">this</span><span class="p">.</span><span class="na">invertTree</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="linenos"> 4</span>        <span class="k">this</span><span class="p">.</span><span class="na">invertTree</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>        <span class="n">TreeNode</span> <span class="n">tempLeft</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">root</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="n">root</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">tempLeft</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span>
+<span class="linenos">10</span>    <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Wondering if I should have implimented a helper function that returns void to make the code more deliberate/articulate.</p>
+<p>My revised solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">invertTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">3</span>        <span class="n">TreeNode</span> <span class="n">tempLeft</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+<span class="linenos">4</span>        <span class="n">root</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">invertTree</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">);;</span>
+<span class="linenos">5</span>        <span class="n">root</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">invertTree</span><span class="p">(</span><span class="n">tempLeft</span><span class="p">);</span>
+<span class="linenos">6</span>    <span class="p">}</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Many recursive calls can cause overflow. Using a stack and while-loop can prevent this. Example provided below.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=number_of_nodes</span></code>. Every node is traversed once.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - ignoring the implicit recursive calls.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Robust solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">invertTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="p">}</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="kd">final</span> <span class="n">Deque</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 8</span>    <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="kd">final</span> <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">12</span>        <span class="kd">final</span> <span class="n">TreeNode</span> <span class="n">left</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+<span class="linenos">13</span>        <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+<span class="linenos">14</span>        <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>        <span class="k">if</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>            <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="linenos">18</span>        <span class="p">}</span>
+<span class="linenos">19</span>        <span class="k">if</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">20</span>            <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="linenos">21</span>        <span class="p">}</span>
+<span class="linenos">22</span>    <span class="p">}</span>
+<span class="linenos">23</span>    <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos">24</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-52-reverse-bits">
+<h3>Question 52: Reverse Bits<a class="headerlink" href="#question-52-reverse-bits" title="Permalink to this headline"></a></h3>
+<p>Reverse bits of a given 32 bits unsigned integer.</p>
+<p>My failed solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">reverseBits</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%32s&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">n</span><span class="p">)).</span><span class="na">replace</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">));</span>
+<span class="linenos">3</span>    <span class="n">sb</span><span class="p">.</span><span class="na">reverse</span><span class="p">();</span>
+<span class="linenos">4</span>    <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Fails because it tries to parse a number that would require 33 bits to store as a signed integer. It was foolish to
+approach this from a String manipulation approach as it requires lots of conversions.</p>
+</div>
+<p>Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">reverseBits</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="n">result</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="k">if</span> <span class="p">((</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">result</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span>
+<span class="linenos">10</span>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">result</span> <span class="pre">&lt;&lt;=</span> <span class="pre">1;</span></code> shifts the bit-representation of <code class="docutils literal notranslate"><span class="pre">result</span></code> to the left by one unit. Then, if the last digit of
+the <code class="docutils literal notranslate"><span class="pre">n</span></code> is a <code class="docutils literal notranslate"><span class="pre">1</span></code> we append it to our result by adding 1. Then, we shift the <code class="docutils literal notranslate"><span class="pre">n</span></code>’s binary representation to the right by
+one unit to consider the next digit.</p>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> – loop will repeat a fixed number of times (i.e. 32)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week6.html" class="btn btn-neutral float-left" title="Week 6 [10-16 Jan 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bin Choi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

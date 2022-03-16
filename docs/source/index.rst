@@ -28,6 +28,7 @@ edit: school work has been brutal. consistency is still key... hence,
    week4
    week5
    week6
+   week7
 
 .. toctree::
    :maxdepth: 1
