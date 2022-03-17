@@ -207,6 +207,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-52-reverse-bits">Question 52: Reverse Bits</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-31-17-mar">Day 31 [17 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-53-number-of-1-bits">Question 53: Number of 1 Bits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-54-subtree-of-another-tree">Question 54: Subtree of Another Tree</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -422,6 +427,172 @@ one unit to consider the next digit.</p>
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-31-17-mar">
+<h2>Day 31 [17 Mar]<a class="headerlink" href="#day-31-17-mar" title="Permalink to this headline"></a></h2>
+<section id="question-53-number-of-1-bits">
+<h3>Question 53: Number of 1 Bits<a class="headerlink" href="#question-53-number-of-1-bits" title="Permalink to this headline"></a></h3>
+<p>Write a function that takes an unsigned integer and returns the number of ‘1’ bits it has (also known as the Hamming weight).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that in some languages, such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer’s internal binary representation is the same, whether it is signed or unsigned.</p>
+<p>In Java, the compiler represents the signed integers using 2’s complement notation. Therefore, in Example 3, the input represents the signed integer. -3.</p>
+</div>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">hammingWeight</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">4</span>        <span class="n">res</span><span class="o">+=</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">5</span>        <span class="n">n</span><span class="o">&gt;&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">6</span>    <span class="p">}</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Quite similar to logic used in <a class="reference internal" href="#question-52-reverse-bits"><span class="std std-ref">Question 52: Reverse Bits</span></a>.</p></li>
+<li><p>Wasted time struggling because I didn’t know the difference between <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> (Unsigned Right Shift Operator) and
+<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> (Signed Right Shift Operator). We should be using the unsigned shift operator as specified in the question.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> there is a defined upper limit for the number of iterations as Java’s int is stored as 32-bit (i.e. 32 iterations).</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-54-subtree-of-another-tree">
+<h3>Question 54: Subtree of Another Tree<a class="headerlink" href="#question-54-subtree-of-another-tree" title="Permalink to this headline"></a></h3>
+<p>Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.</p>
+<p>A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node’s descendants. The tree tree could also be considered as a subtree of itself.</p>
+<p>My faulty solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">private</span> <span class="n">TreeNode</span> <span class="nf">findSubTreeRoot</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span> <span class="n">strVal</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">==</span><span class="n">strVal</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="n">TreeNode</span> <span class="n">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findSubTreeRoot</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">strVal</span><span class="p">);</span>
+<span class="linenos"> 8</span>        <span class="n">TreeNode</span> <span class="n">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findSubTreeRoot</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">strVal</span><span class="p">);</span>
+<span class="linenos"> 9</span>        <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+<span class="linenos">10</span>            <span class="k">if</span> <span class="p">(</span><span class="n">right</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos">12</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">13</span>                <span class="k">return</span> <span class="n">right</span><span class="p">;</span>
+<span class="linenos">14</span>            <span class="p">}</span>
+<span class="linenos">15</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">16</span>            <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+<span class="linenos">17</span>        <span class="p">}</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span><span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root1</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">root2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">22</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root1</span><span class="o">==</span><span class="kc">null</span> <span class="o">|</span> <span class="n">root2</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">23</span>        <span class="k">return</span> <span class="p">(</span><span class="n">root1</span><span class="o">==</span><span class="kc">null</span> <span class="o">&amp;</span> <span class="n">root2</span><span class="o">==</span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos">24</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">val</span><span class="o">!=</span><span class="n">root2</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">25</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">26</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">27</span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">isSameTree</span><span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">root2</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">isSameTree</span><span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">root2</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="linenos">28</span>    <span class="p">}</span>
+<span class="linenos">29</span><span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubtree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">subRoot</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">32</span>    <span class="n">TreeNode</span> <span class="n">subRootFound</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findSubTreeRoot</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">subRoot</span><span class="p">.</span><span class="na">val</span><span class="p">);</span>
+<span class="linenos">33</span>    <span class="k">if</span> <span class="p">(</span><span class="n">subRootFound</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">34</span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Not FOUND&quot;</span><span class="p">);</span>
+<span class="linenos">35</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">36</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">37</span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">isSameTree</span><span class="p">(</span><span class="n">subRootFound</span><span class="p">,</span> <span class="n">subRoot</span><span class="p">);</span>
+<span class="linenos">38</span>    <span class="p">}</span>
+<span class="linenos">39</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>161 / 182 test cases passed =&gt; didn’t handle the scenario of duplicate node values.</p>
+<p>Second Attempt:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">private</span> <span class="n">TreeNode</span><span class="o">[]</span> <span class="nf">findSubTreeRoot</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span> <span class="n">strVal</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="k">return</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">TreeNode</span><span class="o">[]</span> <span class="n">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findSubTreeRoot</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">strVal</span><span class="p">);</span>
+<span class="linenos"> 6</span>        <span class="n">TreeNode</span><span class="o">[]</span> <span class="n">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findSubTreeRoot</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">strVal</span><span class="p">);</span>
+<span class="linenos"> 7</span>        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">==</span><span class="n">strVal</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="k">return</span> <span class="n">ArrayUtils</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">ArrayUtils</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="p">),</span><span class="n">root</span><span class="p">);</span>
+<span class="linenos"> 9</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">10</span>            <span class="k">return</span> <span class="n">ArrayUtils</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="p">);</span>
+<span class="linenos">11</span>        <span class="p">}</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span><span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root1</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">root2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root1</span><span class="o">==</span><span class="kc">null</span> <span class="o">|</span> <span class="n">root2</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>        <span class="k">return</span> <span class="p">(</span><span class="n">root1</span><span class="o">==</span><span class="kc">null</span> <span class="o">&amp;</span> <span class="n">root2</span><span class="o">==</span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos">18</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">val</span><span class="o">!=</span><span class="n">root2</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">19</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">20</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">21</span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">isSameTree</span><span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">root2</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">isSameTree</span><span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">root2</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="linenos">22</span>    <span class="p">}</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubtree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">subRoot</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">26</span>    <span class="n">TreeNode</span><span class="o">[]</span> <span class="n">subRootFound</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findSubTreeRoot</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">subRoot</span><span class="p">.</span><span class="na">val</span><span class="p">);</span>
+<span class="linenos">27</span>    <span class="k">if</span> <span class="p">(</span><span class="n">subRootFound</span><span class="p">.</span><span class="na">length</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">29</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">30</span>        <span class="k">for</span> <span class="p">(</span><span class="n">TreeNode</span> <span class="n">candNode</span><span class="p">:</span> <span class="n">subRootFound</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">31</span>            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">isSameTree</span><span class="p">(</span><span class="n">candNode</span><span class="p">,</span> <span class="n">subRoot</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">32</span>                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">33</span>            <span class="p">}</span>
+<span class="linenos">34</span>        <span class="p">}</span>
+<span class="linenos">35</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">36</span>    <span class="p">}</span>
+<span class="linenos">37</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>LeetCode doesn’t recognize ArrayUtils… why?</p>
+<p>Solution</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubtree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">s</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="k">if</span> <span class="p">(</span><span class="n">isSame</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="k">return</span> <span class="n">isSubtree</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">||</span> <span class="n">isSubtree</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="linenos"> 5</span><span class="p">}</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isSame</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">s</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">t</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">t</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">t</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">return</span> <span class="n">isSame</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isSame</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1">// Another solution</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubtree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">subRoot</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">19</span>    <span class="k">if</span> <span class="p">(</span><span class="n">isEqualTree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">subRoot</span><span class="p">))</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">20</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">21</span>    <span class="k">return</span> <span class="n">isSubtree</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">subRoot</span><span class="p">)</span> <span class="o">||</span> <span class="n">isSubtree</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">subRoot</span><span class="p">);</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isEqualTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root1</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">root2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">25</span>    <span class="k">if</span> <span class="p">(</span><span class="n">root1</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">root2</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">root2</span> <span class="o">==</span> <span class="n">root1</span><span class="p">;</span>
+<span class="linenos">26</span>    <span class="k">return</span> <span class="n">root1</span><span class="p">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">root2</span><span class="p">.</span><span class="na">val</span> <span class="o">&amp;&amp;</span> <span class="n">isEqualTree</span><span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">root2</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isEqualTree</span><span class="p">(</span><span class="n">root1</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">root2</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="linenos">27</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>It was not a difficult question but I failed. And I believe the cause of the failure is the fact that I did not
+have a clear design in my head about the implementation before I went to coding it. Moreover, I did not consider
+the potential edge cases and various scenarios leading to a futile attempt to refactor my code after the ship has sailed.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n*m)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=num_of_nodes_of_main_tree</span></code> and <code class="docutils literal notranslate"><span class="pre">m=num_of_nodes_of_sub_tree</span></code> as each node is traversed once.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can never plan enough!</p>
+</div>
 </section>
 </section>
 </section>

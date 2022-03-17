@@ -169,3 +169,182 @@ Solution:
 Remarks and Complexity Analysis: 
  * **Time Complexity**: ``O(1)`` -- loop will repeat a fixed number of times (i.e. 32)
  * **Space Complexity**: ``O(1)``
+
+
+Day 31 [17 Mar]
+================
+
+Question 53: Number of 1 Bits
+-------------------------------------
+Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
+
+.. note::
+
+    Note that in some languages, such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.
+    
+    In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 3, the input represents the signed integer. -3.
+
+My solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public int hammingWeight(int n) {
+        int res = 0;
+        while (n!=0) {
+            res+=(n&1);
+            n>>>=1;
+        }
+        return res;
+    }
+
+
+Remarks and Complexity Analysis: 
+ * Quite similar to logic used in :ref:`Question 52: Reverse Bits`.
+ * Wasted time struggling because I didn't know the difference between ``>>>`` (Unsigned Right Shift Operator) and 
+   ``>>`` (Signed Right Shift Operator). We should be using the unsigned shift operator as specified in the question.
+ * **Time Complexity**: ``O(1)`` there is a defined upper limit for the number of iterations as Java's int is stored as 32-bit (i.e. 32 iterations).
+ * **Space Complexity**: ``O(1)``
+
+Question 54: Subtree of Another Tree
+-------------------------------------------
+Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+
+A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
+
+
+My faulty solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    private TreeNode findSubTreeRoot(TreeNode root, int strVal) {
+        if (root==null) {
+            return null;
+        } else if (root.val==strVal) {
+            return root;
+        } else {
+            TreeNode left = this.findSubTreeRoot(root.left, strVal);
+            TreeNode right = this.findSubTreeRoot(root.right, strVal);
+            if (left==null)  {
+                if (right==null) {
+                    return null;
+                } else {
+                    return right;
+                }
+            } else {
+                return left;
+            }
+        }
+    }
+    
+    private boolean isSameTree(TreeNode root1, TreeNode root2) {
+        if (root1==null | root2==null) {
+            return (root1==null & root2==null);
+        } else if (root1.val!=root2.val) {
+            return false;
+        } else {
+            return this.isSameTree(root1.left, root2.left) & this.isSameTree(root1.right, root2.right);
+        }
+    }
+    
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        TreeNode subRootFound = this.findSubTreeRoot(root,subRoot.val);
+        if (subRootFound==null) {
+            System.out.println("Not FOUND");
+            return false;
+        } else {
+            return this.isSameTree(subRootFound, subRoot);
+        }        
+    }
+
+161 / 182 test cases passed => didn't handle the scenario of duplicate node values. 
+
+Second Attempt:
+
+.. code-block:: Java
+    :linenos:
+
+    private TreeNode[] findSubTreeRoot(TreeNode root, int strVal) {
+        if (root==null) {
+            return new TreeNode[0];
+        } else {
+            TreeNode[] left = this.findSubTreeRoot(root.left, strVal);
+            TreeNode[] right = this.findSubTreeRoot(root.right, strVal);
+            if (root.val==strVal) {
+                return ArrayUtils.add(ArrayUtils.addAll(left,right),root);
+            } else {
+                return ArrayUtils.addAll(left,right);
+            }
+        }
+    }
+    
+    private boolean isSameTree(TreeNode root1, TreeNode root2) {
+        if (root1==null | root2==null) {
+            return (root1==null & root2==null);
+        } else if (root1.val!=root2.val) {
+            return false;
+        } else {
+            return this.isSameTree(root1.left, root2.left) & this.isSameTree(root1.right, root2.right);
+        }
+    }
+    
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        TreeNode[] subRootFound = this.findSubTreeRoot(root,subRoot.val);
+        if (subRootFound.length==0) {
+            return false;
+        } else {
+            for (TreeNode candNode: subRootFound) {
+                if (this.isSameTree(candNode, subRoot)) {
+                    return true;
+                }
+            }
+            return false;
+        }        
+    }
+
+LeetCode doesn't recognize ArrayUtils... why?
+
+Solution 
+
+.. code-block:: Java
+    :linenos:
+
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (s == null) return false;
+        if (isSame(s, t)) return true;
+        return isSubtree(s.left, t) || isSubtree(s.right, t);
+    }
+    
+    private boolean isSame(TreeNode s, TreeNode t) {
+        if (s == null && t == null) return true;
+        if (s == null || t == null) return false;
+        
+        if (s.val != t.val) return false;
+        
+        return isSame(s.left, t.left) && isSame(s.right, t.right);
+    }
+
+    // Another solution
+
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if (isEqualTree(root, subRoot)) return true;
+        if (root == null) return false;
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+
+    private boolean isEqualTree(TreeNode root1, TreeNode root2) {
+        if (root1 == null || root2 == null) return root2 == root1;
+        return root1.val == root2.val && isEqualTree(root1.left, root2.left) && isEqualTree(root1.right, root2.right);
+    }
+
+Remarks and Complexity Analysis: 
+ * It was not a difficult question but I failed. And I believe the cause of the failure is the fact that I did not 
+   have a clear design in my head about the implementation before I went to coding it. Moreover, I did not consider 
+   the potential edge cases and various scenarios leading to a futile attempt to refactor my code after the ship has sailed. 
+ * **Time Complexity**: ``O(n*m)`` where ``n=num_of_nodes_of_main_tree`` and ``m=num_of_nodes_of_sub_tree`` as each node is traversed once.
+ * **Space Complexity**: ``O(1)``
+
+.. note:: 
+
+    You can never plan enough!
