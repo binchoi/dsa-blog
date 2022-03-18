@@ -348,3 +348,163 @@ Remarks and Complexity Analysis:
 .. note:: 
 
     You can never plan enough!
+
+Day 32 [18 Mar]
+================
+
+Question 55: 3Sum
+-------------------------------------
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+Notice that the solution set must not contain duplicate triplets.
+
+My solution after misunderstanding the question: 
+
+.. code-block:: Java
+    :linenos:
+
+    public void newTwoSum(Set<Integer> nums, int target, List<List<Integer>> res) {
+        // List<List<Integer>> res = new ArrayList<>();
+        Set<Integer> memo = new HashSet<>();
+        for (int n:nums) {
+            if (memo.contains(n)) {
+                res.add(new ArrayList<Integer>(Arrays.asList(-target,n,target-n)));
+            } else {
+                memo.add(target-n);
+            }
+        }
+    }
+    
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        Set<Integer> negNums = new HashSet<>();
+        Set<Integer> posNums = new HashSet<>();
+        boolean zeroExists = false;
+        
+        for (int n:nums) {
+            if (n==0) {
+                zeroExists = true;
+            } else if (n>0) {
+                posNums.add(n);
+            } else {
+                negNums.add(n);
+            }
+        }
+        
+        // zero case
+        if (zeroExists) {
+            for (int posN: posNums) {
+                if (negNums.contains(-posN)) {
+                    // List<Integer> tmp = new ArrayList<>(Arrays.asList(0,posN,-posN));
+                    res.add(new ArrayList<Integer>(Arrays.asList(0,posN,-posN)));
+                }
+            }
+        }
+        // 1 pos, 2 neg case
+        for (int posN:posNums) {
+            this.newTwoSum(negNums,-posN,res);
+        }
+        // 1 neg, 2 pos case
+        for (int negN:negNums) {
+            this.newTwoSum(posNums,-negN,res);
+        }
+        return res;
+    }
+
+I did not read the test cases carefully and mistakenly thought that it was a requirement that the triplets are 
+consisted of unique integers. 
+
+.. note:: 
+
+    Read the test cases and instructions carefully!
+
+My solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public void newTwoSum(List<Integer> nums, int target, List<List<Integer>> res) {
+        Set<Integer> memo = new HashSet<>();
+        Set<Integer> done = new HashSet<>();
+        for (int n:nums) {
+            if (done.contains(n)) {
+                continue;
+            } else if (memo.contains(n)) {
+                res.add(new ArrayList<Integer>(Arrays.asList(-target,n,target-n)));
+                done.add(n);
+            } else {
+                memo.add(target-n);
+            }
+        }
+    }
+    
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        List<Integer> negNums = new ArrayList<>();
+        List<Integer> posNums = new ArrayList<>();
+        boolean zeroExists = false;
+        
+        for (int n:nums) {
+            if (n>=0) {
+                posNums.add(n);
+            } else {
+                negNums.add(n);
+            }
+        }
+        
+        Set<Integer> done = new HashSet<>();
+        // 1 pos, 2 neg case
+        for (int posN:posNums) {
+            if (!done.contains(posN) && posN!=0) {
+                this.newTwoSum(negNums,-posN,res);
+                done.add(posN);
+            }
+        }
+        done.clear();
+        // 1 neg, 2 pos case
+        for (int negN:negNums) {
+            if (!done.contains(negN)) {
+                this.newTwoSum(posNums,-negN,res);
+                done.add(negN);
+            }
+        }
+        
+        if (Collections.frequency(posNums, Integer.valueOf(0))>=3) {
+            res.add(new ArrayList<Integer>(Arrays.asList(0,0,0)));
+        }
+        
+        return res;
+    }
+
+Remarks and Complexity Analysis: 
+ * The solution is suboptimal as it handles edge cases and some scenarios separately rather than seamlessly under one logical framework.
+ * When I decided to implement the ``O(n^2)`` solution (or anything more than ``O(nlogn)``), I should have immediately thought about sorting and making the algorithm more efficient after sorting.
+ * **Time Complexity**: ``O(n^2)`` where ``n=nums.length``
+ * **Space Complexity**: ``O(n)``
+
+Cleaner solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public List<List<Integer>> threeSum(int[] num) {
+        Arrays.sort(num);
+        List<List<Integer>> res = new LinkedList<>(); 
+        for (int i = 0; i < num.length-2; i++) {
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+                int lo = i+1, hi = num.length-1, sum = 0 - num[i];
+                while (lo < hi) {
+                    if (num[lo] + num[hi] == sum) {
+                        res.add(Arrays.asList(num[i], num[lo], num[hi]));
+                        while (lo < hi && num[lo] == num[lo+1]) lo++;
+                        while (lo < hi && num[hi] == num[hi-1]) hi--;
+                        lo++; hi--;
+                    } else if (num[lo] + num[hi] < sum) lo++;
+                    else hi--;
+            }
+            }
+        }
+        return res;
+    }

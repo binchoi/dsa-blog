@@ -90,6 +90,19 @@ Question 40: Two Sum
         return new int[] {0,0};
     }
 
+    // revised
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> remember = new HashMap<>();
+        for (int i=0;i<nums.length;i++) {
+            if (remember.containsKey(nums[i])) {
+                return new int[] {i,remember.get(nums[i])};
+            } else {
+                remember.put(target-nums[i], i);
+            }
+        }
+        return new int[] {-1,-1};
+    }
+
 
 Remarks and Complexity Analysis: 
  * Didn't see the ``O(n)`` solution at first!
