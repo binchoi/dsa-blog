@@ -508,3 +508,100 @@ Cleaner solution:
         }
         return res;
     }
+
+Day 33 [19 Mar]
+================
+
+Question 56: Remove Nth Node From End of List
+----------------------------------------------
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+My Two-traversal solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        // determine length of list
+        int length = 1;
+        ListNode curr = head;
+        while (curr.next!=null) {
+            curr = curr.next;
+            length++;
+        }
+        if (length==1) {
+            return null;
+        } else if (length==n) {
+            return head.next;
+        } else {
+            curr = head;
+            for (int i=0;i<length-n-1;i++) {
+                curr=curr.next;
+            }
+            curr.next = curr.next.next;
+            return head;
+        }
+    }
+
+My One Traversal solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        int length = 1;
+        ListNode curr = head;
+        Map<Integer,ListNode> idxToNode = new HashMap<>();
+        while (curr.next!=null) {
+            idxToNode.put(length-1,curr);
+            curr = curr.next;
+            length++;
+        }
+        if (length==1) {
+            return null;
+        } else if (length==n) {
+            return head.next;
+        } else {
+            ListNode nodeBefore = idxToNode.get(length-n-1);
+            nodeBefore.next = nodeBefore.next.next;
+            return head;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * The question was quite simple compared to the difficulty indicated
+ * Thinking about the time complexity of the solution I am considering gave me more confidence that I am doing the right thing (i.e. most efficient possible)
+ * **Time Complexity**: both. ``O(n)`` where ``n=list.size``
+ * **Space Complexity**: two-traversal. ``O(1)`` one-traversal. ``O(n)``
+
+Really creative solution that reduces space complexity to ``O(1)``: 
+
+.. code-block:: Java
+    :linenos:
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+    
+        ListNode start = new ListNode(0);
+        ListNode slow = start, fast = start;
+        start.next = head;
+        
+        //Move fast in front so that the gap between slow and fast becomes n
+        for(int i=1; i<=n+1; i++)   {
+            fast = fast.next;
+        }
+        //Move fast to the end, maintaining the gap
+        while(fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        //Skip the desired node
+        slow.next = slow.next.next;
+        return start.next;
+    }
+
+The utility of creating a dummy head is that it can return an empty list without having to handle that case separately! It also helps 
+manage indices :-)
+
+.. note:: 
+
+    It seems that I am not utilizing even 20% of the full power that two-pointers support.

@@ -216,6 +216,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-55-3sum">Question 55: 3Sum</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-33-19-mar">Day 33 [19 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-56-remove-nth-node-from-end-of-list">Question 56: Remove Nth Node From End of List</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -748,6 +752,96 @@ consisted of unique integers.</p>
 <span class="linenos">18</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
 <span class="linenos">19</span><span class="p">}</span>
 </pre></div>
+</div>
+</section>
+</section>
+<section id="day-33-19-mar">
+<h2>Day 33 [19 Mar]<a class="headerlink" href="#day-33-19-mar" title="Permalink to this headline"></a></h2>
+<section id="question-56-remove-nth-node-from-end-of-list">
+<h3>Question 56: Remove Nth Node From End of List<a class="headerlink" href="#question-56-remove-nth-node-from-end-of-list" title="Permalink to this headline"></a></h3>
+<p>Given the head of a linked list, remove the nth node from the end of the list and return its head.</p>
+<p>My Two-traversal solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">removeNthFromEnd</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="c1">// determine length of list</span>
+<span class="linenos"> 3</span>    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="n">ListNode</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="k">while</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">length</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span>    <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos">11</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="o">==</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>        <span class="k">return</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">13</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">14</span>        <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">length</span><span class="o">-</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>            <span class="n">curr</span><span class="o">=</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">17</span>        <span class="p">}</span>
+<span class="linenos">18</span>        <span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">19</span>        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos">20</span>    <span class="p">}</span>
+<span class="linenos">21</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>My One Traversal solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">removeNthFromEnd</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="n">ListNode</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">ListNode</span><span class="o">&gt;</span> <span class="n">idxToNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 5</span>    <span class="k">while</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="n">idxToNode</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">curr</span><span class="p">);</span>
+<span class="linenos"> 7</span>        <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="n">length</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span>
+<span class="linenos">10</span>    <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="o">==</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">14</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">15</span>        <span class="n">ListNode</span> <span class="n">nodeBefore</span> <span class="o">=</span> <span class="n">idxToNode</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">16</span>        <span class="n">nodeBefore</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">nodeBefore</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">17</span>        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>The question was quite simple compared to the difficulty indicated</p></li>
+<li><p>Thinking about the time complexity of the solution I am considering gave me more confidence that I am doing the right thing (i.e. most efficient possible)</p></li>
+<li><p><strong>Time Complexity</strong>: both. <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=list.size</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: two-traversal. <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> one-traversal. <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Really creative solution that reduces space complexity to <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">removeNthFromEnd</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="n">ListNode</span> <span class="n">start</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos"> 4</span>    <span class="n">ListNode</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">start</span><span class="p">,</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="n">start</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="c1">//Move fast in front so that the gap between slow and fast becomes n</span>
+<span class="linenos"> 8</span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>   <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span>    <span class="c1">//Move fast to the end, maintaining the gap</span>
+<span class="linenos">12</span>    <span class="k">while</span><span class="p">(</span><span class="n">fast</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">14</span>        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">15</span>    <span class="p">}</span>
+<span class="linenos">16</span>    <span class="c1">//Skip the desired node</span>
+<span class="linenos">17</span>    <span class="n">slow</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">slow</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">18</span>    <span class="k">return</span> <span class="n">start</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">19</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The utility of creating a dummy head is that it can return an empty list without having to handle that case separately! It also helps
+manage indices :-)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It seems that I am not utilizing even 20% of the full power that two-pointers support.</p>
 </div>
 </section>
 </section>
