@@ -14,7 +14,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'AlgoVenture'
@@ -60,7 +59,7 @@ html_theme_options = {
 #     'prev_next_buttons_location': 'bottom',
 #     'style_external_links': False,
 #     'vcs_pageview_mode': '',
-    # 'style_nav_header_background': 'purple',
+    # 'style_nav_header_background': 'pink',
     # Toc options
     'collapse_navigation': False,
     # 'sticky_navigation': True,

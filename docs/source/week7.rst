@@ -511,7 +511,6 @@ Cleaner solution:
 
 Day 33 [19 Mar]
 ================
-
 Question 56: Remove Nth Node From End of List
 ----------------------------------------------
 Given the head of a linked list, remove the nth node from the end of the list and return its head.
@@ -605,3 +604,240 @@ manage indices :-)
 .. note:: 
 
     It seems that I am not utilizing even 20% of the full power that two-pointers support.
+
+Day 34 [21 Mar]
+================
+Question 57: Search in Rotated Sorted Array
+----------------------------------------------
+There is an integer array nums sorted in ascending order (with distinct values).
+
+Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+
+Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+My solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public int search(int[] nums, int target) {
+        int nLen = nums.length;
+        int lo = 0;
+        int hi = nLen-1;
+        
+        // locate pivot/minimum - O(log n)
+        while (lo<hi) {
+            int mid = (hi+lo)/2;
+            if (nums[mid]<nums[hi]) {
+                hi = mid;
+            } else { 
+                // nums[mid] is greater than at least one thing so...
+                lo = mid+1; 
+            }
+        }
+        // binary search for target - adjusting for circular array
+        int pivot = lo;
+        lo = 0;
+        hi = nLen-1;
+        while (lo<=hi) {
+            int mid = (hi+lo)/2;
+            int adjMid = (mid+pivot)%nLen;
+            if (nums[adjMid]==target) {
+                return adjMid;
+            } else if (nums[adjMid]<target) {
+                lo = mid+1;
+            } else {
+                hi = mid-1;
+            }   
+        }
+        return -1;
+    }
+
+Remarks and Complexity Analysis: 
+ * This question took me way too much time. 
+ * I was trying to implement a ``O(log n)`` solution that would use very close to exactly ``log n`` operations, rather than 
+   the ~2 log n operation solution (seen above). It was complicated and difficult to implement. Understanding the growth of functions, 
+   if I can prove that a method has a certain big-O time, I should be not linger and struggle in attempt to reduce the constant factor.
+ * **Time Complexity**: ``O(log n)`` where ``n=nums.length``
+ * **Space Complexity**: ``O(1)`` 
+
+.. code-block:: Java
+    
+    // attempt stopped in progress
+    public int search(int[] nums, int target) {
+            int numsLen = nums.length;
+            int[] lo = new int[] {0, nums[0]}; // idx & value
+            int[] hi = new int[] {numsLen/2, nums[numsLen/2]};
+            
+            if (lo[1]==target) {
+                return lo[0];
+            } else if (hi[1]==target) {
+                return hi[0];
+            }
+            
+            int[] cand = new int[] {-1, target-1};
+            
+            while (cand[1]!=target) {
+                if (lo[1]<hi[1]) { // ascending
+                    if (lo[1]<target && hi[1]>target) {
+                        cand[0] = 
+                    }
+                }
+            }
+    
+        }
+    
+    // similar idea but completed
+    public int search(int[] A, int target) {
+        int lo = 0;
+        int hi = A.length - 1;
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            if (A[mid] == target) return mid;
+
+            if (A[lo] <= A[mid]) {
+                if (target >= A[lo] && target < A[mid]) {
+                    hi = mid - 1;
+                } else {
+                    lo = mid + 1;
+                }
+            } else {
+                if (target > A[mid] && target <= A[hi]) {
+                    lo = mid + 1;
+                } else {
+                    hi = mid - 1;
+                }
+            }
+        }
+        return A[lo] == target ? lo : -1;
+    }
+
+Question 58: Spiral Matrix
+----------------------------------------------
+Given an m x n matrix, return all elements of the matrix in spiral order.
+
+Solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public List<Integer> spiralOrder(int[][] matrix) {
+        
+        List<Integer> res = new ArrayList<Integer>();
+        
+        if (matrix.length == 0) {
+            return res;
+        }
+        
+        int rowBegin = 0;
+        int rowEnd = matrix.length-1;
+        int colBegin = 0;
+        int colEnd = matrix[0].length - 1;
+        
+        while (rowBegin <= rowEnd && colBegin <= colEnd) {
+            // Traverse Right
+            for (int j = colBegin; j <= colEnd; j ++) {
+                res.add(matrix[rowBegin][j]);
+            }
+            rowBegin++;
+            
+            // Traverse Down
+            for (int j = rowBegin; j <= rowEnd; j ++) {
+                res.add(matrix[j][colEnd]);
+            }
+            colEnd--;
+            
+            if (rowBegin <= rowEnd) {
+                // Traverse Left
+                for (int j = colEnd; j >= colBegin; j --) {
+                    res.add(matrix[rowEnd][j]);
+                }
+            }
+            rowEnd--;
+            
+            if (colBegin <= colEnd) {
+                // Traver Up
+                for (int j = rowEnd; j >= rowBegin; j --) {
+                    res.add(matrix[j][colBegin]);
+                }
+            }
+            colBegin ++;
+        }
+        return res;
+    }
+
+    // faulty attempt 
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new ArrayList<Integer>();
+        if (matrix==null || matrix.length==0) {
+            return res;
+        }
+        
+        int x_i, x_f, y_i, y_f;
+        x_i = y_i = 0;
+        x_f = matrix[0].length-1;
+        y_f = matrix.length-1;
+        while (x_i<=x_f || y_i<=y_f) {
+            // top left -> top right
+            for (int i = x_i; i <= x_f; i++) {
+                res.add(matrix[y_i][i]);
+                // System.out.println("here1");
+            }
+            y_i++;
+            // right top -> right bottom
+            for (int i = y_i; i <= y_f; i++) {
+                res.add(matrix[i][x_f]);
+                // System.out.println("here22");
+            }
+            x_f--;
+            // bottom right -> bottom left
+            if (y_i<=y_f) {
+                for (int i = x_f; i >= x_i ; i--) {
+                    res.add(matrix[y_f][i]);
+                    // System.out.println("here3");
+                }
+            }
+            y_f--;
+            // left bottom -> left top
+            if (x_i<=x_f) {
+                for (int i = y_f; i >= y_i; i--) {
+                    res.add(matrix[i][x_i]);
+                    // System.out.println("here4");
+                }
+            }
+            x_i++;
+        }
+        return res;
+    }
+
+    // Another solution
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new LinkedList<>(); 
+        if (matrix == null || matrix.length == 0) return res;
+        int n = matrix.length, m = matrix[0].length;
+        int up = 0,  down = n - 1;
+        int left = 0, right = m - 1;
+        while (res.size() < n * m) {
+            for (int j = left; j <= right && res.size() < n * m; j++)
+                res.add(matrix[up][j]);
+            
+            for (int i = up + 1; i <= down - 1 && res.size() < n * m; i++)
+                res.add(matrix[i][right]);
+                     
+            for (int j = right; j >= left && res.size() < n * m; j--)
+                res.add(matrix[down][j]);
+                        
+            for (int i = down - 1; i >= up + 1 && res.size() < n * m; i--) 
+                res.add(matrix[i][left]);
+                
+            left++; right--; up++; down--; 
+        }
+        return res;
+    }
+
+Remarks and Complexity Analysis: 
+ * Had a difficult time with this...
+ * **Time Complexity**: ``O(n)`` where ``n=total_elements``
+ * **Space Complexity**: ``O(1)`` 
