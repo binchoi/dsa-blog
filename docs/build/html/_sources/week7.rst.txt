@@ -50,7 +50,7 @@ Remarks and Complexity Analysis:
  * **Space Complexity**: ``O(1)``.
 
 
-Question 51: Invert Binary Tree
+Question 50: Invert Binary Tree
 -------------------------------------
 Given the root of a binary tree, invert the tree, and return its root.
 
@@ -123,7 +123,7 @@ Robust solution:
         return root;
     }
 
-Question 52: Reverse Bits
+Question 51: Reverse Bits
 -------------------------------------
 Reverse bits of a given 32 bits unsigned integer.
 
@@ -174,7 +174,7 @@ Remarks and Complexity Analysis:
 Day 31 [17 Mar]
 ================
 
-Question 53: Number of 1 Bits
+Question 52: Number of 1 Bits
 -------------------------------------
 Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
 
@@ -200,13 +200,13 @@ My solution:
 
 
 Remarks and Complexity Analysis: 
- * Quite similar to logic used in :ref:`Question 52: Reverse Bits`.
+ * Quite similar to logic used in :ref:`Question 51: Reverse Bits`.
  * Wasted time struggling because I didn't know the difference between ``>>>`` (Unsigned Right Shift Operator) and 
    ``>>`` (Signed Right Shift Operator). We should be using the unsigned shift operator as specified in the question.
  * **Time Complexity**: ``O(1)`` there is a defined upper limit for the number of iterations as Java's int is stored as 32-bit (i.e. 32 iterations).
  * **Space Complexity**: ``O(1)``
 
-Question 54: Subtree of Another Tree
+Question 53: Subtree of Another Tree
 -------------------------------------------
 Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
 
@@ -352,7 +352,7 @@ Remarks and Complexity Analysis:
 Day 32 [18 Mar]
 ================
 
-Question 55: 3Sum
+Question 54: 3Sum
 -------------------------------------
 Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 
@@ -511,7 +511,7 @@ Cleaner solution:
 
 Day 33 [19 Mar]
 ================
-Question 56: Remove Nth Node From End of List
+Question 55: Remove Nth Node From End of List
 ----------------------------------------------
 Given the head of a linked list, remove the nth node from the end of the list and return its head.
 
@@ -607,7 +607,7 @@ manage indices :-)
 
 Day 34 [21 Mar]
 ================
-Question 57: Search in Rotated Sorted Array
+Question 56: Search in Rotated Sorted Array
 ----------------------------------------------
 There is an integer array nums sorted in ascending order (with distinct values).
 
@@ -714,7 +714,7 @@ Remarks and Complexity Analysis:
         return A[lo] == target ? lo : -1;
     }
 
-Question 58: Spiral Matrix
+Question 57: Spiral Matrix
 ----------------------------------------------
 Given an m x n matrix, return all elements of the matrix in spiral order.
 
@@ -841,3 +841,112 @@ Remarks and Complexity Analysis:
  * Had a difficult time with this...
  * **Time Complexity**: ``O(n)`` where ``n=total_elements``
  * **Space Complexity**: ``O(1)`` 
+
+Day 35 [22 Mar]
+================
+Question 58: Jump Game
+----------------------------------------------
+You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+Return true if you can reach the last index, or false otherwise.
+
+My Solution:
+
+.. code-block:: Java
+    :linenos:
+
+    private Map<Integer,Boolean> memo = new HashMap<>();
+        
+    public boolean canJumpHelper(int[] nums, int currIdx) {
+        if (this.memo.containsKey(currIdx)) {
+            return memo.get(currIdx);
+        }
+        if (currIdx + nums[currIdx] >= nums.length-1) {
+            this.memo.put(currIdx,true);
+            return true;
+        } else if (nums[currIdx]<=0 && currIdx<nums.length-1) {
+            this.memo.put(currIdx,false);
+            return false;
+        } else {
+            boolean res = false;
+            for (int i=1; i<=nums[currIdx] && (!res); i++) {
+                if (this.memo.containsKey(currIdx+i) && !this.memo.get(currIdx+i)) {
+                    continue;
+                }
+                res = res || this.canJumpHelper(nums,currIdx+i);
+            }
+            this.memo.put(currIdx,res);
+            return res;
+        }
+    }
+
+    public boolean canJump(int[] nums) {
+        return this.canJumpHelper(nums,0);
+    }
+
+Unfortunately, this code got me a ``169 / 169 test cases passed, but took too long`` error. 
+
+Here is an ``O(n)`` solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public boolean canJump(int[] nums) {
+        int dis = 0;
+        for (int i = 0; i <= dis; i++) {
+            dis = Math.max(dis, i + nums[i]);
+            if (dis >= nums.length-1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+Remarks and Complexity Analysis: 
+ * Takeaway = don't think too complex but also don't think too simple... the balance is difficult to strike but I will 
+   get it someday!
+ * **Time Complexity**: ``O(n)`` where ``n=nums.length``
+ * **Space Complexity**: ``O(1)`` 
+
+
+Question 59: Merge Intervals
+----------------------------------------------
+Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+
+Solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length==1) {
+            return intervals;
+        }
+        
+        // sort by starting point
+        Arrays.sort(intervals, (i1,i2) -> Integer.compare(i1[0], i2[0]));
+        
+        List<int[]> res = new ArrayList<>();
+        int[] currIvl = intervals[0];
+        
+        for (int[] ivl:intervals) {
+            if (ivl[0]<=currIvl[1]) { // overlap found
+                currIvl[1] = Math.max(currIvl[1], ivl[1]);
+            } else {
+                res.add(currIvl);
+                currIvl = ivl;
+            }
+        }
+        res.add(currIvl);
+        
+        return res.toArray(new int[res.size()][]);
+    }
+
+.. note:: 
+
+    For complex problems that you know cannot be solved in ``O(n)``, consider using **SORT**. It could be incredibly helpful!
+
+Remarks and Complexity Analysis: 
+ * I am starting to (mildly and jokingly) dislike my brain. It is really tough to come up with solutions to these questions. 
+ * **Time Complexity**: ``O(nlogn)`` where ``n=intervals.length``
+ * **Space Complexity**: ``O(1)`` apart from the returned array
