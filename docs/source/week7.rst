@@ -902,6 +902,23 @@ Here is an ``O(n)`` solution:
         return false;
     }
 
+My ``O(n)`` adapted solution (next day): 
+
+.. code-block:: Java
+    :linenos:
+
+    public boolean canJump(int[] nums) {
+        int reach = 0;
+        for (int i=0; i<=reach && reach<nums.length-1; i++) {
+            reach = Math.max(nums[i]+i,reach);
+        }
+        if (reach>=nums.length-1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 Remarks and Complexity Analysis: 
  * Takeaway = don't think too complex but also don't think too simple... the balance is difficult to strike but I will 
    get it someday!
@@ -942,6 +959,27 @@ Solution:
         return res.toArray(new int[res.size()][]);
     }
 
+    // second time (next day)
+    public int[][] merge(int[][] intervals) {
+        // sort intervals by fst
+        Arrays.sort(intervals, (i1,i2) -> Integer.compare(i1[0], i2[0]));
+        
+        List<int[]> res = new ArrayList<>();
+        
+        int[] currIvl=intervals[0];
+        for (int[] ivl : intervals) {
+            if (ivl[0]<=currIvl[1]) {
+                currIvl[1] = Math.max(currIvl[1], ivl[1]);
+            } else {
+                res.add(currIvl);
+                currIvl = ivl;
+            }
+        }
+        res.add(currIvl);
+        
+        return res.toArray(new int[res.size()][]);
+    }    
+
 .. note:: 
 
     For complex problems that you know cannot be solved in ``O(n)``, consider using **SORT**. It could be incredibly helpful!
@@ -950,3 +988,216 @@ Remarks and Complexity Analysis:
  * I am starting to (mildly and jokingly) dislike my brain. It is really tough to come up with solutions to these questions. 
  * **Time Complexity**: ``O(nlogn)`` where ``n=intervals.length``
  * **Space Complexity**: ``O(1)`` apart from the returned array
+
+Day 36 [23 Mar]
+================
+Question 60: Rotate Image
+----------------------------------------------
+You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+
+You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        int start = 0;
+        int end = n-1;
+        for (int i=0;i<(Math.ceil(n/2.0));i++) { // all rows till center is visited
+            for (int j=start;j<end;j++) {
+                int currI = i;
+                int currJ = j;
+                int prevVal = matrix[currI][currJ];
+                do {
+                    int tmp = matrix[currJ][n-1-currI];
+                    matrix[currJ][n-1-currI] = prevVal;
+                    prevVal = tmp;
+                    int tmpI = currI;
+                    currI = currJ;
+                    currJ = n-1-tmpI;
+                } while (!(currI==i && currJ==j));
+            }
+            start++;
+            end--;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * It really helped to write down the change of indices of a test case and observe the pattern (rather than just thinking about it).
+ * Struggled with implementing the non-atomic swap operations
+ * **Time Complexity**: ``O(n)`` where ``n=matrix.length * matrix[0].length = numOfElements``
+ * **Space Complexity**: ``O(1)``
+
+Genius (C++) solution found on LeetCode: 
+
+.. code-block:: cpp
+    :linenos: 
+
+    /*
+    * clockwise rotate
+    * first reverse up to down, then swap the symmetry 
+    * 1 2 3     7 8 9     7 4 1
+    * 4 5 6  => 4 5 6  => 8 5 2
+    * 7 8 9     1 2 3     9 6 3
+    */
+    void rotate(vector<vector<int> > &matrix) {
+        reverse(matrix.begin(), matrix.end());
+        for (int i = 0; i < matrix.size(); ++i) {
+            for (int j = i + 1; j < matrix[i].size(); ++j)
+                swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+
+    /*
+    * anticlockwise rotate
+    * first reverse left to right, then swap the symmetry
+    * 1 2 3     3 2 1     3 6 9
+    * 4 5 6  => 6 5 4  => 2 5 8
+    * 7 8 9     9 8 7     1 4 7
+    */
+    void anti_rotate(vector<vector<int> > &matrix) {
+        for (auto vi : matrix) reverse(vi.begin(), vi.end());
+        for (int i = 0; i < matrix.size(); ++i) {
+            for (int j = i + 1; j < matrix[i].size(); ++j)
+                swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+
+In Java: 
+
+.. code-block:: Java
+    :linenos:
+
+    public void rotate(int[][] matrix) {
+        int s = 0, e = matrix.length - 1;
+        while(s < e){
+            int[] temp = matrix[s];
+            matrix[s] = matrix[e];
+            matrix[e] = temp;
+            s++; e--;
+        }
+
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = i+1; j < matrix[i].length; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+
+Question 61: Set Matrix Zeros
+----------------------------------------------
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+You must do it in place. Could you devise a constant space solution?
+
+My solution:
+
+.. code-block:: Java
+    :linenos:
+
+    // Naive O(mn) space solution
+    public void setZeroes(int[][] matrix) {
+        List<int[]> originalZeros = new ArrayList<>();
+        
+        for (int i=0; i<matrix.length; i++) {
+            for (int j=0; j<matrix[0].length; j++) {
+                if (matrix[i][j]==0) {
+                    originalZeros.add(new int[] {i,j});
+                }
+            }
+        }
+        for (int[] coord:originalZeros) {
+            for (int c=0; c<matrix.length; c++) {
+                matrix[c][coord[1]] = 0;
+            } 
+            for (int d=0; d<matrix[0].length; d++) {
+                matrix[coord[0]][d] = 0;
+            }
+        }
+    }
+
+    // Less Naive O(m+n) space solution
+    public void setZeroes(int[][] matrix) {
+        Set<Integer> R = new HashSet<>();
+        Set<Integer> C = new HashSet<>();
+        
+        for (int i=0; i<matrix.length; i++) {
+            for (int j=0; j<matrix[0].length; j++) {
+                if (matrix[i][j]==0) {
+                    R.add(i);
+                    C.add(j);
+                }
+            }
+        }
+        for (int i=0; i<matrix.length; i++) {
+            for (int j=0; j<matrix[0].length; j++) {
+                if (R.contains(i) || C.contains(j)) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Pretty simple question (haven't said that in a while)
+ * **Time Complexity**: ``O(m * n)`` as all elements in the matrix is traversed (twice)
+ * **Space Complexity**: ``O(m+n)`` - by using HashSet, we limit the number of entries in ``R`` to ``m`` and ``C`` to ``n``. 
+   The Naive solution has a upper limit (worst case) big-O space complexity of ``O(m*n)``
+
+LeetCode's ``O(1)`` space solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public void setZeroes(int[][] matrix) {
+        Boolean isCol = false;
+        int R = matrix.length;
+        int C = matrix[0].length;
+
+        for (int i = 0; i < R; i++) {
+
+          // Since first cell for both first row and first column is the same i.e. matrix[0][0]
+          // We can use an additional variable for either the first row/column.
+          // For this solution we are using an additional variable for the first column
+          // and using matrix[0][0] for the first row.
+          if (matrix[i][0] == 0) {
+            isCol = true;
+          }
+
+          for (int j = 1; j < C; j++) {
+            // If an element is zero, we set the first element of the corresponding row and column to 0
+            if (matrix[i][j] == 0) {
+              matrix[0][j] = 0;
+              matrix[i][0] = 0;
+            }
+          }
+        }
+
+        // Iterate over the array once again and using the first row and first column, update the elements.
+        for (int i = 1; i < R; i++) {
+          for (int j = 1; j < C; j++) {
+            if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+              matrix[i][j] = 0;
+            }
+          }
+        }
+
+        // See if the first row needs to be set to zero as well
+        if (matrix[0][0] == 0) {
+          for (int j = 0; j < C; j++) {
+            matrix[0][j] = 0;
+          }
+        }
+
+        // See if the first column needs to be set to zero as well
+        if (isCol) {
+          for (int i = 0; i < R; i++) {
+            matrix[i][0] = 0;
+          }
+        }
+    }

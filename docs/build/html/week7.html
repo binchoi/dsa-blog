@@ -230,6 +230,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-59-merge-intervals">Question 59: Merge Intervals</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-36-23-mar">Day 36 [23 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-60-rotate-image">Question 60: Rotate Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-61-set-matrix-zeros">Question 61: Set Matrix Zeros</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1140,6 +1145,20 @@ if I can prove that a method has a certain big-O time, I should be not linger an
 <span class="linenos">10</span><span class="p">}</span>
 </pre></div>
 </div>
+<p>My <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> adapted solution (next day):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canJump</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kt">int</span> <span class="n">reach</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">reach</span> <span class="o">&amp;&amp;</span> <span class="n">reach</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="n">reach</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]+</span><span class="n">i</span><span class="p">,</span><span class="n">reach</span><span class="p">);</span>
+<span class="linenos"> 5</span>    <span class="p">}</span>
+<span class="linenos"> 6</span>    <span class="k">if</span> <span class="p">(</span><span class="n">reach</span><span class="o">&gt;=</span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span><span class="p">}</span>
+</pre></div>
+</div>
 <dl class="simple">
 <dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
 <li><p>Takeaway = don’t think too complex but also don’t think too simple… the balance is difficult to strike but I will
@@ -1177,6 +1196,27 @@ get it someday!</p></li>
 <span class="linenos">21</span>
 <span class="linenos">22</span>    <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">res</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">][]</span><span class="p">);</span>
 <span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="c1">// second time (next day)</span>
+<span class="linenos">26</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[][]</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">intervals</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">27</span>    <span class="c1">// sort intervals by fst</span>
+<span class="linenos">28</span>    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="p">(</span><span class="n">i1</span><span class="p">,</span><span class="n">i2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">i1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">i2</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">currIvl</span><span class="o">=</span><span class="n">intervals</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">33</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">ivl</span> <span class="p">:</span> <span class="n">intervals</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">34</span>        <span class="k">if</span> <span class="p">(</span><span class="n">ivl</span><span class="o">[</span><span class="mi">0</span><span class="o">]&lt;=</span><span class="n">currIvl</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">35</span>            <span class="n">currIvl</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">currIvl</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">ivl</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">36</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">37</span>            <span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">currIvl</span><span class="p">);</span>
+<span class="linenos">38</span>            <span class="n">currIvl</span> <span class="o">=</span> <span class="n">ivl</span><span class="p">;</span>
+<span class="linenos">39</span>        <span class="p">}</span>
+<span class="linenos">40</span>    <span class="p">}</span>
+<span class="linenos">41</span>    <span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">currIvl</span><span class="p">);</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span>    <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">res</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">][]</span><span class="p">);</span>
+<span class="linenos">44</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1191,6 +1231,209 @@ get it someday!</p></li>
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-36-23-mar">
+<h2>Day 36 [23 Mar]<a class="headerlink" href="#day-36-23-mar" title="Permalink to this headline"></a></h2>
+<section id="question-60-rotate-image">
+<h3>Question 60: Rotate Image<a class="headerlink" href="#question-60-rotate-image" title="Permalink to this headline"></a></h3>
+<p>You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).</p>
+<p>You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mf">2.0</span><span class="p">));</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// all rows till center is visited</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">start</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">end</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="kt">int</span> <span class="n">currI</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos"> 8</span>            <span class="kt">int</span> <span class="n">currJ</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+<span class="linenos"> 9</span>            <span class="kt">int</span> <span class="n">prevVal</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">currI</span><span class="o">][</span><span class="n">currJ</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">10</span>            <span class="k">do</span> <span class="p">{</span>
+<span class="linenos">11</span>                <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">currJ</span><span class="o">][</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">currI</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">12</span>                <span class="n">matrix</span><span class="o">[</span><span class="n">currJ</span><span class="o">][</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">currI</span><span class="o">]</span> <span class="o">=</span> <span class="n">prevVal</span><span class="p">;</span>
+<span class="linenos">13</span>                <span class="n">prevVal</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="linenos">14</span>                <span class="kt">int</span> <span class="n">tmpI</span> <span class="o">=</span> <span class="n">currI</span><span class="p">;</span>
+<span class="linenos">15</span>                <span class="n">currI</span> <span class="o">=</span> <span class="n">currJ</span><span class="p">;</span>
+<span class="linenos">16</span>                <span class="n">currJ</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">tmpI</span><span class="p">;</span>
+<span class="linenos">17</span>            <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">currI</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">currJ</span><span class="o">==</span><span class="n">j</span><span class="p">));</span>
+<span class="linenos">18</span>        <span class="p">}</span>
+<span class="linenos">19</span>        <span class="n">start</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">20</span>        <span class="n">end</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>It really helped to write down the change of indices of a test case and observe the pattern (rather than just thinking about it).</p></li>
+<li><p>Struggled with implementing the non-atomic swap operations</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=matrix.length</span> <span class="pre">*</span> <span class="pre">matrix[0].length</span> <span class="pre">=</span> <span class="pre">numOfElements</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Genius (C++) solution found on LeetCode:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/*</span>
+<span class="linenos"> 2</span><span class="cm">* clockwise rotate</span>
+<span class="linenos"> 3</span><span class="cm">* first reverse up to down, then swap the symmetry</span>
+<span class="linenos"> 4</span><span class="cm">* 1 2 3     7 8 9     7 4 1</span>
+<span class="linenos"> 5</span><span class="cm">* 4 5 6  =&gt; 4 5 6  =&gt; 8 5 2</span>
+<span class="linenos"> 6</span><span class="cm">* 7 8 9     1 2 3     9 6 3</span>
+<span class="linenos"> 7</span><span class="cm">*/</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="kt">void</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">reverse</span><span class="p">(</span><span class="n">matrix</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">matrix</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">            </span><span class="n">swap</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">14</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="cm">/*</span>
+<span class="linenos">17</span><span class="cm">* anticlockwise rotate</span>
+<span class="linenos">18</span><span class="cm">* first reverse left to right, then swap the symmetry</span>
+<span class="linenos">19</span><span class="cm">* 1 2 3     3 2 1     3 6 9</span>
+<span class="linenos">20</span><span class="cm">* 4 5 6  =&gt; 6 5 4  =&gt; 2 5 8</span>
+<span class="linenos">21</span><span class="cm">* 7 8 9     9 8 7     1 4 7</span>
+<span class="linenos">22</span><span class="cm">*/</span><span class="w"></span>
+<span class="linenos">23</span><span class="kt">void</span><span class="w"> </span><span class="nf">anti_rotate</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">vi</span> <span class="p">:</span><span class="w"> </span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">vi</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vi</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">            </span><span class="n">swap</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">29</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In Java:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="k">while</span><span class="p">(</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">){</span>
+<span class="linenos"> 4</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">s</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="n">matrix</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">e</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 6</span>        <span class="n">matrix</span><span class="o">[</span><span class="n">e</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">s</span><span class="o">++</span><span class="p">;</span> <span class="n">e</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="linenos">11</span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="linenos">12</span>            <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">13</span>            <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">14</span>            <span class="n">matrix</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="p">}</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-61-set-matrix-zeros">
+<h3>Question 61: Set Matrix Zeros<a class="headerlink" href="#question-61-set-matrix-zeros" title="Permalink to this headline"></a></h3>
+<p>Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0’s.</p>
+<p>You must do it in place. Could you devise a constant space solution?</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// Naive O(mn) space solution</span>
+<span class="linenos"> 2</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setZeroes</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">originalZeros</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>                <span class="n">originalZeros</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">});</span>
+<span class="linenos"> 9</span>            <span class="p">}</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">coord</span><span class="p">:</span><span class="n">originalZeros</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">c</span><span class="o">&lt;</span><span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>            <span class="n">matrix</span><span class="o">[</span><span class="n">c</span><span class="o">][</span><span class="n">coord</span><span class="o">[</span><span class="mi">1</span><span class="o">]]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="p">}</span>
+<span class="linenos">16</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">d</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>            <span class="n">matrix</span><span class="o">[</span><span class="n">coord</span><span class="o">[</span><span class="mi">0</span><span class="o">]][</span><span class="n">d</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">18</span>        <span class="p">}</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+<span class="linenos">20</span><span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="c1">// Less Naive O(m+n) space solution</span>
+<span class="linenos">23</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setZeroes</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">24</span>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">R</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">25</span>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">C</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">29</span>            <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">30</span>                <span class="n">R</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos">31</span>                <span class="n">C</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+<span class="linenos">32</span>            <span class="p">}</span>
+<span class="linenos">33</span>        <span class="p">}</span>
+<span class="linenos">34</span>    <span class="p">}</span>
+<span class="linenos">35</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">36</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>            <span class="k">if</span> <span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">||</span> <span class="n">C</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">j</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">38</span>                <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">39</span>            <span class="p">}</span>
+<span class="linenos">40</span>        <span class="p">}</span>
+<span class="linenos">41</span>    <span class="p">}</span>
+<span class="linenos">42</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty simple question (haven’t said that in a while)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(m</span> <span class="pre">*</span> <span class="pre">n)</span></code> as all elements in the matrix is traversed (twice)</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(m+n)</span></code> - by using HashSet, we limit the number of entries in <code class="docutils literal notranslate"><span class="pre">R</span></code> to <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code>.
+The Naive solution has a upper limit (worst case) big-O space complexity of <code class="docutils literal notranslate"><span class="pre">O(m*n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>LeetCode’s <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> space solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setZeroes</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">Boolean</span> <span class="n">isCol</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="n">C</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">R</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>      <span class="c1">// Since first cell for both first row and first column is the same i.e. matrix[0][0]</span>
+<span class="linenos"> 9</span>      <span class="c1">// We can use an additional variable for either the first row/column.</span>
+<span class="linenos">10</span>      <span class="c1">// For this solution we are using an additional variable for the first column</span>
+<span class="linenos">11</span>      <span class="c1">// and using matrix[0][0] for the first row.</span>
+<span class="linenos">12</span>      <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="n">isCol</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">14</span>      <span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">C</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>        <span class="c1">// If an element is zero, we set the first element of the corresponding row and column to 0</span>
+<span class="linenos">18</span>        <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">19</span>          <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">20</span>          <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">21</span>        <span class="p">}</span>
+<span class="linenos">22</span>      <span class="p">}</span>
+<span class="linenos">23</span>    <span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="c1">// Iterate over the array once again and using the first row and first column, update the elements.</span>
+<span class="linenos">26</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">R</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">27</span>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">C</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">29</span>          <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">30</span>        <span class="p">}</span>
+<span class="linenos">31</span>      <span class="p">}</span>
+<span class="linenos">32</span>    <span class="p">}</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>    <span class="c1">// See if the first row needs to be set to zero as well</span>
+<span class="linenos">35</span>    <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">36</span>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">C</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>        <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">38</span>      <span class="p">}</span>
+<span class="linenos">39</span>    <span class="p">}</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>    <span class="c1">// See if the first column needs to be set to zero as well</span>
+<span class="linenos">42</span>    <span class="k">if</span> <span class="p">(</span><span class="n">isCol</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">43</span>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">R</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">44</span>        <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">45</span>      <span class="p">}</span>
+<span class="linenos">46</span>    <span class="p">}</span>
+<span class="linenos">47</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
