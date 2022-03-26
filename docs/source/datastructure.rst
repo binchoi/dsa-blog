@@ -109,3 +109,15 @@ Linked List
      - O(n)
      - O(n)
 
+Trees 
+======
+Tree Traversal Types
+------------------------------
+
+ #. Breath First Traversal (level order)
+ #. Depth First Traversal
+
+  * Preorder Traversal: <Root><Left><Right>
+  * Inorder Traversal: <Left><Root><Right>
+  * Postorder Traversal: <Left><Right><Root>
+

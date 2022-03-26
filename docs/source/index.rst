@@ -19,6 +19,7 @@ Author: Bin Choi
    week5
    week6
    week7
+   week8
 
 .. toctree::
    :maxdepth: 1
