@@ -186,3 +186,154 @@ Interesting solutions
         levelHelper(res, root.left, height+1);
         levelHelper(res, root.right, height+1);
     }
+
+
+Day 38 [28 Mar]
+================
+
+Question 65: Insert Interval
+------------------------------------------
+You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.
+
+Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).
+
+Return intervals after the insertion.
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        List<int[]> resList = new ArrayList<>();
+        int[] mergeInt = null;
+        boolean done = false;
+        for (int[] i : intervals) {
+            if (done) {
+                resList.add(i);
+            } else if (mergeInt==null) {
+                if (i[1]>=newInterval[0]) {
+                    if (newInterval[1]<i[0]) {
+                        resList.add(newInterval);
+                        resList.add(i);
+                        done = true;
+                    } else {
+                        mergeInt = new int[] {Math.min(newInterval[0], i[0]), Math.max(newInterval[1], i[1])};
+                    }
+                } else {
+                    resList.add(i);
+                }
+            } else { // not done and mergeInt is not null
+                if (mergeInt[1]>=i[0]) {
+                    mergeInt[1] = Math.max(mergeInt[1], i[1]);
+                } else {
+                    resList.add(mergeInt);
+                    resList.add(i);
+                    done = true;
+                }
+            }
+        }
+        if (!done) {
+            if (mergeInt==null) {
+                resList.add(newInterval);
+            } else {
+                resList.add(mergeInt);
+            }
+        }
+        return resList.toArray(new int[resList.size()][]);
+    }
+
+Remarks and Complexity Analysis: 
+ * I took an extensive amount of time brainstorming and writing up the pseudocode this time. I solved it in one submission attempt which 
+   I believe is promising. I just need to speed up the process as a whole as it took me a little too long. 
+ * **Time Complexity**: ``O(n)`` where ``n=intervals.length``. Each existing interval is traversed once.
+ * **Space Complexity**: ``O(n)`` where ``n=intervals.length`` just for sake of using ArrayList. Apart from that ``O(1)``.
+
+.. note:: 
+
+    Converting from Java Array to ArrayList is something that should be second nature! 
+
+    Array to ArrayList: List<T> list = Arrays.asList(arr);
+
+    ArrayList to Array: list.toArray(new T[list.size()]);
+
+Alternative Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+		List<int[]> result = new LinkedList<>();
+	    int i = 0;
+	    // add all the intervals ending before newInterval starts
+	    while (i < intervals.length && intervals[i][1] < newInterval[0]){
+	        result.add(intervals[i]);
+	        i++;
+	    }
+	    
+	    // merge all overlapping intervals to one considering newInterval
+	    while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+	    	// we could mutate newInterval here also
+	        newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+	        newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+	        i++;
+	    }
+	    
+	    // add the union of intervals we got
+	    result.add(newInterval); 
+	    
+	    // add all the rest
+	    while (i < intervals.length){
+	    	result.add(intervals[i]); 
+	    	i++;
+	    }
+	    
+	    return result.toArray(new int[result.size()][]);
+    }
+
+I enjoy how well organized this is. It also handles all cases (including when the new interval should be appended at the front of the list) in a 
+strategic manner. 
+
+Question 66: Construct Binary Tree from Preorder and Inorder Traversal
+-----------------------------------------------------------------------
+Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
+
+LeetCode's Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    int preorderIndex;
+    Map<Integer, Integer> inorderIndexMap;
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        preorderIndex = 0;
+        // build a hashmap to store value -> its index relations
+        inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIndexMap.put(inorder[i], i);
+        }
+
+        return arrayToTree(preorder, 0, preorder.length - 1);
+    }
+
+    private TreeNode arrayToTree(int[] preorder, int left, int right) {
+        // if there are no elements to construct the tree
+        if (left > right) return null;
+
+        // select the preorder_index element as the root and increment it
+        int rootValue = preorder[preorderIndex++];
+        TreeNode root = new TreeNode(rootValue);
+
+        // build left and right subtree
+        // excluding inorderIndexMap[rootValue] element because it's the root
+        root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
+        root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
+        return root;
+    }
+
+Remarks and Complexity Analysis: 
+ * I noticed most of the patterns that are key to the above implementation, but my approach was too near-sighted and 'brute-force'. 
+ * Next time, I will observe and notice patterns then take a step back and consider various CS techniques and tools that could help solve the question (e.g. Divide and Conquer).
+ * **Time Complexity**: ``O(n)`` where ``n=preorder.length=inorder.length``.
+ * **Space Complexity**: ``O(n)`` where ``n=intervals.length`` just for sake of using ArrayList. Apart from that ``O(1)``.

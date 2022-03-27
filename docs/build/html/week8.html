@@ -244,6 +244,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-64-binary-tree-level-order-traversal">Question 64: Binary Tree Level Order Traversal</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-38-28-mar">Day 38 [28 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-65-insert-interval">Question 65: Insert Interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-66-construct-binary-tree-from-preorder-and-inorder-traversal">Question 66: Construct Binary Tree from Preorder and Inorder Traversal</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -479,6 +484,148 @@ tree traversals, I tried implementing a queue-based method and it worked well.</
 <span class="linenos">16</span><span class="p">}</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="day-38-28-mar">
+<h2>Day 38 [28 Mar]<a class="headerlink" href="#day-38-28-mar" title="Permalink to this headline"></a></h2>
+<section id="question-65-insert-interval">
+<h3>Question 65: Insert Interval<a class="headerlink" href="#question-65-insert-interval" title="Permalink to this headline"></a></h3>
+<p>You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.</p>
+<p>Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).</p>
+<p>Return intervals after the insertion.</p>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[][]</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">intervals</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">newInterval</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">resList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 3</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">mergeInt</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="kt">boolean</span> <span class="n">done</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">i</span> <span class="p">:</span> <span class="n">intervals</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="k">if</span> <span class="p">(</span><span class="n">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos"> 8</span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">mergeInt</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">[</span><span class="mi">1</span><span class="o">]&gt;=</span><span class="n">newInterval</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>                <span class="k">if</span> <span class="p">(</span><span class="n">newInterval</span><span class="o">[</span><span class="mi">1</span><span class="o">]&lt;</span><span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>                    <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">newInterval</span><span class="p">);</span>
+<span class="linenos">12</span>                    <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos">13</span>                    <span class="n">done</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">14</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">15</span>                    <span class="n">mergeInt</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">newInterval</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">),</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">newInterval</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)};</span>
+<span class="linenos">16</span>                <span class="p">}</span>
+<span class="linenos">17</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">18</span>                <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos">19</span>            <span class="p">}</span>
+<span class="linenos">20</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// not done and mergeInt is not null</span>
+<span class="linenos">21</span>            <span class="k">if</span> <span class="p">(</span><span class="n">mergeInt</span><span class="o">[</span><span class="mi">1</span><span class="o">]&gt;=</span><span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">22</span>                <span class="n">mergeInt</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">mergeInt</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">23</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">24</span>                <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">mergeInt</span><span class="p">);</span>
+<span class="linenos">25</span>                <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos">26</span>                <span class="n">done</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">27</span>            <span class="p">}</span>
+<span class="linenos">28</span>        <span class="p">}</span>
+<span class="linenos">29</span>    <span class="p">}</span>
+<span class="linenos">30</span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">31</span>        <span class="k">if</span> <span class="p">(</span><span class="n">mergeInt</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">32</span>            <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">newInterval</span><span class="p">);</span>
+<span class="linenos">33</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">34</span>            <span class="n">resList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">mergeInt</span><span class="p">);</span>
+<span class="linenos">35</span>        <span class="p">}</span>
+<span class="linenos">36</span>    <span class="p">}</span>
+<span class="linenos">37</span>    <span class="k">return</span> <span class="n">resList</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">resList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">][]</span><span class="p">);</span>
+<span class="linenos">38</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I took an extensive amount of time brainstorming and writing up the pseudocode this time. I solved it in one submission attempt which
+I believe is promising. I just need to speed up the process as a whole as it took me a little too long.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=intervals.length</span></code>. Each existing interval is traversed once.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=intervals.length</span></code> just for sake of using ArrayList. Apart from that <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Converting from Java Array to ArrayList is something that should be second nature!</p>
+<p>Array to ArrayList: List&lt;T&gt; list = Arrays.asList(arr);</p>
+<p>ArrayList to Array: list.toArray(new T[list.size()]);</p>
+</div>
+<p>Alternative Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[][]</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">intervals</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">newInterval</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>            <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 3</span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 4</span>        <span class="c1">// add all the intervals ending before newInterval starts</span>
+<span class="linenos"> 5</span>        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">intervals</span><span class="p">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">intervals</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">newInterval</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">){</span>
+<span class="linenos"> 6</span>            <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">intervals</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 7</span>            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1">// merge all overlapping intervals to one considering newInterval</span>
+<span class="linenos">11</span>        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">intervals</span><span class="p">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">intervals</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">newInterval</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>            <span class="c1">// we could mutate newInterval here also</span>
+<span class="linenos">13</span>            <span class="n">newInterval</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">newInterval</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">intervals</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">14</span>            <span class="n">newInterval</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">newInterval</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">intervals</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">15</span>            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">16</span>        <span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>        <span class="c1">// add the union of intervals we got</span>
+<span class="linenos">19</span>        <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">newInterval</span><span class="p">);</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1">// add all the rest</span>
+<span class="linenos">22</span>        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">intervals</span><span class="p">.</span><span class="na">length</span><span class="p">){</span>
+<span class="linenos">23</span>            <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">intervals</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">24</span>            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">25</span>        <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">result</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">][]</span><span class="p">);</span>
+<span class="linenos">28</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>I enjoy how well organized this is. It also handles all cases (including when the new interval should be appended at the front of the list) in a
+strategic manner.</p>
+</section>
+<section id="question-66-construct-binary-tree-from-preorder-and-inorder-traversal">
+<h3>Question 66: Construct Binary Tree from Preorder and Inorder Traversal<a class="headerlink" href="#question-66-construct-binary-tree-from-preorder-and-inorder-traversal" title="Permalink to this headline"></a></h3>
+<p>Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.</p>
+<p>LeetCode’s Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">int</span> <span class="n">preorderIndex</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">inorderIndexMap</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">buildTree</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">inorder</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="n">preorderIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 6</span>    <span class="c1">// build a hashmap to store value -&gt; its index relations</span>
+<span class="linenos"> 7</span>    <span class="n">inorderIndexMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 8</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">inorder</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="n">inorderIndexMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">inorder</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">return</span> <span class="n">arrayToTree</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">preorder</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="linenos">13</span><span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="kd">private</span> <span class="n">TreeNode</span> <span class="nf">arrayToTree</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>    <span class="c1">// if there are no elements to construct the tree</span>
+<span class="linenos">17</span>    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="c1">// select the preorder_index element as the root and increment it</span>
+<span class="linenos">20</span>    <span class="kt">int</span> <span class="n">rootValue</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">[</span><span class="n">preorderIndex</span><span class="o">++]</span><span class="p">;</span>
+<span class="linenos">21</span>    <span class="n">TreeNode</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">rootValue</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="c1">// build left and right subtree</span>
+<span class="linenos">24</span>    <span class="c1">// excluding inorderIndexMap[rootValue] element because it&#39;s the root</span>
+<span class="linenos">25</span>    <span class="n">root</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">arrayToTree</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">inorderIndexMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">rootValue</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="linenos">26</span>    <span class="n">root</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">arrayToTree</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span> <span class="n">inorderIndexMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">rootValue</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+<span class="linenos">27</span>    <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos">28</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I noticed most of the patterns that are key to the above implementation, but my approach was too near-sighted and ‘brute-force’.</p></li>
+<li><p>Next time, I will observe and notice patterns then take a step back and consider various CS techniques and tools that could help solve the question (e.g. Divide and Conquer).</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=preorder.length=inorder.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=intervals.length</span></code> just for sake of using ArrayList. Apart from that <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>
