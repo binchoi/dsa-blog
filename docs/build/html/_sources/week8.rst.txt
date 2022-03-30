@@ -337,3 +337,211 @@ Remarks and Complexity Analysis:
  * Next time, I will observe and notice patterns then take a step back and consider various CS techniques and tools that could help solve the question (e.g. Divide and Conquer).
  * **Time Complexity**: ``O(n)`` where ``n=preorder.length=inorder.length``.
  * **Space Complexity**: ``O(n)`` where ``n=intervals.length`` just for sake of using ArrayList. Apart from that ``O(1)``.
+
+
+My Solution (one day later): 
+
+.. code-block:: Java
+    :linenos:
+
+    Map<Integer,Integer> iMap = new HashMap<>();
+    int preorderIdx = 0;
+    
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        for (int i=0; i<inorder.length; i++) {
+            iMap.put(inorder[i], i);
+        }
+        return this.buildTreeHelper(preorder,0,preorder.length-1);
+    }
+    
+    public TreeNode buildTreeHelper(int[] preorder, int lo, int hi) {
+        if (hi<lo) return null;
+        //else
+        int rootVal = preorder[preorderIdx++];
+        TreeNode myTree = new TreeNode(rootVal);
+        myTree.left = this.buildTreeHelper(preorder, lo, iMap.get(rootVal)-1);
+        myTree.right = this.buildTreeHelper(preorder, iMap.get(rootVal)+1, hi);
+        
+        return myTree;
+    }
+
+The key that I didn't catch previous to viewing the solution is that the recursive calls will increment the shared variable ``preorderIdx`` such that by the time ``myTree.right`` is computed, the ``preorderIdx`` will point to 
+the root of the right subtree. Brilliant! 
+
+Day 39 [29 Mar]
+================
+
+Question 67: First Unique Character in a String
+------------------------------------------------
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public int firstUniqChar(String s) {
+        HashMap<Character, Boolean> charUniq = new HashMap<>();
+        char[] charArr = s.toCharArray();
+        for (char c:charArr) {
+            if (charUniq.containsKey(c)) {
+                charUniq.put(c, Boolean.valueOf(false));
+            } else {
+                charUniq.put(c, Boolean.valueOf(true));
+            }
+        }
+        for (int i=0;i<charArr.length;i++) {
+            if (charUniq.get(charArr[i])) return i;
+        }
+        return -1;
+    }
+
+    // Alternative approach
+    public int firstUniqChar(String s) {
+        HashSet<Character> charSeen = new HashSet<>();
+        HashSet<Character> charSeenTwice = new HashSet<>();
+        char[] charArr = s.toCharArray();
+        for (char c:charArr) {
+            if (charSeen.contains(c)) {
+                charSeenTwice.add(c);
+            } else {
+                charSeen.add(c);
+            }
+        }
+        for (int i=0;i<charArr.length;i++) {
+            if (!charSeenTwice.contains(charArr[i])) return i;
+        }
+        return -1;
+    }
+
+    // revised
+    public int firstUniqChar(String s) {
+        HashMap<Character, Integer> charCount = new HashMap<>();
+        for (int i=0; i<s.length(); i++) {
+            charCount.put(s.charAt(i), charCount.getOrDefault(s.charAt(i), 0)+1);
+        }
+        for (int i=0;i<s.length();i++) {
+            if (charCount.get(s.charAt(i))==1) return i;
+        }
+        return -1;
+    }
+
+Remarks and Complexity Analysis: 
+ * Easy question! If only my future interviews will be like this.
+ * I wonder if using one HashMap<Character, Boolean> is more space efficient than using two HashSet<Character>. 
+ * ``getOrDefault()`` is a useful method!
+ * **Time Complexity**: ``O(n)`` where ``n=s.length()``.
+ * **Space Complexity**: ``O(n)`` where ``n=s.length()`` for both implementations
+
+
+Question 68: First Unique Character in a String
+------------------------------------------------
+Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C/C++'s atoi function).
+
+The algorithm for myAtoi(string s) is as follows:
+ * Read in and ignore any leading whitespace.
+ * Check if the next character (if not already at the end of the string) is '-' or '+'. Read this character in if it is either. This determines if the final result is negative or positive respectively. Assume the result is positive if neither is present.
+ * Read in next the characters until the next non-digit character or the end of the input is reached. The rest of the string is ignored.
+ * Convert these digits into an integer (i.e. "123" -> 123, "0032" -> 32). If no digits were read, then the integer is 0. Change the sign as necessary (from step 2).
+ * If the integer is out of the 32-bit signed integer range [-231, 231 - 1], then clamp the integer so that it remains in the range. Specifically, integers less than -231 should be clamped to -231, and integers greater than 231 - 1 should be clamped to 231 - 1.
+ * Return the integer as the final result.
+
+Note:
+
+Only the space character ' ' is considered a whitespace character.
+Do not ignore any characters other than the leading whitespace or the rest of the string after the digits.
+
+My overflow solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public int myAtoi(String s) {
+        StringBuilder intString = new StringBuilder();
+        boolean pos = true;
+        int idx = 0;
+        
+        if (s.length()==0) {
+            return 0;
+        }
+        
+        while (idx <s.length() && s.charAt(idx)==' ') {
+            idx++;
+        }
+        
+        if (idx <s.length() && (s.charAt(idx)=='-' || s.charAt(idx)=='+')) {
+            if (s.charAt(idx)=='-') {
+                pos = false;
+            }
+            idx++;
+        }
+        
+        HashSet<Character> digitSet = new HashSet<Character>(Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
+        
+        while (idx<s.length() && digitSet.contains(s.charAt(idx))) {
+            intString.append(s.charAt(idx++));
+        }
+        
+        String res = intString.toString();
+        
+        if (res.equals("")) {
+            return 0;
+        }
+        
+        Long resLong = pos ? Long.parseLong(res) : -Long.parseLong(res);
+        
+        if (resLong>Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        } else if (resLong<Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        } else {
+            return resLong.intValue();
+        }
+    }
+
+Better solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public int myAtoi(String str) {
+        int index = 0;
+        int total = 0;
+        int sign = 1;
+        
+        // Check if empty string
+        if(str.length() == 0)
+            return 0;
+        
+        // remove white spaces from the string
+        while(index < str.length() && str.charAt(index) == ' ')
+            index++;
+        
+        if (index == str.length()) return 0;
+        
+        // get the sign
+        if(str.charAt(index) == '+' || str.charAt(index) == '-') {
+            sign = str.charAt(index) == '+' ? 1 : -1;
+            index++;
+        }
+        
+        // convert to the actual number and make sure it's not overflow
+        while(index < str.length()) {
+            int digit = str.charAt(index) - '0';
+            if(digit < 0 || digit > 9) break;
+            
+            // check for overflow
+            if(Integer.MAX_VALUE / 10 < total || Integer.MAX_VALUE / 10 == total && Integer.MAX_VALUE % 10 < digit)
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            
+            total = total*10 + digit;
+            index++; // don't forget to increment the counter
+        }
+        return total*sign;
+    }
+
+Remarks and Complexity Analysis: 
+ * Not too familiar with overflow prevention techniques!
+ * **Time Complexity**: ``O(n)`` where ``n=s.length()``.
+ * **Space Complexity**: ``O(1)``
+

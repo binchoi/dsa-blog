@@ -249,6 +249,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-66-construct-binary-tree-from-preorder-and-inorder-traversal">Question 66: Construct Binary Tree from Preorder and Inorder Traversal</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-39-29-mar">Day 39 [29 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-67-first-unique-character-in-a-string">Question 67: First Unique Character in a String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-68-first-unique-character-in-a-string">Question 68: First Unique Character in a String</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -623,6 +628,205 @@ strategic manner.</p>
 <li><p>Next time, I will observe and notice patterns then take a step back and consider various CS techniques and tools that could help solve the question (e.g. Divide and Conquer).</p></li>
 <li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=preorder.length=inorder.length</span></code>.</p></li>
 <li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=intervals.length</span></code> just for sake of using ArrayList. Apart from that <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My Solution (one day later):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 2</span><span class="kt">int</span> <span class="n">preorderIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">buildTree</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">inorder</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">inorder</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="n">iMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">inorder</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos"> 7</span>    <span class="p">}</span>
+<span class="linenos"> 8</span>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">buildTreeHelper</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">preorder</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="p">}</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">buildTreeHelper</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>    <span class="k">if</span> <span class="p">(</span><span class="n">hi</span><span class="o">&lt;</span><span class="n">lo</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos">13</span>    <span class="c1">//else</span>
+<span class="linenos">14</span>    <span class="kt">int</span> <span class="n">rootVal</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">[</span><span class="n">preorderIdx</span><span class="o">++]</span><span class="p">;</span>
+<span class="linenos">15</span>    <span class="n">TreeNode</span> <span class="n">myTree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">rootVal</span><span class="p">);</span>
+<span class="linenos">16</span>    <span class="n">myTree</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">buildTreeHelper</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">iMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">rootVal</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">17</span>    <span class="n">myTree</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">buildTreeHelper</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span> <span class="n">iMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">rootVal</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">);</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="k">return</span> <span class="n">myTree</span><span class="p">;</span>
+<span class="linenos">20</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The key that I didn’t catch previous to viewing the solution is that the recursive calls will increment the shared variable <code class="docutils literal notranslate"><span class="pre">preorderIdx</span></code> such that by the time <code class="docutils literal notranslate"><span class="pre">myTree.right</span></code> is computed, the <code class="docutils literal notranslate"><span class="pre">preorderIdx</span></code> will point to
+the root of the right subtree. Brilliant!</p>
+</section>
+</section>
+<section id="day-39-29-mar">
+<h2>Day 39 [29 Mar]<a class="headerlink" href="#day-39-29-mar" title="Permalink to this headline"></a></h2>
+<section id="question-67-first-unique-character-in-a-string">
+<h3>Question 67: First Unique Character in a String<a class="headerlink" href="#question-67-first-unique-character-in-a-string" title="Permalink to this headline"></a></h3>
+<p>Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.</p>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">firstUniqChar</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">charUniq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 3</span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">charArr</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
+<span class="linenos"> 4</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">:</span><span class="n">charArr</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="k">if</span> <span class="p">(</span><span class="n">charUniq</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="n">charUniq</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span>
+<span class="linenos"> 7</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="n">charUniq</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+<span class="linenos"> 9</span>        <span class="p">}</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">charArr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>        <span class="k">if</span> <span class="p">(</span><span class="n">charUniq</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">charArr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos">13</span>    <span class="p">}</span>
+<span class="linenos">14</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">15</span><span class="p">}</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1">// Alternative approach</span>
+<span class="linenos">18</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">firstUniqChar</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">19</span>    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">charSeen</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">20</span>    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">charSeenTwice</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">21</span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">charArr</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
+<span class="linenos">22</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">:</span><span class="n">charArr</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">23</span>        <span class="k">if</span> <span class="p">(</span><span class="n">charSeen</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">24</span>            <span class="n">charSeenTwice</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="linenos">25</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">26</span>            <span class="n">charSeen</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="linenos">27</span>        <span class="p">}</span>
+<span class="linenos">28</span>    <span class="p">}</span>
+<span class="linenos">29</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">charArr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">30</span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">charSeenTwice</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">charArr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos">31</span>    <span class="p">}</span>
+<span class="linenos">32</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">33</span><span class="p">}</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="c1">// revised</span>
+<span class="linenos">36</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">firstUniqChar</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">charCount</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">38</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">39</span>        <span class="n">charCount</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">charCount</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">40</span>    <span class="p">}</span>
+<span class="linenos">41</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">42</span>        <span class="k">if</span> <span class="p">(</span><span class="n">charCount</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos">43</span>    <span class="p">}</span>
+<span class="linenos">44</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">45</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Easy question! If only my future interviews will be like this.</p></li>
+<li><p>I wonder if using one HashMap&lt;Character, Boolean&gt; is more space efficient than using two HashSet&lt;Character&gt;.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getOrDefault()</span></code> is a useful method!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=s.length()</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=s.length()</span></code> for both implementations</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-68-first-unique-character-in-a-string">
+<h3>Question 68: First Unique Character in a String<a class="headerlink" href="#question-68-first-unique-character-in-a-string" title="Permalink to this headline"></a></h3>
+<p>Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C/C++’s atoi function).</p>
+<dl class="simple">
+<dt>The algorithm for myAtoi(string s) is as follows:</dt><dd><ul class="simple">
+<li><p>Read in and ignore any leading whitespace.</p></li>
+<li><p>Check if the next character (if not already at the end of the string) is ‘-’ or ‘+’. Read this character in if it is either. This determines if the final result is negative or positive respectively. Assume the result is positive if neither is present.</p></li>
+<li><p>Read in next the characters until the next non-digit character or the end of the input is reached. The rest of the string is ignored.</p></li>
+<li><p>Convert these digits into an integer (i.e. “123” -&gt; 123, “0032” -&gt; 32). If no digits were read, then the integer is 0. Change the sign as necessary (from step 2).</p></li>
+<li><p>If the integer is out of the 32-bit signed integer range [-231, 231 - 1], then clamp the integer so that it remains in the range. Specifically, integers less than -231 should be clamped to -231, and integers greater than 231 - 1 should be clamped to 231 - 1.</p></li>
+<li><p>Return the integer as the final result.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Note:</p>
+<p>Only the space character ‘ ‘ is considered a whitespace character.
+Do not ignore any characters other than the leading whitespace or the rest of the string after the digits.</p>
+<p>My overflow solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">myAtoi</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">StringBuilder</span> <span class="n">intString</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos"> 3</span>    <span class="kt">boolean</span> <span class="n">pos</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">while</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="n">idx</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;-&#39;</span> <span class="o">||</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;+&#39;</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">15</span>        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>            <span class="n">pos</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">17</span>        <span class="p">}</span>
+<span class="linenos">18</span>        <span class="n">idx</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">digitSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="sc">&#39;2&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;5&#39;</span><span class="p">,</span> <span class="sc">&#39;6&#39;</span><span class="p">,</span> <span class="sc">&#39;7&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">));</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">while</span> <span class="p">(</span><span class="n">idx</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">digitSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">idx</span><span class="p">)))</span> <span class="p">{</span>
+<span class="linenos">24</span>        <span class="n">intString</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">idx</span><span class="o">++</span><span class="p">));</span>
+<span class="linenos">25</span>    <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="n">String</span> <span class="n">res</span> <span class="o">=</span> <span class="n">intString</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">30</span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">31</span>    <span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>    <span class="n">Long</span> <span class="n">resLong</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">?</span> <span class="n">Long</span><span class="p">.</span><span class="na">parseLong</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="p">:</span> <span class="o">-</span><span class="n">Long</span><span class="p">.</span><span class="na">parseLong</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>    <span class="k">if</span> <span class="p">(</span><span class="n">resLong</span><span class="o">&gt;</span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">36</span>        <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span>
+<span class="linenos">37</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">resLong</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">38</span>        <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+<span class="linenos">39</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">40</span>        <span class="k">return</span> <span class="n">resLong</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span>
+<span class="linenos">41</span>    <span class="p">}</span>
+<span class="linenos">42</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Better solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">myAtoi</span><span class="p">(</span><span class="n">String</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="c1">// Check if empty string</span>
+<span class="linenos"> 7</span>    <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="c1">// remove white spaces from the string</span>
+<span class="linenos">11</span>    <span class="k">while</span><span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">index</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">str</span><span class="p">.</span><span class="na">length</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="c1">// get the sign</span>
+<span class="linenos">17</span>    <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">18</span>        <span class="n">sign</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">19</span>        <span class="n">index</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">20</span>    <span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="c1">// convert to the actual number and make sure it&#39;s not overflow</span>
+<span class="linenos">23</span>    <span class="k">while</span><span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="na">length</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">24</span>        <span class="kt">int</span> <span class="n">digit</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="linenos">25</span>        <span class="k">if</span><span class="p">(</span><span class="n">digit</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">digit</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="c1">// check for overflow</span>
+<span class="linenos">28</span>        <span class="k">if</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">&lt;</span> <span class="n">total</span> <span class="o">||</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">==</span> <span class="n">total</span> <span class="o">&amp;&amp;</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">&lt;</span> <span class="n">digit</span><span class="p">)</span>
+<span class="linenos">29</span>            <span class="k">return</span> <span class="n">sign</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span> <span class="p">:</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">digit</span><span class="p">;</span>
+<span class="linenos">32</span>        <span class="n">index</span><span class="o">++</span><span class="p">;</span> <span class="c1">// don&#39;t forget to increment the counter</span>
+<span class="linenos">33</span>    <span class="p">}</span>
+<span class="linenos">34</span>    <span class="k">return</span> <span class="n">total</span><span class="o">*</span><span class="n">sign</span><span class="p">;</span>
+<span class="linenos">35</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Not too familiar with overflow prevention techniques!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=s.length()</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
 </ul>
 </dd>
 </dl>
