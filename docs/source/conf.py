@@ -16,7 +16,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'AlgoVenture'
+project = 'algoat'
 
 copyright = '2021, Bin Choi'
 author = 'Bin Choi'

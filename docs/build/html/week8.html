@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Week 8 [26-31 Mar 2022] &mdash; AlgoVenture 0.1 documentation</title>
+  <title>Week 8 [26-31 Mar 2022] &mdash; algoat 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> AlgoVenture
+            <a href="index.html" class="icon icon-home"> algoat
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -37,7 +37,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Daily Algo Exercise</span></p>
+              <p class="caption" role="heading"><span class="caption-text">daily exercises</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
@@ -254,10 +254,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-68-first-unique-character-in-a-string">Question 68: First Unique Character in a String</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-40-1-apr">Day 40 [1 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-68-game-tournament">Question 68: Game Tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-41-3-apr">Day 41 [3 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-69-valid-anagram">Question 69: Valid Anagram</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">misc</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="toolbox.html#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
@@ -298,7 +306,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">AlgoVenture</a>
+          <a href="index.html">algoat</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -826,6 +834,64 @@ Do not ignore any characters other than the leading whitespace or the rest of th
 <dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
 <li><p>Not too familiar with overflow prevention techniques!</p></li>
 <li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=s.length()</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-40-1-apr">
+<h2>Day 40 [1 Apr]<a class="headerlink" href="#day-40-1-apr" title="Permalink to this headline"></a></h2>
+<section id="question-68-game-tournament">
+<h3>Question 68: Game Tournament<a class="headerlink" href="#question-68-game-tournament" title="Permalink to this headline"></a></h3>
+<p>△△ 게임대회가 개최되었습니다. 이 대회는 N명이 참가하고, 토너먼트 형식으로 진행됩니다. N명의 참가자는 각각 1부터 N번을 차례대로 배정받습니다. 그리고, 1번↔2번, 3번↔4번, … , N-1번↔N번의 참가자끼리 게임을 진행합니다. 각 게임에서 이긴 사람은 다음 라운드에 진출할 수 있습니다. 이때, 다음 라운드에 진출할 참가자의 번호는 다시 1번부터 N/2번을 차례대로 배정받습니다. 만약 1번↔2번 끼리 겨루는 게임에서 2번이 승리했다면 다음 라운드에서 1번을 부여받고, 3번↔4번에서 겨루는 게임에서 3번이 승리했다면 다음 라운드에서 2번을 부여받게 됩니다. 게임은 최종 한 명이 남을 때까지 진행됩니다.
+이때, 처음 라운드에서 A번을 가진 참가자는 경쟁자로 생각하는 B번 참가자와 몇 번째 라운드에서 만나는지 궁금해졌습니다. 게임 참가자 수 N, 참가자 번호 A, 경쟁자 번호 B가 함수 solution의 매개변수로 주어질 때, 처음 라운드에서 A번을 가진 참가자는 경쟁자로 생각하는 B번 참가자와 몇 번째 라운드에서 만나는지 return 하는 solution 함수를 완성해 주세요. 단, A번 참가자와 B번 참가자는 서로 붙게 되기 전까지 항상 이긴다고 가정합니다.</p>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="k">while</span> <span class="p">(</span><span class="n">a</span><span class="o">!=</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">a</span><span class="o">=</span> <span class="n">a</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span> <span class="o">?</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="p">:</span> <span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 6</span>        <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span> <span class="o">?</span> <span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="p">:</span> <span class="n">b</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">answer</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span>    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="linenos">10</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="day-41-3-apr">
+<h2>Day 41 [3 Apr]<a class="headerlink" href="#day-41-3-apr" title="Permalink to this headline"></a></h2>
+<section id="question-69-valid-anagram">
+<h3>Question 69: Valid Anagram<a class="headerlink" href="#question-69-valid-anagram" title="Permalink to this headline"></a></h3>
+<p>Given two strings s and t, return true if t is an anagram of s, and false otherwise.</p>
+<p>An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.</p>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAnagram</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="n">String</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">!=</span><span class="n">t</span><span class="p">.</span><span class="na">length</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="n">charAtoInt</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">charCount</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">26</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 8</span>        <span class="n">charCount</span><span class="o">[</span><span class="n">c</span><span class="o">-</span><span class="n">charAtoInt</span><span class="o">]++</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span>
+<span class="linenos">10</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">t</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="n">charCount</span><span class="o">[</span><span class="n">c</span><span class="o">-</span><span class="n">charAtoInt</span><span class="o">]--</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">:</span> <span class="n">charCount</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">15</span>    <span class="p">}</span>
+<span class="linenos">16</span>    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">17</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Easy question!</p></li>
+<li><p>Thinking about time complexity is useful while brainstorming the solution.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=s.length()=t.length()</span></code>.</p></li>
 <li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
 </ul>
 </dd>

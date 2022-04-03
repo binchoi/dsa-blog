@@ -3,14 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Algorithm and Data Structure Notebook
+data structures and algorithm bookkeeping 
 ========================================================
-Author: Bin Choi
 
+**purpose**: to record my learning process of data structures and algorithms [**aka**: my road to becoming an 🐐 algoat 🐐]
 
 .. toctree::
    :maxdepth: 1
-   :caption: Daily Algo Exercise
+   :caption: daily exercises
 
    week1
    week2
@@ -23,7 +23,7 @@ Author: Bin Choi
 
 .. toctree::
    :maxdepth: 1
-   :caption: Miscellaneous
+   :caption: misc
 
    toolbox
    algosummary
