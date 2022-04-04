@@ -25,6 +25,7 @@ data structures and algorithm bookkeeping
    :maxdepth: 1
    :caption: misc
 
+   java-toolbox
    toolbox
    algosummary
    datastructure

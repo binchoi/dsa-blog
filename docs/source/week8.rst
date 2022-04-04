@@ -605,5 +605,141 @@ Remarks and Complexity Analysis:
  * **Time Complexity**: ``O(n)`` where ``n=s.length()=t.length()``.
  * **Space Complexity**: ``O(1)``
 
+Day 42 [4 Apr]
+================
+Question 70: Marathon
+------------------------------------------------
+수많은 마라톤 선수들이 마라톤에 참여하였습니다. 단 한 명의 선수를 제외하고는 모든 선수가 마라톤을 완주하였습니다.
+마라톤에 참여한 선수들의 이름이 담긴 배열 participant와 완주한 선수들의 이름이 담긴 배열 completion이 주어질 때, 완주하지 못한 선수의 이름을 return 하도록 solution 함수를 작성해주세요.
+
+제한사항
+ * 마라톤 경기에 참여한 선수의 수는 1명 이상 100,000명 이하입니다.
+ * completion의 길이는 participant의 길이보다 1 작습니다.
+ * 참가자의 이름은 1개 이상 20개 이하의 알파벳 소문자로 이루어져 있습니다.
+ * 참가자 중에는 동명이인이 있을 수 있습니다.
 
 
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        public String solution(String[] participant, String[] completion) {
+            HashMap<String,Integer> partCount = new HashMap<>();
+            // iterate through all participants
+            for (String s:participant) {
+                partCount.put(s,partCount.getOrDefault(s,0)+1);
+            }
+            // iterate through all completers
+            for (String s:completion) {
+                partCount.put(s,partCount.get(s)-1);
+                if (partCount.get(s)==0) partCount.remove(s);
+            }
+        
+            return partCount.isEmpty() ? "" : partCount.keySet().iterator().next();
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Easy question
+ * Time complexity is our friend.
+ * **Time Complexity**: ``O(n)`` where ``n=participant.size()``.
+ * **Space Complexity**: ``O(n)``
+
+Question 71: Phone Book
+------------------------------------------------
+전화번호부에 적힌 전화번호 중, 한 번호가 다른 번호의 접두어인 경우가 있는지 확인하려 합니다.
+전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.
+
+전화번호부에 적힌 전화번호를 담은 배열 phone_book 이 solution 함수의 매개변수로 주어질 때, 어떤 번호가 다른 번호의 접두어인 경우가 있으면 false를 그렇지 않으면 true를 return 하도록 solution 함수를 작성해주세요.
+
+제한 사항
+ * phone_book의 길이는 1 이상 1,000,000 이하입니다.
+ * 각 전화번호의 길이는 1 이상 20 이하입니다.
+ * 같은 전화번호가 중복해서 들어있지 않습니다.
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.HashSet;
+    import java.util.HashMap;
+    import java.util.Arrays;
+
+    class Solution {
+        public boolean solution(String[] phone_book) {
+            HashMap<Integer, HashSet<String>> prefixCandsByLen = new HashMap<>();
+            Arrays.sort(phone_book, (a,b) -> Integer.compare(a.length(), b.length()));
+            
+            for (String num : phone_book) {
+                for (int i : prefixCandsByLen.keySet()) {
+                    if (prefixCandsByLen.get(i).contains(num.substring(0,i))) return false;
+                }
+                HashSet<String> prefixSet = prefixCandsByLen.getOrDefault(num.length(), new HashSet<String>());
+                prefixSet.add(num);
+                prefixCandsByLen.put(num.length(), prefixSet);            
+            }
+            return true;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Not bad at all -- but I wonder if there is a better way to implement this (e.g. prefix trie?)
+ * **Time Complexity**: ``O(n^2)`` where ``n=phone_book.length``.
+ * **Space Complexity**: ``O(n)``
+
+Question 72: Spy Wardrobe
+------------------------------------------------
+스파이들은 매일 다른 옷을 조합하여 입어 자신을 위장합니다.
+예를 들어 스파이가 가진 옷이 아래와 같고 오늘 스파이가 동그란 안경, 긴 코트, 파란색 티셔츠를 입었다면 다음날은 청바지를 추가로 입거나 동그란 안경 대신 검정 선글라스를 착용하거나 해야 합니다.
+
+제한 사항
+ * clothes의 각 행은 [의상의 이름, 의상의 종류]로 이루어져 있습니다.
+ * 스파이가 가진 의상의 수는 1개 이상 30개 이하입니다.
+ * 같은 이름을 가진 의상은 존재하지 않습니다.
+ * clothes의 모든 원소는 문자열로 이루어져 있습니다.
+ * 모든 문자열의 길이는 1 이상 20 이하인 자연수이고 알파벳 소문자 또는 '_' 로만 이루어져 있습니다.
+ * 스파이는 하루에 최소 한 개의 의상은 입습니다.
+
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+    class Solution {
+        public int solution(String[][] clothes) {
+            HashMap<String,Integer> typeCount = new HashMap<>();
+            for (String[] itemAndType : clothes) {
+                typeCount.put(itemAndType[1], typeCount.getOrDefault(itemAndType[1],1)+1);
+            }
+            int res = 1;
+            for (int i : typeCount.values()) {
+                res*=i;
+            }
+            return res-1;
+        }
+
+        // Alternatively, using reduce (similar to fold)
+        public int solution(String[][] clothes) {
+            HashMap<String,Integer> typeCount = new HashMap<>();
+            for (String[] itemAndType : clothes) {
+                typeCount.put(itemAndType[1], typeCount.getOrDefault(itemAndType[1],1)+1);
+            }
+            return typeCount.values()
+                .stream()
+                .reduce(1,(acc, i) -> acc*i) - 1;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * The key was to realize that the problem is much easier when we reduce our scenario into a simpler one and then modify the result 
+   afterwards (i.e. include notWearing as one option for each group, compute all the possible combinations where we take one 
+   member from each of the groups, then subtract one to account for the non-valid zero clothes option)
+ * **Time Complexity**: ``O(n^2)`` where ``n=phone_book.length``.
+ * **Space Complexity**: ``O(n)``

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Java Toolbox &mdash; algoat 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Toolkit" href="toolbox.html" />
+    <link rel="prev" title="Week 8 [26-31 Mar 2022]" href="week8.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> algoat
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">daily exercises</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-2-valid-parentheses">Question 2: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-3-search-insert-position">Question 3: Search Insert Position</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-2-14-oct">Day 2 [14 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-4-pow-x-n">Question 4: Pow(x,n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-5-maximum-subarray">Question 5: Maximum Subarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-6-is-subsequence">Question 6: Is Subsequence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-3-15-oct">Day 3 [15 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-7-path-sum">Question 7: Path Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-8-best-time-to-buy-and-sell-stock">Question 8: Best Time to Buy and Sell Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-9-reverse-linked-list">Question 9: Reverse Linked List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-4-16-oct">Day 4 [16 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-10-unique-paths">Question 10: Unique Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-11-move-zeroes">Question 11: Move Zeroes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-12-unique-email-addresses">Question 12: Unique Email Addresses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-5-17-oct">Day 5 [17 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-13-generate-parentheses">Question 13: Generate Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-14-zigzag-conversion">Question 14: ZigZag Conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-15-palindrome-number">Question 15: Palindrome Number</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2 [17-24 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-6-18-oct">Day 6 [18 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-16-group-anagrams">Question 16: Group Anagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-17-longest-substring-without-repeating-characters">Question 17: Longest Substring Without Repeating Characters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-18-remove-element">Question 18: Remove Element</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-7-19-oct">Day 7 [19 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-19-combination-sum">Question 19: Combination Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-20-next-greater-element-i">Question 20: Next Greater Element I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-21-length-of-last-word">Question 21: Length of Last Word</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-8-20-oct">Day 8 [20 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-22-add-two-numbers">Question 22: Add Two Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-23-intersection-of-two-arrays">Question 23: Intersection of Two Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-24-longest-common-prefix">Question 24: Longest Common Prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-9-21-oct">Day 9 [21 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-25-subsets">Question 25: Subsets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-10-22-oct">Day 10 [22 Oct]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-11-23-oct">Day 11 [23 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-26-implement-strstr">Question 26: Implement strStr()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-27-sqrt-x">Question 27: Sqrt(x)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-12-24-oct">Day 12 [24 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-28-permutations">Question 28: Permutations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-29-plus-one">Question 29: Plus One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-30-plus-one">Question 30: Plus One</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week3.html">Week 3 [25-31 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-13-25-oct">Day 13 [25 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-31-word-break">Question 31: Word Break</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-32-same-tree">Question 32: Same Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-14-26-oct">Day 14 [26 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-33-k-th-symbol-in-grammar">Question 33: K-th Symbol in Grammar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-15-27-oct">Day 15 [27 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-34-remove-duplicates-from-sorted-list">Question 34: Remove Duplicates from Sorted List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-35-pascal-s-triangle">Question 35: Pascal’s Triangle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-00-28-oct">Day 00 [28 Oct]</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week4.html">Week 4 [1-7 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-16-1-nov">Day 16 [1 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-31-merge-two-sorted-lists">Question 31: Merge Two Sorted Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-17-2-nov">Day 17 [2 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-32-merge-sorted-array">Question 32: Merge Sorted Array</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-18-3-nov">Day 18 [3 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-33-valid-palindrome">Question 33: Valid Palindrome</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-19-4-nov">Day 19 [4 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-34-top-k-frequent-elements">Question 34: Top K Frequent Elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-20-5-nov">Day 20 [5 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-35-remove-duplicates-from-sorted-list-ii">Question 35: Remove Duplicates from Sorted List II</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-21-6-nov">Day 21 [6 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-36-excel-sheet-column-title">Question 36: Excel Sheet Column Title</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-22-7-nov">Day 22 [7 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-37-isomorphic-strings">Question 37: Isomorphic Strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week5.html">Week 5 [8-14 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-23-8-nov">Day 23 [8 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-38-excel-sheet-column-number">Question 38: Excel Sheet Column Number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-24-9-nov">Day 24 [9 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-39-xxxx">Question 39: XXXX</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week6.html">Week 6 [10-16 Jan 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-24-13-jan">Day 24 [13 Jan]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-39-minsubarraylen">Question 39: MinSubArrayLen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-25-5-feb">Day 25 [5 Feb]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-40-two-sum">Question 40: Two Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-26-9-mar">Day 26 [9 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-41-longest-palindromic-substring">Question 41: Longest Palindromic Substring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-27-10-mar">Day 27 [10 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-42-container-with-most-water">Question 42: Container With Most Water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-28-14-mar">Day 28 [14 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-43-valid-parentheses">Question 43: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-44-climbing-stairs">Question 44: Climbing Stairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-45-valid-palindrome">Question 45: Valid Palindrome</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-29-15-mar">Day 29 [15 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-46-cells-in-a-range-on-an-excel-sheet">Question 46: Cells in a Range on an Excel Sheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-47-append-k-integers-with-minimal-sum">Question 47: Append K Integers With Minimal Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-48-counting-bits">Question 48: Counting Bits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week7.html">Week 7 [16-23 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-30-16-mar">Day 30 [16 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-49-missing-number">Question 49: Missing Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-50-invert-binary-tree">Question 50: Invert Binary Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-51-reverse-bits">Question 51: Reverse Bits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-31-17-mar">Day 31 [17 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-52-number-of-1-bits">Question 52: Number of 1 Bits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-53-subtree-of-another-tree">Question 53: Subtree of Another Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-32-18-mar">Day 32 [18 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-54-3sum">Question 54: 3Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-33-19-mar">Day 33 [19 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-55-remove-nth-node-from-end-of-list">Question 55: Remove Nth Node From End of List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-34-21-mar">Day 34 [21 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-56-search-in-rotated-sorted-array">Question 56: Search in Rotated Sorted Array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-57-spiral-matrix">Question 57: Spiral Matrix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-35-22-mar">Day 35 [22 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-58-jump-game">Question 58: Jump Game</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-59-merge-intervals">Question 59: Merge Intervals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-36-23-mar">Day 36 [23 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-60-rotate-image">Question 60: Rotate Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-61-set-matrix-zeros">Question 61: Set Matrix Zeros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week8.html">Week 8 [26-31 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-37-26-mar">Day 37 [26 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-62-validate-binary-search-tree">Question 62: Validate Binary Search Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-63-binary-tree-inorder-traversal">Question 63: Binary Tree Inorder Traversal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-64-binary-tree-level-order-traversal">Question 64: Binary Tree Level Order Traversal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-38-28-mar">Day 38 [28 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-65-insert-interval">Question 65: Insert Interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-66-construct-binary-tree-from-preorder-and-inorder-traversal">Question 66: Construct Binary Tree from Preorder and Inorder Traversal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-39-29-mar">Day 39 [29 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-67-first-unique-character-in-a-string">Question 67: First Unique Character in a String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-68-first-unique-character-in-a-string">Question 68: First Unique Character in a String</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-40-1-apr">Day 40 [1 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-68-game-tournament">Question 68: Game Tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-41-3-apr">Day 41 [3 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-69-valid-anagram">Question 69: Valid Anagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-42-4-apr">Day 42 [4 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-70-marathon">Question 70: Marathon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-71-phone-book">Question 71: Phone Book</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-72-spy-wardrobe">Question 72: Spy Wardrobe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">misc</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">My Java Toolbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#iterable">Iterable</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iterator">iterator()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foreach">forEach()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#collection">Collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-addall">add() &amp; addAll()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-removeall-removeif">remove() &amp; removeAll() &amp; removeIf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contains-o-containsall-c">contains(o) &amp; containsAll(c)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equals-o">equals(o)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#isempty">isEmpty()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hashcode">hashCode()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retainall">retainAll()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#size">size()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toarray">toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collection-sort-list-comparator">Collection.sort(List, Comparator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-parallelstream">stream() &amp; parallelStream()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stream">Stream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stream-of">Stream.of()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">.toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collect">collect()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map">map()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flatmap">flatMap()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filter">filter()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reduce">reduce()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limit">limit()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distinct">distinct()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorted">sorted()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#findany-findfirst">findAny() &amp; findFirst()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collectors-groupingby">Collectors.groupingBy()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolbox.html#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#dictionary">Dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#list">List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="toolbox.html#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#collections">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#counter">Counter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algosummary.html">Useful Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#backtracking">Backtracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algosummary.html#useful-reference-backtracking">Useful Reference (Backtracking)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datastructure.html">Data Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#abstract-data-type-adt">Abstract Data Type (ADT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#static-and-dynamic-arrays">Static and Dynamic Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#linked-list">Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#trees">Trees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="datastructure.html#tree-traversal-types">Tree Traversal Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">algoat</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>My Java Toolbox</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="my-java-toolbox">
+<h1>My Java Toolbox<a class="headerlink" href="#my-java-toolbox" title="Permalink to this headline"></a></h1>
+<a class="reference internal image-reference" href="_images/col-img.png"><img alt="_images/col-img.png" src="_images/col-img.png" style="width: 1000px;" /></a>
+<section id="iterable">
+<h2>Iterable<a class="headerlink" href="#iterable" title="Permalink to this headline"></a></h2>
+<section id="iterator">
+<h3>iterator()<a class="headerlink" href="#iterator" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="p">(</span><span class="n">itb</span><span class="p">.</span><span class="na">iterator</span><span class="p">().</span><span class="na">hasNext</span><span class="p">())</span> <span class="n">iterator</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="foreach">
+<h3>forEach()<a class="headerlink" href="#foreach" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">itb</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="collection">
+<h2>Collection<a class="headerlink" href="#collection" title="Permalink to this headline"></a></h2>
+<section id="add-addall">
+<h3>add() &amp; addAll()<a class="headerlink" href="#add-addall" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">col</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">col</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="remove-removeall-removeif">
+<h3>remove() &amp; removeAll() &amp; removeIf()<a class="headerlink" href="#remove-removeall-removeif" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">col</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">col</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="linenos">3</span><span class="c1">//remove all elements that satisfy the given predicate</span>
+<span class="linenos">4</span><span class="n">col</span><span class="p">.</span><span class="na">removeIf</span><span class="p">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">num</span><span class="o">%</span><span class="mi">3</span><span class="o">==</span><span class="mi">0</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="contains-o-containsall-c">
+<h3>contains(o) &amp; containsAll(c)<a class="headerlink" href="#contains-o-containsall-c" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">col</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">col</span><span class="p">.</span><span class="na">containsAll</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="equals-o">
+<h3>equals(o)<a class="headerlink" href="#equals-o" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">col</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="isempty">
+<h3>isEmpty()<a class="headerlink" href="#isempty" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="p">(</span><span class="n">col</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;wow&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="hashcode">
+<h3>hashCode()<a class="headerlink" href="#hashcode" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The collection &quot;</span> <span class="o">+</span> <span class="n">col</span> <span class="s">&quot; has the hashcode: &quot;</span> <span class="o">+</span> <span class="n">col</span><span class="p">.</span><span class="na">hashCode</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="retainall">
+<h3>retainAll()<a class="headerlink" href="#retainall" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">col1</span><span class="p">.</span><span class="na">retainAll</span><span class="p">(</span><span class="n">col2</span><span class="p">);</span>
+<span class="linenos">2</span><span class="c1">//remove all elements from col1 that are not in col2</span>
+<span class="linenos">3</span><span class="c1">//used often with ArrayList, HashSet, etc...</span>
+</pre></div>
+</div>
+</section>
+<section id="size">
+<h3>size()<a class="headerlink" href="#size" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">col1</span><span class="p">.</span><span class="na">size</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="toarray">
+<h3>toArray()<a class="headerlink" href="#toarray" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Object</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">col</span><span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="collection-sort-list-comparator">
+<h3>Collection.sort(List, Comparator)<a class="headerlink" href="#collection-sort-list-comparator" title="Permalink to this headline"></a></h3>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">Arrays.sort()</span></code> but for sorting objects in linked lists, arraylists, queues, etc…</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+<span class="linenos">3</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos">4</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]-</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">5</span><span class="n">list</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span><span class="p">.</span><span class="na">length</span><span class="p">()));</span>
+</pre></div>
+</div>
+</section>
+<section id="stream-parallelstream">
+<h3>stream() &amp; parallelStream()<a class="headerlink" href="#stream-parallelstream" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">col</span>
+<span class="linenos">2</span>            <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">3</span>            <span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">acc</span><span class="o">+</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos">4</span><span class="c1">//parallelStream() returns a possibly parallel Stream with this collection as its source.</span>
+<span class="linenos">5</span><span class="c1">//it may return a sequential stream like .stream()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stream">
+<h2>Stream<a class="headerlink" href="#stream" title="Permalink to this headline"></a></h2>
+<p>A sequence of elements supporting sequential and parallel aggregate operations (e.g. see below). Similar to collection, but they
+do not store their own data, immutable, and lazy.</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">col</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">2</span>            <span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="n">RED</span><span class="p">)</span>
+<span class="linenos">3</span>            <span class="p">.</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">getWeight</span><span class="p">())</span>
+<span class="linenos">4</span>            <span class="p">.</span><span class="na">sum</span><span class="p">();</span>
+</pre></div>
+</div>
+<section id="stream-of">
+<h3>Stream.of()<a class="headerlink" href="#stream-of" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">);</span>
+<span class="linenos">3</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">myArray</span><span class="p">);</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="c1">//alternatively, directly from list...</span>
+<span class="linenos">6</span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>.toArray()<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="o">[]</span> <span class="n">myArray</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span> <span class="c1">//::new is constructor reference</span>
+</pre></div>
+</div>
+</section>
+<section id="collect">
+<h3>collect()<a class="headerlink" href="#collect" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myList</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos">2</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mySet</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toSet</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="map">
+<h3>map()<a class="headerlink" href="#map" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">w</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">());</span>
+<span class="linenos"> 2</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">String</span><span class="p">::</span><span class="n">toLowerCase</span><span class="p">);</span> <span class="c1">//equivalent</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">res</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">).</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//&gt; 2 3 4 5 6</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1">//without map()</span>
+<span class="linenos"> 7</span><span class="n">List</span><span class="o">&lt;</span><span class="n">InternetAddress</span><span class="o">&gt;</span> <span class="n">listOfEmail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 8</span><span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span><span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>    <span class="n">listOfEmail</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InternetAddress</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">getEmailAddress</span><span class="p">()));</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1">//with map()</span>
+<span class="linenos">13</span><span class="n">people</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">14</span>    <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getEmailAddress</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">InternetAddress</span><span class="p">::</span><span class="k">new</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="c1">//let&#39;s see what map() can do...</span>
+<span class="linenos">19</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;STRING&quot;</span><span class="p">)),</span>
+<span class="linenos">20</span>                                            <span class="n">Optional</span>
+<span class="linenos">21</span>                                            <span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
+<span class="linenos">22</span>                                            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;STRING&quot;</span><span class="p">)));</span>
+<span class="linenos">23</span><span class="c1">//nested optional? that&#39;s cumbersome, let&#39;s use flatMap()</span>
+</pre></div>
+</div>
+</section>
+<section id="flatmap">
+<h3>flatMap()<a class="headerlink" href="#flatmap" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">//useful for flattening</span>
+<span class="linenos">2</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;STRING&quot;</span><span class="p">),</span> <span class="n">Optional</span>
+<span class="linenos">3</span>                                        <span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
+<span class="linenos">4</span>                                        <span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;STRING&quot;</span><span class="p">)));</span>
+</pre></div>
+</div>
+</section>
+<section id="filter">
+<h3>filter()<a class="headerlink" href="#filter" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">//filter all strings whose first letter is &quot;f&quot; (i.e. all remaining start with &quot;f&quot;)</span>
+<span class="linenos">2</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">str</span><span class="o">-&gt;</span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;f&quot;</span><span class="p">));</span>
+<span class="linenos">3</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">);</span> <span class="c1">//only elements under 10 remain</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">lst</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="sc">&#39;C&#39;</span><span class="p">,</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">);</span>
+<span class="linenos">6</span><span class="n">lst</span> <span class="o">=</span> <span class="n">lst</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">Character</span><span class="p">::</span><span class="n">isUpperCase</span><span class="p">).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos">7</span><span class="n">lst</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="reduce">
+<h3>reduce()<a class="headerlink" href="#reduce" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//similar to fold</span>
+<span class="linenos"> 2</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">acc</span><span class="o">+</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos"> 3</span><span class="n">String</span> <span class="n">res</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">acc</span><span class="o">+</span><span class="s">&quot;|&quot;</span><span class="o">+</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">//another ex: finding max</span>
+<span class="linenos"> 6</span><span class="n">listOfPeople</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos"> 7</span>    <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getAge</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="p">.</span><span class="na">reduce</span><span class="p">((</span><span class="n">max</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="n">max</span> <span class="o">?</span> <span class="n">age</span> <span class="p">:</span> <span class="n">max</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">//another ex: concating names</span>
+<span class="linenos">11</span><span class="n">listOfPeople</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">12</span>    <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getName</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="s">&quot;Names: &quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">::</span><span class="n">concat</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="limit">
+<h3>limit()<a class="headerlink" href="#limit" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">res</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">2</span><span class="c1">//the first 3 elements</span>
+</pre></div>
+</div>
+</section>
+<section id="distinct">
+<h3>distinct()<a class="headerlink" href="#distinct" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">res</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">distinct</span><span class="p">();</span>
+<span class="linenos">2</span><span class="c1">//remove duplicated elements</span>
+</pre></div>
+</div>
+</section>
+<section id="sorted">
+<h3>sorted()<a class="headerlink" href="#sorted" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">res</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">sorted</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="allmatch-anymatch-nonematch">
+<h3>allMatch() &amp; anyMatch() &amp; noneMatch()<a class="headerlink" href="#allmatch-anymatch-nonematch" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">boolean</span> <span class="n">isTrue</span> <span class="o">=</span> <span class="n">boolList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">anyMatch</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;CHINA&quot;</span><span class="p">));</span> <span class="c1">//if any true -&gt; true</span>
+<span class="linenos">2</span><span class="kt">boolean</span> <span class="n">isTrue</span> <span class="o">=</span> <span class="n">boolList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">allMatch</span><span class="p">(</span><span class="n">node</span> <span class="o">-&gt;</span> <span class="n">node</span><span class="o">!=</span><span class="kc">null</span><span class="p">);</span> <span class="c1">//if all true -&gt; true</span>
+<span class="linenos">3</span><span class="kt">boolean</span> <span class="n">res</span> <span class="o">=</span> <span class="n">boolList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">noneMatch</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;USA&quot;</span><span class="p">));</span> <span class="c1">//if none true -&gt; true</span>
+</pre></div>
+</div>
+</section>
+<section id="findany-findfirst">
+<h3>findAny() &amp; findFirst()<a class="headerlink" href="#findany-findfirst" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">num</span><span class="o">-&gt;</span><span class="n">num</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">).</span><span class="na">findAny</span><span class="p">();</span>
+<span class="linenos">2</span><span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="na">isPresent</span><span class="p">()</span> <span class="o">?</span> <span class="n">res</span><span class="p">.</span><span class="na">get</span><span class="p">()</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">num</span><span class="o">-&gt;</span><span class="n">num</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">).</span><span class="na">findFirst</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="collectors-groupingby">
+<h3>Collectors.groupingBy()<a class="headerlink" href="#collectors-groupingby" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">stream</span>
+<span class="linenos"> 2</span>                                        <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">w</span> <span class="o">-&gt;</span> <span class="n">w</span><span class="p">.</span><span class="na">length</span><span class="p">()));</span>
+<span class="linenos"> 3</span><span class="c1">//&gt; 4=[Some], 5=[Somee], 6=[Someee, Someee], ...</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">stream</span>
+<span class="linenos"> 6</span>                                        <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">w</span> <span class="o">-&gt;</span> <span class="n">w</span><span class="p">.</span><span class="na">length</span><span class="p">(),</span> <span class="n">Collectors</span><span class="p">.</span><span class="na">toSet</span><span class="p">()));</span>
+<span class="linenos"> 7</span><span class="c1">//&gt; 4=[Some], 5=[Somee], 6=[Someee], ...</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;Some&quot;</span><span class="p">,</span> <span class="s">&quot;Somee&quot;</span><span class="p">,</span> <span class="s">&quot;Someee&quot;</span><span class="p">,</span> <span class="s">&quot;Someee&quot;</span><span class="p">,</span> <span class="s">&quot;Someeeee&quot;</span><span class="p">).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">length</span><span class="p">(),</span> <span class="n">Collectors</span><span class="p">.</span><span class="na">toSet</span><span class="p">()));</span>
+<span class="linenos">10</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">:</span> <span class="n">map</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">11</span>    <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos">12</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week8.html" class="btn btn-neutral float-left" title="Week 8 [26-31 Mar 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bin Choi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
