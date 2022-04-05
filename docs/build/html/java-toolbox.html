@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Java Toolbox &mdash; algoat 0.1 documentation</title>
+  <title>My Java Toolbox &mdash; algoat 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -268,6 +268,10 @@
 <li class="toctree-l3"><a class="reference internal" href="week8.html#question-72-spy-wardrobe">Question 72: Spy Wardrobe</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-43-5-apr">Day 43 [5 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-73-kakao-lawsuit">Question 73: Kakao Lawsuit</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -307,6 +311,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#findany-findfirst">findAny() &amp; findFirst()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collectors-groupingby">Collectors.groupingBy()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#array">Array</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialization">initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-aslist-vs-arraylist-arrays-aslist-array">array.asList() vs. ArrayList(Arrays.asList(array))</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aslist-applications">asList() applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-use-of-toarray">common use of toArray()</a></li>
 </ul>
 </li>
 </ul>
@@ -451,8 +462,8 @@
 <section id="collection-sort-list-comparator">
 <h3>Collection.sort(List, Comparator)<a class="headerlink" href="#collection-sort-list-comparator" title="Permalink to this headline"></a></h3>
 <p>Similar to <code class="docutils literal notranslate"><span class="pre">Arrays.sort()</span></code> but for sorting objects in linked lists, arraylists, queues, etc…</p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">);</span>
-<span class="linenos">2</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">);</span> <span class="c1">//default is ascending order</span>
+<span class="linenos">2</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span> <span class="c1">//descending order</span>
 <span class="linenos">3</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
 <span class="linenos">4</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]-</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
 <span class="linenos">5</span><span class="n">list</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span><span class="p">.</span><span class="na">length</span><span class="p">()));</span>
@@ -622,6 +633,64 @@ do not store their own data, immutable, and lazy.</p>
 <span class="linenos">10</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">:</span> <span class="n">map</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
 <span class="linenos">11</span>    <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
 <span class="linenos">12</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="array">
+<h2>Array<a class="headerlink" href="#array" title="Permalink to this headline"></a></h2>
+<section id="initialization">
+<h3>initialization<a class="headerlink" href="#initialization" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//empty array</span>
+<span class="linenos"> 2</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">//with values</span>
+<span class="linenos"> 5</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+<span class="linenos"> 6</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">//with values pt.2 using IntStream</span>
+<span class="linenos"> 9</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos">10</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">).</span><span class="na">sorted</span><span class="p">().</span><span class="na">toArray</span><span class="p">();</span> <span class="c1">//ascending by default</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1">//filled with one value</span>
+<span class="linenos">13</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">14</span><span class="n">Arrays</span><span class="p">.</span><span class="na">fill</span><span class="p">(</span><span class="n">intArr</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// import java.util.Arrays</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1">//filled with consecutive values</span>
+<span class="linenos">17</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span> <span class="c1">// import java.util.stream.IntStream</span>
+</pre></div>
+</div>
+</section>
+<section id="array-aslist-vs-arraylist-arrays-aslist-array">
+<h3>array.asList() vs. ArrayList(Arrays.asList(array))<a class="headerlink" href="#array-aslist-vs-arraylist-arrays-aslist-array" title="Permalink to this headline"></a></h3>
+<p>former puts a wrapper on vs. latter actually takes each element and inserts them into a new ArrayList</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span> <span class="p">};</span>
+<span class="linenos">2</span><span class="n">List</span> <span class="n">stringList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">);</span>
+<span class="linenos">3</span><span class="n">stringList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">);</span>
+<span class="linenos">4</span><span class="n">stringList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">);</span> <span class="c1">// ERROR THIS DOES NOT WORK - FIXED LENGTH</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span> <span class="p">};</span>
+<span class="linenos">7</span><span class="n">List</span> <span class="n">stringList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">));</span>
+<span class="linenos">8</span><span class="n">stringList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">);</span>
+<span class="linenos">9</span><span class="n">stringList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">);</span> <span class="c1">// :-)</span>
+</pre></div>
+</div>
+</section>
+<section id="aslist-applications">
+<h3>asList() applications<a class="headerlink" href="#aslist-applications" title="Permalink to this headline"></a></h3>
+<p><strong>To initialize HashSets, ArrayList, and Queues with value</strong></p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">,</span> <span class="s">&quot;5&quot;</span><span class="p">);</span> <span class="c1">//wrapper</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">arrLst</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">,</span> <span class="s">&quot;5&quot;</span><span class="p">));</span>
+<span class="linenos">4</span><span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">,</span> <span class="s">&quot;5&quot;</span><span class="p">));</span>
+<span class="linenos">5</span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">,</span> <span class="s">&quot;5&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="common-use-of-toarray">
+<h3>common use of toArray()<a class="headerlink" href="#common-use-of-toarray" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="n">intList</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">intList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">Person</span><span class="o">[]</span> <span class="n">people</span> <span class="o">=</span> <span class="n">valid</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="o">[</span><span class="n">valid</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>

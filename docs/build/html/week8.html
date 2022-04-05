@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Week 8 [26-31 Mar 2022] &mdash; algoat 0.1 documentation</title>
+  <title>Week 8 [26-31 Mar 2022] &mdash; algoat 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python Toolkit" href="toolbox.html" />
+    <link rel="next" title="My Java Toolbox" href="java-toolbox.html" />
     <link rel="prev" title="Week 7 [16-23 Mar 2022]" href="week7.html" /> 
 </head>
 
@@ -268,11 +268,53 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-72-spy-wardrobe">Question 72: Spy Wardrobe</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-43-5-apr">Day 43 [5 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-73-kakao-lawsuit">Question 73: Kakao Lawsuit</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">misc</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="java-toolbox.html">My Java Toolbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#iterable">Iterable</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#iterator">iterator()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#foreach">forEach()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#collection">Collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#add-addall">add() &amp; addAll()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#remove-removeall-removeif">remove() &amp; removeAll() &amp; removeIf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#contains-o-containsall-c">contains(o) &amp; containsAll(c)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#equals-o">equals(o)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#isempty">isEmpty()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#hashcode">hashCode()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#retainall">retainAll()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#size">size()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#toarray">toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collection-sort-list-comparator">Collection.sort(List, Comparator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stream-parallelstream">stream() &amp; parallelStream()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#stream">Stream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stream-of">Stream.of()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#id1">.toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collect">collect()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#map">map()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#flatmap">flatMap()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#filter">filter()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#reduce">reduce()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#limit">limit()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#distinct">distinct()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#sorted">sorted()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#findany-findfirst">findAny() &amp; findFirst()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collectors-groupingby">Collectors.groupingBy()</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="toolbox.html#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="toolbox.html#dictionary">Dictionary</a></li>
@@ -1035,7 +1077,16 @@ Do not ignore any characters other than the leading whitespace or the rest of th
 <span class="linenos">22</span>            <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
 <span class="linenos">23</span>            <span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="n">acc</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">acc</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
 <span class="linenos">24</span>    <span class="p">}</span>
-<span class="linenos">25</span><span class="p">}</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>    <span class="c1">// alternatively, relying heavily on stream</span>
+<span class="linenos">27</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[][]</span> <span class="n">clothes</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="k">return</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">clothes</span><span class="p">)</span>
+<span class="linenos">29</span>                <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">groupingBy</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">mapping</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">counting</span><span class="p">())))</span>
+<span class="linenos">30</span>                <span class="p">.</span><span class="na">values</span><span class="p">()</span>
+<span class="linenos">31</span>                <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">32</span>                <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">reducing</span><span class="p">(</span><span class="mi">1L</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))).</span><span class="na">intValue</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">33</span>    <span class="p">}</span>
+<span class="linenos">34</span><span class="p">}</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -1050,6 +1101,50 @@ member from each of the groups, then subtract one to account for the non-valid z
 </dl>
 </section>
 </section>
+<section id="day-43-5-apr">
+<h2>Day 43 [5 Apr]<a class="headerlink" href="#day-43-5-apr" title="Permalink to this headline"></a></h2>
+<section id="question-73-kakao-lawsuit">
+<h3>Question 73: Kakao Lawsuit<a class="headerlink" href="#question-73-kakao-lawsuit" title="Permalink to this headline"></a></h3>
+<p>신입사원 무지는 게시판 불량 이용자를 신고하고 처리 결과를 메일로 발송하는 시스템을 개발하려 합니다. 무지가 개발하려는 시스템은 다음과 같습니다.
+각 유저는 한 번에 한 명의 유저를 신고할 수 있습니다.
+신고 횟수에 제한은 없습니다. 서로 다른 유저를 계속해서 신고할 수 있습니다.
+한 유저를 여러 번 신고할 수도 있지만, 동일한 유저에 대한 신고 횟수는 1회로 처리됩니다.
+k번 이상 신고된 유저는 게시판 이용이 정지되며, 해당 유저를 신고한 모든 유저에게 정지 사실을 메일로 발송합니다.
+유저가 신고한 모든 내용을 취합하여 마지막에 한꺼번에 게시판 이용 정지를 시키면서 정지 메일을 발송합니다.
+다음은 전체 유저 목록이 [“muzi”, “frodo”, “apeach”, “neo”]이고, k = 2(즉, 2번 이상 신고당하면 이용 정지)인 경우의 예시입니다.</p>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">id_list</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">report</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">id_list</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">idToIndex</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 8</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">idToSuerSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">id_list</span><span class="p">.</span><span class="na">length</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>            <span class="n">idToIndex</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">id_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos">12</span>            <span class="n">idToSuerSet</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">id_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="linenos">13</span>        <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">suerToSued</span> <span class="p">:</span> <span class="n">report</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>            <span class="n">idToSuerSet</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">suerToSued</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">suerToSued</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">17</span>        <span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">id</span> <span class="p">:</span> <span class="n">idToSuerSet</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">20</span>            <span class="k">if</span> <span class="p">(</span><span class="n">idToSuerSet</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">21</span>                <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">suer</span> <span class="p">:</span> <span class="n">idToSuerSet</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">id</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">22</span>                    <span class="n">res</span><span class="o">[</span><span class="n">idToIndex</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">suer</span><span class="p">)</span><span class="o">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">23</span>                <span class="p">}</span>
+<span class="linenos">24</span>            <span class="p">}</span>
+<span class="linenos">25</span>        <span class="p">}</span>
+<span class="linenos">26</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -1057,7 +1152,7 @@ member from each of the groups, then subtract one to account for the non-valid z
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="week7.html" class="btn btn-neutral float-left" title="Week 7 [16-23 Mar 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="java-toolbox.html" class="btn btn-neutral float-right" title="My Java Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

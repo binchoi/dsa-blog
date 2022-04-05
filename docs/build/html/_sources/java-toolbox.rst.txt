@@ -92,6 +92,7 @@ toArray()
     :linenos:
 
     Object[] arr = col.toArray();
+    
 
 Collection.sort(List, Comparator)
 ---------------------------------------
@@ -100,9 +101,9 @@ Similar to ``Arrays.sort()`` but for sorting objects in linked lists, arraylists
 .. code-block:: Java
     :linenos:
 
-    Collections.sort(alphabetList);
-    Collections.sort(alphabetList, Collections.reverseOrder());
-    Collections.sort(alphabetList, (a,b)->Integer.compare(a[0],b[0]));
+    Collections.sort(alphabetList); //default is ascending order
+    Collections.sort(alphabetList, Collections.reverseOrder()); //descending order
+    Collections.sort(alphabetList, (a,b)->Integer.compare(a[0],b[0])); 
     Collections.sort(alphabetList, (a,b)->a[0]-b[0]);
     list.sort(Comparator.comparing(n -> n.length()));
     
@@ -291,8 +292,69 @@ Collectors.groupingBy()
     }
     
 
+Array
+======================
+initialization
+---------------
+.. code-block:: Java
+    :linenos:
 
+    //empty array
+    int[] intArr = new int[10];
 
+    //with values
+    int[] intArr = new int[] {1,2,3};
+    int[] intArr = {1,2,3};
+
+    //with values pt.2 using IntStream
+    int[] intArr = IntStream.of(1,7,5,3).toArray();
+    int[] intArr = IntStream.of(1,7,5,3).sorted().toArray(); //ascending by default
+
+    //filled with one value
+    int[] intArr = new int[10];
+    Arrays.fill(intArr, 1); // import java.util.Arrays
+
+    //filled with consecutive values
+    int[] intArr = IntStream.range(1,11).toArray(); // import java.util.stream.IntStream
+
+array.asList() vs. ArrayList(Arrays.asList(array))
+--------------------------------------------------------
+former puts a wrapper on vs. latter actually takes each element and inserts them into a new ArrayList
+
+.. code-block:: Java
+    :linenos:
+
+    String[] stringArray = new String[] { "A", "B", "C", "D" };
+    List stringList = Arrays.asList(stringArray);
+    stringList.set(0, "E");
+    stringList.add("F"); // ERROR THIS DOES NOT WORK - FIXED LENGTH
+
+    String[] stringArray = new String[] { "A", "B", "C", "D" }; 
+    List stringList = new ArrayList<>(Arrays.asList(stringArray));
+    stringList.set(0, "E");
+    stringList.add("F"); // :-)
+
+asList() applications
+------------------------------------------------------------------------------
+
+**To initialize HashSets, ArrayList, and Queues with value**
+
+.. code-block:: Java
+    :linenos:
+
+    List<String> strList = Arrays.asList("1", "3", "5"); //wrapper
+
+    ArrayList<String> arrLst = new ArrayList<>(Arrays.asList("1", "3", "5"));
+    HashSet<String> hSet = new HashSet<>(Arrays.asList("1", "3", "5"));
+    Queue<String> q = new ArrayDeque<>(Arrays.asList("1", "3", "5"));
+
+common use of toArray()
+-------------------------
+.. code-block:: Java
+    :linenos:
+
+    int[] intArr = intList.toArray(new int[intList.size()]);
+    Person[] people = valid.toArray(new Person[valid.size()]);
 
 
 
