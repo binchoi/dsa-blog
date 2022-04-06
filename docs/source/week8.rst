@@ -799,3 +799,164 @@ My Solution:
             return res;
         }
     }
+
+Question 74: Genre Compilation Question
+------------------------------------------------
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public void updateTopTwo(int[] currTopTwo, int idx, int[] plays) {
+        if (currTopTwo[0] == -1 || plays[currTopTwo[0]]<plays[idx]) {
+            currTopTwo[1] = currTopTwo[0];
+            currTopTwo[0] = idx;
+        } else if (currTopTwo[1] == -1 || plays[currTopTwo[1]]<plays[idx]) {
+            currTopTwo[1] = idx;
+        }
+    }
+    
+    public int[] solution(String[] genres, int[] plays) {
+        HashMap<String, int[]> genreTopTwoIdx = new HashMap<>();
+        HashMap<String, Integer> genreTotalPlays = new HashMap<>();
+        
+        for (int i = 0; i < genres.length; i++) {
+            //sum total number of plays
+            genreTotalPlays.put(genres[i], genreTotalPlays.getOrDefault(genres[i], 0) + plays[i]);
+            //update Top Two per Genre
+            int[] topTwo = genreTopTwoIdx.getOrDefault(genres[i], new int[] {-1,-1});
+            this.updateTopTwo(topTwo, i, plays);
+            // genreTopTwoIdx.put(genres[i], topTwo);
+        }
+        
+        Iterator<String> itr = genreTotalPlays.entrySet()
+            .stream()
+            .sorted((e1, e2) -> Integer.compare(e1.getValue(), e1.getValue()))
+            .map(e1 -> e1.getKey())
+            .iterator();
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        while (itr.hasNext()) {
+            String genre = itr.next();
+            Arrays.stream(genreTopTwoIdx.get(genre))
+                .filter(x -> x!=-1)
+                .collect(Collectors.toList());
+        }
+        return new int[] {1,2};
+    }
+
+    import java.util.*;
+
+    //ALTERNATIVELY
+    class Solution {
+        public int[] solution(String[] genres, int[] plays) {
+            HashMap<Integer, String> indexHashMap = new HashMap<>(); // index를 기반으로 찾는 로직,
+            HashMap<String, Integer>  totalPlayHashMap = new HashMap<>(); // generes의 값, plays의 값의 합 (genres간의 비교를 위함)
+
+            ArrayList<Integer> answerArrayList = new ArrayList<>(); // 정답을 저장할 ArrayList
+
+            for(int i = 0; i < genres.length; i++){
+                if (totalPlayHashMap.containsKey(genres[i])) {
+                    // 해당 key를 가진 value가 존재하는 경우, 기존 value에 현재 값을 더한다.
+                    totalPlayHashMap.put(genres[i], totalPlayHashMap.get(genres[i]) + plays[i]);
+                }
+                else {
+                    totalPlayHashMap.put(genres[i], plays[i]);
+                }
+                // index를 key로 하기 때문에, 중복 확인 불필요
+                indexHashMap.put(i, genres[i]);
+            }
+
+            // key값을 받아 playHashMap의 value값을 기반으로 내림차순 정렬
+            String[] sortGenres = totalPlayHashMap.keySet().toArray(new String[0]);
+            Arrays.sort(sortGenres, new Comparator<String>() {
+                @Override
+                public int compare(String key1, String key2) {
+                    return totalPlayHashMap.get(key2) - totalPlayHashMap.get(key1);
+                }
+            });
+
+            // Genres값을 내림차순 순서대로 찾는다.
+            for (String key : sortGenres) {
+                ArrayList<Integer> tempArrayList = new ArrayList<>();
+                // index를 기반으로 genres와 같은 value값을 찾아 ArrayList에 저장한다.
+                for (int i = 0; i < genres.length; i++) {
+                    if (key.equals(indexHashMap.get(i))) {
+                        tempArrayList.add(i);
+                    }
+                }
+                if(tempArrayList.size() < 2){
+                    // 값이 2개 미만일 때, 정렬 불필요
+                    answerArrayList.add(tempArrayList.get(0));
+                }
+                else {
+                    // key를 기준으로 받아온 index를 plays[index]를 기준으로하여 내림차순으로 정렬
+                    Integer[] sortPlays = tempArrayList.toArray(new Integer[0]);
+                    Arrays.sort(sortPlays, new Comparator<Integer>() {
+                        @Override
+                        public int compare(Integer index1, Integer index2) {
+                            return plays[index2] - plays[index1];
+                        }
+                    });
+                    // 2개 이상이기 때문에, 위에서 부터 순서대로 2개 추가
+                    answerArrayList.add(sortPlays[0]);
+                    answerArrayList.add(sortPlays[1]);
+                }
+            }
+            // ArrayList를 int 배열로 변경
+            int[] answer = answerArrayList.stream().mapToInt(i->i).toArray();
+            return  answer;
+        }
+    }
+
+
+Interesting way of using Stream: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.List;
+    import java.util.stream.Collectors;
+    import java.util.stream.IntStream;
+
+    public class Solution {
+        public class Music implements Comparable<Music>{
+
+            private int played;
+            private int id;
+            private String genre;
+
+            public Music(String genre, int played, int id) {
+                this.genre = genre; 
+                this.played = played;
+                this.id = id;
+            }
+
+            @Override
+            public int compareTo(Music other) {
+                if(this.played == other.played) return this.id - other.id;
+                return other.played - this.played;
+            }
+
+            public String getGenre() {return genre;}
+        }
+
+        public int[] solution(String[] genres, int[] plays) {
+            return IntStream.range(0, genres.length)
+                .mapToObj(i -> new Music(genres[i], plays[i], i))
+                .collect(Collectors.groupingBy(Music::getGenre))
+                .entrySet().stream()
+                .sorted((a, b) -> sum(b.getValue()) - sum(a.getValue()))
+                .flatMap(x->x.getValue().stream().sorted().limit(2))
+                .mapToInt(x->x.id).toArray();
+        }
+
+        private int sum(List<Music> value) {
+            int answer = 0;
+            for (Music music : value) {
+                answer+=music.played;
+            }
+            return answer;
+        }
+    }

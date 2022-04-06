@@ -317,7 +317,7 @@ initialization
     //filled with consecutive values
     int[] intArr = IntStream.range(1,11).toArray(); // import java.util.stream.IntStream
 
-array.asList() vs. ArrayList(Arrays.asList(array))
+Arrays.asList() vs. ArrayList(Arrays.asList(array))
 --------------------------------------------------------
 former puts a wrapper on vs. latter actually takes each element and inserts them into a new ArrayList
 
@@ -334,7 +334,7 @@ former puts a wrapper on vs. latter actually takes each element and inserts them
     stringList.set(0, "E");
     stringList.add("F"); // :-)
 
-asList() applications
+Arrays.asList() applications
 ------------------------------------------------------------------------------
 
 **To initialize HashSets, ArrayList, and Queues with value**
@@ -356,9 +356,181 @@ common use of toArray()
     int[] intArr = intList.toArray(new int[intList.size()]);
     Person[] people = valid.toArray(new Person[valid.size()]);
 
+int[] to ArrayList<Integer>
+---------------------------
+.. code-block:: Java
+    :linenos:
+
+    ArrayList<Integer> arrList = IntStream.of(array)
+                                    .boxed()
+                                    .collect(Collectors.toCollection(ArrayList::new));
+    HashSet<String> hashSet = lstOfString.stream()
+                                    .collect(Collectors.toCollection(HashSet::new));
+    //to demonstrate...
+    IntStream.of(new int[] {1,2,3,4,5})
+        .boxed()
+        .collect(Collectors.toCollection(HashSet::new))
+        .forEach(System.out::println);
+
+    List<String> lstOfString = Arrays.asList("AHEHEF", "AHEHEF", "EFEF");
+
+    HashSet<String> hashSet = lstOfString.stream().collect(Collectors.toCollection(HashSet::new));
+    hashSet.forEach(System.out::println);
+    
+    ArrayList<String> arrList = lstOfString.stream().collect(Collectors.toCollection(ArrayList::new));
+    arrList.forEach(System.out::println);
+
+[Static method] Arrays.sort()
+-------------------------------
+.. code-block:: Java
+    :linenos:
+
+    Arrays.sort(temp);
+
+[Static method] Arrays.copyOfRange()
+-------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    int[] temp = Arrays.copyOfRange(array, start, end);
 
 
+String
+======================
+char[] to String
+---------------- 
+.. code-block:: Java
+    :linenos:
 
+    char[] hello = {'c', 'o', 'd'}; // char[] is essentially String, so... 
+    String helloo = new String(hello);
 
+charAt()
+---------------- 
+.. code-block:: Java
+    :linenos:
 
+    string.charAt(0);
 
+concat()
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    strOne.concat(strTwo); // strOne+strTwo 
+    String abc = "abc";
+    String cde = "cde";
+    System.out.println(abc.concat(cde)); //abccde
+    System.out.println(abc);             //abc
+
+length()
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    String cde = "cde";
+    cde.length(); // for ARRAY -> .length and for COLLECTIONS -> .size()
+
+replace() && replaceAll() && replaceFirst()
+-------------------------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    String cde = "cdefghijklmnop";
+    //both replace all occurences of the pattern but replaceAll uses regular expression
+    cde.replace("cd", "  ");
+    cde.replaceAll("[^a-f]", "");
+    //replaces only first occurance - uses regex
+    cde.replaceFirst("[^a-f]", "");
+
+split()
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    String str = "cdKef gh_ijKkl mnK*op";
+
+    String[] strArr = str.split(" ");
+    Arrays.stream(strArr).forEach(System.out::println);
+
+    String[] strArr2 = str.split("[K*-_]");
+    Arrays.stream(strArr2).forEach(System.out::println);
+
+    //cdKef
+    //gh_ijKkl
+    //mnK*op
+
+    //cd
+    //ef gh
+    //ij
+    //kl mn
+    //    <- empty String
+    //op
+
+startsWith()
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    String str = "cdKef gh_ijKkl mnK*op";
+    
+    str.startsWith("cdK"); //true 
+
+substring()
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    String str = "abcdefghijk";
+    str.substring(3,6); // incl, excl -> "def"
+
+toCharArray()
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    String str = "abcdefghijk";
+    str.toCharArray();
+    
+toLowerCase() && toUpperCase()
+-------------------------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    String str = "abcdefghijk";
+    String lower = str.toLowerCase();
+    String upper = lower.toUpperCase();
+
+trim()
+-------------------------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    String str = " abcdefghijk   ";
+    String trim = str.trim(); // "abcdefghijk"
+
+[Static method] valueOf()
+-------------------------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    String.valueOf(1); // "1"
+    String.valueOf(false); // "false"
+    String.valueOf('a'); // "a"
+    String.valueOf(3L); // "3"
+    
+    
+
+Integer
+======================
+Integer to int (vice versa)
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    Integer b = Integer.valueOf(5); // int to Integer
+    b.intValue(); // Integer to int
+
+    // auto boxing and auto unboxing works most of the time
+    int a = integer; 
+    Integer c = a;

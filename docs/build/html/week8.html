@@ -270,6 +270,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-43-5-apr">Day 43 [5 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-73-kakao-lawsuit">Question 73: Kakao Lawsuit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-74-genre-compilation-question">Question 74: Genre Compilation Question</a></li>
 </ul>
 </li>
 </ul>
@@ -311,6 +312,13 @@
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#findany-findfirst">findAny() &amp; findFirst()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collectors-groupingby">Collectors.groupingBy()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#array">Array</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#initialization">initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#array-aslist-vs-arraylist-arrays-aslist-array">array.asList() vs. ArrayList(Arrays.asList(array))</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#aslist-applications">asList() applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#common-use-of-toarray">common use of toArray()</a></li>
 </ul>
 </li>
 </ul>
@@ -1141,6 +1149,160 @@ k번 이상 신고된 유저는 게시판 이용이 정지되며, 해당 유저�
 <span class="linenos">26</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
 <span class="linenos">27</span>    <span class="p">}</span>
 <span class="linenos">28</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-74-genre-compilation-question">
+<h3>Question 74: Genre Compilation Question<a class="headerlink" href="#question-74-genre-compilation-question" title="Permalink to this headline"></a></h3>
+<p>My Solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateTopTwo</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">currTopTwo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">plays</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">  2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">currTopTwo</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">plays</span><span class="o">[</span><span class="n">currTopTwo</span><span class="o">[</span><span class="mi">0</span><span class="o">]]&lt;</span><span class="n">plays</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">  3</span>        <span class="n">currTopTwo</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">currTopTwo</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">  4</span>        <span class="n">currTopTwo</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span>
+<span class="linenos">  5</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">currTopTwo</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">plays</span><span class="o">[</span><span class="n">currTopTwo</span><span class="o">[</span><span class="mi">1</span><span class="o">]]&lt;</span><span class="n">plays</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">  6</span>        <span class="n">currTopTwo</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span>
+<span class="linenos">  7</span>    <span class="p">}</span>
+<span class="linenos">  8</span><span class="p">}</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">genres</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">plays</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 11</span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">genreTopTwoIdx</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 12</span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">genreTotalPlays</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">genres</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 15</span>        <span class="c1">//sum total number of plays</span>
+<span class="linenos"> 16</span>        <span class="n">genreTotalPlays</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">genreTotalPlays</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">plays</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 17</span>        <span class="c1">//update Top Two per Genre</span>
+<span class="linenos"> 18</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">topTwo</span> <span class="o">=</span> <span class="n">genreTopTwoIdx</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">});</span>
+<span class="linenos"> 19</span>        <span class="k">this</span><span class="p">.</span><span class="na">updateTopTwo</span><span class="p">(</span><span class="n">topTwo</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">plays</span><span class="p">);</span>
+<span class="linenos"> 20</span>        <span class="c1">// genreTopTwoIdx.put(genres[i], topTwo);</span>
+<span class="linenos"> 21</span>    <span class="p">}</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span>    <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">genreTotalPlays</span><span class="p">.</span><span class="na">entrySet</span><span class="p">()</span>
+<span class="linenos"> 24</span>        <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos"> 25</span>        <span class="p">.</span><span class="na">sorted</span><span class="p">((</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">e1</span><span class="p">.</span><span class="na">getValue</span><span class="p">(),</span> <span class="n">e1</span><span class="p">.</span><span class="na">getValue</span><span class="p">()))</span>
+<span class="linenos"> 26</span>        <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">e1</span> <span class="o">-&gt;</span> <span class="n">e1</span><span class="p">.</span><span class="na">getKey</span><span class="p">())</span>
+<span class="linenos"> 27</span>        <span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span>    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 30</span>    <span class="k">while</span> <span class="p">(</span><span class="n">itr</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 31</span>        <span class="n">String</span> <span class="n">genre</span> <span class="o">=</span> <span class="n">itr</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+<span class="linenos"> 32</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">genreTopTwoIdx</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">genre</span><span class="p">))</span>
+<span class="linenos"> 33</span>            <span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 34</span>            <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos"> 35</span>    <span class="p">}</span>
+<span class="linenos"> 36</span>    <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
+<span class="linenos"> 37</span><span class="p">}</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span><span class="c1">//ALTERNATIVELY</span>
+<span class="linenos"> 42</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 43</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">genres</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">plays</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 44</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">indexHashMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span> <span class="c1">// index를 기반으로 찾는 로직,</span>
+<span class="linenos"> 45</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span>  <span class="n">totalPlayHashMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span> <span class="c1">// generes의 값, plays의 값의 합 (genres간의 비교를 위함)</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">answerArrayList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span> <span class="c1">// 정답을 저장할 ArrayList</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">genres</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="linenos"> 50</span>            <span class="k">if</span> <span class="p">(</span><span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 51</span>                <span class="c1">// 해당 key를 가진 value가 존재하는 경우, 기존 value에 현재 값을 더한다.</span>
+<span class="linenos"> 52</span>                <span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span> <span class="o">+</span> <span class="n">plays</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 53</span>            <span class="p">}</span>
+<span class="linenos"> 54</span>            <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 55</span>                <span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">plays</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 56</span>            <span class="p">}</span>
+<span class="linenos"> 57</span>            <span class="c1">// index를 key로 하기 때문에, 중복 확인 불필요</span>
+<span class="linenos"> 58</span>            <span class="n">indexHashMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 59</span>        <span class="p">}</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span>        <span class="c1">// key값을 받아 playHashMap의 value값을 기반으로 내림차순 정렬</span>
+<span class="linenos"> 62</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">sortGenres</span> <span class="o">=</span> <span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">keySet</span><span class="p">().</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 63</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">sortGenres</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 64</span>            <span class="nd">@Override</span>
+<span class="linenos"> 65</span>            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">String</span> <span class="n">key1</span><span class="p">,</span> <span class="n">String</span> <span class="n">key2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 66</span>                <span class="k">return</span> <span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key2</span><span class="p">)</span> <span class="o">-</span> <span class="n">totalPlayHashMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key1</span><span class="p">);</span>
+<span class="linenos"> 67</span>            <span class="p">}</span>
+<span class="linenos"> 68</span>        <span class="p">});</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span>        <span class="c1">// Genres값을 내림차순 순서대로 찾는다.</span>
+<span class="linenos"> 71</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">key</span> <span class="p">:</span> <span class="n">sortGenres</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 72</span>            <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempArrayList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 73</span>            <span class="c1">// index를 기반으로 genres와 같은 value값을 찾아 ArrayList에 저장한다.</span>
+<span class="linenos"> 74</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">genres</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 75</span>                <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">indexHashMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span> <span class="p">{</span>
+<span class="linenos"> 76</span>                    <span class="n">tempArrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos"> 77</span>                <span class="p">}</span>
+<span class="linenos"> 78</span>            <span class="p">}</span>
+<span class="linenos"> 79</span>            <span class="k">if</span><span class="p">(</span><span class="n">tempArrayList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">){</span>
+<span class="linenos"> 80</span>                <span class="c1">// 값이 2개 미만일 때, 정렬 불필요</span>
+<span class="linenos"> 81</span>                <span class="n">answerArrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tempArrayList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="linenos"> 82</span>            <span class="p">}</span>
+<span class="linenos"> 83</span>            <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 84</span>                <span class="c1">// key를 기준으로 받아온 index를 plays[index]를 기준으로하여 내림차순으로 정렬</span>
+<span class="linenos"> 85</span>                <span class="n">Integer</span><span class="o">[]</span> <span class="n">sortPlays</span> <span class="o">=</span> <span class="n">tempArrayList</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 86</span>                <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">sortPlays</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 87</span>                    <span class="nd">@Override</span>
+<span class="linenos"> 88</span>                    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">Integer</span> <span class="n">index1</span><span class="p">,</span> <span class="n">Integer</span> <span class="n">index2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 89</span>                        <span class="k">return</span> <span class="n">plays</span><span class="o">[</span><span class="n">index2</span><span class="o">]</span> <span class="o">-</span> <span class="n">plays</span><span class="o">[</span><span class="n">index1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 90</span>                    <span class="p">}</span>
+<span class="linenos"> 91</span>                <span class="p">});</span>
+<span class="linenos"> 92</span>                <span class="c1">// 2개 이상이기 때문에, 위에서 부터 순서대로 2개 추가</span>
+<span class="linenos"> 93</span>                <span class="n">answerArrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">sortPlays</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 94</span>                <span class="n">answerArrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">sortPlays</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 95</span>            <span class="p">}</span>
+<span class="linenos"> 96</span>        <span class="p">}</span>
+<span class="linenos"> 97</span>        <span class="c1">// ArrayList를 int 배열로 변경</span>
+<span class="linenos"> 98</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answerArrayList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">i</span><span class="o">-&gt;</span><span class="n">i</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos"> 99</span>        <span class="k">return</span>  <span class="n">answer</span><span class="p">;</span>
+<span class="linenos">100</span>    <span class="p">}</span>
+<span class="linenos">101</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Interesting way of using Stream:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 6</span>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Music</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Music</span><span class="o">&gt;</span><span class="p">{</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>        <span class="kd">private</span> <span class="kt">int</span> <span class="n">played</span><span class="p">;</span>
+<span class="linenos"> 9</span>        <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+<span class="linenos">10</span>        <span class="kd">private</span> <span class="n">String</span> <span class="n">genre</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>        <span class="kd">public</span> <span class="nf">Music</span><span class="p">(</span><span class="n">String</span> <span class="n">genre</span><span class="p">,</span> <span class="kt">int</span> <span class="n">played</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>            <span class="k">this</span><span class="p">.</span><span class="na">genre</span> <span class="o">=</span> <span class="n">genre</span><span class="p">;</span>
+<span class="linenos">14</span>            <span class="k">this</span><span class="p">.</span><span class="na">played</span> <span class="o">=</span> <span class="n">played</span><span class="p">;</span>
+<span class="linenos">15</span>            <span class="k">this</span><span class="p">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span>
+<span class="linenos">16</span>        <span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>        <span class="nd">@Override</span>
+<span class="linenos">19</span>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Music</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">20</span>            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">played</span> <span class="o">==</span> <span class="n">other</span><span class="p">.</span><span class="na">played</span><span class="p">)</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">id</span> <span class="o">-</span> <span class="n">other</span><span class="p">.</span><span class="na">id</span><span class="p">;</span>
+<span class="linenos">21</span>            <span class="k">return</span> <span class="n">other</span><span class="p">.</span><span class="na">played</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="na">played</span><span class="p">;</span>
+<span class="linenos">22</span>        <span class="p">}</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getGenre</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">genre</span><span class="p">;}</span>
+<span class="linenos">25</span>    <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">genres</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">plays</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="k">return</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">genres</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+<span class="linenos">29</span>            <span class="p">.</span><span class="na">mapToObj</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Music</span><span class="p">(</span><span class="n">genres</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">plays</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="linenos">30</span>            <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">Music</span><span class="p">::</span><span class="n">getGenre</span><span class="p">))</span>
+<span class="linenos">31</span>            <span class="p">.</span><span class="na">entrySet</span><span class="p">().</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">32</span>            <span class="p">.</span><span class="na">sorted</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="na">getValue</span><span class="p">())</span> <span class="o">-</span> <span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">getValue</span><span class="p">()))</span>
+<span class="linenos">33</span>            <span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">stream</span><span class="p">().</span><span class="na">sorted</span><span class="p">().</span><span class="na">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="linenos">34</span>            <span class="p">.</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">.</span><span class="na">id</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos">35</span>    <span class="p">}</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Music</span><span class="o">&gt;</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">38</span>        <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">39</span>        <span class="k">for</span> <span class="p">(</span><span class="n">Music</span> <span class="n">music</span> <span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">40</span>            <span class="n">answer</span><span class="o">+=</span><span class="n">music</span><span class="p">.</span><span class="na">played</span><span class="p">;</span>
+<span class="linenos">41</span>        <span class="p">}</span>
+<span class="linenos">42</span>        <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="linenos">43</span>    <span class="p">}</span>
+<span class="linenos">44</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>

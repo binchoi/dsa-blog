@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python Toolkit" href="toolbox.html" />
-    <link rel="prev" title="Week 8 [26-31 Mar 2022]" href="week8.html" /> 
+    <link rel="prev" title="Week 9 [6-13 Mar 2022]" href="week9.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -270,6 +270,14 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="week8.html#day-43-5-apr">Day 43 [5 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week8.html#question-73-kakao-lawsuit">Question 73: Kakao Lawsuit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-74-genre-compilation-question">Question 74: Genre Compilation Question</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week9.html">Week 9 [6-13 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-44-6-apr">Day 44 [6 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-7g-kakao-lawsuit">Question 7g: Kakao Lawsuit</a></li>
 </ul>
 </li>
 </ul>
@@ -315,9 +323,31 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#array">Array</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#initialization">initialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#array-aslist-vs-arraylist-arrays-aslist-array">array.asList() vs. ArrayList(Arrays.asList(array))</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#aslist-applications">asList() applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arrays-aslist-vs-arraylist-arrays-aslist-array">Arrays.asList() vs. ArrayList(Arrays.asList(array))</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arrays-aslist-applications">Arrays.asList() applications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-use-of-toarray">common use of toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#int-to-arraylist-integer">int[] to ArrayList&lt;Integer&gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-method-arrays-sort">[Static method] Arrays.sort()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-method-arrays-copyofrange">[Static method] Arrays.copyOfRange()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#string">String</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#char-to-string">char[] to String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#charat">charAt()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concat">concat()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#length">length()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-replaceall-replacefirst">replace() &amp;&amp; replaceAll() &amp;&amp; replaceFirst()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#split">split()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#startswith">startsWith()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#substring">substring()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tochararray">toCharArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tolowercase-touppercase">toLowerCase() &amp;&amp; toUpperCase()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trim">trim()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-method-valueof">[Static method] valueOf()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#integer">Integer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#integer-to-int-vice-versa">Integer to int (vice versa)</a></li>
 </ul>
 </li>
 </ul>
@@ -661,8 +691,8 @@ do not store their own data, immutable, and lazy.</p>
 </pre></div>
 </div>
 </section>
-<section id="array-aslist-vs-arraylist-arrays-aslist-array">
-<h3>array.asList() vs. ArrayList(Arrays.asList(array))<a class="headerlink" href="#array-aslist-vs-arraylist-arrays-aslist-array" title="Permalink to this headline"></a></h3>
+<section id="arrays-aslist-vs-arraylist-arrays-aslist-array">
+<h3>Arrays.asList() vs. ArrayList(Arrays.asList(array))<a class="headerlink" href="#arrays-aslist-vs-arraylist-arrays-aslist-array" title="Permalink to this headline"></a></h3>
 <p>former puts a wrapper on vs. latter actually takes each element and inserts them into a new ArrayList</p>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span> <span class="p">};</span>
 <span class="linenos">2</span><span class="n">List</span> <span class="n">stringList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">);</span>
@@ -676,8 +706,8 @@ do not store their own data, immutable, and lazy.</p>
 </pre></div>
 </div>
 </section>
-<section id="aslist-applications">
-<h3>asList() applications<a class="headerlink" href="#aslist-applications" title="Permalink to this headline"></a></h3>
+<section id="arrays-aslist-applications">
+<h3>Arrays.asList() applications<a class="headerlink" href="#arrays-aslist-applications" title="Permalink to this headline"></a></h3>
 <p><strong>To initialize HashSets, ArrayList, and Queues with value</strong></p>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">,</span> <span class="s">&quot;5&quot;</span><span class="p">);</span> <span class="c1">//wrapper</span>
 <span class="linenos">2</span>
@@ -694,6 +724,168 @@ do not store their own data, immutable, and lazy.</p>
 </pre></div>
 </div>
 </section>
+<section id="int-to-arraylist-integer">
+<h3>int[] to ArrayList&lt;Integer&gt;<a class="headerlink" href="#int-to-arraylist-integer" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="linenos"> 2</span>                                <span class="p">.</span><span class="na">boxed</span><span class="p">()</span>
+<span class="linenos"> 3</span>                                <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(</span><span class="n">ArrayList</span><span class="p">::</span><span class="k">new</span><span class="p">));</span>
+<span class="linenos"> 4</span><span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hashSet</span> <span class="o">=</span> <span class="n">lstOfString</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos"> 5</span>                                <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(</span><span class="n">HashSet</span><span class="p">::</span><span class="k">new</span><span class="p">));</span>
+<span class="linenos"> 6</span><span class="c1">//to demonstrate...</span>
+<span class="linenos"> 7</span><span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">})</span>
+<span class="linenos"> 8</span>    <span class="p">.</span><span class="na">boxed</span><span class="p">()</span>
+<span class="linenos"> 9</span>    <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(</span><span class="n">HashSet</span><span class="p">::</span><span class="k">new</span><span class="p">))</span>
+<span class="linenos">10</span>    <span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lstOfString</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;AHEHEF&quot;</span><span class="p">,</span> <span class="s">&quot;AHEHEF&quot;</span><span class="p">,</span> <span class="s">&quot;EFEF&quot;</span><span class="p">);</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hashSet</span> <span class="o">=</span> <span class="n">lstOfString</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(</span><span class="n">HashSet</span><span class="p">::</span><span class="k">new</span><span class="p">));</span>
+<span class="linenos">15</span><span class="n">hashSet</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="n">lstOfString</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(</span><span class="n">ArrayList</span><span class="p">::</span><span class="k">new</span><span class="p">));</span>
+<span class="linenos">18</span><span class="n">arrList</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="static-method-arrays-sort">
+<h3>[Static method] Arrays.sort()<a class="headerlink" href="#static-method-arrays-sort" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="static-method-arrays-copyofrange">
+<h3>[Static method] Arrays.copyOfRange()<a class="headerlink" href="#static-method-arrays-copyofrange" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOfRange</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="string">
+<h2>String<a class="headerlink" href="#string" title="Permalink to this headline"></a></h2>
+<section id="char-to-string">
+<h3>char[] to String<a class="headerlink" href="#char-to-string" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">char</span><span class="o">[]</span> <span class="n">hello</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;c&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">};</span> <span class="c1">// char[] is essentially String, so...</span>
+<span class="linenos">2</span><span class="n">String</span> <span class="n">helloo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">hello</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="charat">
+<h3>charAt()<a class="headerlink" href="#charat" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">string</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="concat">
+<h3>concat()<a class="headerlink" href="#concat" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">strOne</span><span class="p">.</span><span class="na">concat</span><span class="p">(</span><span class="n">strTwo</span><span class="p">);</span> <span class="c1">// strOne+strTwo</span>
+<span class="linenos">2</span><span class="n">String</span> <span class="n">abc</span> <span class="o">=</span> <span class="s">&quot;abc&quot;</span><span class="p">;</span>
+<span class="linenos">3</span><span class="n">String</span> <span class="n">cde</span> <span class="o">=</span> <span class="s">&quot;cde&quot;</span><span class="p">;</span>
+<span class="linenos">4</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">abc</span><span class="p">.</span><span class="na">concat</span><span class="p">(</span><span class="n">cde</span><span class="p">));</span> <span class="c1">//abccde</span>
+<span class="linenos">5</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">abc</span><span class="p">);</span>             <span class="c1">//abc</span>
+</pre></div>
+</div>
+</section>
+<section id="length">
+<h3>length()<a class="headerlink" href="#length" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">cde</span> <span class="o">=</span> <span class="s">&quot;cde&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="n">cde</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="c1">// for ARRAY -&gt; .length and for COLLECTIONS -&gt; .size()</span>
+</pre></div>
+</div>
+</section>
+<section id="replace-replaceall-replacefirst">
+<h3>replace() &amp;&amp; replaceAll() &amp;&amp; replaceFirst()<a class="headerlink" href="#replace-replaceall-replacefirst" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">cde</span> <span class="o">=</span> <span class="s">&quot;cdefghijklmnop&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="c1">//both replace all occurences of the pattern but replaceAll uses regular expression</span>
+<span class="linenos">3</span><span class="n">cde</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="s">&quot;cd&quot;</span><span class="p">,</span> <span class="s">&quot;  &quot;</span><span class="p">);</span>
+<span class="linenos">4</span><span class="n">cde</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&quot;[^a-f]&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="linenos">5</span><span class="c1">//replaces only first occurance - uses regex</span>
+<span class="linenos">6</span><span class="n">cde</span><span class="p">.</span><span class="na">replaceFirst</span><span class="p">(</span><span class="s">&quot;[^a-f]&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="split">
+<h3>split()<a class="headerlink" href="#split" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;cdKef gh_ijKkl mnK*op&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="linenos"> 4</span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">strArr</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">String</span><span class="o">[]</span> <span class="n">strArr2</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;[K*-_]&quot;</span><span class="p">);</span>
+<span class="linenos"> 7</span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">strArr2</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1">//cdKef</span>
+<span class="linenos">10</span><span class="c1">//gh_ijKkl</span>
+<span class="linenos">11</span><span class="c1">//mnK*op</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="c1">//cd</span>
+<span class="linenos">14</span><span class="c1">//ef gh</span>
+<span class="linenos">15</span><span class="c1">//ij</span>
+<span class="linenos">16</span><span class="c1">//kl mn</span>
+<span class="linenos">17</span><span class="c1">//    &lt;- empty String</span>
+<span class="linenos">18</span><span class="c1">//op</span>
+</pre></div>
+</div>
+</section>
+<section id="startswith">
+<h3>startsWith()<a class="headerlink" href="#startswith" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;cdKef gh_ijKkl mnK*op&quot;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">str</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;cdK&quot;</span><span class="p">);</span> <span class="c1">//true</span>
+</pre></div>
+</div>
+</section>
+<section id="substring">
+<h3>substring()<a class="headerlink" href="#substring" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;abcdefghijk&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span> <span class="c1">// incl, excl -&gt; &quot;def&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="tochararray">
+<h3>toCharArray()<a class="headerlink" href="#tochararray" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;abcdefghijk&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="n">str</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="tolowercase-touppercase">
+<h3>toLowerCase() &amp;&amp; toUpperCase()<a class="headerlink" href="#tolowercase-touppercase" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;abcdefghijk&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="n">String</span> <span class="n">lower</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">();</span>
+<span class="linenos">3</span><span class="n">String</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">lower</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="trim">
+<h3>trim()<a class="headerlink" href="#trim" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot; abcdefghijk   &quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="n">String</span> <span class="n">trim</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">trim</span><span class="p">();</span> <span class="c1">// &quot;abcdefghijk&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="static-method-valueof">
+<h3>[Static method] valueOf()<a class="headerlink" href="#static-method-valueof" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// &quot;1&quot;</span>
+<span class="linenos">2</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// &quot;false&quot;</span>
+<span class="linenos">3</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);</span> <span class="c1">// &quot;a&quot;</span>
+<span class="linenos">4</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">3L</span><span class="p">);</span> <span class="c1">// &quot;3&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="integer">
+<h2>Integer<a class="headerlink" href="#integer" title="Permalink to this headline"></a></h2>
+<section id="integer-to-int-vice-versa">
+<h3>Integer to int (vice versa)<a class="headerlink" href="#integer-to-int-vice-versa" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// int to Integer</span>
+<span class="linenos">2</span><span class="n">b</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span> <span class="c1">// Integer to int</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1">// auto boxing and auto unboxing works most of the time</span>
+<span class="linenos">5</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">integer</span><span class="p">;</span>
+<span class="linenos">6</span><span class="n">Integer</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -701,7 +893,7 @@ do not store their own data, immutable, and lazy.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="week8.html" class="btn btn-neutral float-left" title="Week 8 [26-31 Mar 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="week9.html" class="btn btn-neutral float-left" title="Week 9 [6-13 Mar 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
