@@ -277,7 +277,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="week9.html">Week 9 [6-13 Mar 2022]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week9.html#day-44-6-apr">Day 44 [6 Apr]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="week9.html#question-7g-kakao-lawsuit">Question 7g: Kakao Lawsuit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-74-kakao-id">Question 74: Kakao ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-75-kth-number">Question 75: Kth Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-76-reorder-list">Question 76: Reorder List</a></li>
 </ul>
 </li>
 </ul>
@@ -335,6 +337,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#char-to-string">char[] to String</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#charat">charAt()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concat">concat()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stringbuilder">StringBuilder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#length">length()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#replace-replaceall-replacefirst">replace() &amp;&amp; replaceAll() &amp;&amp; replaceFirst()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#split">split()</a></li>
@@ -348,6 +351,33 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#integer">Integer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#integer-to-int-vice-versa">Integer to int (vice versa)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#arraylist">ArrayList</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-remove-get">add() &amp;&amp; remove() &amp;&amp; get()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set">set()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removeif">removeIf()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#math">Math</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#math-abs">Math.abs()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-max">Math.max()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-min">Math.min()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-floordiv">Math.floorDiv()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-round">Math.round()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-signum">Math.signum()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-ceil-math-floor">Math.ceil() &amp;&amp; Math.floor()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math-pow-math-sqrt">Math.pow() &amp;&amp; Math.sqrt()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stack">Stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-stack">import Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#push-pop-peek">push() &amp;&amp; pop() &amp;&amp; peek()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#queue">Queue</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-queue">import Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-remove-peek">add() &amp; remove() &amp; peek()</a></li>
 </ul>
 </li>
 </ul>
@@ -785,6 +815,19 @@ do not store their own data, immutable, and lazy.</p>
 </pre></div>
 </div>
 </section>
+<section id="stringbuilder">
+<h3>StringBuilder<a class="headerlink" href="#stringbuilder" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// if regular Strings were used =&gt; O(xn^2) time</span>
+<span class="linenos">2</span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">joinWords</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">3</span>    <span class="n">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span> <span class="c1">//resizable String / CharArray</span>
+<span class="linenos">4</span>    <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">w</span><span class="p">:</span> <span class="n">words</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">5</span>        <span class="n">builder</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
+<span class="linenos">6</span>    <span class="p">}</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="n">builder</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="length">
 <h3>length()<a class="headerlink" href="#length" title="Permalink to this headline"></a></h3>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span> <span class="n">cde</span> <span class="o">=</span> <span class="s">&quot;cde&quot;</span><span class="p">;</span>
@@ -883,6 +926,137 @@ do not store their own data, immutable, and lazy.</p>
 <span class="linenos">4</span><span class="c1">// auto boxing and auto unboxing works most of the time</span>
 <span class="linenos">5</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">integer</span><span class="p">;</span>
 <span class="linenos">6</span><span class="n">Integer</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="arraylist">
+<h2>ArrayList<a class="headerlink" href="#arraylist" title="Permalink to this headline"></a></h2>
+<p>Resizable arrays, unlike arrays which are of fixed length.</p>
+<p>Still <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> access, amortized insertion <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> (think of time it takes to add <code class="docutils literal notranslate"><span class="pre">n</span></code> elements - doubling operations contribute
+n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> which averages to <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> per single insertion operation). Deletion is <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.</p>
+<section id="add-remove-get">
+<h3>add() &amp;&amp; remove() &amp;&amp; get()<a class="headerlink" href="#add-remove-get" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+<span class="linenos">2</span><span class="n">arrList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos">3</span><span class="n">arrList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// idx</span>
+<span class="linenos">4</span><span class="n">arrList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span>
+<span class="linenos">5</span><span class="n">arrList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="set">
+<h3>set()<a class="headerlink" href="#set" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+<span class="linenos">2</span><span class="n">arrList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos">3</span><span class="n">arrList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">// param: idx, new_element</span>
+</pre></div>
+</div>
+</section>
+<section id="removeif">
+<h3>removeIf()<a class="headerlink" href="#removeif" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+<span class="linenos">2</span><span class="n">arrList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos">3</span><span class="n">arrList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">// param: idx, new_element</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="math">
+<h2>Math<a class="headerlink" href="#math" title="Permalink to this headline"></a></h2>
+<section id="math-abs">
+<h3>Math.abs()<a class="headerlink" href="#math-abs" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">);</span> <span class="c1">//param: int, long, float, double</span>
+</pre></div>
+</div>
+</section>
+<section id="math-max">
+<h3>Math.max()<a class="headerlink" href="#math-max" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">//param: int, long, float, double</span>
+</pre></div>
+</div>
+</section>
+<section id="math-min">
+<h3>Math.min()<a class="headerlink" href="#math-min" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">//param: int, long, float, double</span>
+</pre></div>
+</div>
+</section>
+<section id="math-floordiv">
+<h3>Math.floorDiv()<a class="headerlink" href="#math-floordiv" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">floorDiv</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//param: int, long ; 1</span>
+</pre></div>
+</div>
+</section>
+<section id="math-round">
+<h3>Math.round()<a class="headerlink" href="#math-round" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">round</span><span class="p">(</span><span class="mf">7.43f</span><span class="p">);</span> <span class="c1">//param: float, double</span>
+<span class="linenos">2</span><span class="c1">// Returns the closest int to the argument, with ties rounding to positive infinity</span>
+</pre></div>
+</div>
+</section>
+<section id="math-signum">
+<h3>Math.signum()<a class="headerlink" href="#math-signum" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">signum</span><span class="p">(</span><span class="mf">7.43f</span><span class="p">);</span> <span class="c1">//param: float, double -&gt; 1</span>
+<span class="linenos">2</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">signum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// -&gt; -1</span>
+<span class="linenos">3</span><span class="c1">// Returns the signum function of the argument; zero if the argument is zero, 1.0 if</span>
+<span class="linenos">4</span><span class="c1">// the argument is greater than zero, -1.0 if the argument is less than zero.</span>
+</pre></div>
+</div>
+</section>
+<section id="math-ceil-math-floor">
+<h3>Math.ceil() &amp;&amp; Math.floor()<a class="headerlink" href="#math-ceil-math-floor" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">ceil</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="c1">//param: double</span>
+<span class="linenos">2</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">floor</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="c1">//param: double</span>
+</pre></div>
+</div>
+</section>
+<section id="math-pow-math-sqrt">
+<h3>Math.pow() &amp;&amp; Math.sqrt()<a class="headerlink" href="#math-pow-math-sqrt" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">pow</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="c1">//25</span>
+<span class="linenos">2</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">sqrt</span><span class="p">(</span><span class="n">res</span><span class="p">);</span> <span class="c1">//5</span>
+</pre></div>
+</div>
+<p>double &amp; float both represent floating point numbers, but double is more precise</p>
+</section>
+</section>
+<section id="stack">
+<h2>Stack<a class="headerlink" href="#stack" title="Permalink to this headline"></a></h2>
+<section id="import-stack">
+<h3>import Stack<a class="headerlink" href="#import-stack" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="push-pop-peek">
+<h3>push() &amp;&amp; pop() &amp;&amp; peek()<a class="headerlink" href="#push-pop-peek" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">2</span><span class="n">stk</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">3</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="na">peek</span><span class="p">();</span>
+<span class="linenos">4</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">5</span><span class="k">assert</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">);</span>
+<span class="linenos">6</span><span class="k">assert</span><span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="queue">
+<h2>Queue<a class="headerlink" href="#queue" title="Permalink to this headline"></a></h2>
+<section id="import-queue">
+<h3>import Queue<a class="headerlink" href="#import-queue" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="add-remove-peek">
+<h3>add() &amp; remove() &amp; peek()<a class="headerlink" href="#add-remove-peek" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">2</span><span class="n">q</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// enqueue; add to the END of the list</span>
+<span class="linenos">3</span><span class="n">q</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+<span class="linenos">4</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="na">peek</span><span class="p">();</span> <span class="c1">// return the FRONT/TOP of the list - i.e. 10</span>
+<span class="linenos">5</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span> <span class="c1">// dequeue ; remove th FRONT of the list - i.e. 10</span>
+<span class="linenos">6</span><span class="k">assert</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">);</span>
+<span class="linenos">7</span><span class="k">assert</span><span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">());</span>
 </pre></div>
 </div>
 </section>

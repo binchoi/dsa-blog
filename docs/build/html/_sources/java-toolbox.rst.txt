@@ -423,6 +423,21 @@ concat()
     System.out.println(abc.concat(cde)); //abccde
     System.out.println(abc);             //abc
 
+StringBuilder
+---------------- 
+.. code-block:: Java
+    :linenos:
+
+    // if regular Strings were used => O(xn^2) time
+    public static String joinWords(String[] words) {
+        StringBuilder builder = new StringBuilder(); //resizable String / CharArray
+        for (String w: words) {
+            builder.append(w);
+        }
+        return builder.toString();
+    }
+
+
 length()
 ---------------- 
 .. code-block:: Java
@@ -534,3 +549,160 @@ Integer to int (vice versa)
     // auto boxing and auto unboxing works most of the time
     int a = integer; 
     Integer c = a;
+
+
+ArrayList
+======================
+Resizable arrays, unlike arrays which are of fixed length. 
+
+Still ``O(1)`` access, amortized insertion ``O(1)`` (think of time it takes to add ``n`` elements - doubling operations contribute 
+n/2, n/4, ..., 1 which sum to ``O(n)`` which averages to ``O(1)`` per single insertion operation). Deletion is ``O(1)``.
+
+add() && remove() && get()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    ArrayList<Integer> arrList = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
+    arrList.add(8);
+    arrList.remove(0); // idx
+    arrList.add(99);
+    arrList.get(0);
+
+set()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    ArrayList<Integer> arrList = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
+    arrList.add(8);
+    arrList.set(0, 100) // param: idx, new_element
+
+removeIf()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    ArrayList<Integer> arrList = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
+    arrList.add(8);
+    arrList.set(0, 100) // param: idx, new_element
+
+
+
+
+Math
+======================
+Math.abs()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.abs(a - b); //param: int, long, float, double
+
+Math.max()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.max(a, b); //param: int, long, float, double
+
+Math.min()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.min(a, b); //param: int, long, float, double
+
+Math.floorDiv()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.floorDiv(4, 3); //param: int, long ; 1
+
+Math.round()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.round(7.43f); //param: float, double
+    // Returns the closest int to the argument, with ties rounding to positive infinity
+
+Math.signum()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.signum(7.43f); //param: float, double -> 1
+    int res = Math.signum(-1); // -> -1
+    // Returns the signum function of the argument; zero if the argument is zero, 1.0 if 
+    // the argument is greater than zero, -1.0 if the argument is less than zero.
+
+Math.ceil() && Math.floor()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.ceil(x); //param: double
+    int res = Math.floor(x); //param: double
+
+Math.pow() && Math.sqrt()
+----------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    int res = Math.pow(5,2); //25
+    int a = Math.sqrt(res); //5
+
+double & float both represent floating point numbers, but double is more precise
+
+
+
+Stack
+======================
+import Stack
+---------------
+.. code-block:: Java
+    :linenos:
+
+    import java.util.Stack;
+
+push() && pop() && peek()
+--------------------------
+.. code-block:: Java
+    :linenos:
+
+    Stack<Integer> stk = new Stack<>();
+    stk.push(10);
+    int a = stk.peek(); 
+    int b = stk.pop();
+    assert(a == b);
+    assert(stk.isEmpty());
+
+Queue
+======================
+import Queue
+---------------
+.. code-block:: Java
+    :linenos:
+
+    import java.util.LinkedList;
+
+add() & remove() & peek()
+--------------------------
+.. code-block:: Java
+    :linenos:
+
+    Queue<Integer> q = new LinkedList<>();
+    q.add(10); // enqueue; add to the END of the list
+    q.add(11); 
+    int a = stk.peek(); // return the FRONT/TOP of the list - i.e. 10
+    int b = stk.remove(); // dequeue ; remove th FRONT of the list - i.e. 10
+    assert(a == b);
+    assert(!stk.isEmpty());
+
+
+
+
+
+
