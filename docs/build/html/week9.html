@@ -282,6 +282,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-76-reorder-list">Question 76: Reorder List</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-45-10-apr">Day 45 [10 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-77-palindromic-substrings">Question 77: Palindromic Substrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-78-longest-common-subsequence">Question 78: Longest Common Subsequence</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -378,7 +383,6 @@
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#queue">Queue</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#import-queue">import Queue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#add-remove-peek">add() &amp; remove() &amp; peek()</a></li>
-<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#id2">import Stack</a></li>
 </ul>
 </li>
 </ul>
@@ -789,6 +793,69 @@ to solve this with one slow and one fast pointer (one starting halfway, other at
 </pre></div>
 </div>
 <p>TRY <strong>Reverse a linked list I &amp; II</strong> and <strong>review this method once more</strong>!</p>
+</section>
+</section>
+<section id="day-45-10-apr">
+<h2>Day 45 [10 Apr]<a class="headerlink" href="#day-45-10-apr" title="Permalink to this headline"></a></h2>
+<section id="question-77-palindromic-substrings">
+<h3>Question 77: Palindromic Substrings<a class="headerlink" href="#question-77-palindromic-substrings" title="Permalink to this headline"></a></h3>
+<p>Given a string s, return the number of palindromic substrings in it.
+A string is a palindrome when it reads the same backward as forward.
+A substring is a contiguous sequence of characters within the string.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// brute force</span>
+<span class="linenos"> 2</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">countSubstrings</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+<span class="linenos"> 5</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>                <span class="n">res</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="na">isPalindrome</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 8</span>            <span class="p">}</span>
+<span class="linenos"> 9</span>        <span class="p">}</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>        <span class="k">while</span> <span class="p">(</span><span class="n">lo</span><span class="o">&lt;</span><span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">15</span>            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">lo</span><span class="o">++</span><span class="p">)</span><span class="o">!=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">hi</span><span class="o">--</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">16</span>        <span class="p">}</span>
+<span class="linenos">17</span>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span><span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="c1">// optimized</span>
+<span class="linenos">22</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">countSubstrings</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">23</span>    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">24</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">25</span>        <span class="n">res</span><span class="o">+=</span><span class="k">this</span><span class="p">.</span><span class="na">extendPalindrome</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos">26</span>        <span class="n">res</span><span class="o">+=</span><span class="k">this</span><span class="p">.</span><span class="na">extendPalindrome</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">29</span><span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="kd">private</span> <span class="kt">int</span> <span class="nf">extendPalindrome</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">32</span>    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">33</span>    <span class="k">while</span> <span class="p">(</span><span class="n">lo</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">hi</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">lo</span><span class="p">)</span><span class="o">==</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">hi</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">34</span>        <span class="n">res</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">35</span>        <span class="n">lo</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">36</span>        <span class="n">hi</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">37</span>    <span class="p">}</span>
+<span class="linenos">38</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">39</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Requires smart analaysis and visual thinking!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=s.length()</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-78-longest-common-subsequence">
+<h3>Question 78: Longest Common Subsequence<a class="headerlink" href="#question-78-longest-common-subsequence" title="Permalink to this headline"></a></h3>
+<p><a class="reference external" href="https://leetcode.com/problems/longest-common-subsequence/discuss/351689/JavaPython-3-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis">https://leetcode.com/problems/longest-common-subsequence/discuss/351689/JavaPython-3-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis</a></p>
 </section>
 </section>
 </section>

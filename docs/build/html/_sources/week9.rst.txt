@@ -363,3 +363,66 @@ More space-efficient solution:
     }
 
 TRY **Reverse a linked list I & II** and **review this method once more**!
+
+Day 45 [10 Apr]
+================
+Question 77: Palindromic Substrings
+------------------------------------------------
+Given a string s, return the number of palindromic substrings in it.
+A string is a palindrome when it reads the same backward as forward.
+A substring is a contiguous sequence of characters within the string.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    // brute force
+    class Solution {
+        public int countSubstrings(String s) {
+            int res = s.length();
+            for (int n = 2; n <= s.length(); n++) {
+                for (int i = 0; i<s.length()+1-n; i++) { 
+                    res += this.isPalindrome(s,i,i+n-1);
+                }
+            }
+            return res;
+        }
+        
+        public int isPalindrome(String s, int lo, int hi) {
+            while (lo<hi) {
+                if (s.charAt(lo++)!=s.charAt(hi--)) return 0;
+            }
+            return 1;
+        }
+    }
+
+    // optimized
+    public int countSubstrings(String s) {
+        int res = 0;
+        for (int i = 0; i<s.length(); i++) {
+            res+=this.extendPalindrome(s,i,i);
+            res+=this.extendPalindrome(s,i,i+1);
+        }
+        return res;
+    }
+    
+    private int extendPalindrome(String s, int lo, int hi) {
+        int res = 0;
+        while (lo>=0 && hi<s.length() && s.charAt(lo)==s.charAt(hi)) {
+            res++;
+            lo--;
+            hi++;
+        }
+        return res;
+    }
+
+Remarks and Complexity Analysis: 
+ * Requires smart analaysis and visual thinking!
+ * **Time Complexity**: ``O(n^2)`` where ``n=s.length()``.
+ * **Space Complexity**: ``O(1)``
+
+Question 78: Longest Common Subsequence
+------------------------------------------------
+
+https://leetcode.com/problems/longest-common-subsequence/discuss/351689/JavaPython-3-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis
