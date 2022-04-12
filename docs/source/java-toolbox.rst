@@ -11,8 +11,9 @@ iterator()
 -----------
 .. code-block:: Java
     :linenos:
-
-    if (itb.iterator().hasNext()) iterator.next();
+    
+    Iterable itr = itb.iterator(); // (?) Check type declaration syntax
+    if (itr.hasNext()) itr.next();
 
 forEach()
 -----------
@@ -61,7 +62,7 @@ isEmpty()
 .. code-block:: Java
     :linenos:
 
-    if (col.isEmpty) return "wow";
+    if (col.isEmpty()) return "wow";
 
 hashCode()
 ------------------
@@ -325,12 +326,12 @@ former puts a wrapper on vs. latter actually takes each element and inserts them
     :linenos:
 
     String[] stringArray = new String[] { "A", "B", "C", "D" };
-    List stringList = Arrays.asList(stringArray);
+    List<String> stringList = Arrays.asList(stringArray);
     stringList.set(0, "E");
     stringList.add("F"); // ERROR THIS DOES NOT WORK - FIXED LENGTH
 
     String[] stringArray = new String[] { "A", "B", "C", "D" }; 
-    List stringList = new ArrayList<>(Arrays.asList(stringArray));
+    ArrayList<String> stringList = new ArrayList<>(Arrays.asList(stringArray));
     stringList.set(0, "E");
     stringList.add("F"); // :-)
 
@@ -575,7 +576,6 @@ set()
     :linenos:
 
     ArrayList<Integer> arrList = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
-    arrList.add(8);
     arrList.set(0, 100) // param: idx, new_element
 
 removeIf()
@@ -587,7 +587,7 @@ removeIf()
     arrList.add(8);
     arrList.set(0, 100) // param: idx, new_element
 
-
+**EDIT THIS**
 
 
 Math

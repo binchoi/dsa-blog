@@ -1,5 +1,5 @@
 ************************
-Week 9 [6-13 Mar 2022]
+Week 9 [6-13 Apr 2022]
 ************************
 Day 44 [6 Apr]
 ================
@@ -424,5 +424,485 @@ Remarks and Complexity Analysis:
 
 Question 78: Longest Common Subsequence
 ------------------------------------------------
+Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
+A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+For example, "ace" is a subsequence of "abcde".
+A common subsequence of two strings is a subsequence that is common to both strings.
 
-https://leetcode.com/problems/longest-common-subsequence/discuss/351689/JavaPython-3-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public int longestCommonSubsequence(String text1, String text2) {
+        int[][] memoMatrix = new int[text1.length()+1][text2.length()+1];
+        for (int i = 1; i<text1.length()+1;i++) {
+            for (int j = 1; j<text2.length()+1; j++) {
+                if (text1.charAt(i-1)==text2.charAt(j-1)) {
+                    memoMatrix[i][j] = memoMatrix[i-1][j-1] + 1;
+                } else {
+                    memoMatrix[i][j] = Math.max(memoMatrix[i-1][j], memoMatrix[i][j-1]);
+                }
+            }
+        }
+        return memoMatrix[text1.length()][text2.length()];
+    }
+
+Remarks and Complexity Analysis: 
+ * Felt like a fluke because I didn't fully think of all the edge cases and wasn't comprehensive. 
+ * Think about smaller sub-problems and always consider how to use data structures and divide-and-conquer to solve 
+   the problem at hand!
+ * **Time Complexity**: ``O(nm)`` where ``n=text1.length(); m=text2.length()``
+ * **Space Complexity**: ``O(nm)`` where ``n=text1.length(); m=text2.length()``
+
+Day 46 [12 Apr]
+================
+Question 79: 숫자 문자열과 영단어
+------------------------------------------------
+네오와 프로도가 숫자놀이를 하고 있습니다. 네오가 프로도에게 숫자를 건넬 때 일부 자릿수를 영단어로 바꾼 카드를 건네주면 프로도는 원래 숫자를 찾는 게임입니다.
+
+다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.
+ * 1478 → "one4seveneight"
+ * 234567 → "23four5six7"
+ * 10203 → "1zerotwozero3"
+
+이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+    
+    import java.util.*;
+
+    class Solution {
+        public int solution(String s) {
+            HashMap<String, List<Object>> engToDigit = new HashMap<>();
+            engToDigit.put("ze", new ArrayList<Object>(Arrays.asList('0', 3))); 
+            engToDigit.put("on", new ArrayList<Object>(Arrays.asList('1', 2)));
+            engToDigit.put("tw", new ArrayList<Object>(Arrays.asList('2', 2)));
+            engToDigit.put("th", new ArrayList<Object>(Arrays.asList('3', 4)));
+            engToDigit.put("fo", new ArrayList<Object>(Arrays.asList('4', 3)));
+            engToDigit.put("fi", new ArrayList<Object>(Arrays.asList('5', 3)));
+            engToDigit.put("si", new ArrayList<Object>(Arrays.asList('6', 2)));
+            engToDigit.put("se", new ArrayList<Object>(Arrays.asList('7', 4)));
+            engToDigit.put("ei", new ArrayList<Object>(Arrays.asList('8', 4)));
+            engToDigit.put("ni", new ArrayList<Object>(Arrays.asList('9', 3)));
+            
+            StringBuilder res = new StringBuilder();
+            
+            for (int i = 0; i<s.length(); i++) {
+                if (!Character.isDigit(s.charAt(i))) {
+                    List<Object> numAndSkip = engToDigit.get(s.substring(i,i+2));
+                    res.append((char) numAndSkip.get(0));
+                    i+=(int) numAndSkip.get(1);
+                } else {
+                    res.append(s.charAt(i));
+                }
+            }
+            
+            return Integer.valueOf(res.toString());
+        }
+    }
+    
+Remarks and Complexity Analysis: 
+ * Always think critically about your implementation before actually coding it! Think about the example cases. Else you will waste lots of time.
+ * **Time Complexity**: ``O(n)`` where ``n=s.length()``.
+ * **Space Complexity**: ``O(1)``
+
+Alternative solution (less efficient in my opinion): 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        public int solution(String s) {
+            String[] digits = {"0","1","2","3","4","5","6","7","8","9"};
+            String[] alphabets = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+
+            for(int i=0; i<10; i++){
+                s = s.replaceAll(alphabets[i],digits[i]);
+            }
+
+            return Integer.parseInt(s);
+        }
+    }
+
+Question 80: [카카오 인턴] 키패드 누르기
+------------------------------------------------
+전화 키패드에서 왼손과 오른손의 엄지손가락만을 이용해서 숫자만을 입력하려고 합니다.
+맨 처음 왼손 엄지손가락은 * 키패드에 오른손 엄지손가락은 # 키패드 위치에서 시작하며, 엄지손가락을 사용하는 규칙은 다음과 같습니다.
+
+ #. 엄지손가락은 상하좌우 4가지 방향으로만 이동할 수 있으며 키패드 이동 한 칸은 거리로 1에 해당합니다.
+ #. 왼쪽 열의 3개의 숫자 1, 4, 7을 입력할 때는 왼손 엄지손가락을 사용합니다.
+ #. 오른쪽 열의 3개의 숫자 3, 6, 9를 입력할 때는 오른손 엄지손가락을 사용합니다.
+ #. 가운데 열의 4개의 숫자 2, 5, 8, 0을 입력할 때는 두 엄지손가락의 현재 키패드의 위치에서 더 가까운 엄지손가락을 사용합니다. 4-1. 만약 두 엄지손가락의 거리가 같다면, 오른손잡이는 오른손 엄지손가락, 왼손잡이는 왼손 엄지손가락을 사용합니다. 순서대로 누를 번호가 담긴 배열 numbers, 왼손잡이인지 오른손잡이인 지를 나타내는 문자열 hand가 매개변수로 주어질 때, 각 번호를 누른 엄지손가락이 왼손인 지 오른손인 지를 나타내는 연속된 문자열 형태로 return 하도록 solution 함수를 완성해주세요.
+
+[제한사항]
+ * numbers 배열의 크기는 1 이상 1,000 이하입니다.
+ * numbers 배열 원소의 값은 0 이상 9 이하인 정수입니다.
+ * " * left"는 왼손잡이, "right"는 오른손잡이를 의미합니다.
+ * hand는 "left" 또는 "right" 입니다.
+ * "left"는 왼손잡이, "right"는 오른손잡이를 의미합니다.
+ * 왼손 엄지손가락을 사용한 경우는 L, 오른손 엄지손가락을 사용한 경우는 R을 순서대로 이어붙여 문자열 형태로 return 해주세요.
+
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        
+        public String solution(int[] numbers, String hand) {
+            char[] res = new char[numbers.length];
+            
+            HashMap<Integer, int[]> numToLoc = new HashMap<>();
+            numToLoc.put(1, new int[] {0,0});
+            numToLoc.put(2, new int[] {0,1});
+            numToLoc.put(3, new int[] {0,2});
+            numToLoc.put(4, new int[] {1,0});
+            numToLoc.put(5, new int[] {1,1});
+            numToLoc.put(6, new int[] {1,2});
+            numToLoc.put(7, new int[] {2,0});
+            numToLoc.put(8, new int[] {2,1});
+            numToLoc.put(9, new int[] {2,2});
+            numToLoc.put(0, new int[] {3,1});
+            
+            HashSet<Integer> leftNums = new HashSet<>(Arrays.asList(1,4,7));
+            HashSet<Integer> rightNums = new HashSet<>(Arrays.asList(3,6,9));
+            
+            int[] leftLoc = {3,0};
+            int[] rightLoc = {3,2};
+            
+            for (int i = 0 ; i < numbers.length ; i++) {
+                if (leftNums.contains(numbers[i])) {
+                    leftLoc = numToLoc.get(numbers[i]);
+                    res[i] = 'L';
+                } else if (rightNums.contains(numbers[i])) {
+                    rightLoc = numToLoc.get(numbers[i]);
+                    res[i] = 'R';
+                } else {
+                    int leftDist = this.calculateDist(leftLoc, numToLoc.get(numbers[i]));
+                    int rightDist = this.calculateDist(rightLoc, numToLoc.get(numbers[i]));
+                    
+                    if (leftDist==rightDist) {
+                        res[i] = hand.equals("right") ? 'R' : 'L';
+                    } else if (leftDist<rightDist) {
+                        res[i] = 'L';
+                    } else {
+                        res[i] = 'R';
+                    }
+                    
+                    if (res[i]=='L') {
+                        leftLoc = numToLoc.get(numbers[i]);
+                    } else {
+                        rightLoc = numToLoc.get(numbers[i]);
+                    }
+                }
+            }
+            
+            return new String(res);
+        }
+        
+        public int calculateDist(int[] fstLoc, int[] sndLoc) {
+            return Math.abs(fstLoc[0]-sndLoc[0])+Math.abs(fstLoc[1]-sndLoc[1]);
+        }
+    }
+
+Alternatively, using Array instead of HashMap (to reduce overhead): 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        public String solution(int[] numbers, String hand) {
+            char[] res = new char[numbers.length];
+            
+            int[][] numToLoc = {
+                    {3,1}, //0
+                    {0,0}, //1
+                    {0,1}, //2
+                    {0,2}, //3
+                    {1,0}, //4
+                    {1,1}, //5
+                    {1,2}, //6
+                    {2,0}, //7
+                    {2,1}, //8
+                    {2,2}  //9
+            };
+            
+            HashSet<Integer> leftNums = new HashSet<>(Arrays.asList(1,4,7));
+            HashSet<Integer> rightNums = new HashSet<>(Arrays.asList(3,6,9));
+            
+            int[] leftLoc = {3,0};
+            int[] rightLoc = {3,2};
+            
+            for (int i = 0 ; i < numbers.length ; i++) {
+                if (leftNums.contains(numbers[i])) {
+                    leftLoc = numToLoc[numbers[i]];
+                    res[i] = 'L';
+                } else if (rightNums.contains(numbers[i])) {
+                    rightLoc = numToLoc[numbers[i]];
+                    res[i] = 'R';
+                } else {
+                    int leftDist = this.calculateDist(leftLoc, numToLoc[numbers[i]]);
+                    int rightDist = this.calculateDist(rightLoc, numToLoc[numbers[i]]);
+                    if (leftDist==rightDist) {
+                        res[i] = hand.equals("right") ? 'R' : 'L';
+                    } else if (leftDist<rightDist) {
+                        res[i] = 'L';
+                    } else {
+                        res[i] = 'R';
+                    }
+                    
+                    if (res[i]=='L') {
+                        leftLoc = numToLoc[numbers[i]];
+                    } else {
+                        rightLoc = numToLoc[numbers[i]];
+                    }
+                }
+                
+            }
+            
+            return new String(res);
+        }
+        
+        public int calculateDist(int[] fstLoc, int[] sndLoc) {
+            return Math.abs(fstLoc[0]-sndLoc[0])+Math.abs(fstLoc[1]-sndLoc[1]);
+        }
+    }
+
+Question 81: 주차 요금 계산
+------------------------------------------------
+주차장의 요금표와 차량이 들어오고(입차) 나간(출차) 기록이 주어졌을 때, 차량별로 주차 요금을 계산하려고 합니다. 
+
+어떤 차량이 입차된 후에 출차된 내역이 없다면, 23:59에 출차된 것으로 간주합니다.
+0000번 차량은 18:59에 입차된 이후, 출차된 내역이 없습니다. 따라서, 23:59에 출차된 것으로 간주합니다.
+00:00부터 23:59까지의 입/출차 내역을 바탕으로 차량별 누적 주차 시간을 계산하여 요금을 일괄로 정산합니다.
+누적 주차 시간이 기본 시간이하라면, 기본 요금을 청구합니다.
+누적 주차 시간이 기본 시간을 초과하면, 기본 요금에 더해서, 초과한 시간에 대해서 단위 시간 마다 단위 요금을 청구합니다.
+초과한 시간이 단위 시간으로 나누어 떨어지지 않으면, 올림합니다.
+⌈a⌉ : a보다 작지 않은 최소의 정수를 의미합니다. 즉, 올림을 의미합니다.
+주차 요금을 나타내는 정수 배열 fees, 자동차의 입/출차 내역을 나타내는 문자열 배열 records가 매개변수로 주어집니다. 차량 번호가 작은 자동차부터 청구할 주차 요금을 차례대로 정수 배열에 담아서 return 하도록 solution 함수를 완성해주세요.
+
+제한사항
+ * fees의 길이 = 4
+ * fees[0] = 기본 시간(분)
+ * 1 ≤ fees[0] ≤ 1,439
+ * fees[1] = 기본 요금(원)
+ * 0 ≤ fees[1] ≤ 100,000
+ * fees[2] = 단위 시간(분)
+ * 1 ≤ fees[2] ≤ 1,439
+ * fees[3] = 단위 요금(원)
+ * 1 ≤ fees[3] ≤ 10,000
+ * 1 ≤ records의 길이 ≤ 1,000
+ * records의 각 원소는 "시각 차량번호 내역" 형식의 문자열입니다.
+ * 시각, 차량번호, 내역은 하나의 공백으로 구분되어 있습니다.
+ * 시각은 차량이 입차되거나 출차된 시각을 나타내며, HH:MM 형식의 길이 5인 문자열입니다.
+ * HH:MM은 00:00부터 23:59까지 주어집니다.
+ * 잘못된 시각("25:22", "09:65" 등)은 입력으로 주어지지 않습니다.
+ * 차량번호는 자동차를 구분하기 위한, '0'~'9'로 구성된 길이 4인 문자열입니다.
+ * 내역은 길이 2 또는 3인 문자열로, IN 또는 OUT입니다. IN은 입차를, OUT은 출차를 의미합니다.
+ * records의 원소들은 시각을 기준으로 오름차순으로 정렬되어 주어집니다.
+ * records는 하루 동안의 입/출차된 기록만 담고 있으며, 입차된 차량이 다음날 출차되는 경우는 입력으로 주어지지 않습니다.
+ * 같은 시각에, 같은 차량번호의 내역이 2번 이상 나타내지 않습니다.
+ * 마지막 시각(23:59)에 입차되는 경우는 입력으로 주어지지 않습니다.
+ * 아래의 예를 포함하여, 잘못된 입력은 주어지지 않습니다.
+ * 주차장에 없는 차량이 출차되는 경우
+ * 주차장에 이미 있는 차량(차량번호가 같은 차량)이 다시 입차되는 경우
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        public int[] solution(int[] fees, String[] records) {
+            HashMap<Integer, Integer> carNumToTotalTime = new HashMap<>();
+            HashMap<Integer, Integer> carNumToEntryTime = new HashMap<>();
+            
+            for (String s : records) {
+                String[] time_carNum_INOUT = s.split(" ");
+                int time = this.timeConversion(time_carNum_INOUT[0]);
+                int carNum = Integer.parseInt(time_carNum_INOUT[1]); 
+                
+                if ("IN".equals(time_carNum_INOUT[2])) {
+                    carNumToEntryTime.put(carNum, time);
+                } else { // OUT
+                    int timeSpent = time - carNumToEntryTime.get(carNum);
+                    carNumToTotalTime.put(carNum, carNumToTotalTime.getOrDefault(carNum,0)+timeSpent);
+                    carNumToEntryTime.remove(carNum);
+                }
+            }
+            
+            for (int carNum : carNumToEntryTime.keySet()) {
+                int moreTime = (23*60 + 59) - carNumToEntryTime.get(carNum);
+                carNumToTotalTime.put(carNum, carNumToTotalTime.getOrDefault(carNum,0)+moreTime);
+            }
+            
+            int[] res = new int[carNumToTotalTime.keySet().size()];
+            int[] i = {0};
+            carNumToTotalTime.keySet()
+                .stream()
+                .sorted()
+                .forEach(carNum -> {
+                    res[i[0]]=this.calcPrice(carNumToTotalTime.get(carNum), fees);
+                    i[0]+=1;
+                });
+            return res;
+        }
+        
+        public int timeConversion(String s) {
+            int hour = Integer.parseInt(s.substring(0,2));
+            int min = Integer.parseInt(s.substring(3,5));
+            return (60*hour + min);
+        }
+        
+        public int calcPrice(int TotalTime, int[] fees) {
+            if (TotalTime <= fees[0]) return fees[1];
+            int res = fees[1];
+            int extraTime = TotalTime - fees[0];
+            return res - Math.floorDiv(-extraTime, fees[2]) * fees[3];
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Pretty simple but long (must think carefully about the implementation before actually coding!)
+ * **Time Complexity**: ``O(n log n)`` where ``n=records.length`` as we sort through the keys.
+ * **Space Complexity**: ``O(n)``
+
+Alternative solution (that demonstrates the utility of TreeMap): 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+
+        public int timeToInt(String time) {
+            String temp[] = time.split(":");
+            return Integer.parseInt(temp[0])*60 + Integer.parseInt(temp[1]);
+        }
+        public int[] solution(int[] fees, String[] records) {
+
+            TreeMap<String, Integer> map = new TreeMap<>();
+
+            for(String record : records) {
+                String temp[] = record.split(" ");
+                int time = temp[2].equals("IN") ? -1 : 1;
+                time = timeToInt(temp[0]) * time;
+                map.put(temp[1], map.getOrDefault(temp[1], 0) + time);
+            }
+            int idx = 0, ans[] = new int[map.size()];
+            for(int time : map.values()) {
+                if(time < 1) time += 1439;
+                time -= fees[0];
+                int cost = fees[1];
+                if(time > 0)
+                    cost += (time%fees[2] == 0 ? time/fees[2] : time/fees[2]+1)*fees[3];
+
+                ans[idx++] = cost;
+            }
+            return ans;
+        }
+    }
+
+.. note:: note
+    **TreeMap** adds the key-value pairs in a sorted manner (with regards to the key). 
+
+    Look-up / Insert = ``O(log n)``
+
+    **HashMap:** Look-up / Insert = ``O(1)``
+    **LinkedHashMap:** Look-up / Insert = ``O(1)`` (maintains insertion order; put 1,2,3 => int k: keySet() -> 1, 2, 3)
+
+Question 82: 양궁대회
+------------------------------------------------
+카카오배 양궁대회가 열렸습니다. 
+라이언은 저번 카카오배 양궁대회 우승자이고 이번 대회에도 결승전까지 올라왔습니다. 결승전 상대는 어피치입니다. 
+카카오배 양궁대회 운영위원회는 한 선수의 연속 우승보다는 다양한 선수들이 양궁대회에서 우승하기를 원합니다. 따라서, 양궁대회 운영위원회는 결승전 규칙을 전 대회 우승자인 라이언에게 불리하게 다음과 같이 정했습니다.
+어피치가 화살 n발을 다 쏜 후에 라이언이 화살 n발을 쏩니다.
+점수를 계산합니다.
+과녁판은 아래 사진처럼 생겼으며 가장 작은 원의 과녁 점수는 10점이고 가장 큰 원의 바깥쪽은 과녁 점수가 0점입니다. 
+
+만약, k(k는 1~10사이의 자연수)점을 어피치가 a발을 맞혔고 라이언이 b발을 맞혔을 경우 더 많은 화살을 k점에 맞힌 선수가 k 점을 가져갑니다. 단, a = b일 경우는 어피치가 k점을 가져갑니다. k점을 여러 발 맞혀도 k점 보다 많은 점수를 가져가는 게 아니고 k점만 가져가는 것을 유의하세요. 또한 a = b = 0 인 경우, 즉, 라이언과 어피치 모두 k점에 단 하나의 화살도 맞히지 못한 경우는 어느 누구도 k점을 가져가지 않습니다.
+예를 들어, 어피치가 10점을 2발 맞혔고 라이언도 10점을 2발 맞혔을 경우 어피치가 10점을 가져갑니다.
+다른 예로, 어피치가 10점을 0발 맞혔고 라이언이 10점을 2발 맞혔을 경우 라이언이 10점을 가져갑니다.
+모든 과녁 점수에 대하여 각 선수의 최종 점수를 계산합니다.
+최종 점수가 더 높은 선수를 우승자로 결정합니다. 단, 최종 점수가 같을 경우 어피치를 우승자로 결정합니다.
+현재 상황은 어피치가 화살 n발을 다 쏜 후이고 라이언이 화살을 쏠 차례입니다.
+라이언은 어피치를 가장 큰 점수 차이로 이기기 위해서 n발의 화살을 어떤 과녁 점수에 맞혀야 하는지를 구하려고 합니다.
+화살의 개수를 담은 자연수 n, 어피치가 맞힌 과녁 점수의 개수를 10점부터 0점까지 순서대로 담은 정수 배열 info가 매개변수로 주어집니다. 이때, 라이언이 가장 큰 점수 차이로 우승하기 위해 n발의 화살을 어떤 과녁 점수에 맞혀야 하는지를 10점부터 0점까지 순서대로 정수 배열에 담아 return 하도록 solution 함수를 완성해 주세요. 만약, 라이언이 우승할 수 없는 경우(무조건 지거나 비기는 경우)는 [-1]을 return 해주세요.
+
+제한사항
+ * 1 ≤ n ≤ 10
+ * info의 길이 = 11
+ * 0 ≤ info의 원소 ≤ n
+ * info의 원소 총합 = n
+ * info의 i번째 원소는 과녁의 10 - i 점을 맞힌 화살 개수입니다. ( i는 0~10 사이의 정수입니다.)
+ * 라이언이 우승할 방법이 있는 경우, return 할 정수 배열의 길이는 11입니다.
+ * 0 ≤ return할 정수 배열의 원소 ≤ n
+ * return할 정수 배열의 원소 총합 = n (꼭 n발을 다 쏴야 합니다.)
+ * return할 정수 배열의 i번째 원소는 과녁의 10 - i 점을 맞힌 화살 개수입니다. ( i는 0~10 사이의 정수입니다.)
+ * 라이언이 가장 큰 점수 차이로 우승할 수 있는 방법이 여러 가지 일 경우, 가장 낮은 점수를 더 많이 맞힌 경우를 return 해주세요.
+ * 가장 낮은 점수를 맞힌 개수가 같을 경우 계속해서 그다음으로 낮은 점수를 더 많이 맞힌 경우를 return 해주세요.
+ * 예를 들어, [2,3,1,0,0,0,0,1,3,0,0]과 [2,1,0,2,0,0,0,2,3,0,0]를 비교하면 [2,1,0,2,0,0,0,2,3,0,0]를 return 해야 합니다.
+ * 다른 예로, [0,0,2,3,4,1,0,0,0,0,0]과 [9,0,0,0,0,0,0,0,1,0,0]를 비교하면[9,0,0,0,0,0,0,0,1,0,0]를 return 해야 합니다.
+ * 라이언이 우승할 방법이 없는 경우, return 할 정수 배열의 길이는 1입니다.
+ * 라이언이 어떻게 화살을 쏘든 라이언의 점수가 어피치의 점수보다 낮거나 같으면 [-1]을 return 해야 합니다.
+
+My incomplete solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+    class Solution {
+        public int[] solution(int n, int[] info) {
+            int[] ryanHist = new int[11];
+            //weighted Points => {target, num_of_shots_required}
+            TreeMap<Double, int[]> weightedPointsMap = new TreeMap<>(Collections.reverseOrder());
+            for (int i = 0; i < info.length; i++) {
+                if (info[i]==0) {
+                    weightedPointsMap.put((double) 10-i, new int[] {10-i, 1});
+                } else {
+                    weightedPointsMap.put(2.0*(10-i)/(info[i]+1), new int[] {10-i, info[i]+1});
+                }
+            }
+            int arrowsLeft = n;
+            int points = 0;
+            for (int[] target_and_shots_needed : weightedPointsMap.values()) {
+                if (target_and_shots_needed[1]<=arrowsLeft) {
+                    points+= target_and_shots_needed[0];
+                    arrowsLeft-= target_and_shots_needed[1];
+                    ryanHist[10-target_and_shots_needed[0]]=target_and_shots_needed[1];
+                }
+                if (arrowsLeft==0) break;
+            }
+            ryanHist[10] = arrowsLeft;
+            
+            int apeachSum = 0;
+            for (int i = 0; i<info.length ; i++) {
+                if (info[i]>0 && ryanHist[i]==0) {
+                    apeachSum+=(10-i);
+                }
+            }
+            
+            return apeachSum>=points ? new int[] {-1} : ryanHist;
+        }
+    }
+
+https://programmers.co.kr/learn/courses/30/lessons/92342/solution_groups?language=java
+
+**REVIEW BACKTRACKING**
+
+Question XX: Longest Increasing Subsequence
+------------------------------------------------
+

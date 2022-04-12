@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python Toolkit" href="toolbox.html" />
-    <link rel="prev" title="Week 9 [6-13 Mar 2022]" href="week9.html" /> 
+    <link rel="prev" title="Week 9 [6-13 Apr 2022]" href="week9.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -275,7 +275,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="week9.html">Week 9 [6-13 Mar 2022]</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="week9.html">Week 9 [6-13 Apr 2022]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week9.html#day-44-6-apr">Day 44 [6 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-74-kakao-id">Question 74: Kakao ID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-75-kth-number">Question 75: Kth Number</a></li>
@@ -285,6 +285,12 @@
 <li class="toctree-l2"><a class="reference internal" href="week9.html#day-45-10-apr">Day 45 [10 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-77-palindromic-substrings">Question 77: Palindromic Substrings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-78-longest-common-subsequence">Question 78: Longest Common Subsequence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-46-12-apr">Day 46 [12 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-79">Question 79: 숫자 문자열과 영단어</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-80">Question 80: [카카오 인턴] 키패드 누르기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-xx-longest-increasing-subsequence">Question XX: Longest Increasing Subsequence</a></li>
 </ul>
 </li>
 </ul>
@@ -450,7 +456,8 @@
 <h2>Iterable<a class="headerlink" href="#iterable" title="Permalink to this headline"></a></h2>
 <section id="iterator">
 <h3>iterator()<a class="headerlink" href="#iterator" title="Permalink to this headline"></a></h3>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="p">(</span><span class="n">itb</span><span class="p">.</span><span class="na">iterator</span><span class="p">().</span><span class="na">hasNext</span><span class="p">())</span> <span class="n">iterator</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Iterable</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">itb</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span> <span class="c1">// (?) Check type declaration syntax</span>
+<span class="linenos">2</span><span class="k">if</span> <span class="p">(</span><span class="n">itr</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="n">itr</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
@@ -494,7 +501,7 @@
 </section>
 <section id="isempty">
 <h3>isEmpty()<a class="headerlink" href="#isempty" title="Permalink to this headline"></a></h3>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="p">(</span><span class="n">col</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;wow&quot;</span><span class="p">;</span>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> <span class="p">(</span><span class="n">col</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="k">return</span> <span class="s">&quot;wow&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
@@ -730,12 +737,12 @@ do not store their own data, immutable, and lazy.</p>
 <h3>Arrays.asList() vs. ArrayList(Arrays.asList(array))<a class="headerlink" href="#arrays-aslist-vs-arraylist-arrays-aslist-array" title="Permalink to this headline"></a></h3>
 <p>former puts a wrapper on vs. latter actually takes each element and inserts them into a new ArrayList</p>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span> <span class="p">};</span>
-<span class="linenos">2</span><span class="n">List</span> <span class="n">stringList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">);</span>
 <span class="linenos">3</span><span class="n">stringList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">);</span>
 <span class="linenos">4</span><span class="n">stringList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">);</span> <span class="c1">// ERROR THIS DOES NOT WORK - FIXED LENGTH</span>
 <span class="linenos">5</span>
 <span class="linenos">6</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span> <span class="p">};</span>
-<span class="linenos">7</span><span class="n">List</span> <span class="n">stringList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">));</span>
+<span class="linenos">7</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">));</span>
 <span class="linenos">8</span><span class="n">stringList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">);</span>
 <span class="linenos">9</span><span class="n">stringList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">);</span> <span class="c1">// :-)</span>
 </pre></div>
@@ -953,8 +960,7 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 <section id="set">
 <h3>set()<a class="headerlink" href="#set" title="Permalink to this headline"></a></h3>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
-<span class="linenos">2</span><span class="n">arrList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
-<span class="linenos">3</span><span class="n">arrList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">// param: idx, new_element</span>
+<span class="linenos">2</span><span class="n">arrList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">// param: idx, new_element</span>
 </pre></div>
 </div>
 </section>
@@ -965,6 +971,7 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 <span class="linenos">3</span><span class="n">arrList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">// param: idx, new_element</span>
 </pre></div>
 </div>
+<p><strong>EDIT THIS</strong></p>
 </section>
 </section>
 <section id="math">
@@ -1073,7 +1080,7 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="week9.html" class="btn btn-neutral float-left" title="Week 9 [6-13 Mar 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="week9.html" class="btn btn-neutral float-left" title="Week 9 [6-13 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
