@@ -292,6 +292,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-80">Question 80: [카카오 인턴] 키패드 누르기</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-81">Question 81: 주차 요금 계산</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-82">Question 82: 양궁대회</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#return-here">RETURN HERE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#day-47-13-apr">Day 47 [13 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-83">Question 83: 로또의 최고 순위와 최저 순위</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-84">Question 84: 괄호 변환</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-xx-longest-increasing-subsequence">Question XX: Longest Increasing Subsequence</a></li>
 </ul>
 </li>
@@ -1254,8 +1260,7 @@ the problem at hand!</p></li>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>note
-<strong>TreeMap</strong> adds the key-value pairs in a sorted manner (with regards to the key).</p>
+<p><strong>TreeMap</strong> adds the key-value pairs in a sorted manner (with regards to the key).</p>
 <p>Look-up / Insert = <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code></p>
 <p><strong>HashMap:</strong> Look-up / Insert = <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>
 <strong>LinkedHashMap:</strong> Look-up / Insert = <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> (maintains insertion order; put 1,2,3 =&gt; int k: keySet() -&gt; 1, 2, 3)</p>
@@ -1336,10 +1341,191 @@ the problem at hand!</p></li>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://programmers.co.kr/learn/courses/30/lessons/92342/solution_groups?language=java">https://programmers.co.kr/learn/courses/30/lessons/92342/solution_groups?language=java</a></p>
-<p><strong>REVIEW BACKTRACKING</strong></p>
+<p><strong>NOT DONE HERE</strong></p>
+</section>
+</section>
+<section id="return-here">
+<h2>RETURN HERE<a class="headerlink" href="#return-here" title="Permalink to this headline"></a></h2>
+</section>
+<section id="day-47-13-apr">
+<h2>Day 47 [13 Apr]<a class="headerlink" href="#day-47-13-apr" title="Permalink to this headline"></a></h2>
+<section id="question-83">
+<h3>Question 83: 로또의 최고 순위와 최저 순위<a class="headerlink" href="#question-83" title="Permalink to this headline"></a></h3>
+<p>로또를 구매한 민우는 당첨 번호 발표일을 학수고대하고 있었습니다. 하지만, 민우의 동생이 로또에 낙서를 하여, 일부 번호를 알아볼 수 없게 되었습니다. 당첨 번호 발표 후, 민우는 자신이 구매했던 로또로 당첨이 가능했던 최고 순위와 최저 순위를 알아보고 싶어 졌습니다.
+알아볼 수 없는 번호를 0으로 표기하기로 하고, 민우가 구매한 로또 번호 6개가 44, 1, 0, 0, 31 25라고 가정해보겠습니다. 당첨 번호 6개가 31, 10, 45, 1, 6, 19라면, 당첨 가능한 최고 순위와 최저 순위의 한 예는 아래와 같습니다</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>순서와 상관없이, 구매한 로또에 당첨 번호와 일치하는 번호가 있으면 맞힌 걸로 인정됩니다.</p></li>
+<li><p>알아볼 수 없는 두 개의 번호를 각각 10, 6이라고 가정하면 3등에 당첨될 수 있습니다.</p></li>
+<li><p>3등을 만드는 다른 방법들도 존재합니다. 하지만, 2등 이상으로 만드는 것은 불가능합니다.</p></li>
+<li><p>알아볼 수 없는 두 개의 번호를 각각 11, 7이라고 가정하면 5등에 당첨될 수 있습니다.</p></li>
+<li><p>5등을 만드는 다른 방법들도 존재합니다. 하지만, 6등(낙첨)으로 만드는 것은 불가능합니다.</p></li>
+</ul>
+</div></blockquote>
+<p>민우가 구매한 로또 번호를 담은 배열 lottos, 당첨 번호를 담은 배열 win_nums가 매개변수로 주어집니다. 이때, 당첨 가능한 최고 순위와 최저 순위를 차례대로 배열에 담아서 return 하도록 solution 함수를 완성해주세요.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>lottos는 길이 6인 정수 배열입니다.</p></li>
+<li><p>lottos의 모든 원소는 0 이상 45 이하인 정수입니다.</p></li>
+<li><p>0은 알아볼 수 없는 숫자를 의미합니다.</p></li>
+<li><p>0을 제외한 다른 숫자들은 lottos에 2개 이상 담겨있지 않습니다.</p></li>
+<li><p>lottos의 원소들은 정렬되어 있지 않을 수도 있습니다.</p></li>
+<li><p>win_nums은 길이 6인 정수 배열입니다.</p></li>
+<li><p>win_nums의 모든 원소는 1 이상 45 이하인 정수입니다.</p></li>
+<li><p>win_nums에는 같은 숫자가 2개 이상 담겨있지 않습니다.</p></li>
+<li><p>win_nums의 원소들은 정렬되어 있지 않을 수도 있습니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">lottos</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">win_nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">winNumSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">win_num</span> <span class="p">:</span> <span class="n">win_nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="n">winNumSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">win_num</span><span class="p">);</span>
+<span class="linenos"> 8</span>        <span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="kt">int</span> <span class="n">correctCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">11</span>        <span class="kt">int</span> <span class="n">unknownCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">12</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">lottoNum</span> <span class="p">:</span> <span class="n">lottos</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>            <span class="k">if</span> <span class="p">(</span><span class="n">lottoNum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>                <span class="n">unknownCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">15</span>            <span class="p">}</span>
+<span class="linenos">16</span>            <span class="k">if</span> <span class="p">(</span><span class="n">winNumSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">lottoNum</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">17</span>                <span class="n">correctCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">18</span>            <span class="p">}</span>
+<span class="linenos">19</span>        <span class="p">}</span>
+<span class="linenos">20</span>        <span class="kt">int</span> <span class="n">bestRanking</span> <span class="o">=</span> <span class="n">correctCount</span><span class="o">+</span><span class="n">unknownCount</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="mi">6</span> <span class="p">:</span> <span class="mi">7</span><span class="o">-</span><span class="p">(</span><span class="n">correctCount</span><span class="o">+</span><span class="n">unknownCount</span><span class="p">);</span>
+<span class="linenos">21</span>        <span class="kt">int</span> <span class="n">worstRanking</span> <span class="o">=</span> <span class="n">correctCount</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="mi">6</span> <span class="p">:</span> <span class="mi">7</span><span class="o">-</span><span class="p">(</span><span class="n">correctCount</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="n">bestRanking</span><span class="p">,</span> <span class="n">worstRanking</span><span class="p">};</span>
+<span class="linenos">24</span>    <span class="p">}</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>    <span class="c1">//revised ending</span>
+<span class="linenos">27</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">lottos</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">win_nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">winNumSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">29</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">win_num</span> <span class="p">:</span> <span class="n">win_nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">30</span>            <span class="n">winNumSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">win_num</span><span class="p">);</span>
+<span class="linenos">31</span>        <span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>        <span class="kt">int</span> <span class="n">correctCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">34</span>        <span class="kt">int</span> <span class="n">unknownCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">35</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">lottoNum</span> <span class="p">:</span> <span class="n">lottos</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">36</span>            <span class="k">if</span> <span class="p">(</span><span class="n">lottoNum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>                <span class="n">unknownCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">38</span>            <span class="p">}</span>
+<span class="linenos">39</span>            <span class="k">if</span> <span class="p">(</span><span class="n">winNumSet</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">lottoNum</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">40</span>                <span class="n">correctCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">41</span>            <span class="p">}</span>
+<span class="linenos">42</span>        <span class="p">}</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="o">-</span><span class="p">(</span><span class="n">correctCount</span><span class="o">+</span><span class="n">unknownCount</span><span class="p">)),</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="o">-</span><span class="p">(</span><span class="n">correctCount</span><span class="p">))};</span>
+<span class="linenos">45</span>    <span class="p">}</span>
+<span class="linenos">46</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Simple question.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> as <code class="docutils literal notranslate"><span class="pre">lottos.length</span> <span class="pre">=</span> <span class="pre">win_nums.length</span> <span class="pre">=</span> <span class="pre">6</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> as <code class="docutils literal notranslate"><span class="pre">lottos.length</span> <span class="pre">=</span> <span class="pre">win_nums.length</span> <span class="pre">=</span> <span class="pre">6</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-84">
+<h3>Question 84: 괄호 변환<a class="headerlink" href="#question-84" title="Permalink to this headline"></a></h3>
+<p>카카오에 신입 개발자로 입사한 “콘”은 선배 개발자로부터 개발역량 강화를 위해 다른 개발자가 작성한 소스 코드를 분석하여 문제점을 발견하고 수정하라는 업무 과제를 받았습니다. 소스를 컴파일하여 로그를 보니 대부분 소스 코드 내 작성된 괄호가 개수는 맞지만 짝이 맞지 않은 형태로 작성되어 오류가 나는 것을 알게 되었습니다.
+수정해야 할 소스 파일이 너무 많아서 고민하던 “콘”은 소스 코드에 작성된 모든 괄호를 뽑아서 올바른 순서대로 배치된 괄호 문자열을 알려주는 프로그램을 다음과 같이 개발하려고 합니다.</p>
+<p>‘(’ 와 ‘)’ 로만 이루어진 문자열이 있을 경우, ‘(’ 의 개수와 ‘)’ 의 개수가 같다면 이를 균형잡힌 괄호 문자열이라고 부릅니다.
+그리고 여기에 ‘(‘와 ‘)’의 괄호의 짝도 모두 맞을 경우에는 이를 올바른 괄호 문자열이라고 부릅니다.
+예를 들어, “(()))(“와 같은 문자열은 “균형잡힌 괄호 문자열” 이지만 “올바른 괄호 문자열”은 아닙니다.
+반면에 “(())()”와 같은 문자열은 “균형잡힌 괄호 문자열” 이면서 동시에 “올바른 괄호 문자열” 입니다.
+‘(’ 와 ‘)’ 로만 이루어진 문자열 w가 “균형잡힌 괄호 문자열” 이라면 다음과 같은 과정을 통해 “올바른 괄호 문자열”로 변환할 수 있습니다.</p>
+<p>‘(’ 와 ‘)’ 로만 이루어진 문자열 w가 “균형잡힌 괄호 문자열” 이라면 다음과 같은 과정을 통해 “올바른 괄호 문자열”로 변환할 수 있습니다.</p>
+<ol class="arabic simple">
+<li><p>입력이 빈 문자열인 경우, 빈 문자열을 반환합니다.</p></li>
+<li><p>문자열 w를 두 “균형잡힌 괄호 문자열” u, v로 분리합니다. 단, u는 “균형잡힌 괄호 문자열”로 더 이상 분리할 수 없어야 하며, v는 빈 문자열이 될 수 있습니다.</p></li>
+<li><p>문자열 u가 “올바른 괄호 문자열” 이라면 문자열 v에 대해 1단계부터 다시 수행합니다. 3-1. 수행한 결과 문자열을 u에 이어 붙인 후 반환합니다.</p></li>
+<li><p>문자열 u가 “올바른 괄호 문자열”이 아니라면 아래 과정을 수행합니다. 4-1. 빈 문자열에 첫 번째 문자로 ‘(‘를 붙입니다. 4-2. 문자열 v에 대해 1단계부터 재귀적으로 수행한 결과 문자열을 이어 붙입니다. 4-3. ‘)’를 다시 붙입니다.
+4-4. u의 첫 번째와 마지막 문자를 제거하고, 나머지 문자열의 괄호 방향을 뒤집어서 뒤에 붙입니다. 4-5. 생성된 문자열을 반환합니다.</p></li>
+</ol>
+<p>“균형잡힌 괄호 문자열” p가 매개변수로 주어질 때, 주어진 알고리즘을 수행해 “올바른 괄호 문자열”로 변환한 결과를 return 하도록 solution 함수를 완성해 주세요.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">isProper</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="linenos"> 4</span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="linenos"> 5</span>    <span class="p">}</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="kd">private</span> <span class="n">String</span> <span class="nf">helper</span><span class="p">(</span><span class="n">String</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>        <span class="k">if</span> <span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="linenos"> 9</span>        <span class="kt">int</span> <span class="n">splitIdx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">splitToUandV</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="linenos">10</span>        <span class="n">String</span> <span class="n">u</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">splitIdx</span><span class="p">);</span>
+<span class="linenos">11</span>        <span class="n">String</span> <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">splitIdx</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="na">length</span><span class="p">());</span>
+<span class="linenos">12</span>        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">isProper</span><span class="p">(</span><span class="n">u</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">13</span>            <span class="k">return</span> <span class="n">u</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos">14</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">15</span>            <span class="k">return</span> <span class="s">&quot;(&quot;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;)&quot;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="na">stripAndInvert</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="linenos">16</span>        <span class="p">}</span>
+<span class="linenos">17</span>    <span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isProper</span><span class="p">(</span><span class="n">String</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">20</span>        <span class="kt">int</span> <span class="n">openCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">21</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">p</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">22</span>            <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">23</span>                <span class="n">openCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">24</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">25</span>                <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">openCount</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">26</span>            <span class="p">}</span>
+<span class="linenos">27</span>        <span class="p">}</span>
+<span class="linenos">28</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">29</span>    <span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">splitToUandV</span><span class="p">(</span><span class="n">String</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">32</span>        <span class="kt">int</span> <span class="n">openCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">33</span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">34</span>        <span class="k">do</span> <span class="p">{</span>
+<span class="linenos">35</span>            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">36</span>                <span class="n">openCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">37</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">38</span>                <span class="n">openCount</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">39</span>            <span class="p">}</span>
+<span class="linenos">40</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">openCount</span><span class="o">!=</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">41</span>        <span class="k">return</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//exclusive upperbound</span>
+<span class="linenos">42</span>    <span class="p">}</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>    <span class="kd">private</span> <span class="n">String</span> <span class="nf">stripAndInvert</span><span class="p">(</span><span class="n">String</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">45</span>        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos">46</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">47</span>            <span class="n">res</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;(&#39;</span><span class="o">?</span><span class="sc">&#39;)&#39;</span><span class="p">:</span><span class="sc">&#39;(&#39;</span><span class="p">);</span>
+<span class="linenos">48</span>        <span class="p">}</span>
+<span class="linenos">49</span>        <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">50</span>    <span class="p">}</span>
+<span class="linenos">51</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Quite simple when the instructions are read thoroughly</p></li>
+<li><p>Really helped to use OOP principles (i.e. single responsbility principle) - designing each (helper) function to do
+one task simplified a seemingly complex problem into a series of simple operations!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">&gt;O(n^2)</span></code> as <code class="docutils literal notranslate"><span class="pre">substring()</span></code> operation is <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>. If we used index pointers instead (<strong>in-place</strong>), it would have been much
+more efficient!</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Try implementing the above question using in-place modification (on <code class="docutils literal notranslate"><span class="pre">char[]</span></code>) to optimize the time and space complexity!</p>
+</div>
 </section>
 <section id="question-xx-longest-increasing-subsequence">
 <h3>Question XX: Longest Increasing Subsequence<a class="headerlink" href="#question-xx-longest-increasing-subsequence" title="Permalink to this headline"></a></h3>
+<p><strong>REVIEW BACKTRACKING</strong></p>
 </section>
 </section>
 </section>

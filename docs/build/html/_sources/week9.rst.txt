@@ -815,7 +815,7 @@ Alternative solution (that demonstrates the utility of TreeMap):
         }
     }
 
-.. note:: note
+.. note::
     **TreeMap** adds the key-value pairs in a sorted manner (with regards to the key). 
 
     Look-up / Insert = ``O(log n)``
@@ -899,10 +899,187 @@ My incomplete solution:
         }
     }
 
+
 https://programmers.co.kr/learn/courses/30/lessons/92342/solution_groups?language=java
 
-**REVIEW BACKTRACKING**
+**NOT DONE HERE** 
+
+RETURN HERE
+============
+
+Day 47 [13 Apr]
+================
+Question 83: 로또의 최고 순위와 최저 순위
+------------------------------------------------
+로또를 구매한 민우는 당첨 번호 발표일을 학수고대하고 있었습니다. 하지만, 민우의 동생이 로또에 낙서를 하여, 일부 번호를 알아볼 수 없게 되었습니다. 당첨 번호 발표 후, 민우는 자신이 구매했던 로또로 당첨이 가능했던 최고 순위와 최저 순위를 알아보고 싶어 졌습니다. 
+알아볼 수 없는 번호를 0으로 표기하기로 하고, 민우가 구매한 로또 번호 6개가 44, 1, 0, 0, 31 25라고 가정해보겠습니다. 당첨 번호 6개가 31, 10, 45, 1, 6, 19라면, 당첨 가능한 최고 순위와 최저 순위의 한 예는 아래와 같습니다
+
+ * 순서와 상관없이, 구매한 로또에 당첨 번호와 일치하는 번호가 있으면 맞힌 걸로 인정됩니다.
+ * 알아볼 수 없는 두 개의 번호를 각각 10, 6이라고 가정하면 3등에 당첨될 수 있습니다.
+ * 3등을 만드는 다른 방법들도 존재합니다. 하지만, 2등 이상으로 만드는 것은 불가능합니다.
+ * 알아볼 수 없는 두 개의 번호를 각각 11, 7이라고 가정하면 5등에 당첨될 수 있습니다.
+ * 5등을 만드는 다른 방법들도 존재합니다. 하지만, 6등(낙첨)으로 만드는 것은 불가능합니다.
+ 
+민우가 구매한 로또 번호를 담은 배열 lottos, 당첨 번호를 담은 배열 win_nums가 매개변수로 주어집니다. 이때, 당첨 가능한 최고 순위와 최저 순위를 차례대로 배열에 담아서 return 하도록 solution 함수를 완성해주세요.
+
+제한사항
+ * lottos는 길이 6인 정수 배열입니다.
+ * lottos의 모든 원소는 0 이상 45 이하인 정수입니다.
+ * 0은 알아볼 수 없는 숫자를 의미합니다.
+ * 0을 제외한 다른 숫자들은 lottos에 2개 이상 담겨있지 않습니다.
+ * lottos의 원소들은 정렬되어 있지 않을 수도 있습니다.
+ * win_nums은 길이 6인 정수 배열입니다.
+ * win_nums의 모든 원소는 1 이상 45 이하인 정수입니다.
+ * win_nums에는 같은 숫자가 2개 이상 담겨있지 않습니다.
+ * win_nums의 원소들은 정렬되어 있지 않을 수도 있습니다.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        public int[] solution(int[] lottos, int[] win_nums) {
+            HashSet<Integer> winNumSet = new HashSet<>();
+            for (int win_num : win_nums) {
+                winNumSet.add(win_num);
+            }
+            
+            int correctCount = 0;
+            int unknownCount = 0;
+            for (int lottoNum : lottos) {
+                if (lottoNum == 0) {
+                    unknownCount++;
+                }
+                if (winNumSet.contains(lottoNum)) {
+                    correctCount++;
+                }
+            }
+            int bestRanking = correctCount+unknownCount==0 ? 6 : 7-(correctCount+unknownCount);
+            int worstRanking = correctCount==0 ? 6 : 7-(correctCount);
+            
+            return new int[] {bestRanking, worstRanking};
+        }
+
+        //revised ending
+        public int[] solution(int[] lottos, int[] win_nums) {
+            HashSet<Integer> winNumSet = new HashSet<>();
+            for (int win_num : win_nums) {
+                winNumSet.add(win_num);
+            }
+            
+            int correctCount = 0;
+            int unknownCount = 0;
+            for (int lottoNum : lottos) {
+                if (lottoNum == 0) {
+                    unknownCount++;
+                }
+                if (winNumSet.contains(lottoNum)) {
+                    correctCount++;
+                }
+            }
+            
+            return new int[] {Math.min(6, 7-(correctCount+unknownCount)), Math.min(6, 7-(correctCount))};
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Simple question.
+ * **Time Complexity**: ``O(1)`` as ``lottos.length = win_nums.length = 6``.
+ * **Space Complexity**: ``O(1)`` as ``lottos.length = win_nums.length = 6``.
+
+Question 84: 괄호 변환
+------------------------------------------------
+카카오에 신입 개발자로 입사한 "콘"은 선배 개발자로부터 개발역량 강화를 위해 다른 개발자가 작성한 소스 코드를 분석하여 문제점을 발견하고 수정하라는 업무 과제를 받았습니다. 소스를 컴파일하여 로그를 보니 대부분 소스 코드 내 작성된 괄호가 개수는 맞지만 짝이 맞지 않은 형태로 작성되어 오류가 나는 것을 알게 되었습니다.
+수정해야 할 소스 파일이 너무 많아서 고민하던 "콘"은 소스 코드에 작성된 모든 괄호를 뽑아서 올바른 순서대로 배치된 괄호 문자열을 알려주는 프로그램을 다음과 같이 개발하려고 합니다.
+
+'(' 와 ')' 로만 이루어진 문자열이 있을 경우, '(' 의 개수와 ')' 의 개수가 같다면 이를 균형잡힌 괄호 문자열이라고 부릅니다.
+그리고 여기에 '('와 ')'의 괄호의 짝도 모두 맞을 경우에는 이를 올바른 괄호 문자열이라고 부릅니다.
+예를 들어, "(()))("와 같은 문자열은 "균형잡힌 괄호 문자열" 이지만 "올바른 괄호 문자열"은 아닙니다.
+반면에 "(())()"와 같은 문자열은 "균형잡힌 괄호 문자열" 이면서 동시에 "올바른 괄호 문자열" 입니다.
+'(' 와 ')' 로만 이루어진 문자열 w가 "균형잡힌 괄호 문자열" 이라면 다음과 같은 과정을 통해 "올바른 괄호 문자열"로 변환할 수 있습니다.
+
+'(' 와 ')' 로만 이루어진 문자열 w가 "균형잡힌 괄호 문자열" 이라면 다음과 같은 과정을 통해 "올바른 괄호 문자열"로 변환할 수 있습니다.
+
+1. 입력이 빈 문자열인 경우, 빈 문자열을 반환합니다. 
+2. 문자열 w를 두 "균형잡힌 괄호 문자열" u, v로 분리합니다. 단, u는 "균형잡힌 괄호 문자열"로 더 이상 분리할 수 없어야 하며, v는 빈 문자열이 될 수 있습니다. 
+3. 문자열 u가 "올바른 괄호 문자열" 이라면 문자열 v에 대해 1단계부터 다시 수행합니다. 3-1. 수행한 결과 문자열을 u에 이어 붙인 후 반환합니다. 
+4. 문자열 u가 "올바른 괄호 문자열"이 아니라면 아래 과정을 수행합니다. 4-1. 빈 문자열에 첫 번째 문자로 '('를 붙입니다. 4-2. 문자열 v에 대해 1단계부터 재귀적으로 수행한 결과 문자열을 이어 붙입니다. 4-3. ')'를 다시 붙입니다. 
+   4-4. u의 첫 번째와 마지막 문자를 제거하고, 나머지 문자열의 괄호 방향을 뒤집어서 뒤에 붙입니다. 4-5. 생성된 문자열을 반환합니다.
+ 
+"균형잡힌 괄호 문자열" p가 매개변수로 주어질 때, 주어진 알고리즘을 수행해 "올바른 괄호 문자열"로 변환한 결과를 return 하도록 solution 함수를 완성해 주세요.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    class Solution {
+        public String solution(String p) {
+            if (this.isProper(p)) return p;
+            return this.helper(p);
+        }
+
+        private String helper(String p) {
+            if ("".equals(p)) return "";
+            int splitIdx = this.splitToUandV(p);
+            String u = p.substring(0,splitIdx);
+            String v = p.substring(splitIdx,p.length());
+            if (this.isProper(u)) {
+                return u + this.helper(v);
+            } else {
+                return "("+this.helper(v)+")"+this.stripAndInvert(u);
+            }
+        }
+        
+        private boolean isProper(String p) {
+            int openCount = 0;
+            for (char c : p.toCharArray()) {
+                if (c=='(') {
+                    openCount++;
+                } else {
+                    if (--openCount<0) return false;
+                }
+            }
+            return true;
+        }
+        
+        private int splitToUandV(String p) {
+            int openCount = 0;
+            int i = 0;
+            do {
+                if (p.charAt(i++)=='(') {
+                    openCount++;
+                } else { 
+                    openCount--; 
+                }
+            } while (openCount!=0);
+            return i; //exclusive upperbound
+        }
+        
+        private String stripAndInvert(String p) {
+            StringBuilder res = new StringBuilder();
+            for (int i = 1; i<p.length()-1; i++) {
+                res.append(p.charAt(i)=='('?')':'(');
+            }
+            return res.toString();
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Quite simple when the instructions are read thoroughly
+ * Really helped to use OOP principles (i.e. single responsbility principle) - designing each (helper) function to do 
+   one task simplified a seemingly complex problem into a series of simple operations!
+ * **Time Complexity**: ``>O(n^2)`` as ``substring()`` operation is ``O(n)``. If we used index pointers instead (**in-place**), it would have been much
+   more efficient!
+ * **Space Complexity**: ``O(n)``
+
+.. note::
+    Try implementing the above question using in-place modification (on ``char[]``) to optimize the time and space complexity!
 
 Question XX: Longest Increasing Subsequence
 ------------------------------------------------
 
+**REVIEW BACKTRACKING**
