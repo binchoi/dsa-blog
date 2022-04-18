@@ -297,3 +297,291 @@ Remarks and Complexity Analysis:
    for a way to store two elements of different types in a pair/tuple-like structure and struggled becuase I couldn't find an appropriate one.
  * **Time Complexity**: ``O(n log n)`` where ``n=N`` or - ``O(max(n log n, m))`` where ``m=stage.length``
  * **Space Complexity**: ``O(N)``
+
+
+
+Question 87: Reverse a Linked List
+------------------------------------------------
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+My first attempt solution:
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.Stack;
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            if (head==null) return head;
+            Stack<ListNode> nodes = new Stack<>();
+            ListNode curr = head;
+            while (curr!=null) {
+                nodes.push(curr);
+                curr = curr.next;
+            }
+            if (!nodes.isEmpty()) {
+                head = nodes.pop();
+            }
+            ListNode prev = head;
+            while (!nodes.isEmpty()) {
+                prev.next = nodes.pop();
+                prev = prev.next;
+            }
+            prev.next = null;
+            return head;
+        }
+    }
+
+My in-place solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode next;
+        while (head!=null) {
+            next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+
+Recursive solution (just for practice): 
+
+.. code-block:: Java
+    :linenos:
+
+    public ListNode reverseList(ListNode head) {
+        return this.reverseListHelper(null, head);
+    }
+    
+    private ListNode reverseListHelper(ListNode prev, ListNode head) {
+        if (head==null) return prev;
+        ListNode next = head.next;
+        head.next = prev;
+        return this.reverseListHelper(head, next);
+    }
+
+
+Remarks and Complexity Analysis: 
+ * First attempt was not as elegant as I hoped but it is optimized in terms of Big-O time complexity so I was happy. 
+ * Second attempt hit what I was looking for! Much faster and space efficient as well.
+ * **Time Complexity**: ``O(n)`` where ``n=List.size()``
+ * **Space Complexity**: ``O(n)``
+
+Question 88: 비밀지도
+------------------------------------------------
+네오는 평소 프로도가 비상금을 숨겨놓는 장소를 알려줄 비밀지도를 손에 넣었다. 그런데 이 비밀지도는 숫자로 암호화되어 있어 위치를 확인하기 위해서는 암호를 해독해야 한다. 다행히 지도 암호를 해독할 방법을 적어놓은 메모도 함께 발견했다.
+지도는 한 변의 길이가 n인 정사각형 배열 형태로, 각 칸은 "공백"(" ") 또는 "벽"("#") 두 종류로 이루어져 있다.
+전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 각각 "지도 1"과 "지도 2"라고 하자. 지도 1 또는 지도 2 중 어느 하나라도 벽인 부분은 전체 지도에서도 벽이다. 지도 1과 지도 2에서 모두 공백인 부분은 전체 지도에서도 공백이다.
+"지도 1"과 "지도 2"는 각각 정수 배열로 암호화되어 있다.
+암호화된 배열은 지도의 각 가로줄에서 벽 부분을 1, 공백 부분을 0으로 부호화했을 때 얻어지는 이진수에 해당하는 값의 배열이다.
+
+네오가 프로도의 비상금을 손에 넣을 수 있도록, 비밀지도의 암호를 해독하는 작업을 도와줄 프로그램을 작성하라.
+입력 형식
+입력으로 지도의 한 변 크기 n 과 2개의 정수 배열 arr1, arr2가 들어온다.
+1 ≦ n ≦ 16
+arr1, arr2는 길이 n인 정수 배열로 주어진다.
+정수 배열의 각 원소 x를 이진수로 변환했을 때의 길이는 n 이하이다. 즉, 0 ≦ x ≦ 2n - 1을 만족한다.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] res = new String[n];
+        for (int i = 0; i < n; i++) {
+            String binStr =Integer.toBinaryString(arr1[i] | arr2[i]);
+            res[i] = " ".repeat(n-binStr.length())+(binStr.replaceAll("1", "#").replaceAll("0", " "));
+        }
+        return res;
+    }
+
+My first naive solution:
+
+.. code-block:: Java
+    :linenos:
+    
+    import java.util.*;
+    class Solution {
+        public String[] solution(int n, int[] arr1, int[] arr2) {
+            
+            String[] arr1Str = this.helper(arr1, n);
+            String[] arr2Str = this.helper(arr2, n);
+            
+            String[] res = new String[n];
+            for (int i = 0; i < n ; i++) {          
+                StringBuilder line = new StringBuilder();
+                for (int j = 0 ; j < n ; j++) {
+                    if (arr1Str[i].charAt(j)=='0' && arr2Str[i].charAt(j)=='0') {
+                        line.append(' ');
+                    } else {
+                        line.append('#');
+                    }
+                }
+                res[i] = line.toString();
+            }
+            
+            return res;
+        }
+        
+        private String[] helper(int[] input, int n) {
+            String[] output = new String[n];
+            for (int i=0; i<input.length; i++) {
+                String binStr = (Integer.toBinaryString(input[i]));
+                output[i] = "0".repeat(n-binStr.length())+binStr;
+            }
+            return output;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Pretty simple and good reminder of the power that bit-wise operators contain. 
+ * **Time Complexity**: ``O(n^2)`` -- I think the String operations / manipulations would actually have added exponential time
+ * **Space Complexity**: ``O(n)``
+
+Question 89: 다트 게임
+------------------------------------------------
+카카오톡 게임별의 하반기 신규 서비스로 다트 게임을 출시하기로 했다. 다트 게임은 다트판에 다트를 세 차례 던져 그 점수의 합계로 실력을 겨루는 게임으로, 모두가 간단히 즐길 수 있다.
+갓 입사한 무지는 코딩 실력을 인정받아 게임의 핵심 부분인 점수 계산 로직을 맡게 되었다. 다트 게임의 점수 계산 로직은 아래와 같다.
+다트 게임은 총 3번의 기회로 구성된다.
+점수와 함께 Single(S), Double(D), Triple(T) 영역이 존재하고 각 영역 당첨 시 점수에서 1제곱, 2제곱, 3제곱 (점수1 , 점수2 , 점수3 )으로 계산된다.
+옵션으로 스타상(*) , 아차상(#)이 존재하며 스타상(*) 당첨 시 해당 점수와 바로 전에 얻은 점수를 각 2배로 만든다. 아차상(#) 당첨 시 해당 점수는 마이너스된다.
+스타상(*)은 첫 번째 기회에서도 나올 수 있다. 이 경우 첫 번째 스타상(*)의 점수만 2배가 된다. (예제 4번 참고)
+스타상(*)의 효과는 다른 스타상(*)의 효과와 중첩될 수 있다. 이 경우 중첩된 스타상(*) 점수는 4배가 된다. (예제 4번 참고)
+스타상(*)의 효과는 아차상(#)의 효과와 중첩될 수 있다. 이 경우 중첩된 아차상(#)의 점수는 -2배가 된다. (예제 5번 참고)
+Single(S), Double(D), Triple(T)은 점수마다 하나씩 존재한다.
+스타상(*), 아차상(#)은 점수마다 둘 중 하나만 존재할 수 있으며, 존재하지 않을 수도 있다.
+0~10의 정수와 문자 S, D, T, \*, #로 구성된 문자열이 입력될 시 총점수를 반환하는 함수를 작성하라.
+입력 형식
+"점수|보너스|[옵션]"으로 이루어진 문자열 3세트.
+예) 1S2D*3T
+점수는 0에서 10 사이의 정수이다.
+보너스는 S, D, T 중 하나이다.
+옵선은 \*이나 # 중 하나이며, 없을 수도 있다.
+출력 형식
+3번의 기회에서 얻은 점수 합계에 해당하는 정수값을 출력한다.
+예) 37
+
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+    import java.util.stream.IntStream;
+
+    class Solution {
+        public int solution(String dartResult) {   
+            // identify borders
+            int[] borders = new int[3];
+            int j = 1;
+            for (int i = 1; i<dartResult.length(); i++) {
+                if (Character.isDigit(dartResult.charAt(i))&&!Character.isDigit(dartResult.charAt(i-1))) {
+                    borders[j++] = i;
+                }
+            }
+            
+            int[] pointsList = new int[3];
+            
+            this.pointCalc(dartResult, 0, borders[1], pointsList, 0);
+            this.pointCalc(dartResult, borders[1], borders[2], pointsList, 1);
+            this.pointCalc(dartResult, borders[2], dartResult.length(), pointsList, 2);
+
+            return IntStream.of(pointsList).sum();
+        }
+        
+        private void pointCalc(String dartResult, int lo, int hi, int[] pointsList, int pointIdx) {
+            int res;
+            int pointer = lo;
+            if (Character.isDigit(dartResult.charAt(lo+1))) {
+                res = Integer.parseInt(dartResult.substring(lo, lo+2));
+                pointer+=2;
+            } else {
+                res = Character.getNumericValue(dartResult.charAt(lo));
+                pointer+=1;
+            }
+            
+            switch (dartResult.charAt(pointer)) {
+                case 'D': 
+                    res*=res;
+                    break;
+                case 'T': 
+                    res*=(res*res);
+                    break;
+                default: 
+                    break;
+            }
+            pointer++;
+            
+            if (pointer<hi) {
+                switch (dartResult.charAt(pointer)) {
+                    case '*':
+                        res*=2;
+                        if (pointIdx>0) {
+                            pointsList[pointIdx-1]*=2;
+                        }
+                        break;
+                    case '#': 
+                        res*=-1;
+                        break;
+                }
+            }
+            pointsList[pointIdx] = res;
+        }
+    }
+
+    //alternative fun solution
+    import java.util.*;
+    class Solution {
+        public int solution(String dartResult) {
+            Stack<Integer> stack = new Stack<>();
+            int sum = 0;
+            for (int i = 0; i < dartResult.length(); ++i) {
+                char c = dartResult.charAt(i);
+                if (Character.isDigit(c)) {
+                    sum = (c - '0');
+                    if (sum == 1 && i < dartResult.length() - 1 && dartResult.charAt(i + 1) == '0') {
+                        sum = 10;
+                        i++;
+                    }
+                    stack.push(sum);
+                } else {
+                    int prev = stack.pop();
+                    if (c == 'D') {
+                        prev *= prev;
+                    } else if (c == 'T') {
+                        prev = prev * prev * prev;
+                    } else if (c == '*') {
+                        if (!stack.isEmpty()) {
+                            int val = stack.pop() * 2;
+                            stack.push(val);
+                        }
+                        prev *= 2;
+                    } else if (c == '#') {
+                        prev *= (-1);
+                    }
+                    // System.out.println(prev);
+                    stack.push(prev);
+                }
+            }
+            int totalScore = 0;
+            while (!stack.isEmpty()) {
+                totalScore += stack.pop();
+            }
+            return totalScore;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Not too difficult apart from java syntax (converting String to int and Character to int - i.e. ``Integer.valueOf(str)`` and ``Character.getNumericValue(char)``)
+ * I could optimize this further but it is 2am -- will get back to it later!
+ * **Time Complexity**: ``O(n)``
+ * **Space Complexity**: ``O(n)``
+
+**RECORD CHARACTER METHODS**

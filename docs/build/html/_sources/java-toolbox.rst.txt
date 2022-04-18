@@ -572,6 +572,14 @@ trim()
     String.valueOf('a'); // "a"
     String.valueOf(3L); // "3"
     
+repeat()
+------------------------------------------- 
+.. code-block:: Java
+    :linenos:
+
+    // Equivalent to Python's 3*"a" = "aaa"
+    String str = "asdsa";
+    String longerStr = str.repeat(5);
     
 
 Integer
@@ -587,6 +595,17 @@ Integer to int (vice versa)
     // auto boxing and auto unboxing works most of the time
     int a = integer; 
     Integer c = a;
+
+Integer to Binary (vice versa)
+---------------------------------
+.. code-block:: Java
+    :linenos:
+
+    // int to binString
+    Integer.toBinaryString(someInt); // no padding in the binary representation
+
+    // binString to int
+    int foo = Integer.parseInt("1001", 2);
 
 
 ArrayList

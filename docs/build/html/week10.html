@@ -310,6 +310,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#day-49-18-apr">Day 49 [18 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-86">Question 86: 실패율</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-87-reverse-a-linked-list">Question 87: Reverse a Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-88">Question 88: 비밀지도</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-89">Question 89: 다트 게임</a></li>
 </ul>
 </li>
 </ul>
@@ -351,6 +354,9 @@
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#findany-findfirst">findAny() &amp; findFirst()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collectors-groupingby">Collectors.groupingBy()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#maptoint-returns-intstream">mapToInt() [returns IntStream]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stream-to-list-vs-array">Stream to List vs. Array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#list-vs-array-to-stream">List vs. Array to Stream</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#array">Array</a><ul>
@@ -377,10 +383,12 @@
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#tolowercase-touppercase">toLowerCase() &amp;&amp; toUpperCase()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#trim">trim()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#static-method-valueof">[Static method] valueOf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#repeat">repeat()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#integer">Integer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#integer-to-int-vice-versa">Integer to int (vice versa)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#integer-to-binary-vice-versa">Integer to Binary (vice versa)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#arraylist">ArrayList</a><ul>
@@ -408,6 +416,23 @@
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#queue">Queue</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#import-queue">import Queue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#add-remove-peek">add() &amp; remove() &amp; peek()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#conversions">Conversions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#t-to-list-t">T[] to List&lt;T&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#intstream">IntStream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#creating-intstream-intstream-of">Creating IntStream: IntStream.of(…)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#creating-intstream-intstream-range">Creating IntStream: IntStream.range(…)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#creating-intstream-intstream-iterate-int-seed-intunaryoperator-f">Creating IntStream: IntStream.iterate(int seed, IntUnaryOperator f)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#toarray-returns-int">toArray() -&gt; returns int[]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#boxed-collect-collectors-tolist-returns-list-integer">boxed().collect(Collectors.toList()) -&gt; returns List&lt;Integer&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#sorting-operations">Sorting Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#sorting-arrays-arrays-sort-arr">Sorting Arrays: Arrays.sort(arr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#sorting-part-of-arrays-arrays-sort">Sorting part of Arrays: Arrays.sort()</a></li>
 </ul>
 </li>
 </ul>
@@ -768,6 +793,279 @@ for a way to store two elements of different types in a pair/tuple-like structur
 </ul>
 </dd>
 </dl>
+</section>
+<section id="question-87-reverse-a-linked-list">
+<h3>Question 87: Reverse a Linked List<a class="headerlink" href="#question-87-reverse-a-linked-list" title="Permalink to this headline"></a></h3>
+<p>Given the head of a singly linked list, reverse the list, and return the reversed list.</p>
+<p>My first attempt solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseList</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">ListNode</span><span class="o">&gt;</span> <span class="n">nodes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 6</span>        <span class="n">ListNode</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="k">while</span> <span class="p">(</span><span class="n">curr</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="n">nodes</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">curr</span><span class="p">);</span>
+<span class="linenos"> 9</span>            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">nodes</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">12</span>            <span class="n">head</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">13</span>        <span class="p">}</span>
+<span class="linenos">14</span>        <span class="n">ListNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">nodes</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">16</span>            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">17</span>            <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos">18</span>        <span class="p">}</span>
+<span class="linenos">19</span>        <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos">20</span>        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>My in-place solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseList</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">ListNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="n">ListNode</span> <span class="n">next</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="k">while</span> <span class="p">(</span><span class="n">head</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 6</span>        <span class="n">head</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="n">head</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span>
+<span class="linenos">10</span>    <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Recursive solution (just for practice):</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseList</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">reverseListHelper</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+<span class="linenos"> 3</span><span class="p">}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kd">private</span> <span class="n">ListNode</span> <span class="nf">reverseListHelper</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">prev</span><span class="p">,</span> <span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>    <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
+<span class="linenos"> 7</span>    <span class="n">ListNode</span> <span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="n">head</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">reverseListHelper</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">next</span><span class="p">);</span>
+<span class="linenos">10</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>First attempt was not as elegant as I hoped but it is optimized in terms of Big-O time complexity so I was happy.</p></li>
+<li><p>Second attempt hit what I was looking for! Much faster and space efficient as well.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=List.size()</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-88">
+<h3>Question 88: 비밀지도<a class="headerlink" href="#question-88" title="Permalink to this headline"></a></h3>
+<p>네오는 평소 프로도가 비상금을 숨겨놓는 장소를 알려줄 비밀지도를 손에 넣었다. 그런데 이 비밀지도는 숫자로 암호화되어 있어 위치를 확인하기 위해서는 암호를 해독해야 한다. 다행히 지도 암호를 해독할 방법을 적어놓은 메모도 함께 발견했다.
+지도는 한 변의 길이가 n인 정사각형 배열 형태로, 각 칸은 “공백”(” “) 또는 “벽”(“#”) 두 종류로 이루어져 있다.
+전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 각각 “지도 1”과 “지도 2”라고 하자. 지도 1 또는 지도 2 중 어느 하나라도 벽인 부분은 전체 지도에서도 벽이다. 지도 1과 지도 2에서 모두 공백인 부분은 전체 지도에서도 공백이다.
+“지도 1”과 “지도 2”는 각각 정수 배열로 암호화되어 있다.
+암호화된 배열은 지도의 각 가로줄에서 벽 부분을 1, 공백 부분을 0으로 부호화했을 때 얻어지는 이진수에 해당하는 값의 배열이다.</p>
+<p>네오가 프로도의 비상금을 손에 넣을 수 있도록, 비밀지도의 암호를 해독하는 작업을 도와줄 프로그램을 작성하라.
+입력 형식
+입력으로 지도의 한 변 크기 n 과 2개의 정수 배열 arr1, arr2가 들어온다.
+1 ≦ n ≦ 16
+arr1, arr2는 길이 n인 정수 배열로 주어진다.
+정수 배열의 각 원소 x를 이진수로 변환했을 때의 길이는 n 이하이다. 즉, 0 ≦ x ≦ 2n - 1을 만족한다.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="n">String</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">4</span>        <span class="n">String</span> <span class="n">binStr</span> <span class="o">=</span><span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">|</span> <span class="n">arr2</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">5</span>        <span class="n">res</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="p">.</span><span class="na">repeat</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">binStr</span><span class="p">.</span><span class="na">length</span><span class="p">())</span><span class="o">+</span><span class="p">(</span><span class="n">binStr</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;#&quot;</span><span class="p">).</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">));</span>
+<span class="linenos">6</span>    <span class="p">}</span>
+<span class="linenos">7</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>My first naive solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">arr1Str</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="linenos"> 6</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">arr2Str</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">arr2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 9</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>            <span class="n">StringBuilder</span> <span class="n">line</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos">11</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>                <span class="k">if</span> <span class="p">(</span><span class="n">arr1Str</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">arr2Str</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>                    <span class="n">line</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">);</span>
+<span class="linenos">14</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">15</span>                    <span class="n">line</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="sc">&#39;#&#39;</span><span class="p">);</span>
+<span class="linenos">16</span>                <span class="p">}</span>
+<span class="linenos">17</span>            <span class="p">}</span>
+<span class="linenos">18</span>            <span class="n">res</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">19</span>        <span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">22</span>    <span class="p">}</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>    <span class="kd">private</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">helper</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">input</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">25</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">26</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">input</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">27</span>            <span class="n">String</span> <span class="n">binStr</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos">28</span>            <span class="n">output</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span><span class="p">.</span><span class="na">repeat</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">binStr</span><span class="p">.</span><span class="na">length</span><span class="p">())</span><span class="o">+</span><span class="n">binStr</span><span class="p">;</span>
+<span class="linenos">29</span>        <span class="p">}</span>
+<span class="linenos">30</span>        <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+<span class="linenos">31</span>    <span class="p">}</span>
+<span class="linenos">32</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty simple and good reminder of the power that bit-wise operators contain.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> – I think the String operations / manipulations would actually have added exponential time</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-89">
+<h3>Question 89: 다트 게임<a class="headerlink" href="#question-89" title="Permalink to this headline"></a></h3>
+<p>카카오톡 게임별의 하반기 신규 서비스로 다트 게임을 출시하기로 했다. 다트 게임은 다트판에 다트를 세 차례 던져 그 점수의 합계로 실력을 겨루는 게임으로, 모두가 간단히 즐길 수 있다.
+갓 입사한 무지는 코딩 실력을 인정받아 게임의 핵심 부분인 점수 계산 로직을 맡게 되었다. 다트 게임의 점수 계산 로직은 아래와 같다.
+다트 게임은 총 3번의 기회로 구성된다.
+점수와 함께 Single(S), Double(D), Triple(T) 영역이 존재하고 각 영역 당첨 시 점수에서 1제곱, 2제곱, 3제곱 (점수1 , 점수2 , 점수3 )으로 계산된다.
+옵션으로 스타상(*) , 아차상(#)이 존재하며 스타상(*) 당첨 시 해당 점수와 바로 전에 얻은 점수를 각 2배로 만든다. 아차상(#) 당첨 시 해당 점수는 마이너스된다.
+스타상(*)은 첫 번째 기회에서도 나올 수 있다. 이 경우 첫 번째 스타상(*)의 점수만 2배가 된다. (예제 4번 참고)
+스타상(*)의 효과는 다른 스타상(*)의 효과와 중첩될 수 있다. 이 경우 중첩된 스타상(*) 점수는 4배가 된다. (예제 4번 참고)
+스타상(*)의 효과는 아차상(#)의 효과와 중첩될 수 있다. 이 경우 중첩된 아차상(#)의 점수는 -2배가 된다. (예제 5번 참고)
+Single(S), Double(D), Triple(T)은 점수마다 하나씩 존재한다.
+스타상(*), 아차상(#)은 점수마다 둘 중 하나만 존재할 수 있으며, 존재하지 않을 수도 있다.
+0~10의 정수와 문자 S, D, T, *, #로 구성된 문자열이 입력될 시 총점수를 반환하는 함수를 작성하라.
+입력 형식
+“점수|보너스|[옵션]”으로 이루어진 문자열 3세트.
+예) 1S2D*3T
+점수는 0에서 10 사이의 정수이다.
+보너스는 S, D, T 중 하나이다.
+옵선은 *이나 # 중 하나이며, 없을 수도 있다.
+출력 형식
+3번의 기회에서 얻은 점수 합계에 해당하는 정수값을 출력한다.
+예) 37</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos">  2</span><span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="p">;</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">  5</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span> <span class="n">dartResult</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">  6</span>        <span class="c1">// identify borders</span>
+<span class="linenos">  7</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">borders</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">  8</span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">  9</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">dartResult</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 10</span>            <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isDigit</span><span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">&amp;&amp;!</span><span class="n">Character</span><span class="p">.</span><span class="na">isDigit</span><span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
+<span class="linenos"> 11</span>                <span class="n">borders</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos"> 12</span>            <span class="p">}</span>
+<span class="linenos"> 13</span>        <span class="p">}</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">pointsList</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span>        <span class="k">this</span><span class="p">.</span><span class="na">pointCalc</span><span class="p">(</span><span class="n">dartResult</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">borders</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">pointsList</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="linenos"> 18</span>        <span class="k">this</span><span class="p">.</span><span class="na">pointCalc</span><span class="p">(</span><span class="n">dartResult</span><span class="p">,</span> <span class="n">borders</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">borders</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">,</span> <span class="n">pointsList</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 19</span>        <span class="k">this</span><span class="p">.</span><span class="na">pointCalc</span><span class="p">(</span><span class="n">dartResult</span><span class="p">,</span> <span class="n">borders</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">,</span> <span class="n">dartResult</span><span class="p">.</span><span class="na">length</span><span class="p">(),</span> <span class="n">pointsList</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span>        <span class="k">return</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">pointsList</span><span class="p">).</span><span class="na">sum</span><span class="p">();</span>
+<span class="linenos"> 22</span>    <span class="p">}</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">pointCalc</span><span class="p">(</span><span class="n">String</span> <span class="n">dartResult</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">hi</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">pointsList</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pointIdx</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 25</span>        <span class="kt">int</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos"> 26</span>        <span class="kt">int</span> <span class="n">pointer</span> <span class="o">=</span> <span class="n">lo</span><span class="p">;</span>
+<span class="linenos"> 27</span>        <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isDigit</span><span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
+<span class="linenos"> 28</span>            <span class="n">res</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">lo</span><span class="o">+</span><span class="mi">2</span><span class="p">));</span>
+<span class="linenos"> 29</span>            <span class="n">pointer</span><span class="o">+=</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 30</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 31</span>            <span class="n">res</span> <span class="o">=</span> <span class="n">Character</span><span class="p">.</span><span class="na">getNumericValue</span><span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">lo</span><span class="p">));</span>
+<span class="linenos"> 32</span>            <span class="n">pointer</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 33</span>        <span class="p">}</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span>        <span class="k">switch</span> <span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">pointer</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 36</span>            <span class="k">case</span> <span class="sc">&#39;D&#39;</span><span class="p">:</span>
+<span class="linenos"> 37</span>                <span class="n">res</span><span class="o">*=</span><span class="n">res</span><span class="p">;</span>
+<span class="linenos"> 38</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 39</span>            <span class="k">case</span> <span class="sc">&#39;T&#39;</span><span class="p">:</span>
+<span class="linenos"> 40</span>                <span class="n">res</span><span class="o">*=</span><span class="p">(</span><span class="n">res</span><span class="o">*</span><span class="n">res</span><span class="p">);</span>
+<span class="linenos"> 41</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 42</span>            <span class="k">default</span><span class="p">:</span>
+<span class="linenos"> 43</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 44</span>        <span class="p">}</span>
+<span class="linenos"> 45</span>        <span class="n">pointer</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>        <span class="k">if</span> <span class="p">(</span><span class="n">pointer</span><span class="o">&lt;</span><span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 48</span>            <span class="k">switch</span> <span class="p">(</span><span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">pointer</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 49</span>                <span class="k">case</span> <span class="sc">&#39;*&#39;</span><span class="p">:</span>
+<span class="linenos"> 50</span>                    <span class="n">res</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 51</span>                    <span class="k">if</span> <span class="p">(</span><span class="n">pointIdx</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 52</span>                        <span class="n">pointsList</span><span class="o">[</span><span class="n">pointIdx</span><span class="o">-</span><span class="mi">1</span><span class="o">]*=</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 53</span>                    <span class="p">}</span>
+<span class="linenos"> 54</span>                    <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 55</span>                <span class="k">case</span> <span class="sc">&#39;#&#39;</span><span class="p">:</span>
+<span class="linenos"> 56</span>                    <span class="n">res</span><span class="o">*=-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 57</span>                    <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 58</span>            <span class="p">}</span>
+<span class="linenos"> 59</span>        <span class="p">}</span>
+<span class="linenos"> 60</span>        <span class="n">pointsList</span><span class="o">[</span><span class="n">pointIdx</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos"> 61</span>    <span class="p">}</span>
+<span class="linenos"> 62</span><span class="p">}</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span><span class="c1">//alternative fun solution</span>
+<span class="linenos"> 65</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 66</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 67</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span> <span class="n">dartResult</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 68</span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 69</span>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 70</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dartResult</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 71</span>            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos"> 72</span>            <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isDigit</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 73</span>                <span class="n">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+<span class="linenos"> 74</span>                <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dartResult</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">dartResult</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 75</span>                    <span class="n">sum</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="linenos"> 76</span>                    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 77</span>                <span class="p">}</span>
+<span class="linenos"> 78</span>                <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+<span class="linenos"> 79</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 80</span>                <span class="kt">int</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos"> 81</span>                <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;D&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 82</span>                    <span class="n">prev</span> <span class="o">*=</span> <span class="n">prev</span><span class="p">;</span>
+<span class="linenos"> 83</span>                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;T&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 84</span>                    <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span> <span class="o">*</span> <span class="n">prev</span> <span class="o">*</span> <span class="n">prev</span><span class="p">;</span>
+<span class="linenos"> 85</span>                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 86</span>                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 87</span>                        <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 88</span>                        <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+<span class="linenos"> 89</span>                    <span class="p">}</span>
+<span class="linenos"> 90</span>                    <span class="n">prev</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 91</span>                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 92</span>                    <span class="n">prev</span> <span class="o">*=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 93</span>                <span class="p">}</span>
+<span class="linenos"> 94</span>                <span class="c1">// System.out.println(prev);</span>
+<span class="linenos"> 95</span>                <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">prev</span><span class="p">);</span>
+<span class="linenos"> 96</span>            <span class="p">}</span>
+<span class="linenos"> 97</span>        <span class="p">}</span>
+<span class="linenos"> 98</span>        <span class="kt">int</span> <span class="n">totalScore</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 99</span>        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">100</span>            <span class="n">totalScore</span> <span class="o">+=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">101</span>        <span class="p">}</span>
+<span class="linenos">102</span>        <span class="k">return</span> <span class="n">totalScore</span><span class="p">;</span>
+<span class="linenos">103</span>    <span class="p">}</span>
+<span class="linenos">104</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Not too difficult apart from java syntax (converting String to int and Character to int - i.e. <code class="docutils literal notranslate"><span class="pre">Integer.valueOf(str)</span></code> and <code class="docutils literal notranslate"><span class="pre">Character.getNumericValue(char)</span></code>)</p></li>
+<li><p>I could optimize this further but it is 2am – will get back to it later!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>RECORD CHARACTER METHODS</strong></p>
 </section>
 </section>
 </section>

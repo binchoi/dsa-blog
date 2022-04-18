@@ -310,6 +310,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="week10.html#day-49-18-apr">Day 49 [18 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week10.html#question-86">Question 86: 실패율</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week10.html#question-87-reverse-a-linked-list">Question 87: Reverse a Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week10.html#question-88">Question 88: 비밀지도</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week10.html#question-89">Question 89: 다트 게임</a></li>
 </ul>
 </li>
 </ul>
@@ -380,10 +383,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#tolowercase-touppercase">toLowerCase() &amp;&amp; toUpperCase()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#trim">trim()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#static-method-valueof">[Static method] valueOf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#repeat">repeat()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#integer">Integer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#integer-to-int-vice-versa">Integer to int (vice versa)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integer-to-binary-vice-versa">Integer to Binary (vice versa)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#arraylist">ArrayList</a><ul>
@@ -1000,6 +1005,14 @@ do not store their own data, immutable, and lazy.</p>
 </pre></div>
 </div>
 </section>
+<section id="repeat">
+<h3>repeat()<a class="headerlink" href="#repeat" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// Equivalent to Python&#39;s 3*&quot;a&quot; = &quot;aaa&quot;</span>
+<span class="linenos">2</span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;asdsa&quot;</span><span class="p">;</span>
+<span class="linenos">3</span><span class="n">String</span> <span class="n">longerStr</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="integer">
 <h2>Integer<a class="headerlink" href="#integer" title="Permalink to this headline"></a></h2>
@@ -1011,6 +1024,16 @@ do not store their own data, immutable, and lazy.</p>
 <span class="linenos">4</span><span class="c1">// auto boxing and auto unboxing works most of the time</span>
 <span class="linenos">5</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">integer</span><span class="p">;</span>
 <span class="linenos">6</span><span class="n">Integer</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="integer-to-binary-vice-versa">
+<h3>Integer to Binary (vice versa)<a class="headerlink" href="#integer-to-binary-vice-versa" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// int to binString</span>
+<span class="linenos">2</span><span class="n">Integer</span><span class="p">.</span><span class="na">toBinaryString</span><span class="p">(</span><span class="n">someInt</span><span class="p">);</span> <span class="c1">// no padding in the binary representation</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1">// binString to int</span>
+<span class="linenos">5</span><span class="kt">int</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="s">&quot;1001&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
