@@ -21,6 +21,7 @@ data structures and algorithm bookkeeping
    week7
    week8
    week9
+   week10
 
 .. toctree::
    :maxdepth: 1

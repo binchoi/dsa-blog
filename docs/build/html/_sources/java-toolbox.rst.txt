@@ -291,7 +291,44 @@ Collectors.groupingBy()
     for (int i : map.keySet()) {
         map.get(i).forEach(System.out::println);
     }
-    
+
+mapToInt() [returns IntStream]
+-------------------------------
+.. code-block:: Java
+    :linenos:
+
+    IntStream intStream = Stream.of(1,2,3,4)
+            .mapToInt(e->e);
+    int[] intArr = Stream.of(1,2,3,4)
+            .mapToInt(e -> (int) e)
+            .toArray();
+
+
+Stream to List vs. Array
+-------------------------------
+.. code-block:: Java
+    :linenos:
+
+    List<String> lst = Stream.of("123", "456")
+            .map(e -> e.toUpperCase())
+            .collect(Collectors.toList());
+    String[] arr = Stream.of("123", "456")
+            .map(e -> e.toUpperCase())
+            .toArray(String[]::new);
+
+List vs. Array to Stream
+-------------------------------
+.. code-block:: Java
+    :linenos:
+
+    lst.stream();
+    Arrays.stream(arr);
+
+    // ex
+    lst.stream()
+            .forEach(System.out::println);
+    Arrays.stream(arr)
+            .forEach(System.out::println);
 
 Array
 ======================
@@ -325,8 +362,8 @@ former puts a wrapper on vs. latter actually takes each element and inserts them
 .. code-block:: Java
     :linenos:
 
-    String[] stringArray = new String[] { "A", "B", "C", "D" };
-    List<String> stringList = Arrays.asList(stringArray);
+    String[] stringArray = new String[] { "A", "B", "C", "D" }; 
+    List<String> stringList = Arrays.asList(stringArray); // works ONLY FOR OBJECTS (int[] will cause error)
     stringList.set(0, "E");
     stringList.add("F"); // ERROR THIS DOES NOT WORK - FIXED LENGTH
 
@@ -706,3 +743,102 @@ https://leetcode.com/problems/reverse-linked-list/
 
 
 
+
+Conversions
+======================
+T[] to List<T>
+-----------------------
+.. code-block:: Java
+    :linenos:
+
+    Integer[] intArr = {1,2,3}; // needs to be boxed
+    List<Integer> intList = Arrays.asList(intArr); // cannot add elements
+    HashList<Integer> intList2 = new ArrayList<>(Arrays.asList(intArr)); // fully functioning arraylist
+    Stream.of(strArray)
+        .collect(Collectors.toList());
+    
+**RETURN**
+
+
+IntStream
+======================
+Creating IntStream: IntStream.of(...)
+------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    IntStream intStream = IntStream.of(1,2,3,4,5,6);
+    IntStream intStreamSingleton = IntStream.of(1);
+
+    intStream.forEach(System.out::println);
+    intStreamSingleton.forEach(System.out::println);
+    
+Creating IntStream: IntStream.range(...)
+------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    // IntStream.range(lo, hi);
+    IntStream intStreamRange = IntStream.range(0,11);
+
+    intStreamRange.forEach(System.out::println);
+    
+Creating IntStream: IntStream.iterate(int seed, IntUnaryOperator f)
+---------------------------------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    IntStream intStreamIterate = IntStream.iterate(10, e -> e+2).limit(10);
+    intStreamIterate.forEach(System.out::println); // 10, 12, 14, ... , 28
+
+    IntStream intStreamIterate2 = IntStream.iterate(1, e < 100, e -> e*2);
+    // identical to for (int i = 1; i < 100; i*=2*) {...}
+
+    
+toArray() -> returns int[]
+-----------------------------
+.. code-block:: Java
+    :linenos:
+
+    //toArray() -> int[]
+    IntStream intStream = IntStream.range(1, 11);
+    int[] intArr = intStream.toArray();
+    
+boxed().collect(Collectors.toList()) -> returns List<Integer>
+--------------------------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    List<Integer> intList = intStream.boxed().collect(Collectors.toList());
+
+
+
+Sorting Operations
+======================
+Sorting Arrays: Arrays.sort(arr)
+------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    // ASCENDING
+    Arrays.sort(arr); 
+
+    // DESCENDING
+    int[] descendingArr = IntStream.of(arr)
+                .map(i -> -i)
+                .sorted()
+                .map(i -> -i)
+                .toArray();
+
+
+Sorting part of Arrays: Arrays.sort()
+------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    // ASCENDING
+    int[] arr2 = {100,21,3,4,5,6,62,1,2,12121};
+    Arrays.sort(arr2, 0, 5); // inclusive lower bound, exclusive upper bound
+    for (int i : arr2) System.out.println(i);
+
+https://www.baeldung.com/java-sorting

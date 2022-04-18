@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python Toolkit" href="toolbox.html" />
-    <link rel="prev" title="Week 9 [6-13 Apr 2022]" href="week9.html" /> 
+    <link rel="prev" title="Week 10 [17-23 Apr 2022]" href="week10.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -290,7 +290,26 @@
 <li class="toctree-l2"><a class="reference internal" href="week9.html#day-46-12-apr">Day 46 [12 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-79">Question 79: 숫자 문자열과 영단어</a></li>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-80">Question 80: [카카오 인턴] 키패드 누르기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-81">Question 81: 주차 요금 계산</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-82">Question 82: 양궁대회</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#return-here">RETURN HERE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-47-13-apr">Day 47 [13 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-83">Question 83: 로또의 최고 순위와 최저 순위</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-84">Question 84: 괄호 변환</a></li>
 <li class="toctree-l3"><a class="reference internal" href="week9.html#question-xx-longest-increasing-subsequence">Question XX: Longest Increasing Subsequence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week10.html">Week 10 [17-23 Apr 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week10.html#day-48-17-apr">Day 48 [17 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week10.html#question-85">Question 85: 크레인 인형뽑기 게임</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week10.html#day-49-18-apr">Day 49 [18 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week10.html#question-86">Question 86: 실패율</a></li>
 </ul>
 </li>
 </ul>
@@ -332,6 +351,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#findany-findfirst">findAny() &amp; findFirst()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collectors-groupingby">Collectors.groupingBy()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maptoint-returns-intstream">mapToInt() [returns IntStream]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-to-list-vs-array">Stream to List vs. Array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-vs-array-to-stream">List vs. Array to Stream</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#array">Array</a><ul>
@@ -389,6 +411,23 @@
 <li class="toctree-l2"><a class="reference internal" href="#queue">Queue</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#import-queue">import Queue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-remove-peek">add() &amp; remove() &amp; peek()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conversions">Conversions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#t-to-list-t">T[] to List&lt;T&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#intstream">IntStream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-intstream-intstream-of">Creating IntStream: IntStream.of(…)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-intstream-intstream-range">Creating IntStream: IntStream.range(…)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-intstream-intstream-iterate-int-seed-intunaryoperator-f">Creating IntStream: IntStream.iterate(int seed, IntUnaryOperator f)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toarray-returns-int">toArray() -&gt; returns int[]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boxed-collect-collectors-tolist-returns-list-integer">boxed().collect(Collectors.toList()) -&gt; returns List&lt;Integer&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting-operations">Sorting Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sorting-arrays-arrays-sort-arr">Sorting Arrays: Arrays.sort(arr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorting-part-of-arrays-arrays-sort">Sorting part of Arrays: Arrays.sort()</a></li>
 </ul>
 </li>
 </ul>
@@ -708,6 +747,40 @@ do not store their own data, immutable, and lazy.</p>
 </pre></div>
 </div>
 </section>
+<section id="maptoint-returns-intstream">
+<h3>mapToInt() [returns IntStream]<a class="headerlink" href="#maptoint-returns-intstream" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">IntStream</span> <span class="n">intStream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="linenos">2</span>        <span class="p">.</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos">3</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="linenos">4</span>        <span class="p">.</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">e</span><span class="p">)</span>
+<span class="linenos">5</span>        <span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="stream-to-list-vs-array">
+<h3>Stream to List vs. Array<a class="headerlink" href="#stream-to-list-vs-array" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lst</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;123&quot;</span><span class="p">,</span> <span class="s">&quot;456&quot;</span><span class="p">)</span>
+<span class="linenos">2</span>        <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">())</span>
+<span class="linenos">3</span>        <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos">4</span><span class="n">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;123&quot;</span><span class="p">,</span> <span class="s">&quot;456&quot;</span><span class="p">)</span>
+<span class="linenos">5</span>        <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">())</span>
+<span class="linenos">6</span>        <span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="list-vs-array-to-stream">
+<h3>List vs. Array to Stream<a class="headerlink" href="#list-vs-array-to-stream" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">lst</span><span class="p">.</span><span class="na">stream</span><span class="p">();</span>
+<span class="linenos">2</span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1">// ex</span>
+<span class="linenos">5</span><span class="n">lst</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="linenos">6</span>        <span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos">7</span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="linenos">8</span>        <span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="array">
 <h2>Array<a class="headerlink" href="#array" title="Permalink to this headline"></a></h2>
@@ -737,7 +810,7 @@ do not store their own data, immutable, and lazy.</p>
 <h3>Arrays.asList() vs. ArrayList(Arrays.asList(array))<a class="headerlink" href="#arrays-aslist-vs-arraylist-arrays-aslist-array" title="Permalink to this headline"></a></h3>
 <p>former puts a wrapper on vs. latter actually takes each element and inserts them into a new ArrayList</p>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span> <span class="p">};</span>
-<span class="linenos">2</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">stringArray</span><span class="p">);</span> <span class="c1">// works ONLY FOR OBJECTS (int[] will cause error)</span>
 <span class="linenos">3</span><span class="n">stringList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">);</span>
 <span class="linenos">4</span><span class="n">stringList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">);</span> <span class="c1">// ERROR THIS DOES NOT WORK - FIXED LENGTH</span>
 <span class="linenos">5</span>
@@ -1074,13 +1147,100 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 <p><a class="reference external" href="https://leetcode.com/problems/reverse-linked-list/">https://leetcode.com/problems/reverse-linked-list/</a></p>
 </section>
 </section>
+<section id="conversions">
+<h2>Conversions<a class="headerlink" href="#conversions" title="Permalink to this headline"></a></h2>
+<section id="t-to-list-t">
+<h3>T[] to List&lt;T&gt;<a class="headerlink" href="#t-to-list-t" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Integer</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// needs to be boxed</span>
+<span class="linenos">2</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">intArr</span><span class="p">);</span> <span class="c1">// cannot add elements</span>
+<span class="linenos">3</span><span class="n">HashList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">intList2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">intArr</span><span class="p">));</span> <span class="c1">// fully functioning arraylist</span>
+<span class="linenos">4</span><span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">strArray</span><span class="p">)</span>
+<span class="linenos">5</span>    <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</pre></div>
+</div>
+<p><strong>RETURN</strong></p>
+</section>
+</section>
+<section id="intstream">
+<h2>IntStream<a class="headerlink" href="#intstream" title="Permalink to this headline"></a></h2>
+<section id="creating-intstream-intstream-of">
+<h3>Creating IntStream: IntStream.of(…)<a class="headerlink" href="#creating-intstream-intstream-of" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">IntStream</span> <span class="n">intStream</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">IntStream</span> <span class="n">intStreamSingleton</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">intStream</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos">5</span><span class="n">intStreamSingleton</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-intstream-intstream-range">
+<h3>Creating IntStream: IntStream.range(…)<a class="headerlink" href="#creating-intstream-intstream-range" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// IntStream.range(lo, hi);</span>
+<span class="linenos">2</span><span class="n">IntStream</span> <span class="n">intStreamRange</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">);</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">intStreamRange</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-intstream-intstream-iterate-int-seed-intunaryoperator-f">
+<h3>Creating IntStream: IntStream.iterate(int seed, IntUnaryOperator f)<a class="headerlink" href="#creating-intstream-intstream-iterate-int-seed-intunaryoperator-f" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">IntStream</span> <span class="n">intStreamIterate</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">iterate</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">+</span><span class="mi">2</span><span class="p">).</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">intStreamIterate</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span> <span class="c1">// 10, 12, 14, ... , 28</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">IntStream</span> <span class="n">intStreamIterate2</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">iterate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">*</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">5</span><span class="c1">// identical to for (int i = 1; i &lt; 100; i*=2*) {...}</span>
+</pre></div>
+</div>
+</section>
+<section id="toarray-returns-int">
+<h3>toArray() -&gt; returns int[]<a class="headerlink" href="#toarray-returns-int" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">//toArray() -&gt; int[]</span>
+<span class="linenos">2</span><span class="n">IntStream</span> <span class="n">intStream</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>
+<span class="linenos">3</span><span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="n">intStream</span><span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="boxed-collect-collectors-tolist-returns-list-integer">
+<h3>boxed().collect(Collectors.toList()) -&gt; returns List&lt;Integer&gt;<a class="headerlink" href="#boxed-collect-collectors-tolist-returns-list-integer" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="n">intStream</span><span class="p">.</span><span class="na">boxed</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sorting-operations">
+<h2>Sorting Operations<a class="headerlink" href="#sorting-operations" title="Permalink to this headline"></a></h2>
+<section id="sorting-arrays-arrays-sort-arr">
+<h3>Sorting Arrays: Arrays.sort(arr)<a class="headerlink" href="#sorting-arrays-arrays-sort-arr" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// ASCENDING</span>
+<span class="linenos">2</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1">// DESCENDING</span>
+<span class="linenos">5</span><span class="kt">int</span><span class="o">[]</span> <span class="n">descendingArr</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="linenos">6</span>            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">7</span>            <span class="p">.</span><span class="na">sorted</span><span class="p">()</span>
+<span class="linenos">8</span>            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">9</span>            <span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="sorting-part-of-arrays-arrays-sort">
+<h3>Sorting part of Arrays: Arrays.sort()<a class="headerlink" href="#sorting-part-of-arrays-arrays-sort" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// ASCENDING</span>
+<span class="linenos">2</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">12121</span><span class="p">};</span>
+<span class="linenos">3</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">arr2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// inclusive lower bound, exclusive upper bound</span>
+<span class="linenos">4</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">:</span> <span class="n">arr2</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.baeldung.com/java-sorting">https://www.baeldung.com/java-sorting</a></p>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="week9.html" class="btn btn-neutral float-left" title="Week 9 [6-13 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="week10.html" class="btn btn-neutral float-left" title="Week 10 [17-23 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

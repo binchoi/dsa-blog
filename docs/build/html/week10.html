@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 10 [17-23 Apr 2022] &mdash; algoat 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="My Java Toolbox" href="java-toolbox.html" />
+    <link rel="prev" title="Week 9 [6-13 Apr 2022]" href="week9.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> algoat
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">daily exercises</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-2-valid-parentheses">Question 2: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-3-search-insert-position">Question 3: Search Insert Position</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-2-14-oct">Day 2 [14 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-4-pow-x-n">Question 4: Pow(x,n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-5-maximum-subarray">Question 5: Maximum Subarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-6-is-subsequence">Question 6: Is Subsequence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-3-15-oct">Day 3 [15 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-7-path-sum">Question 7: Path Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-8-best-time-to-buy-and-sell-stock">Question 8: Best Time to Buy and Sell Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-9-reverse-linked-list">Question 9: Reverse Linked List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-4-16-oct">Day 4 [16 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-10-unique-paths">Question 10: Unique Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-11-move-zeroes">Question 11: Move Zeroes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-12-unique-email-addresses">Question 12: Unique Email Addresses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week1.html#day-5-17-oct">Day 5 [17 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-13-generate-parentheses">Question 13: Generate Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-14-zigzag-conversion">Question 14: ZigZag Conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week1.html#question-15-palindrome-number">Question 15: Palindrome Number</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2 [17-24 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-6-18-oct">Day 6 [18 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-16-group-anagrams">Question 16: Group Anagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-17-longest-substring-without-repeating-characters">Question 17: Longest Substring Without Repeating Characters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-18-remove-element">Question 18: Remove Element</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-7-19-oct">Day 7 [19 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-19-combination-sum">Question 19: Combination Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-20-next-greater-element-i">Question 20: Next Greater Element I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-21-length-of-last-word">Question 21: Length of Last Word</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-8-20-oct">Day 8 [20 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-22-add-two-numbers">Question 22: Add Two Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-23-intersection-of-two-arrays">Question 23: Intersection of Two Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-24-longest-common-prefix">Question 24: Longest Common Prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-9-21-oct">Day 9 [21 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-25-subsets">Question 25: Subsets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-10-22-oct">Day 10 [22 Oct]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-11-23-oct">Day 11 [23 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-26-implement-strstr">Question 26: Implement strStr()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-27-sqrt-x">Question 27: Sqrt(x)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week2.html#day-12-24-oct">Day 12 [24 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-28-permutations">Question 28: Permutations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-29-plus-one">Question 29: Plus One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week2.html#question-30-plus-one">Question 30: Plus One</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week3.html">Week 3 [25-31 Oct 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-13-25-oct">Day 13 [25 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-31-word-break">Question 31: Word Break</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-32-same-tree">Question 32: Same Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-14-26-oct">Day 14 [26 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-33-k-th-symbol-in-grammar">Question 33: K-th Symbol in Grammar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-15-27-oct">Day 15 [27 Oct]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-34-remove-duplicates-from-sorted-list">Question 34: Remove Duplicates from Sorted List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week3.html#question-35-pascal-s-triangle">Question 35: Pascal’s Triangle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week3.html#day-00-28-oct">Day 00 [28 Oct]</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week4.html">Week 4 [1-7 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-16-1-nov">Day 16 [1 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-31-merge-two-sorted-lists">Question 31: Merge Two Sorted Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-17-2-nov">Day 17 [2 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-32-merge-sorted-array">Question 32: Merge Sorted Array</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-18-3-nov">Day 18 [3 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-33-valid-palindrome">Question 33: Valid Palindrome</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-19-4-nov">Day 19 [4 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-34-top-k-frequent-elements">Question 34: Top K Frequent Elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-20-5-nov">Day 20 [5 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-35-remove-duplicates-from-sorted-list-ii">Question 35: Remove Duplicates from Sorted List II</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-21-6-nov">Day 21 [6 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-36-excel-sheet-column-title">Question 36: Excel Sheet Column Title</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week4.html#day-22-7-nov">Day 22 [7 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week4.html#question-37-isomorphic-strings">Question 37: Isomorphic Strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week5.html">Week 5 [8-14 Nov 2021]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-23-8-nov">Day 23 [8 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-38-excel-sheet-column-number">Question 38: Excel Sheet Column Number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week5.html#day-24-9-nov">Day 24 [9 Nov]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week5.html#question-39-xxxx">Question 39: XXXX</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week6.html">Week 6 [10-16 Jan 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-24-13-jan">Day 24 [13 Jan]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-39-minsubarraylen">Question 39: MinSubArrayLen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-25-5-feb">Day 25 [5 Feb]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-40-two-sum">Question 40: Two Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-26-9-mar">Day 26 [9 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-41-longest-palindromic-substring">Question 41: Longest Palindromic Substring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-27-10-mar">Day 27 [10 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-42-container-with-most-water">Question 42: Container With Most Water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-28-14-mar">Day 28 [14 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-43-valid-parentheses">Question 43: Valid Parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-44-climbing-stairs">Question 44: Climbing Stairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-45-valid-palindrome">Question 45: Valid Palindrome</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week6.html#day-29-15-mar">Day 29 [15 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-46-cells-in-a-range-on-an-excel-sheet">Question 46: Cells in a Range on an Excel Sheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-47-append-k-integers-with-minimal-sum">Question 47: Append K Integers With Minimal Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week6.html#question-48-counting-bits">Question 48: Counting Bits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week7.html">Week 7 [16-23 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-30-16-mar">Day 30 [16 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-49-missing-number">Question 49: Missing Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-50-invert-binary-tree">Question 50: Invert Binary Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-51-reverse-bits">Question 51: Reverse Bits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-31-17-mar">Day 31 [17 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-52-number-of-1-bits">Question 52: Number of 1 Bits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-53-subtree-of-another-tree">Question 53: Subtree of Another Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-32-18-mar">Day 32 [18 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-54-3sum">Question 54: 3Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-33-19-mar">Day 33 [19 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-55-remove-nth-node-from-end-of-list">Question 55: Remove Nth Node From End of List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-34-21-mar">Day 34 [21 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-56-search-in-rotated-sorted-array">Question 56: Search in Rotated Sorted Array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-57-spiral-matrix">Question 57: Spiral Matrix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-35-22-mar">Day 35 [22 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-58-jump-game">Question 58: Jump Game</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-59-merge-intervals">Question 59: Merge Intervals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week7.html#day-36-23-mar">Day 36 [23 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-60-rotate-image">Question 60: Rotate Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week7.html#question-61-set-matrix-zeros">Question 61: Set Matrix Zeros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week8.html">Week 8 [26-31 Mar 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-37-26-mar">Day 37 [26 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-62-validate-binary-search-tree">Question 62: Validate Binary Search Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-63-binary-tree-inorder-traversal">Question 63: Binary Tree Inorder Traversal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-64-binary-tree-level-order-traversal">Question 64: Binary Tree Level Order Traversal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-38-28-mar">Day 38 [28 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-65-insert-interval">Question 65: Insert Interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-66-construct-binary-tree-from-preorder-and-inorder-traversal">Question 66: Construct Binary Tree from Preorder and Inorder Traversal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-39-29-mar">Day 39 [29 Mar]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-67-first-unique-character-in-a-string">Question 67: First Unique Character in a String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-68-first-unique-character-in-a-string">Question 68: First Unique Character in a String</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-40-1-apr">Day 40 [1 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-68-game-tournament">Question 68: Game Tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-41-3-apr">Day 41 [3 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-69-valid-anagram">Question 69: Valid Anagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-42-4-apr">Day 42 [4 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-70-marathon">Question 70: Marathon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-71-phone-book">Question 71: Phone Book</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-72-spy-wardrobe">Question 72: Spy Wardrobe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week8.html#day-43-5-apr">Day 43 [5 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-73-kakao-lawsuit">Question 73: Kakao Lawsuit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week8.html#question-74-genre-compilation-question">Question 74: Genre Compilation Question</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="week9.html">Week 9 [6-13 Apr 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-44-6-apr">Day 44 [6 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-74-kakao-id">Question 74: Kakao ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-75-kth-number">Question 75: Kth Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-76-reorder-list">Question 76: Reorder List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-45-10-apr">Day 45 [10 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-77-palindromic-substrings">Question 77: Palindromic Substrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-78-longest-common-subsequence">Question 78: Longest Common Subsequence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-46-12-apr">Day 46 [12 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-79">Question 79: 숫자 문자열과 영단어</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-80">Question 80: [카카오 인턴] 키패드 누르기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-81">Question 81: 주차 요금 계산</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-82">Question 82: 양궁대회</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#return-here">RETURN HERE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="week9.html#day-47-13-apr">Day 47 [13 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-83">Question 83: 로또의 최고 순위와 최저 순위</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-84">Question 84: 괄호 변환</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week9.html#question-xx-longest-increasing-subsequence">Question XX: Longest Increasing Subsequence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 10 [17-23 Apr 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#day-48-17-apr">Day 48 [17 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-85">Question 85: 크레인 인형뽑기 게임</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-49-18-apr">Day 49 [18 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-86">Question 86: 실패율</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">misc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="java-toolbox.html">My Java Toolbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#iterable">Iterable</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#iterator">iterator()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#foreach">forEach()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#collection">Collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#add-addall">add() &amp; addAll()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#remove-removeall-removeif">remove() &amp; removeAll() &amp; removeIf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#contains-o-containsall-c">contains(o) &amp; containsAll(c)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#equals-o">equals(o)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#isempty">isEmpty()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#hashcode">hashCode()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#retainall">retainAll()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#size">size()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#toarray">toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collection-sort-list-comparator">Collection.sort(List, Comparator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stream-parallelstream">stream() &amp; parallelStream()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#stream">Stream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stream-of">Stream.of()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#id1">.toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collect">collect()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#map">map()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#flatmap">flatMap()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#filter">filter()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#reduce">reduce()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#limit">limit()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#distinct">distinct()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#sorted">sorted()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#allmatch-anymatch-nonematch">allMatch() &amp; anyMatch() &amp; noneMatch()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#findany-findfirst">findAny() &amp; findFirst()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collectors-groupingby">Collectors.groupingBy()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#array">Array</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#initialization">initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#arrays-aslist-vs-arraylist-arrays-aslist-array">Arrays.asList() vs. ArrayList(Arrays.asList(array))</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#arrays-aslist-applications">Arrays.asList() applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#common-use-of-toarray">common use of toArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#int-to-arraylist-integer">int[] to ArrayList&lt;Integer&gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#static-method-arrays-sort">[Static method] Arrays.sort()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#static-method-arrays-copyofrange">[Static method] Arrays.copyOfRange()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#string">String</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#char-to-string">char[] to String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#charat">charAt()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#concat">concat()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stringbuilder">StringBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#length">length()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#replace-replaceall-replacefirst">replace() &amp;&amp; replaceAll() &amp;&amp; replaceFirst()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#split">split()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#startswith">startsWith()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#substring">substring()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#tochararray">toCharArray()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#tolowercase-touppercase">toLowerCase() &amp;&amp; toUpperCase()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#trim">trim()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#static-method-valueof">[Static method] valueOf()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#integer">Integer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#integer-to-int-vice-versa">Integer to int (vice versa)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#arraylist">ArrayList</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#add-remove-get">add() &amp;&amp; remove() &amp;&amp; get()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#set">set()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#removeif">removeIf()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#math">Math</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-abs">Math.abs()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-max">Math.max()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-min">Math.min()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-floordiv">Math.floorDiv()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-round">Math.round()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-signum">Math.signum()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-ceil-math-floor">Math.ceil() &amp;&amp; Math.floor()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#math-pow-math-sqrt">Math.pow() &amp;&amp; Math.sqrt()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#stack">Stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#import-stack">import Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#push-pop-peek">push() &amp;&amp; pop() &amp;&amp; peek()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#queue">Queue</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#import-queue">import Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#add-remove-peek">add() &amp; remove() &amp; peek()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolbox.html#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#dictionary">Dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#list">List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="toolbox.html#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#collections">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbox.html#counter">Counter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algosummary.html">Useful Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#backtracking">Backtracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algosummary.html#useful-reference-backtracking">Useful Reference (Backtracking)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datastructure.html">Data Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#abstract-data-type-adt">Abstract Data Type (ADT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#static-and-dynamic-arrays">Static and Dynamic Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#linked-list">Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html#trees">Trees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="datastructure.html#tree-traversal-types">Tree Traversal Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">algoat</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Week 10 [17-23 Apr 2022]</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="week-10-17-23-apr-2022">
+<h1>Week 10 [17-23 Apr 2022]<a class="headerlink" href="#week-10-17-23-apr-2022" title="Permalink to this headline"></a></h1>
+<section id="day-48-17-apr">
+<h2>Day 48 [17 Apr]<a class="headerlink" href="#day-48-17-apr" title="Permalink to this headline"></a></h2>
+<section id="question-85">
+<h3>Question 85: 크레인 인형뽑기 게임<a class="headerlink" href="#question-85" title="Permalink to this headline"></a></h3>
+<p>게임 화면은 “1 x 1” 크기의 칸들로 이루어진 “N x N” 크기의 정사각 격자이며 위쪽에는 크레인이 있고 오른쪽에는 바구니가 있습니다. (위 그림은 “5 x 5” 크기의 예시입니다). 각 격자 칸에는 다양한 인형이 들어 있으며 인형이 없는 칸은 빈칸입니다. 모든 인형은 “1 x 1” 크기의 격자 한 칸을 차지하며 격자의 가장 아래 칸부터 차곡차곡 쌓여 있습니다. 게임 사용자는 크레인을 좌우로 움직여서 멈춘 위치에서 가장 위에 있는 인형을 집어 올릴 수 있습니다. 집어 올린 인형은 바구니에 쌓이게 되는 데, 이때 바구니의 가장 아래 칸부터 인형이 순서대로 쌓이게 됩니다. 다음 그림은 [1번, 5번, 3번] 위치에서 순서대로 인형을 집어 올려 바구니에 담은 모습입니다.</p>
+<p>만약 같은 모양의 인형 두 개가 바구니에 연속해서 쌓이게 되면 두 인형은 터뜨려지면서 바구니에서 사라지게 됩니다. 위 상태에서 이어서 [5번] 위치에서 인형을 집어 바구니에 쌓으면 같은 모양 인형 두 개가 없어집니다.</p>
+<p>크레인 작동 시 인형이 집어지지 않는 경우는 없으나 만약 인형이 없는 곳에서 크레인을 작동시키는 경우에는 아무런 일도 일어나지 않습니다. 또한 바구니는 모든 인형이 들어갈 수 있을 만큼 충분히 크다고 가정합니다. (그림에서는 화면표시 제약으로 5칸만으로 표현하였음)
+게임 화면의 격자의 상태가 담긴 2차원 배열 board와 인형을 집기 위해 크레인을 작동시킨 위치가 담긴 배열 moves가 매개변수로 주어질 때, 크레인을 모두 작동시킨 후 터트려져 사라진 인형의 개수를 return 하도록 solution 함수를 완성해주세요.</p>
+<dl class="simple">
+<dt>[제한사항]</dt><dd><ul class="simple">
+<li><p>board 배열은 2차원 배열로 크기는 “5 x 5” 이상 “30 x 30” 이하입니다.</p></li>
+<li><p>board의 각 칸에는 0 이상 100 이하인 정수가 담겨있습니다.</p></li>
+<li><p>0은 빈 칸을 나타냅니다.</p></li>
+<li><p>1 ~ 100의 각 숫자는 각기 다른 인형의 모양을 의미하며 같은 숫자는 같은 모양의 인형을 나타냅니다.</p></li>
+<li><p>moves 배열의 크기는 1 이상 1,000 이하입니다.</p></li>
+<li><p>moves 배열 각 원소들의 값은 1 이상이며 board 배열의 가로 크기 이하인 자연수입니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">board</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">moves</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">boardByCol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 6</span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>        <span class="c1">// fill in boardByCol</span>
+<span class="linenos"> 9</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">board</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">board</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>                <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">i</span><span class="o">]==</span><span class="mi">0</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+<span class="linenos">12</span>                <span class="k">if</span> <span class="p">(</span><span class="n">boardByCol</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>                    <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">newStk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">14</span>                    <span class="n">newStk</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">board</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">15</span>                    <span class="n">boardByCol</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">newStk</span><span class="p">);</span>
+<span class="linenos">16</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">17</span>                    <span class="n">boardByCol</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">).</span><span class="na">push</span><span class="p">(</span><span class="n">board</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">18</span>                <span class="p">}</span>
+<span class="linenos">19</span>            <span class="p">}</span>
+<span class="linenos">20</span>        <span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">23</span>        <span class="c1">// now we iterate through the moves</span>
+<span class="linenos">24</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">move</span> <span class="p">:</span> <span class="n">moves</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">25</span>            <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">col</span> <span class="o">=</span> <span class="n">boardByCol</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">move</span><span class="p">);</span>
+<span class="linenos">26</span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">col</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">27</span>                <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">col</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">28</span>                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">bucket</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">bucket</span><span class="p">.</span><span class="na">peek</span><span class="p">()</span><span class="o">==</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">29</span>                    <span class="n">bucket</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">30</span>                    <span class="n">res</span><span class="o">+=</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">31</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">32</span>                    <span class="n">bucket</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos">33</span>                <span class="p">}</span>
+<span class="linenos">34</span>            <span class="p">}</span>
+<span class="linenos">35</span>        <span class="p">}</span>
+<span class="linenos">36</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">37</span>    <span class="p">}</span>
+<span class="linenos">38</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Disappointing performance and problem-solving experience. I feel rusty with my Java syntax.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(m*n</span> <span class="pre">+</span> <span class="pre">p)</span></code> where <code class="docutils literal notranslate"><span class="pre">m=board.length,</span> <span class="pre">n=board[0].length,</span> <span class="pre">p=move.lenth</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(max(m*n,</span> <span class="pre">p))</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-49-18-apr">
+<h2>Day 49 [18 Apr]<a class="headerlink" href="#day-49-18-apr" title="Permalink to this headline"></a></h2>
+<section id="question-86">
+<h3>Question 86: 실패율<a class="headerlink" href="#question-86" title="Permalink to this headline"></a></h3>
+<p>슈퍼 게임 개발자 오렐리는 큰 고민에 빠졌다. 그녀가 만든 프랜즈 오천성이 대성공을 거뒀지만, 요즘 신규 사용자의 수가 급감한 것이다. 원인은 신규 사용자와 기존 사용자 사이에 스테이지 차이가 너무 큰 것이 문제였다.
+이 문제를 어떻게 할까 고민 한 그녀는 동적으로 게임 시간을 늘려서 난이도를 조절하기로 했다. 역시 슈퍼 개발자라 대부분의 로직은 쉽게 구현했지만, 실패율을 구하는 부분에서 위기에 빠지고 말았다. 오렐리를 위해 실패율을 구하는 코드를 완성하라.
+실패율은 다음과 같이 정의한다.
+스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+전체 스테이지의 개수 N, 게임을 이용하는 사용자가 현재 멈춰있는 스테이지의 번호가 담긴 배열 stages가 매개변수로 주어질 때, 실패율이 높은 스테이지부터 내림차순으로 스테이지의 번호가 담겨있는 배열을 return 하도록 solution 함수를 완성하라.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>스테이지의 개수 N은 1 이상 500 이하의 자연수이다.</p></li>
+<li><p>stages의 길이는 1 이상 200,000 이하이다.</p></li>
+<li><p>stages에는 1 이상 N + 1 이하의 자연수가 담겨있다.</p></li>
+<li><p>각 자연수는 사용자가 현재 도전 중인 스테이지의 번호를 나타낸다.</p></li>
+<li><p>단, N + 1 은 마지막 스테이지(N 번째 스테이지) 까지 클리어 한 사용자를 나타낸다.</p></li>
+<li><p>만약 실패율이 같은 스테이지가 있다면 작은 번호의 스테이지가 먼저 오도록 하면 된다.</p></li>
+<li><p>스테이지에 도달한 유저가 없는 경우 해당 스테이지의 실패율은 0 으로 정의한다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="kt">int</span> <span class="n">attempters</span> <span class="o">=</span> <span class="n">stages</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">stuckers</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s</span> <span class="p">:</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">&lt;</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">s</span><span class="o">]++</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="p">}</span>
+<span class="linenos"> 9</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Stage</span><span class="o">&gt;</span> <span class="n">stagesArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">10</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>            <span class="k">if</span> <span class="p">(</span><span class="n">attempters</span><span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>                <span class="n">stagesArr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Stage</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+<span class="linenos">13</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">14</span>                <span class="n">stagesArr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Stage</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">i</span><span class="o">]/</span><span class="n">attempters</span><span class="p">));</span>
+<span class="linenos">15</span>                <span class="n">attempters</span><span class="o">-=</span><span class="n">stuckers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">16</span>            <span class="p">}</span>
+<span class="linenos">17</span>        <span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>        <span class="n">stagesArr</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+<span class="linenos">20</span>        <span class="n">stagesArr</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">23</span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">24</span>        <span class="k">for</span> <span class="p">(</span><span class="n">Stage</span> <span class="n">s</span> <span class="p">:</span> <span class="n">stagesArr</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">25</span>            <span class="n">res</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">stage</span><span class="p">;</span>
+<span class="linenos">26</span>        <span class="p">}</span>
+<span class="linenos">27</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">28</span>    <span class="p">}</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Stage</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Stage</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="linenos">31</span>        <span class="kt">int</span> <span class="n">stage</span><span class="p">;</span>
+<span class="linenos">32</span>        <span class="kt">double</span> <span class="n">failure</span><span class="p">;</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>        <span class="kd">public</span> <span class="nf">Stage</span><span class="p">(</span><span class="kt">int</span> <span class="n">stage_</span><span class="p">,</span> <span class="kt">double</span> <span class="n">failure_</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">35</span>            <span class="k">this</span><span class="p">.</span><span class="na">stage</span> <span class="o">=</span> <span class="n">stage_</span><span class="p">;</span>
+<span class="linenos">36</span>            <span class="k">this</span><span class="p">.</span><span class="na">failure</span> <span class="o">=</span> <span class="n">failure_</span><span class="p">;</span>
+<span class="linenos">37</span>        <span class="p">}</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>        <span class="nd">@Override</span>
+<span class="linenos">40</span>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Stage</span> <span class="n">s2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">41</span>            <span class="k">if</span> <span class="p">(</span><span class="n">failure</span><span class="o">&lt;</span><span class="n">s2</span><span class="p">.</span><span class="na">failure</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">42</span>                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">43</span>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">failure</span><span class="o">&gt;</span><span class="n">s2</span><span class="p">.</span><span class="na">failure</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">44</span>                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">45</span>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">stage</span><span class="o">&gt;</span><span class="n">s2</span><span class="p">.</span><span class="na">stage</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">46</span>                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// we will reverse this such that if the failure is same</span>
+<span class="linenos">47</span>                        <span class="c1">// we put the lower stage first</span>
+<span class="linenos">48</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">49</span>                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">50</span>            <span class="p">}</span>
+<span class="linenos">51</span>        <span class="p">}</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span>        <span class="nd">@Override</span>
+<span class="linenos">54</span>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">55</span>            <span class="k">return</span> <span class="s">&quot;stage &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">stage</span> <span class="o">+</span> <span class="s">&quot; has failure rate: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">failure</span><span class="p">;</span>
+<span class="linenos">56</span>        <span class="p">}</span>
+<span class="linenos">57</span>    <span class="p">}</span>
+<span class="linenos">58</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Depressing attempts:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1">// previous attempts</span>
+<span class="linenos">  2</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">  3</span>    <span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">hist</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s</span> <span class="p">:</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">  6</span>        <span class="n">hist</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">hist</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">  7</span>    <span class="p">}</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span>    <span class="kt">int</span> <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 10</span>    <span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Double</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">failureToStage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+<span class="linenos"> 11</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">key</span> <span class="p">:</span> <span class="n">hist</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 12</span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos"> 13</span>        <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="o">==</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">acc</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 16</span>            <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">zeroSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 17</span>            <span class="n">zeroSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos"> 18</span>            <span class="n">failureToStage</span><span class="p">.</span><span class="na">put</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span> <span class="mi">0</span><span class="p">,</span> <span class="n">zeroSet</span><span class="p">);</span>
+<span class="linenos"> 19</span>            <span class="n">acc</span><span class="o">+=</span><span class="n">hist</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos"> 20</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 21</span>            <span class="kt">double</span> <span class="n">failure</span> <span class="o">=</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">hist</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">/</span><span class="n">acc</span><span class="p">;</span>
+<span class="linenos"> 22</span>            <span class="k">if</span> <span class="p">(</span><span class="n">failureToStage</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 23</span>                <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">newSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos"> 24</span>                <span class="n">newSet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos"> 25</span>                <span class="n">failureToStage</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">failure</span><span class="p">,</span> <span class="n">newSet</span><span class="p">);</span>
+<span class="linenos"> 26</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 27</span>                <span class="n">failureToStage</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">failure</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos"> 28</span>            <span class="p">}</span>
+<span class="linenos"> 29</span>        <span class="p">}</span>
+<span class="linenos"> 30</span>        <span class="n">acc</span><span class="o">+=</span><span class="n">hist</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos"> 31</span>    <span class="p">}</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">hist</span><span class="p">.</span><span class="na">keySet</span><span class="p">().</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 34</span>    <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 35</span>    <span class="k">for</span> <span class="p">(</span><span class="n">Double</span> <span class="n">d</span> <span class="p">:</span> <span class="n">failureToStage</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 36</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">:</span> <span class="n">failureToStage</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 37</span>            <span class="n">res</span><span class="o">[</span><span class="n">idx</span><span class="o">++]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="linenos"> 38</span>        <span class="p">}</span>
+<span class="linenos"> 39</span>    <span class="p">}</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos"> 42</span><span class="p">}</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="c1">//...</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="kt">int</span><span class="o">[]</span> <span class="n">passers</span><span class="p">;</span>
+<span class="linenos"> 47</span><span class="kt">int</span><span class="o">[]</span> <span class="n">stuckers</span><span class="p">;</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 50</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">passers</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 51</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">stuckers</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 52</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s</span> <span class="p">:</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 53</span>        <span class="c1">// increment stuckers</span>
+<span class="linenos"> 54</span>        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">&lt;</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">s</span><span class="o">]++</span><span class="p">;</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span>        <span class="c1">// increment passers</span>
+<span class="linenos"> 57</span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 58</span>        <span class="k">while</span> <span class="p">(</span><span class="n">j</span><span class="o">&lt;</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 59</span>            <span class="n">passers</span><span class="o">[</span><span class="n">j</span><span class="o">++]++</span><span class="p">;</span>
+<span class="linenos"> 60</span>        <span class="p">}</span>
+<span class="linenos"> 61</span>    <span class="p">}</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">myList</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">).</span><span class="na">boxed</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos"> 64</span>    <span class="n">myList</span><span class="p">.</span><span class="na">sort</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Double</span><span class="p">.</span><span class="na">compare</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">a</span><span class="o">]/</span><span class="n">passers</span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="p">,</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="p">(</span><span class="n">stuckers</span><span class="o">[</span><span class="n">b</span><span class="o">]/</span><span class="n">passers</span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="p">)));</span>
+<span class="linenos"> 65</span>    <span class="n">myList</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos"> 66</span>    <span class="c1">// ...</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span><span class="p">}</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 71</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 72</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 73</span>        <span class="kt">int</span> <span class="n">attempters</span> <span class="o">=</span> <span class="n">stages</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos"> 74</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">stuckers</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 75</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s</span> <span class="p">:</span> <span class="n">stages</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 76</span>            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">&lt;</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">s</span><span class="o">]++</span><span class="p">;</span>
+<span class="linenos"> 77</span>        <span class="p">}</span>
+<span class="linenos"> 78</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Stage</span><span class="o">&gt;</span> <span class="n">stagesArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 79</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 80</span>            <span class="k">if</span> <span class="p">(</span><span class="n">attempters</span><span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 81</span>                <span class="n">stagesArr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Stage</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+<span class="linenos"> 82</span>                <span class="c1">// System.out.println(&quot;&gt;&quot; + i + &quot; has failure rate: 0.0&quot;) ;</span>
+<span class="linenos"> 83</span>                <span class="c1">// attempters-=stuckers[i]; // could be deleted?</span>
+<span class="linenos"> 84</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 85</span>                <span class="n">stagesArr</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Stage</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">stuckers</span><span class="o">[</span><span class="n">i</span><span class="o">]/</span><span class="n">attempters</span><span class="p">));</span>
+<span class="linenos"> 86</span>                <span class="c1">// System.out.println(&quot;&gt;&quot; + i + &quot; has failure rate: &quot; + (double) stuckers[i]/attempters);</span>
+<span class="linenos"> 87</span>                <span class="n">attempters</span><span class="o">-=</span><span class="n">stuckers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 88</span>            <span class="p">}</span>
+<span class="linenos"> 89</span>        <span class="p">}</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span>        <span class="n">stagesArr</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+<span class="linenos"> 92</span>        <span class="n">stagesArr</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 95</span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 96</span>        <span class="k">for</span> <span class="p">(</span><span class="n">Stage</span> <span class="n">s</span> <span class="p">:</span> <span class="n">stagesArr</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 97</span>            <span class="n">res</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">stage</span><span class="p">;</span>
+<span class="linenos"> 98</span>        <span class="p">}</span>
+<span class="linenos"> 99</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span>    <span class="p">}</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Stage</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Stage</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="linenos">105</span>        <span class="kt">int</span> <span class="n">stage</span><span class="p">;</span>
+<span class="linenos">106</span>        <span class="kt">double</span> <span class="n">failure</span><span class="p">;</span>
+<span class="linenos">107</span>
+<span class="linenos">108</span>        <span class="kd">public</span> <span class="nf">Stage</span><span class="p">(</span><span class="kt">int</span> <span class="n">stage_</span><span class="p">,</span> <span class="kt">double</span> <span class="n">failure_</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">109</span>            <span class="k">this</span><span class="p">.</span><span class="na">stage</span> <span class="o">=</span> <span class="n">stage_</span><span class="p">;</span>
+<span class="linenos">110</span>            <span class="k">this</span><span class="p">.</span><span class="na">failure</span> <span class="o">=</span> <span class="n">failure_</span><span class="p">;</span>
+<span class="linenos">111</span>        <span class="p">}</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>        <span class="nd">@Override</span>
+<span class="linenos">114</span>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Stage</span> <span class="n">s2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">115</span>            <span class="k">if</span> <span class="p">(</span><span class="n">failure</span><span class="o">&lt;</span><span class="n">s2</span><span class="p">.</span><span class="na">failure</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">116</span>                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">117</span>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">failure</span><span class="o">&gt;</span><span class="n">s2</span><span class="p">.</span><span class="na">failure</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">118</span>                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">119</span>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">stage</span><span class="o">&gt;</span><span class="n">s2</span><span class="p">.</span><span class="na">stage</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">120</span>                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// we will reverse this such that if the failure is same</span>
+<span class="linenos">121</span>                        <span class="c1">// we put the lower stage first</span>
+<span class="linenos">122</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">123</span>                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">124</span>            <span class="p">}</span>
+<span class="linenos">125</span>        <span class="p">}</span>
+<span class="linenos">126</span>
+<span class="linenos">127</span>        <span class="nd">@Override</span>
+<span class="linenos">128</span>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">129</span>            <span class="k">return</span> <span class="s">&quot;stage &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">stage</span> <span class="o">+</span> <span class="s">&quot; has failure rate: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">failure</span><span class="p">;</span>
+<span class="linenos">130</span>        <span class="p">}</span>
+<span class="linenos">131</span>    <span class="p">}</span>
+<span class="linenos">132</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>This question was such a Java turn off moment. I could think of the algorithm to solve it but couldn’t get Java to work with me.</p></li>
+<li><p>If it had been on python, I would have simply used a dictionary and sorted by value and output the keys using lambda expression. In java,
+I struggled with the fact that such process is arduous and requires so many conversions and state changes. Additionally, I was eagerly searching
+for a way to store two elements of different types in a pair/tuple-like structure and struggled becuase I couldn’t find an appropriate one.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=N</span></code> or - <code class="docutils literal notranslate"><span class="pre">O(max(n</span> <span class="pre">log</span> <span class="pre">n,</span> <span class="pre">m))</span></code> where <code class="docutils literal notranslate"><span class="pre">m=stage.length</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(N)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week9.html" class="btn btn-neutral float-left" title="Week 9 [6-13 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="java-toolbox.html" class="btn btn-neutral float-right" title="My Java Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bin Choi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
