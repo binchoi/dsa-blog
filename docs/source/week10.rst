@@ -585,3 +585,40 @@ Remarks and Complexity Analysis:
  * **Space Complexity**: ``O(n)``
 
 **RECORD CHARACTER METHODS**
+
+Day 50 [20 Apr]
+================
+Question 90: Subsets
+------------------------------------------------
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos: 
+
+    import java.util.ArrayList;
+    class Solution {
+        public List<List<Integer>> subsets(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            ArrayList<Integer> tempList = new ArrayList<>();
+            this.backtrack(res, tempList, 0, nums);
+            return res;
+        }
+        
+        public void backtrack(List<List<Integer>> res, ArrayList<Integer> tempList, int idx, int[] nums) {
+            res.add(new ArrayList<Integer>(tempList));
+            for (int i = idx; i < nums.length; i++) {
+                tempList.add(nums[i]);
+                this.backtrack(res, tempList, i+1, nums);
+                tempList.remove(tempList.size()-1);
+            }
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Pretty intuitive after reading the general approach to backtracking!
+ * **Time Complexity**: ``O(n^2)`` - common nested recursion/for-loop
+ * **Space Complexity**: ``O(n)`` - for ``tempList``
+

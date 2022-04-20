@@ -315,6 +315,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-89">Question 89: 다트 게임</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-50-20-apr">Day 50 [20 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-90-subsets">Question 90: Subsets</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1066,6 +1070,43 @@ Single(S), Double(D), Triple(T)은 점수마다 하나씩 존재한다.
 </dd>
 </dl>
 <p><strong>RECORD CHARACTER METHODS</strong></p>
+</section>
+</section>
+<section id="day-50-20-apr">
+<h2>Day 50 [20 Apr]<a class="headerlink" href="#day-50-20-apr" title="Permalink to this headline"></a></h2>
+<section id="question-90-subsets">
+<h3>Question 90: Subsets<a class="headerlink" href="#question-90-subsets" title="Permalink to this headline"></a></h3>
+<p>Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution set must not contain duplicate subsets. Return the solution in any order.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">subsets</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 5</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 6</span>        <span class="k">this</span><span class="p">.</span><span class="na">backtrack</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nums</span><span class="p">);</span>
+<span class="linenos"> 7</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">res</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>        <span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
+<span class="linenos">12</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>            <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">14</span>            <span class="k">this</span><span class="p">.</span><span class="na">backtrack</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nums</span><span class="p">);</span>
+<span class="linenos">15</span>            <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">16</span>        <span class="p">}</span>
+<span class="linenos">17</span>    <span class="p">}</span>
+<span class="linenos">18</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty intuitive after reading the general approach to backtracking!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> - common nested recursion/for-loop</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> - for <code class="docutils literal notranslate"><span class="pre">tempList</span></code></p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>
