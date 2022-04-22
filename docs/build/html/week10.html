@@ -319,6 +319,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-90-subsets">Question 90: Subsets</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-51-22-apr">Day 51 [22 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-91">Question 91: 문자열 압축</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1107,6 +1111,143 @@ The solution set must not contain duplicate subsets. Return the solution in any 
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-51-22-apr">
+<h2>Day 51 [22 Apr]<a class="headerlink" href="#day-51-22-apr" title="Permalink to this headline"></a></h2>
+<section id="question-91">
+<h3>Question 91: 문자열 압축<a class="headerlink" href="#question-91" title="Permalink to this headline"></a></h3>
+<p>데이터 처리 전문가가 되고 싶은 “어피치”는 문자열을 압축하는 방법에 대해 공부를 하고 있습니다. 최근에 대량의 데이터 처리를 위한 간단한 비손실 압축 방법에 대해 공부를 하고 있는데, 문자열에서 같은 값이 연속해서 나타나는 것을 그 문자의 개수와 반복되는 값으로 표현하여 더 짧은 문자열로 줄여서 표현하는 알고리즘을 공부하고 있습니다.
+간단한 예로 “aabbaccc”의 경우 “2a2ba3c”(문자가 반복되지 않아 한번만 나타난 경우 1은 생략함)와 같이 표현할 수 있는데, 이러한 방식은 반복되는 문자가 적은 경우 압축률이 낮다는 단점이 있습니다. 예를 들면, “abcabcdede”와 같은 문자열은 전혀 압축되지 않습니다. “어피치”는 이러한 단점을 해결하기 위해 문자열을 1개 이상의 단위로 잘라서 압축하여 더 짧은 문자열로 표현할 수 있는지 방법을 찾아보려고 합니다.
+예를 들어, “ababcdcdababcdcd”의 경우 문자를 1개 단위로 자르면 전혀 압축되지 않지만, 2개 단위로 잘라서 압축한다면 “2ab2cd2ab2cd”로 표현할 수 있습니다. 다른 방법으로 8개 단위로 잘라서 압축한다면 “2ababcdcd”로 표현할 수 있으며, 이때가 가장 짧게 압축하여 표현할 수 있는 방법입니다.
+다른 예로, “abcabcdede”와 같은 경우, 문자를 2개 단위로 잘라서 압축하면 “abcabc2de”가 되지만, 3개 단위로 자른다면 “2abcdede”가 되어 3개 단위가 가장 짧은 압축 방법이 됩니다. 이때 3개 단위로 자르고 마지막에 남는 문자열은 그대로 붙여주면 됩니다.
+압축할 문자열 s가 매개변수로 주어질 때, 위에 설명한 방법으로 1개 이상 단위로 문자열을 잘라 압축하여 표현한 문자열 중 가장 짧은 것의 길이를 return 하도록 solution 함수를 완성해주세요.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>s의 길이는 1 이상 1,000 이하입니다.</p></li>
+<li><p>s는 알파벳 소문자로만 이루어져 있습니다.</p></li>
+</ul>
+</dd>
+<dt>입출력 예</dt><dd><ul class="simple">
+<li><p>s    result</p></li>
+<li><p>“aabbaccc”   7</p></li>
+<li><p>“ababcdcdababcdcd”   9</p></li>
+<li><p>“abcabcdede” 8</p></li>
+<li><p>“abcabcabcabcdededededede”   14</p></li>
+<li><p>“xababcdcdababcdcd”  17</p></li>
+</ul>
+</dd>
+<dt>입출력 예에 대한 설명</dt><dd><ul class="simple">
+<li><p>입출력 예 #1 문자열을 1개 단위로 잘라 압축했을 때 가장 짧습니다.</p></li>
+<li><p>입출력 예 #2 문자열을 8개 단위로 잘라 압축했을 때 가장 짧습니다.</p></li>
+<li><p>입출력 예 #3 문자열을 3개 단위로 잘라 압축했을 때 가장 짧습니다.</p></li>
+<li><p>입출력 예 #4 문자열을 2개 단위로 자르면 “abcabcabcabc6de” 가 됩니다. 문자열을 3개 단위로 자르면 “4abcdededededede” 가 됩니다. 문자열을 4개 단위로 자르면 “abcabcabcabc3dede” 가 됩니다. 문자열을 6개 단위로 자를 경우 “2abcabc2dedede”가 되며, 이때의 길이가 14로 가장 짧습니다.</p></li>
+<li><p>입출력 예 #5 문자열은 제일 앞부터 정해진 길이만큼 잘라야 합니다. 따라서 주어진 문자열을 x / ababcdcd / ababcdcd 로 자르는 것은 불가능 합니다. 이 경우 어떻게 문자열을 잘라도 압축되지 않으므로 가장 짧은 길이는 17이 됩니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+<span class="linenos"> 4</span>        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="n">String</span> <span class="n">before</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span>            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 8</span>            <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 9</span>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();)</span> <span class="p">{</span>
+<span class="linenos">10</span>                <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+<span class="linenos">11</span>                <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">())</span> <span class="o">?</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">():</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">;</span>
+<span class="linenos">12</span>                <span class="n">String</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+<span class="linenos">13</span>                <span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">before</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">14</span>                    <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">15</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">16</span>                    <span class="k">if</span><span class="p">(</span><span class="n">cnt</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>                        <span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">log10</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">18</span>                    <span class="p">}</span>
+<span class="linenos">19</span>                    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">20</span>                    <span class="n">sum</span><span class="o">+=</span><span class="n">before</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+<span class="linenos">21</span>                    <span class="n">before</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="linenos">22</span>                <span class="p">}</span>
+<span class="linenos">23</span>            <span class="p">}</span>
+<span class="linenos">24</span>            <span class="n">sum</span><span class="o">+=</span><span class="n">before</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+<span class="linenos">25</span>            <span class="k">if</span><span class="p">(</span><span class="n">cnt</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">26</span>                <span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="na">log10</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">27</span>            <span class="p">}</span>
+<span class="linenos">28</span>            <span class="n">min</span> <span class="o">=</span> <span class="p">(</span><span class="n">min</span> <span class="o">&gt;</span> <span class="n">sum</span><span class="p">)</span> <span class="o">?</span> <span class="n">sum</span> <span class="p">:</span> <span class="n">min</span><span class="p">;</span>
+<span class="linenos">29</span>        <span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>        <span class="k">return</span> <span class="n">min</span><span class="p">;</span>
+<span class="linenos">32</span>    <span class="p">}</span>
+<span class="linenos">33</span><span class="p">}</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">36</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+<span class="linenos">38</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">unit</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">unit</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">unit</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">39</span>            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">40</span>            <span class="n">String</span> <span class="n">prev</span> <span class="o">=</span> <span class="s">&quot;A&quot;</span><span class="p">;</span>
+<span class="linenos">41</span>            <span class="kt">int</span> <span class="n">saved</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">42</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="n">unit</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">unit</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">43</span>                <span class="n">String</span> <span class="n">found</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">unit</span><span class="p">);</span>
+<span class="linenos">44</span>                <span class="k">if</span> <span class="p">(</span><span class="n">prev</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">found</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">45</span>                    <span class="c1">// System.out.println(&quot;prev: &quot; + prev + &quot; vs. found: &quot; + found + &quot;count increased&quot;);</span>
+<span class="linenos">46</span>                    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">47</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">48</span>                    <span class="k">if</span> <span class="p">(</span><span class="n">count</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">49</span>                        <span class="n">saved</span><span class="o">+=</span><span class="p">(</span><span class="n">unit</span><span class="o">*</span><span class="p">(</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Math</span><span class="p">.</span><span class="na">floorDiv</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="mi">10</span><span class="p">)));</span>
+<span class="linenos">50</span>                    <span class="p">}</span>
+<span class="linenos">51</span>                    <span class="n">prev</span><span class="o">=</span><span class="n">found</span><span class="p">;</span>
+<span class="linenos">52</span>                    <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">53</span>                <span class="p">}</span>
+<span class="linenos">54</span>            <span class="p">}</span>
+<span class="linenos">55</span>            <span class="k">if</span> <span class="p">(</span><span class="n">count</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">56</span>                <span class="n">saved</span><span class="o">+=</span><span class="p">(</span><span class="n">unit</span><span class="o">*</span><span class="p">(</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">57</span>            <span class="p">}</span>
+<span class="linenos">58</span>            <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">-</span><span class="n">saved</span><span class="p">);</span>
+<span class="linenos">59</span>        <span class="p">}</span>
+<span class="linenos">60</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">61</span>    <span class="p">}</span>
+<span class="linenos">62</span><span class="p">}</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">65</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">66</span>        <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span>
+<span class="linenos">67</span>        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span>        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">r</span><span class="o">&lt;=</span><span class="n">len</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">r</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">72</span>            <span class="n">String</span> <span class="n">pattern</span>  <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+<span class="linenos">73</span>            <span class="kt">int</span> <span class="n">compLen</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">74</span>            <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">75</span>            <span class="n">String</span> <span class="n">reStr</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="linenos">76</span>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">-</span><span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">r</span><span class="p">){</span>
+<span class="linenos">77</span>                <span class="k">if</span><span class="p">(</span><span class="n">pattern</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">r</span><span class="p">))){</span>
+<span class="linenos">78</span>                    <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">79</span>                <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+<span class="linenos">80</span>                    <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">81</span>                        <span class="n">reStr</span> <span class="o">+=</span> <span class="n">cnt</span><span class="o">+</span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="linenos">82</span>                    <span class="p">}</span>
+<span class="linenos">83</span>                    <span class="n">reStr</span> <span class="o">+=</span> <span class="n">pattern</span><span class="p">;</span>
+<span class="linenos">84</span>                    <span class="n">pattern</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">r</span><span class="p">);</span>
+<span class="linenos">85</span>                    <span class="n">cnt</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">86</span>                <span class="p">}</span>
+<span class="linenos">87</span>            <span class="p">}</span>
+<span class="linenos">88</span>
+<span class="linenos">89</span>            <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">90</span>                <span class="n">reStr</span><span class="o">+=</span> <span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">cnt</span><span class="p">;</span>
+<span class="linenos">91</span>            <span class="p">}</span>
+<span class="linenos">92</span>            <span class="n">reStr</span><span class="o">+=</span> <span class="n">pattern</span><span class="p">;</span>
+<span class="linenos">93</span>
+<span class="linenos">94</span>            <span class="kt">int</span> <span class="n">div</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">%</span><span class="n">r</span><span class="p">;</span>
+<span class="linenos">95</span>            <span class="n">answer</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="n">reStr</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">+</span><span class="n">div</span><span class="p">);</span>
+<span class="linenos">96</span>        <span class="p">}</span>
+<span class="linenos">97</span>        <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="linenos">98</span>    <span class="p">}</span>
+<span class="linenos">99</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
