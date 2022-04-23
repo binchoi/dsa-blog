@@ -16,7 +16,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'algoat'
+project = 'DSABlog'
 
 copyright = '2021, Bin Choi'
 author = 'Bin Choi'

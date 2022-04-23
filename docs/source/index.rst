@@ -3,10 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-data structures and algorithm bookkeeping 
+Data Structures and Algorithm Blog 
 ========================================================
 
-**purpose**: to record my learning process of data structures and algorithms [**aka**: my road to becoming an 🐐 algoat 🐐]
+**AIM**: to record my learning process of data structures and algorithms 
+
+[**aka**: my path to becoming 🐐 `ALGOAT` 🐐]
 
 .. toctree::
    :maxdepth: 1
