@@ -329,7 +329,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#day-52-25-apr">Day 52 [25 Apr]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-92-linked-list-cycle">Question 92: Linked List Cycle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#question-93">Question 93: 오픈채팅방</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#question-94">Question 94: 멀쩡한 사각형</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-94">Question 94: 기능개발</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-95">Question 95: 멀쩡한 사각형</a></li>
 </ul>
 </li>
 </ul>
@@ -358,6 +359,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#stream">Stream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#import-stream">import stream</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#stream-of">Stream.of()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#id1">.toArray()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collect">collect()</a></li>
@@ -679,7 +681,67 @@ helped me a lot when actually implementing the solution.</p></li>
 </dl>
 </section>
 <section id="question-94">
-<h3>Question 94: 멀쩡한 사각형<a class="headerlink" href="#question-94" title="Permalink to this headline"></a></h3>
+<h3>Question 94: 기능개발<a class="headerlink" href="#question-94" title="Permalink to this headline"></a></h3>
+<p>프로그래머스 팀에서는 기능 개선 작업을 수행 중입니다. 각 기능은 진도가 100%일 때 서비스에 반영할 수 있습니다.
+또, 각 기능의 개발속도는 모두 다르기 때문에 뒤에 있는 기능이 앞에 있는 기능보다 먼저 개발될 수 있고, 이때 뒤에 있는 기능은 앞에 있는 기능이 배포될 때 함께 배포됩니다.
+먼저 배포되어야 하는 순서대로 작업의 진도가 적힌 정수 배열 progresses와 각 작업의 개발 속도가 적힌 정수 배열 speeds가 주어질 때 각 배포마다 몇 개의 기능이 배포되는지를 return 하도록 solution 함수를 완성하세요.</p>
+<dl class="simple">
+<dt>제한 사항</dt><dd><ul class="simple">
+<li><p>작업의 개수(progresses, speeds배열의 길이)는 100개 이하입니다.</p></li>
+<li><p>작업 진도는 100 미만의 자연수입니다.</p></li>
+<li><p>작업 속도는 100 이하의 자연수입니다.</p></li>
+<li><p>배포는 하루에 한 번만 할 수 있으며, 하루의 끝에 이루어진다고 가정합니다. 예를 들어 진도율이 95%인 작업의 개발 속도가 하루에 4%라면 배포는 2일 뒤에 이루어집니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">progresses</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">speeds</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>        <span class="k">if</span> <span class="p">(</span><span class="n">progresses</span><span class="p">.</span><span class="na">length</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{};</span>
+<span class="linenos"> 9</span>        <span class="p">}</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">daysRemaining</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">progresses</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">12</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">progresses</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>            <span class="n">daysRemaining</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="p">.</span><span class="na">floorDiv</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">progresses</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">),</span><span class="n">speeds</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">14</span>        <span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">deploysPerDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">19</span>        <span class="kt">int</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">daysRemaining</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">20</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">daysRemaining</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">21</span>            <span class="k">if</span> <span class="p">(</span><span class="n">daysRemaining</span><span class="o">[</span><span class="n">i</span><span class="o">]&lt;=</span><span class="n">prev</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">22</span>                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">23</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">24</span>                <span class="n">deploysPerDay</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+<span class="linenos">25</span>                <span class="n">prev</span> <span class="o">=</span> <span class="n">daysRemaining</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">26</span>                <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">27</span>            <span class="p">}</span>
+<span class="linenos">28</span>        <span class="p">}</span>
+<span class="linenos">29</span>        <span class="c1">// add last</span>
+<span class="linenos">30</span>        <span class="n">deploysPerDay</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>        <span class="k">return</span> <span class="n">deploysPerDay</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos">33</span>    <span class="p">}</span>
+<span class="linenos">34</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Pretty simple. Could have used another data structure like stack, but using a good old ArrayList was intuitive to me</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=progresses.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-95">
+<h3>Question 95: 멀쩡한 사각형<a class="headerlink" href="#question-95" title="Permalink to this headline"></a></h3>
 <p>가로 길이가 Wcm, 세로 길이가 Hcm인 직사각형 종이가 있습니다. 종이에는 가로, 세로 방향과 평행하게 격자 형태로 선이 그어져 있으며, 모든 격자칸은 1cm x 1cm 크기입니다. 이 종이를 격자 선을 따라 1cm × 1cm의 정사각형으로 잘라 사용할 예정이었는데, 누군가가 이 종이를 대각선 꼭지점 2개를 잇는 방향으로 잘라 놓았습니다. 그러므로 현재 직사각형 종이는 크기가 같은 직각삼각형 2개로 나누어진 상태입니다. 새로운 종이를 구할 수 없는 상태이기 때문에, 이 종이에서 원래 종이의 가로, 세로 방향과 평행하게 1cm × 1cm로 잘라 사용할 수 있는 만큼만 사용하기로 하였습니다.
 가로의 길이 W와 세로의 길이 H가 주어질 때, 사용할 수 있는 정사각형의 개수를 구하는 solution 함수를 완성해 주세요.</p>
 <p>My incomplete solution:</p>

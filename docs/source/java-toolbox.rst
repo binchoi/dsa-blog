@@ -133,6 +133,15 @@ do not store their own data, immutable, and lazy.
                 .mapToInt(e -> e.getWeight())
                 .sum();
 
+
+import stream
+------------------
+.. code-block:: Java
+    :linenos:
+
+    import java.util.stream.*; 
+
+
 Stream.of()
 ------------------
 .. code-block:: Java
@@ -391,8 +400,10 @@ common use of toArray()
 .. code-block:: Java
     :linenos:
 
-    int[] intArr = intList.toArray(new int[intList.size()]);
+    int[] intArr = intList.toArray(new int[intList.size()]); // doesn't work for ArrayList<Integer>
     Person[] people = valid.toArray(new Person[valid.size()]);
+
+    int[] example1 = list.stream().mapToInt(i->i).toArray();
 
 int[] to ArrayList<Integer>
 ---------------------------
