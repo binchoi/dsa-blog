@@ -648,6 +648,13 @@ removeIf()
 
 Math
 ======================
+import Math
+------------
+.. code-block:: Java
+    :linenos:
+    
+    import static java.lang.Math.*;
+
 Math.abs()
 ----------------------------- 
 .. code-block:: Java
@@ -831,6 +838,121 @@ boxed().collect(Collectors.toList()) -> returns List<Integer>
     List<Integer> intList = intStream.boxed().collect(Collectors.toList());
 
 
+switch
+=======
+.. code-block:: Java
+    :linenos:
+
+    switch(expression) {
+        case x:
+            // code block
+            break;
+        case y:
+            // code block
+            break;
+        default:
+            // code block
+    }
+
+
+HashMap
+========
+containsKey()
+--------------
+.. code-block:: Java
+    :linenos:
+
+    boolean bool = map.containsKey(key);
+
+containsValue()
+----------------
+.. code-block:: Java
+    :linenos:
+
+    boolean bool = map.containsValue(val);
+
+get() / getOrDefault()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    map.get(key);
+    map.getOrDefault(key, defaultVal);
+
+map.isEmpty()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    map.isEmpty();
+
+keySet()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    for (String s : map.keySet()) {...}
+
+values()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    Collection<V> values = map.values();
+
+put() & putIfAbsent()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    map.put(key,val);
+    map.putIfAbsent(key,val);
+
+remove()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    map.remove(key);
+
+replace(k,v) & replace(k,oldVal,newVal)
+--------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    map.replace(k, val2);
+    map.replace(k, val1, val3); // doesn't replace as val!=predictedVal
+    map.replace(k, val2, val3); // replace successful
+
+map.size()
+----------------------
+.. code-block:: Java
+    :linenos:
+
+    map.size(); // number of kv-pair
+
+entrySet()
+--------------
+.. code-block:: Java
+    :linenos:
+
+    import java.util.Map; 
+
+    Set<Map.Entry<K,V>> EntrySet = map.entrySet();
+
+    for (Map.Entry<String, String> book: bookMap.entrySet()) {
+        System.out.println("key: " + book.getKey() + " value: " + book.getValue());
+    }
+
+    // example
+    HashMap<String, String> strMap = new HashMap<>();
+    strMap.put("123", "131");
+    
+    for (Map.Entry<String, String> kv : strMap.entrySet()) {
+        System.out.println("key:"+ kv.getKey());
+        System.out.println("value:"+ kv.getValue());
+    }
+
 
 Sorting Operations
 ======================
@@ -861,3 +983,4 @@ Sorting part of Arrays: Arrays.sort()
     for (int i : arr2) System.out.println(i);
 
 https://www.baeldung.com/java-sorting
+

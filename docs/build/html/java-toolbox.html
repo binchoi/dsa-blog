@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python Toolkit" href="toolbox.html" />
-    <link rel="prev" title="Week 10 [17-23 Apr 2022]" href="week10.html" /> 
+    <link rel="prev" title="Week 11 [25-30 Apr 2022]" href="week11.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -325,6 +325,15 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="week11.html">Week 11 [25-30 Apr 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="week11.html#day-52-25-apr">Day 52 [25 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week11.html#question-92-linked-list-cycle">Question 92: Linked List Cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week11.html#question-93">Question 93: 오픈채팅방</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week11.html#question-94">Question 94: 멀쩡한 사각형</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">misc</span></p>
 <ul class="current">
@@ -406,6 +415,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#math">Math</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-math">import Math</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#math-abs">Math.abs()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#math-max">Math.max()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#math-min">Math.min()</a></li>
@@ -436,6 +446,21 @@
 <li class="toctree-l3"><a class="reference internal" href="#creating-intstream-intstream-iterate-int-seed-intunaryoperator-f">Creating IntStream: IntStream.iterate(int seed, IntUnaryOperator f)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#toarray-returns-int">toArray() -&gt; returns int[]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#boxed-collect-collectors-tolist-returns-list-integer">boxed().collect(Collectors.toList()) -&gt; returns List&lt;Integer&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#switch">switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hashmap">HashMap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#containskey">containsKey()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#containsvalue">containsValue()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-getordefault">get() / getOrDefault()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map-isempty">map.isEmpty()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keyset">keySet()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#values">values()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#put-putifabsent">put() &amp; putIfAbsent()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove">remove()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-k-v-replace-k-oldval-newval">replace(k,v) &amp; replace(k,oldVal,newVal)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map-size">map.size()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entryset">entrySet()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sorting-operations">Sorting Operations</a><ul>
@@ -1080,6 +1105,12 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 </section>
 <section id="math">
 <h2>Math<a class="headerlink" href="#math" title="Permalink to this headline"></a></h2>
+<section id="import-math">
+<h3>import Math<a class="headerlink" href="#import-math" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import static</span> <span class="nn">java.lang.Math.*</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
 <section id="math-abs">
 <h3>Math.abs()<a class="headerlink" href="#math-abs" title="Permalink to this headline"></a></h3>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">);</span> <span class="c1">//param: int, long, float, double</span>
@@ -1238,6 +1269,109 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 </div>
 </section>
 </section>
+<section id="switch">
+<h2>switch<a class="headerlink" href="#switch" title="Permalink to this headline"></a></h2>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">switch</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">case</span> <span class="n">x</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="c1">// code block</span>
+<span class="linenos"> 4</span>        <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="k">case</span> <span class="n">y</span><span class="p">:</span>
+<span class="linenos"> 6</span>        <span class="c1">// code block</span>
+<span class="linenos"> 7</span>        <span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 8</span>    <span class="k">default</span><span class="p">:</span>
+<span class="linenos"> 9</span>        <span class="c1">// code block</span>
+<span class="linenos">10</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="hashmap">
+<h2>HashMap<a class="headerlink" href="#hashmap" title="Permalink to this headline"></a></h2>
+<section id="containskey">
+<h3>containsKey()<a class="headerlink" href="#containskey" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">boolean</span> <span class="n">bool</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="containsvalue">
+<h3>containsValue()<a class="headerlink" href="#containsvalue" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">boolean</span> <span class="n">bool</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">containsValue</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="get-getordefault">
+<h3>get() / getOrDefault()<a class="headerlink" href="#get-getordefault" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">map</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">defaultVal</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="map-isempty">
+<h3>map.isEmpty()<a class="headerlink" href="#map-isempty" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">map</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="keyset">
+<h3>keySet()<a class="headerlink" href="#keyset" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">map</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{...}</span>
+</pre></div>
+</div>
+</section>
+<section id="values">
+<h3>values()<a class="headerlink" href="#values" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">values</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">values</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="put-putifabsent">
+<h3>put() &amp; putIfAbsent()<a class="headerlink" href="#put-putifabsent" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">map</span><span class="p">.</span><span class="na">putIfAbsent</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="remove">
+<h3>remove()<a class="headerlink" href="#remove" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">map</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="replace-k-v-replace-k-oldval-newval">
+<h3>replace(k,v) &amp; replace(k,oldVal,newVal)<a class="headerlink" href="#replace-k-v-replace-k-oldval-newval" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">map</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">val2</span><span class="p">);</span>
+<span class="linenos">2</span><span class="n">map</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">val1</span><span class="p">,</span> <span class="n">val3</span><span class="p">);</span> <span class="c1">// doesn&#39;t replace as val!=predictedVal</span>
+<span class="linenos">3</span><span class="n">map</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">val2</span><span class="p">,</span> <span class="n">val3</span><span class="p">);</span> <span class="c1">// replace successful</span>
+</pre></div>
+</div>
+</section>
+<section id="map-size">
+<h3>map.size()<a class="headerlink" href="#map-size" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">map</span><span class="p">.</span><span class="na">size</span><span class="p">();</span> <span class="c1">// number of kv-pair</span>
+</pre></div>
+</div>
+</section>
+<section id="entryset">
+<h3>entrySet()<a class="headerlink" href="#entryset" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">EntrySet</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">entrySet</span><span class="p">();</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">for</span> <span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">book</span><span class="p">:</span> <span class="n">bookMap</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos"> 6</span>    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;key: &quot;</span> <span class="o">+</span> <span class="n">book</span><span class="p">.</span><span class="na">getKey</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; value: &quot;</span> <span class="o">+</span> <span class="n">book</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<span class="linenos"> 7</span><span class="p">}</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1">// example</span>
+<span class="linenos">10</span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">strMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">11</span><span class="n">strMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;123&quot;</span><span class="p">,</span> <span class="s">&quot;131&quot;</span><span class="p">);</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">for</span> <span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">kv</span> <span class="p">:</span> <span class="n">strMap</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">14</span>    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;key:&quot;</span><span class="o">+</span> <span class="n">kv</span><span class="p">.</span><span class="na">getKey</span><span class="p">());</span>
+<span class="linenos">15</span>    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;value:&quot;</span><span class="o">+</span> <span class="n">kv</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<span class="linenos">16</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="sorting-operations">
 <h2>Sorting Operations<a class="headerlink" href="#sorting-operations" title="Permalink to this headline"></a></h2>
 <section id="sorting-arrays-arrays-sort-arr">
@@ -1271,7 +1405,7 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="week10.html" class="btn btn-neutral float-left" title="Week 10 [17-23 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="week11.html" class="btn btn-neutral float-left" title="Week 11 [25-30 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="toolbox.html" class="btn btn-neutral float-right" title="Python Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

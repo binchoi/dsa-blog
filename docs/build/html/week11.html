@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; DSABlog 1.0 documentation</title>
+  <title>Week 11 [25-30 Apr 2022] &mdash; DSABlog 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,8 +16,10 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="My Java Toolbox" href="java-toolbox.html" />
+    <link rel="prev" title="Week 10 [17-23 Apr 2022]" href="week10.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +38,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">daily exercises</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
@@ -322,11 +325,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="week11.html">Week 11 [25-30 Apr 2022]</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="week11.html#day-52-25-apr">Day 52 [25 Apr]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="week11.html#question-92-linked-list-cycle">Question 92: Linked List Cycle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="week11.html#question-93">Question 93: 오픈채팅방</a></li>
-<li class="toctree-l3"><a class="reference internal" href="week11.html#question-94">Question 94: 멀쩡한 사각형</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 11 [25-30 Apr 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#day-52-25-apr">Day 52 [25 Apr]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-92-linked-list-cycle">Question 92: Linked List Cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-93">Question 93: 오픈채팅방</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-94">Question 94: 멀쩡한 사각형</a></li>
 </ul>
 </li>
 </ul>
@@ -514,7 +517,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li>Week 11 [25-30 Apr 2022]</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -523,17 +526,201 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="week-11-25-30-apr-2022">
+<h1>Week 11 [25-30 Apr 2022]<a class="headerlink" href="#week-11-25-30-apr-2022" title="Permalink to this headline"></a></h1>
+<section id="day-52-25-apr">
+<h2>Day 52 [25 Apr]<a class="headerlink" href="#day-52-25-apr" title="Permalink to this headline"></a></h2>
+<section id="question-92-linked-list-cycle">
+<h3>Question 92: Linked List Cycle<a class="headerlink" href="#question-92-linked-list-cycle" title="Permalink to this headline"></a></h3>
+<p>Given head, the head of a linked list, determine if the linked list has a cycle in it.</p>
+<p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail’s next pointer is connected to. Note that pos is not passed as a parameter.</p>
+<p>Return true if there is a cycle in the linked list. Otherwise, return false.</p>
+<p>My final solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasCycle</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 3</span>    <span class="n">ListNode</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 4</span>    <span class="n">ListNode</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="linenos"> 5</span>    <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// if null is ever reached =&gt; no Cycle!</span>
+<span class="linenos"> 6</span>        <span class="n">fast</span><span class="o">=</span><span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">slow</span><span class="o">=</span><span class="n">slow</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="k">if</span> <span class="p">(</span><span class="n">fast</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">slow</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 9</span>            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">13</span><span class="p">}</span>
+</pre></div>
 </div>
+<p>My first <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasCycle</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">ListNode</span><span class="o">&gt;</span> <span class="n">seenNodes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 3</span>    <span class="k">while</span> <span class="p">(</span><span class="n">head</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 4</span>        <span class="k">if</span> <span class="p">(</span><span class="n">seenNodes</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">head</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 5</span>            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos"> 6</span>        <span class="p">}</span>
+<span class="linenos"> 7</span>        <span class="n">seenNodes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="linenos"> 8</span>        <span class="n">head</span><span class="o">=</span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span>
+<span class="linenos">10</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Easy question but really interesting way to solve with constant space-complexity (Floyd’s Cycle-Finding Algorithm)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=list.size()</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for final solution &amp; <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> for naive solution</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-93">
+<h3>Question 93: 오픈채팅방<a class="headerlink" href="#question-93" title="Permalink to this headline"></a></h3>
+<p>카카오톡 오픈채팅방에서는 친구가 아닌 사람들과 대화를 할 수 있는데, 본래 닉네임이 아닌 가상의 닉네임을 사용하여 채팅방에 들어갈 수 있다.
+신입사원인 김크루는 카카오톡 오픈 채팅방을 개설한 사람을 위해, 다양한 사람들이 들어오고, 나가는 것을 지켜볼 수 있는 관리자창을 만들기로 했다. 채팅방에 누군가 들어오면 다음 메시지가 출력된다.
+“[닉네임]님이 들어왔습니다.”
+채팅방에서 누군가 나가면 다음 메시지가 출력된다.
+“[닉네임]님이 나갔습니다.”
+채팅방에서 닉네임을 변경하는 방법은 다음과 같이 두 가지이다.
+채팅방을 나간 후, 새로운 닉네임으로 다시 들어간다.
+채팅방에서 닉네임을 변경한다.
+닉네임을 변경할 때는 기존에 채팅방에 출력되어 있던 메시지의 닉네임도 전부 변경된다.
+예를 들어, 채팅방에 “Muzi”와 “Prodo”라는 닉네임을 사용하는 사람이 순서대로 들어오면 채팅방에는 다음과 같이 메시지가 출력된다.
+“Muzi님이 들어왔습니다.”
+“Prodo님이 들어왔습니다.”
+채팅방에 있던 사람이 나가면 채팅방에는 다음과 같이 메시지가 남는다.
+“Muzi님이 들어왔습니다.”
+“Prodo님이 들어왔습니다.”
+“Muzi님이 나갔습니다.”
+Muzi가 나간후 다시 들어올 때, Prodo 라는 닉네임으로 들어올 경우 기존에 채팅방에 남아있던 Muzi도 Prodo로 다음과 같이 변경된다.
+“Prodo님이 들어왔습니다.”
+“Prodo님이 들어왔습니다.”
+“Prodo님이 나갔습니다.”
+“Prodo님이 들어왔습니다.”
+채팅방은 중복 닉네임을 허용하기 때문에, 현재 채팅방에는 Prodo라는 닉네임을 사용하는 사람이 두 명이 있다. 이제, 채팅방에 두 번째로 들어왔던 Prodo가 Ryan으로 닉네임을 변경하면 채팅방 메시지는 다음과 같이 변경된다.
+“Prodo님이 들어왔습니다.”
+“Ryan님이 들어왔습니다.”
+“Prodo님이 나갔습니다.”
+“Prodo님이 들어왔습니다.”
+채팅방에 들어오고 나가거나, 닉네임을 변경한 기록이 담긴 문자열 배열 record가 매개변수로 주어질 때, 모든 기록이 처리된 후, 최종적으로 방을 개설한 사람이 보게 되는 메시지를 문자열 배열 형태로 return 하도록 solution 함수를 완성하라.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>record는 다음과 같은 문자열이 담긴 배열이며, 길이는 1 이상 100,000 이하이다.</p></li>
+<li><p>다음은 record에 담긴 문자열에 대한 설명이다.</p></li>
+<li><p>모든 유저는 [유저 아이디]로 구분한다.</p></li>
+<li><p>[유저 아이디] 사용자가 [닉네임]으로 채팅방에 입장 - “Enter [유저 아이디] [닉네임]” (ex. “Enter uid1234 Muzi”)</p></li>
+<li><p>[유저 아이디] 사용자가 채팅방에서 퇴장 - “Leave [유저 아이디]” (ex. “Leave uid1234”)</p></li>
+<li><p>[유저 아이디] 사용자가 닉네임을 [닉네임]으로 변경 - “Change [유저 아이디] [닉네임]” (ex. “Change uid1234 Muzi”)</p></li>
+<li><p>첫 단어는 Enter, Leave, Change 중 하나이다.</p></li>
+<li><p>각 단어는 공백으로 구분되어 있으며, 알파벳 대문자, 소문자, 숫자로만 이루어져있다.</p></li>
+<li><p>유저 아이디와 닉네임은 알파벳 대문자, 소문자를 구별한다.</p></li>
+<li><p>유저 아이디와 닉네임의 길이는 1 이상 10 이하이다.</p></li>
+<li><p>채팅방에서 나간 유저가 닉네임을 변경하는 등 잘못 된 입력은 주어지지 않는다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">record</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">uidToMsgIdx</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 6</span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">uidToNickname</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 7</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">msgList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 8</span>        <span class="kt">int</span> <span class="n">msgListIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">r</span> <span class="p">:</span> <span class="n">record</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>            <span class="n">String</span><span class="o">[]</span> <span class="n">rArr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>            <span class="k">if</span> <span class="p">(</span><span class="n">rArr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Enter&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="n">rArr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Leave&quot;</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">14</span>                <span class="k">if</span> <span class="p">(</span><span class="n">rArr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Enter&quot;</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">15</span>                    <span class="n">msgList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;님이 들어왔습니다.&quot;</span><span class="p">);</span>
+<span class="linenos">16</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">17</span>                    <span class="n">msgList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;님이 나갔습니다.&quot;</span><span class="p">);</span>
+<span class="linenos">18</span>                <span class="p">}</span>
+<span class="linenos">19</span>                <span class="k">this</span><span class="p">.</span><span class="na">addMsgIdxToMap</span><span class="p">(</span><span class="n">uidToMsgIdx</span><span class="p">,</span> <span class="n">rArr</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">msgListIdx</span><span class="o">++</span><span class="p">);</span>
+<span class="linenos">20</span>            <span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>            <span class="k">if</span> <span class="p">(</span><span class="n">rArr</span><span class="p">.</span><span class="na">length</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// nickname change</span>
+<span class="linenos">23</span>                <span class="n">uidToNickname</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">rArr</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">rArr</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">24</span>            <span class="p">}</span>
+<span class="linenos">25</span>        <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">uid</span><span class="p">:</span> <span class="n">uidToMsgIdx</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">28</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">msgIdx</span> <span class="p">:</span> <span class="n">uidToMsgIdx</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">uid</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">29</span>                <span class="n">msgList</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">msgIdx</span><span class="p">,</span> <span class="p">(</span><span class="n">uidToNickname</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span><span class="o">+</span><span class="n">msgList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">msgIdx</span><span class="p">)));</span>
+<span class="linenos">30</span>            <span class="p">}</span>
+<span class="linenos">31</span>        <span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>        <span class="k">return</span> <span class="n">msgList</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">msgList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">34</span>    <span class="p">}</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">addMsgIdxToMap</span><span class="p">(</span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">map</span><span class="p">,</span> <span class="n">String</span> <span class="n">uid</span><span class="p">,</span> <span class="n">Integer</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>        <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">uid</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">38</span>            <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">uid</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+<span class="linenos">39</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">40</span>            <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">idx</span><span class="p">)));</span>
+<span class="linenos">41</span>        <span class="p">}</span>
+<span class="linenos">42</span>    <span class="p">}</span>
+<span class="linenos">43</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Very satisfying problem solving experience. I spent a good amount of time planning and writing down the things I need to do at each step which
+helped me a lot when actually implementing the solution.</p></li>
+<li><p>There were no difficult edge cases involved in this question and it was fairly straight forward.</p></li>
+<li><p>Compartmentalizing repeated processes as a seperate private function was helpful.</p></li>
+<li><p>Using Javatool box was also good!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=record.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-94">
+<h3>Question 94: 멀쩡한 사각형<a class="headerlink" href="#question-94" title="Permalink to this headline"></a></h3>
+<p>가로 길이가 Wcm, 세로 길이가 Hcm인 직사각형 종이가 있습니다. 종이에는 가로, 세로 방향과 평행하게 격자 형태로 선이 그어져 있으며, 모든 격자칸은 1cm x 1cm 크기입니다. 이 종이를 격자 선을 따라 1cm × 1cm의 정사각형으로 잘라 사용할 예정이었는데, 누군가가 이 종이를 대각선 꼭지점 2개를 잇는 방향으로 잘라 놓았습니다. 그러므로 현재 직사각형 종이는 크기가 같은 직각삼각형 2개로 나누어진 상태입니다. 새로운 종이를 구할 수 없는 상태이기 때문에, 이 종이에서 원래 종이의 가로, 세로 방향과 평행하게 1cm × 1cm로 잘라 사용할 수 있는 만큼만 사용하기로 하였습니다.
+가로의 길이 W와 세로의 길이 H가 주어질 때, 사용할 수 있는 정사각형의 개수를 구하는 solution 함수를 완성해 주세요.</p>
+<p>My incomplete solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import static</span> <span class="nn">java.lang.Math.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="o">&gt;</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">);</span>
+<span class="linenos"> 7</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">w</span><span class="p">);</span>
+<span class="linenos"> 9</span>        <span class="p">}</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="kd">private</span> <span class="kt">long</span> <span class="nf">helper</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">h</span><span class="o">-</span><span class="n">h</span><span class="p">;</span>
+<span class="linenos">14</span>        <span class="kt">double</span> <span class="n">slope</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">h</span><span class="o">/</span><span class="n">w</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="kt">double</span> <span class="n">yVal</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">16</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">w</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>            <span class="n">yVal</span><span class="o">+=</span><span class="p">(</span><span class="n">slope</span><span class="p">);</span>
+<span class="linenos">18</span>            <span class="k">if</span> <span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">floor</span><span class="p">(</span><span class="n">yVal</span><span class="p">)</span><span class="o">!=</span><span class="n">Math</span><span class="p">.</span><span class="na">ceil</span><span class="p">(</span><span class="n">yVal</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">19</span>                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">yVal</span><span class="p">);</span>
+<span class="linenos">20</span>                <span class="n">res</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">21</span>            <span class="p">}</span>
+<span class="linenos">22</span>        <span class="p">}</span>
+<span class="linenos">23</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">24</span>    <span class="p">}</span>
+<span class="linenos">25</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week10.html" class="btn btn-neutral float-left" title="Week 10 [17-23 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="java-toolbox.html" class="btn btn-neutral float-right" title="My Java Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
