@@ -271,4 +271,257 @@ My incomplete solution:
         }
     }
             
-**CONTINUE**
+Remarks: 
+ * I thought that the minimum number of blocks rendered unusable for any given plot would be the ``(longer_side_length)`` when the two sides are equal
+   (which is true) and that I coud simply determine the number of usuable blocks by tracing the y-value of the line for each x increment to check if it is a whole number or not (in which case an additional block is rendered unusable on top of that).
+
+Day 53 [01 May]
+================
+Question 96: 가장 큰 수
+------------------------------------------------
+0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요.
+
+예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다.
+
+0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순서를 재배치하여 만들 수 있는 가장 큰 수를 문자열로 바꾸어 return 하도록 solution 함수를 작성해주세요.
+
+My final solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+    import java.util.stream.*;
+
+    class Solution {
+        public String solution(int[] numbers) {
+            StringBuilder res = new StringBuilder();
+            String[] strArr = Arrays.stream(numbers).mapToObj(e -> String.valueOf(e)).toArray(String[]::new);
+            
+            Arrays.sort(strArr, new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    return (o2+o1).compareTo(o1+o2);
+                }
+            });
+            
+            Arrays.stream(strArr).forEach(s -> res.append(s));
+
+            return res.toString().charAt(0)=='0' ? "0" : res.toString();
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * It wasn't a difficult question but a good one to review sorting!
+ * **Time Complexity**: ``O(n log n)`` where ``n=numbers.length``. 
+ * **Space Complexity**: ``O(n log n)`` - could be more depending on String concat method
+
+.. note:: 
+    implement an annonymous Comparator class and override the ``compare`` method.
+
+Similar, alternative solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    class Solution {
+        public String solution(int[] numbers) {
+            StringBuilder res = new StringBuilder();
+            String[] strArr = Arrays.stream(numbers).mapToObj(e -> String.valueOf(e)).toArray(String[]::new);
+            
+            Arrays.sort(strArr, new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    return -Integer.compare(Integer.valueOf(o1+o2), Integer.valueOf(o2+o1));
+                }
+            });
+            
+            Arrays.stream(strArr).forEach(s -> res.append(s));
+
+            return res.toString().charAt(0)=='0' ? "0" : res.toString();
+        }
+    }
+
+
+Question 97: H-Index
+------------------------------------------------
+H-Index는 과학자의 생산성과 영향력을 나타내는 지표입니다. 어느 과학자의 H-Index를 나타내는 값인 h를 구하려고 합니다. 위키백과1에 따르면, H-Index는 다음과 같이 구합니다.
+
+어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index입니다.
+
+어떤 과학자가 발표한 논문의 인용 횟수를 담은 배열 citations가 매개변수로 주어질 때, 이 과학자의 H-Index를 return 하도록 solution 함수를 작성해주세요.
+
+제한사항
+ * 과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.
+ * 논문별 인용 횟수는 0회 이상 10,000회 이하입니다.
+
+My final solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    class Solution {
+        public int solution(int[] citations) {
+            Arrays.sort(citations);        
+            for (int h = citations.length-1 ; h >= 0; h--) {
+                if (citations[h]<citations.length-h) return citations.length-h-1;
+            }
+            return citations.length;
+        }
+    }
+
+    // sol2. when I insisted on sorting the list in descending order..
+    import java.util.*;
+
+    class Solution {
+        public int solution(int[] citations) {
+            // sort in descending
+            Arrays.sort(citations);
+            this.reverse(citations);
+            
+            for (int h = 1 ; h <= citations.length; h++) {
+                if (citations[h-1]<h) return h-1;
+            }
+            
+            return citations.length;
+        }
+        
+        public static void reverse(int[] input) { 
+            int last = input.length - 1; 
+            int middle = input.length / 2; 
+            for (int i = 0; i <= middle; i++) { 
+                int temp = input[i]; 
+                input[i] = input[last - i]; 
+                input[last - i] = temp; 
+            } 
+        }
+    }
+
+    //initial sol that also sorted the list in descending order but with linear space complexity
+    import java.util.*;
+
+    class Solution {
+        public int solution(int[] citations) {
+            Integer[] hIdx = Arrays.stream(citations) // not satisfied because this increases space complexity from O(1) -> O(n)
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .toArray(Integer[]::new);
+                        
+            for (int h = 1 ; h <= citations.length; h++) {
+                if (hIdx[h-1]<h) return h-1;
+            }
+            
+            return citations.length;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Good practice and revision. Improving by the question - let's go!!
+ * If we are using for-loop after sorting, we don't have to forcefully sort in descending order, we can sort ascending and then traverse opposite direction
+ * **Time Complexity**: ``O(n log n)`` where ``n=citations.length``. 
+ * **Space Complexity**: ``O(1)``
+
+
+Question 98: 모의고사
+------------------------------------------------
+수포자는 수학을 포기한 사람의 준말입니다. 수포자 삼인방은 모의고사에 수학 문제를 전부 찍으려 합니다. 수포자는 1번 문제부터 마지막 문제까지 다음과 같이 찍습니다.
+
+1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+
+1번 문제부터 마지막 문제까지의 정답이 순서대로 들은 배열 answers가 주어졌을 때, 가장 많은 문제를 맞힌 사람이 누구인지 배열에 담아 return 하도록 solution 함수를 작성해주세요.
+
+제한 조건
+ * 시험은 최대 10,000 문제로 구성되어있습니다.
+ * 문제의 정답은 1, 2, 3, 4, 5중 하나입니다.
+ * 가장 높은 점수를 받은 사람이 여럿일 경우, return하는 값을 오름차순 정렬해주세요.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    //clean solution
+    import java.util.ArrayList;
+    class Solution {
+        public int[] solution(int[] answer) {
+            int[] a = {1, 2, 3, 4, 5};
+            int[] b = {2, 1, 2, 3, 2, 4, 2, 5};
+            int[] c = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+            int[] points = new int[3];
+            for(int i=0; i<answer.length; i++) {
+                if(answer[i] == a[i%a.length]) {points[0]++;}
+                if(answer[i] == b[i%b.length]) {points[1]++;}
+                if(answer[i] == c[i%c.length]) {points[2]++;}
+            }
+            int maxScore = Math.max(points[0], Math.max(points[1], points[2]));
+            ArrayList<Integer> list = new ArrayList<>();
+            if(maxScore == score[0]) list.add(1);
+            if(maxScore == score[1]) list.add(2);
+            if(maxScore == score[2]) list.add(3);
+            return list.stream().mapToInt(i->i.intValue()).toArray();
+        }
+    }
+
+    //unclean solution
+    import java.util.*;
+    import java.util.stream.*;
+
+    class Solution {
+        
+        private int[] p1, p2, p3;
+        private HashMap<Integer,Integer> points;
+        
+        public int[] solution(int[] answers) {
+            p1 = new int[] {1, 2, 3, 4, 5};
+            p2 = new int[] {2, 1, 2, 3, 2, 4, 2, 5};
+            p3 = new int[] {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+                    
+            points = new HashMap<>();
+            
+            for (int i = 0; i < answers.length; i++) {
+                this.helper(1, answers, i);
+                this.helper(2, answers, i);
+                this.helper(3, answers, i);
+            }
+            
+            int maxPoints = 0;
+            for (int k : points.keySet()) {
+                maxPoints = Math.max(maxPoints, points.getOrDefault(k, 0));
+            }
+            
+            LinkedList<Integer> list = new LinkedList<>();
+
+            for (int k : points.keySet()) {
+                if (points.get(k)==maxPoints) list.add(k);
+            }
+            
+            return list.stream().mapToInt(e -> (int) e).toArray();
+        }
+        
+        private void helper(int playerNum, int[] answers, int idx) {
+            int[] playerChoices = new int[answers.length];
+            switch (playerNum) {
+                case 1: 
+                    playerChoices = p1;
+                    break;
+                case 2:
+                    playerChoices = p2;
+                    break;
+                case 3:
+                    playerChoices = p3;
+                    break;
+            }
+            if (playerChoices[idx%playerChoices.length]==answers[idx]) {
+                points.put(playerNum, points.getOrDefault(playerNum,0)+1);
+            }
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Conversions got very icky.
+ * **Time Complexity**: ``O(n)`` where ``n=answers.length``. 
+ * **Space Complexity**: ``O(1)``

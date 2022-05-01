@@ -333,6 +333,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-95">Question 95: 멀쩡한 사각형</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-53-01-may">Day 53 [01 May]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-96">Question 96: 가장 큰 수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-97-h-index">Question 97: H-Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-98">Question 98: 모의고사</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -364,6 +370,7 @@
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#id1">.toArray()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#collect">collect()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#map">map()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#maptoobj">mapToObj()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#flatmap">flatMap()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#filter">filter()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#reduce">reduce()</a></li>
@@ -468,8 +475,10 @@
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#sorting-operations">Sorting Operations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#sorting-arrays-arrays-sort-arr">Sorting Arrays: Arrays.sort(arr)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#sorting-part-of-arrays-arrays-sort">Sorting part of Arrays: Arrays.sort()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#using-custom-comparator">Using custom comparator</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#comparing-types">Comparing Types</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
@@ -790,7 +799,261 @@ helped me a lot when actually implementing the solution.</p></li>
 <span class="linenos">25</span><span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>CONTINUE</strong></p>
+<dl class="simple">
+<dt>Remarks:</dt><dd><ul class="simple">
+<li><p>I thought that the minimum number of blocks rendered unusable for any given plot would be the <code class="docutils literal notranslate"><span class="pre">(longer_side_length)</span></code> when the two sides are equal
+(which is true) and that I coud simply determine the number of usuable blocks by tracing the y-value of the line for each x increment to check if it is a whole number or not (in which case an additional block is rendered unusable on top of that).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="day-53-01-may">
+<h2>Day 53 [01 May]<a class="headerlink" href="#day-53-01-may" title="Permalink to this headline"></a></h2>
+<section id="question-96">
+<h3>Question 96: 가장 큰 수<a class="headerlink" href="#question-96" title="Permalink to this headline"></a></h3>
+<p>0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요.</p>
+<p>예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다.</p>
+<p>0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순서를 재배치하여 만들 수 있는 가장 큰 수를 문자열로 바꾸어 return 하도록 solution 함수를 작성해주세요.</p>
+<p>My final solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos"> 7</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">numbers</span><span class="p">).</span><span class="na">mapToObj</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">e</span><span class="p">)).</span><span class="na">toArray</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">strArr</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">10</span>            <span class="nd">@Override</span>
+<span class="linenos">11</span>            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">String</span> <span class="n">o1</span><span class="p">,</span> <span class="n">String</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>                <span class="k">return</span> <span class="p">(</span><span class="n">o2</span><span class="o">+</span><span class="n">o1</span><span class="p">).</span><span class="na">compareTo</span><span class="p">(</span><span class="n">o1</span><span class="o">+</span><span class="n">o2</span><span class="p">);</span>
+<span class="linenos">13</span>            <span class="p">}</span>
+<span class="linenos">14</span>        <span class="p">});</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">strArr</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">res</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>        <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;0&#39;</span> <span class="o">?</span> <span class="s">&quot;0&quot;</span> <span class="p">:</span> <span class="n">res</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+<span class="linenos">20</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>It wasn’t a difficult question but a good one to review sorting!</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=numbers.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> - could be more depending on String concat method</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>implement an annonymous Comparator class and override the <code class="docutils literal notranslate"><span class="pre">compare</span></code> method.</p>
+</div>
+<p>Similar, alternative solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos"> 4</span>        <span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">numbers</span><span class="p">).</span><span class="na">mapToObj</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">e</span><span class="p">)).</span><span class="na">toArray</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">strArr</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="nd">@Override</span>
+<span class="linenos"> 8</span>            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">String</span> <span class="n">o1</span><span class="p">,</span> <span class="n">String</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>                <span class="k">return</span> <span class="o">-</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">o1</span><span class="o">+</span><span class="n">o2</span><span class="p">),</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">o2</span><span class="o">+</span><span class="n">o1</span><span class="p">));</span>
+<span class="linenos">10</span>            <span class="p">}</span>
+<span class="linenos">11</span>        <span class="p">});</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">strArr</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">res</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>        <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="sc">&#39;0&#39;</span> <span class="o">?</span> <span class="s">&quot;0&quot;</span> <span class="p">:</span> <span class="n">res</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-97-h-index">
+<h3>Question 97: H-Index<a class="headerlink" href="#question-97-h-index" title="Permalink to this headline"></a></h3>
+<p>H-Index는 과학자의 생산성과 영향력을 나타내는 지표입니다. 어느 과학자의 H-Index를 나타내는 값인 h를 구하려고 합니다. 위키백과1에 따르면, H-Index는 다음과 같이 구합니다.</p>
+<p>어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index입니다.</p>
+<p>어떤 과학자가 발표한 논문의 인용 횟수를 담은 배열 citations가 매개변수로 주어질 때, 이 과학자의 H-Index를 return 하도록 solution 함수를 작성해주세요.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.</p></li>
+<li><p>논문별 인용 횟수는 0회 이상 10,000회 이하입니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My final solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">citations</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">citations</span><span class="p">);</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span> <span class="p">;</span> <span class="n">h</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">h</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="p">(</span><span class="n">citations</span><span class="o">[</span><span class="n">h</span><span class="o">]&lt;</span><span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="n">h</span><span class="p">)</span> <span class="k">return</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 8</span>        <span class="p">}</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="c1">// sol2. when I insisted on sorting the list in descending order..</span>
+<span class="linenos">14</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">17</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">citations</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">18</span>        <span class="c1">// sort in descending</span>
+<span class="linenos">19</span>        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">citations</span><span class="p">);</span>
+<span class="linenos">20</span>        <span class="k">this</span><span class="p">.</span><span class="na">reverse</span><span class="p">(</span><span class="n">citations</span><span class="p">);</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">h</span> <span class="o">&lt;=</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">h</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">23</span>            <span class="k">if</span> <span class="p">(</span><span class="n">citations</span><span class="o">[</span><span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="o">]&lt;</span><span class="n">h</span><span class="p">)</span> <span class="k">return</span> <span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">24</span>        <span class="p">}</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="k">return</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">30</span>        <span class="kt">int</span> <span class="n">last</span> <span class="o">=</span> <span class="n">input</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">31</span>        <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">input</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">32</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">33</span>            <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">34</span>            <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">35</span>            <span class="n">input</span><span class="o">[</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="linenos">36</span>        <span class="p">}</span>
+<span class="linenos">37</span>    <span class="p">}</span>
+<span class="linenos">38</span><span class="p">}</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="c1">//initial sol that also sorted the list in descending order but with linear space complexity</span>
+<span class="linenos">41</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">44</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">citations</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">45</span>        <span class="n">Integer</span><span class="o">[]</span> <span class="n">hIdx</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">citations</span><span class="p">)</span> <span class="c1">// not satisfied because this increases space complexity from O(1) -&gt; O(n)</span>
+<span class="linenos">46</span>            <span class="p">.</span><span class="na">boxed</span><span class="p">()</span>
+<span class="linenos">47</span>            <span class="p">.</span><span class="na">sorted</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">())</span>
+<span class="linenos">48</span>            <span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">Integer</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">h</span> <span class="o">&lt;=</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">h</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">51</span>            <span class="k">if</span> <span class="p">(</span><span class="n">hIdx</span><span class="o">[</span><span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="o">]&lt;</span><span class="n">h</span><span class="p">)</span> <span class="k">return</span> <span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">52</span>        <span class="p">}</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span>        <span class="k">return</span> <span class="n">citations</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+<span class="linenos">55</span>    <span class="p">}</span>
+<span class="linenos">56</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Good practice and revision. Improving by the question - let’s go!!</p></li>
+<li><p>If we are using for-loop after sorting, we don’t have to forcefully sort in descending order, we can sort ascending and then traverse opposite direction</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=citations.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-98">
+<h3>Question 98: 모의고사<a class="headerlink" href="#question-98" title="Permalink to this headline"></a></h3>
+<p>수포자는 수학을 포기한 사람의 준말입니다. 수포자 삼인방은 모의고사에 수학 문제를 전부 찍으려 합니다. 수포자는 1번 문제부터 마지막 문제까지 다음과 같이 찍습니다.</p>
+<p>1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, …
+2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, …
+3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, …</p>
+<p>1번 문제부터 마지막 문제까지의 정답이 순서대로 들은 배열 answers가 주어졌을 때, 가장 많은 문제를 맞힌 사람이 누구인지 배열에 담아 return 하도록 solution 함수를 작성해주세요.</p>
+<dl class="simple">
+<dt>제한 조건</dt><dd><ul class="simple">
+<li><p>시험은 최대 10,000 문제로 구성되어있습니다.</p></li>
+<li><p>문제의 정답은 1, 2, 3, 4, 5중 하나입니다.</p></li>
+<li><p>가장 높은 점수를 받은 사람이 여럿일 경우, return하는 값을 오름차순 정렬해주세요.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//clean solution</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<span class="linenos"> 6</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<span class="linenos"> 7</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<span class="linenos"> 8</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">points</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 9</span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">answer</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>            <span class="k">if</span><span class="p">(</span><span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">%</span><span class="n">a</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span><span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">]++</span><span class="p">;}</span>
+<span class="linenos">11</span>            <span class="k">if</span><span class="p">(</span><span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">%</span><span class="n">b</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span><span class="n">points</span><span class="o">[</span><span class="mi">1</span><span class="o">]++</span><span class="p">;}</span>
+<span class="linenos">12</span>            <span class="k">if</span><span class="p">(</span><span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">%</span><span class="n">c</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span><span class="n">points</span><span class="o">[</span><span class="mi">2</span><span class="o">]++</span><span class="p">;}</span>
+<span class="linenos">13</span>        <span class="p">}</span>
+<span class="linenos">14</span>        <span class="kt">int</span> <span class="n">maxScore</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">points</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">points</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos">15</span>        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">16</span>        <span class="k">if</span><span class="p">(</span><span class="n">maxScore</span> <span class="o">==</span> <span class="n">score</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">17</span>        <span class="k">if</span><span class="p">(</span><span class="n">maxScore</span> <span class="o">==</span> <span class="n">score</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">18</span>        <span class="k">if</span><span class="p">(</span><span class="n">maxScore</span> <span class="o">==</span> <span class="n">score</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">)</span> <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">19</span>        <span class="k">return</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">i</span><span class="o">-&gt;</span><span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">()).</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos">20</span>    <span class="p">}</span>
+<span class="linenos">21</span><span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1">//unclean solution</span>
+<span class="linenos">24</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos">25</span><span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="p">;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">;</span>
+<span class="linenos">30</span>    <span class="kd">private</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">;</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">answers</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">33</span>        <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<span class="linenos">34</span>        <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<span class="linenos">35</span>        <span class="n">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span>        <span class="n">points</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">answers</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">40</span>            <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">answers</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos">41</span>            <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">answers</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos">42</span>            <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">answers</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos">43</span>        <span class="p">}</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span>        <span class="kt">int</span> <span class="n">maxPoints</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">46</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="p">:</span> <span class="n">points</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">47</span>            <span class="n">maxPoints</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">maxPoints</span><span class="p">,</span> <span class="n">points</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="linenos">48</span>        <span class="p">}</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span>        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="p">:</span> <span class="n">points</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">53</span>            <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">==</span><span class="n">maxPoints</span><span class="p">)</span> <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="linenos">54</span>        <span class="p">}</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span>        <span class="k">return</span> <span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">e</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos">57</span>    <span class="p">}</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">helper</span><span class="p">(</span><span class="kt">int</span> <span class="n">playerNum</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">answers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">60</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">playerChoices</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">answers</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">61</span>        <span class="k">switch</span> <span class="p">(</span><span class="n">playerNum</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">62</span>            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">63</span>                <span class="n">playerChoices</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+<span class="linenos">64</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos">65</span>            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+<span class="linenos">66</span>                <span class="n">playerChoices</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
+<span class="linenos">67</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos">68</span>            <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+<span class="linenos">69</span>                <span class="n">playerChoices</span> <span class="o">=</span> <span class="n">p3</span><span class="p">;</span>
+<span class="linenos">70</span>                <span class="k">break</span><span class="p">;</span>
+<span class="linenos">71</span>        <span class="p">}</span>
+<span class="linenos">72</span>        <span class="k">if</span> <span class="p">(</span><span class="n">playerChoices</span><span class="o">[</span><span class="n">idx</span><span class="o">%</span><span class="n">playerChoices</span><span class="p">.</span><span class="na">length</span><span class="o">]==</span><span class="n">answers</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">73</span>            <span class="n">points</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">playerNum</span><span class="p">,</span> <span class="n">points</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">playerNum</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">74</span>        <span class="p">}</span>
+<span class="linenos">75</span>    <span class="p">}</span>
+<span class="linenos">76</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Conversions got very icky.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=answers.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

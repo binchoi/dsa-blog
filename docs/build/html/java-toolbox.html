@@ -333,6 +333,11 @@
 <li class="toctree-l3"><a class="reference internal" href="week11.html#question-95">Question 95: 멀쩡한 사각형</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="week11.html#day-53-01-may">Day 53 [01 May]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="week11.html#question-96">Question 96: 가장 큰 수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="week11.html#question-97-h-index">Question 97: H-Index</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -364,6 +369,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">.toArray()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collect">collect()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#map">map()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maptoobj">mapToObj()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#flatmap">flatMap()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filter">filter()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reduce">reduce()</a></li>
@@ -468,8 +474,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#sorting-operations">Sorting Operations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#sorting-arrays-arrays-sort-arr">Sorting Arrays: Arrays.sort(arr)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sorting-part-of-arrays-arrays-sort">Sorting part of Arrays: Arrays.sort()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-custom-comparator">Using custom comparator</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#comparing-types">Comparing Types</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="toolbox.html">Python Toolkit</a><ul>
@@ -613,11 +621,27 @@
 <section id="collection-sort-list-comparator">
 <h3>Collection.sort(List, Comparator)<a class="headerlink" href="#collection-sort-list-comparator" title="Permalink to this headline"></a></h3>
 <p>Similar to <code class="docutils literal notranslate"><span class="pre">Arrays.sort()</span></code> but for sorting objects in linked lists, arraylists, queues, etc…</p>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">);</span> <span class="c1">//default is ascending order</span>
-<span class="linenos">2</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span> <span class="c1">//descending order</span>
-<span class="linenos">3</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
-<span class="linenos">4</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]-</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
-<span class="linenos">5</span><span class="n">list</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span><span class="p">.</span><span class="na">length</span><span class="p">()));</span>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">);</span> <span class="c1">//default is ascending order</span>
+<span class="linenos"> 2</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span> <span class="c1">//descending order</span>
+<span class="linenos"> 3</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+<span class="linenos"> 4</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]-</span><span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 5</span><span class="n">list</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span><span class="p">.</span><span class="na">length</span><span class="p">()));</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">someList</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="linenos"> 8</span>    <span class="nd">@Override</span>
+<span class="linenos"> 9</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">String</span> <span class="n">o1</span><span class="p">,</span> <span class="n">String</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="n">Character</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">o1</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">o2</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span><span class="p">});</span>
+<span class="linenos">13</span><span class="c1">// else for readability</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">comp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">16</span>    <span class="nd">@Override</span>
+<span class="linenos">17</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">String</span> <span class="n">o1</span><span class="p">,</span> <span class="n">String</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">18</span>        <span class="k">return</span> <span class="n">Character</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">o1</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">o2</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+<span class="linenos">20</span><span class="p">}</span>
+<span class="linenos">21</span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">someList</span><span class="p">,</span> <span class="n">comp</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -697,6 +721,14 @@ do not store their own data, immutable, and lazy.</p>
 <span class="linenos">21</span>                                            <span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
 <span class="linenos">22</span>                                            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;STRING&quot;</span><span class="p">)));</span>
 <span class="linenos">23</span><span class="c1">//nested optional? that&#39;s cumbersome, let&#39;s use flatMap()</span>
+</pre></div>
+</div>
+</section>
+<section id="maptoobj">
+<h3>mapToObj()<a class="headerlink" href="#maptoobj" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="linenos">2</span>                        <span class="p">.</span><span class="na">mapToObj</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="linenos">3</span>                        <span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -1386,15 +1418,31 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 <h2>Sorting Operations<a class="headerlink" href="#sorting-operations" title="Permalink to this headline"></a></h2>
 <section id="sorting-arrays-arrays-sort-arr">
 <h3>Sorting Arrays: Arrays.sort(arr)<a class="headerlink" href="#sorting-arrays-arrays-sort-arr" title="Permalink to this headline"></a></h3>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// ASCENDING</span>
-<span class="linenos">2</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
-<span class="linenos">3</span>
-<span class="linenos">4</span><span class="c1">// DESCENDING</span>
-<span class="linenos">5</span><span class="kt">int</span><span class="o">[]</span> <span class="n">descendingArr</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-<span class="linenos">6</span>            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
-<span class="linenos">7</span>            <span class="p">.</span><span class="na">sorted</span><span class="p">()</span>
-<span class="linenos">8</span>            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
-<span class="linenos">9</span>            <span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// ASCENDING</span>
+<span class="linenos"> 2</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">// DESCENDING</span>
+<span class="linenos"> 5</span><span class="kt">int</span><span class="o">[]</span> <span class="n">descendingArr</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="linenos"> 6</span>            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos"> 7</span>            <span class="p">.</span><span class="na">sorted</span><span class="p">()</span>
+<span class="linenos"> 8</span>            <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">// DESCENDING IN CONSTANT SPACE</span>
+<span class="linenos">12</span><span class="c1">// helper fxn</span>
+<span class="linenos">13</span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>    <span class="kt">int</span> <span class="n">last</span> <span class="o">=</span> <span class="n">input</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">15</span>    <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">input</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">16</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">18</span>        <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">19</span>        <span class="n">input</span><span class="o">[</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="linenos">20</span>    <span class="p">}</span>
+<span class="linenos">21</span><span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1">// main</span>
+<span class="linenos">24</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="linenos">25</span><span class="k">this</span><span class="p">.</span><span class="na">reverse</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -1406,8 +1454,49 @@ n/2, n/4, …, 1 which sum to <code class="docutils literal notranslate"><span c
 <span class="linenos">4</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">:</span> <span class="n">arr2</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://www.baeldung.com/java-sorting">https://www.baeldung.com/java-sorting</a></p>
 </section>
+<section id="using-custom-comparator">
+<h3>Using custom comparator<a class="headerlink" href="#using-custom-comparator" title="Permalink to this headline"></a></h3>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">myArr</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="nd">@Override</span>
+<span class="linenos">3</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">T</span> <span class="n">o1</span><span class="p">,</span> <span class="n">T</span> <span class="n">o2</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">4</span>    <span class="c1">// insert logic here</span>
+<span class="linenos">5</span>    <span class="c1">//</span>
+<span class="linenos">6</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">7</span><span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="comparing-types">
+<h2>Comparing Types<a class="headerlink" href="#comparing-types" title="Permalink to this headline"></a></h2>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// -1 means that first object is placed closer to the beginning of the collection/array</span>
+<span class="linenos"> 2</span><span class="c1">//  1 means that first object is placed further from the beginning of the collection/array</span>
+<span class="linenos"> 3</span><span class="c1">//  0 means they are equal</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">// int</span>
+<span class="linenos"> 6</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span><span class="n">i2</span><span class="p">);</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">// Character</span>
+<span class="linenos"> 9</span><span class="n">Character</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">);</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">// Boolean</span>
+<span class="linenos">12</span><span class="n">Boolean</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span><span class="n">b2</span><span class="p">);</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1">// Long</span>
+<span class="linenos">15</span><span class="n">Long</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">);</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1">// String</span>
+<span class="linenos">18</span><span class="n">s1</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="c1">// examples</span>
+<span class="linenos">21</span><span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// -1</span>
+<span class="linenos">22</span><span class="n">Character</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="sc">&#39;c&#39;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">);</span> <span class="c1">// -1</span>
+<span class="linenos">23</span><span class="n">Boolean</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// +1</span>
+<span class="linenos">24</span><span class="n">Long</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="mi">1L</span><span class="p">,</span><span class="mi">2L</span><span class="p">);</span> <span class="c1">// -1</span>
+<span class="linenos">25</span><span class="p">(</span><span class="s">&quot;strings cannot be compared&quot;</span><span class="p">).</span><span class="na">compareTo</span><span class="p">(</span><span class="s">&quot;like above&quot;</span><span class="p">);</span> <span class="c1">// 7 which is positive</span>
+</pre></div>
+</div>
 </section>
 </section>
 

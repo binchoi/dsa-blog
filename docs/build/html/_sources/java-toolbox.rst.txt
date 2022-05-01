@@ -107,7 +107,22 @@ Similar to ``Arrays.sort()`` but for sorting objects in linked lists, arraylists
     Collections.sort(alphabetList, (a,b)->Integer.compare(a[0],b[0])); 
     Collections.sort(alphabetList, (a,b)->a[0]-b[0]);
     list.sort(Comparator.comparing(n -> n.length()));
-    
+
+    Collections.sort(someList, new Comparator<String> {
+        @Override
+        public int compare(String o1, String o2) {
+            return Character.compare(o1.charAt(0), o2.charAt(0));
+        }
+    });
+    // else for readability
+
+    Comparator<String> comp = new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+            return Character.compare(o1.charAt(0), o2.charAt(0));
+        }
+    }
+    Collections.sort(someList, comp);
 
 stream() & parallelStream()
 ----------------------------
@@ -197,6 +212,15 @@ map()
                                                 .of("string")
                                                 .map(s -> Optional.of("STRING")));
     //nested optional? that's cumbersome, let's use flatMap()
+
+mapToObj()
+-----------
+.. code-block:: Java
+    :linenos:
+
+    String[] strArr = Arrays.stream(numbers)
+                            .mapToObj(e -> String.valueOf(e))
+                            .toArray(String[]::new);
 
 flatMap()
 ----------
@@ -981,7 +1005,22 @@ Sorting Arrays: Arrays.sort(arr)
                 .sorted()
                 .map(i -> -i)
                 .toArray();
+    
+    // DESCENDING IN CONSTANT SPACE
+    // helper fxn
+    public static void reverse(int[] input) { 
+        int last = input.length - 1; 
+        int middle = input.length / 2; 
+        for (int i = 0; i <= middle; i++) { 
+            int temp = input[i]; 
+            input[i] = input[last - i]; 
+            input[last - i] = temp; 
+        } 
+    }
 
+    // main
+    Arrays.sort(arr);
+    this.reverse(arr);
 
 Sorting part of Arrays: Arrays.sort()
 ------------------------------------------
@@ -993,5 +1032,47 @@ Sorting part of Arrays: Arrays.sort()
     Arrays.sort(arr2, 0, 5); // inclusive lower bound, exclusive upper bound
     for (int i : arr2) System.out.println(i);
 
-https://www.baeldung.com/java-sorting
+Using custom comparator 
+-----------------------
+.. code-block:: Java
+    :linenos:
 
+    Arrays.sort(myArr, new Comparator<T>() {
+        @Override
+        public int compare(T o1, T o2) {
+        // insert logic here
+        // 
+        return 0;
+    });
+
+Comparing Types
+======================
+.. code-block:: Java
+    :linenos:
+
+    // -1 means that first object is placed closer to the beginning of the collection/array
+    //  1 means that first object is placed further from the beginning of the collection/array
+    //  0 means they are equal
+
+    // int
+    Integer.compare(i1,i2); 
+    
+    // Character
+    Character.compare(c1, c2);
+
+    // Boolean
+    Boolean.compare(b1,b2);
+
+    // Long 
+    Long.compare(l1,l2);
+
+    // String
+    s1.compareTo(s2);
+
+    // examples
+    Integer.compare(1,2); // -1
+    Character.compare('c', 'd'); // -1
+    Boolean.compare(true,false); // +1
+    Long.compare(1L,2L); // -1
+    ("strings cannot be compared").compareTo("like above"); // 7 which is positive
+    
