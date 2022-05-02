@@ -162,7 +162,7 @@ Remarks and Complexity Analysis:
  * I am happy with the process I took to solve this question. Inspired by the use of Stacks and Queues when dealing with 
    tree traversals, I tried implementing a queue-based method and it worked well.
  * **Time Complexity**: ``O(n)`` as all nodes of trees are traversed
- * **Space Complexity**: ``O(n)`` as at the ``h``th level, there are ``2^h`` elements. Given that the height of the tree is ``log n``, 
+ * **Space Complexity**: ``O(n)`` as at the ``h`` th level, there are ``2^h`` elements. Given that the height of the tree is ``log n``, 
    ``2^(log n)=n``
 
 Interesting solutions

@@ -214,3 +214,125 @@ Cred: `issac <https://leetcode.com/problems/combination-sum/discuss/16502/A-gene
 
 Tree Traversal Algorithms
 ===========================
+
+Binary Tree Inorder Traversal (DFS)
+--------------------------------------------
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+
+My solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stk = new Stack<>();
+        while (root!=null || !stk.isEmpty()) {
+            while (root!=null) {
+                stk.push(root);
+                root = root.left;
+            }
+            root = stk.pop();
+            res.add(root.val);
+            root = root.right;
+        }
+        return res;
+    }
+
+DFS: In-order traversal (ex)
+------------------------------------------
+.. code-block:: Java
+    :linenos:
+
+    public boolean isValidBST(TreeNode root) {
+        Stack<TreeNode> stk = new Stack<>();
+        TreeNode prev = null;
+        while (root!=null || !stk.isEmpty()) {
+            while (root!=null) {
+                stk.push(root);
+                root = root.left;
+            }
+            root = stk.pop();
+            if (prev!=null && root.val<=prev.val) {
+                return false;
+            }
+            prev = root;
+            root = root.right;
+        }
+        return true;
+    }
+
+**Left-Root-Right**
+
+Recursive Solution:
+
+.. code-block:: Java
+    :linenos:
+
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    public boolean isValidBST(TreeNode root, long minVal, long maxVal) {
+        if (root == null) return true;
+        if (root.val >= maxVal || root.val <= minVal) return false;
+        return isValidBST(root.left, minVal, root.val) && isValidBST(root.right, root.val, maxVal);
+    }
+
+Binary Tree Level Order Traversal (BFS)
+-------------------------------------------------------
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+My Solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root==null) {
+            return res;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            List<Integer> sub = new ArrayList<>();
+            int n = q.size();
+            for (int i=0; i<n; i++) {
+                root = q.poll();
+                sub.add(root.val);
+                if (root.left!=null) {
+                    q.add(root.left);
+                }
+                if (root.right!=null) {
+                    q.add(root.right);
+                }
+            }
+            res.add(sub);
+        }
+        return res;
+    }
+
+
+Interesting solutions
+
+.. code-block:: Java
+    :linenos:
+
+    // DFS and Pre-order traversal
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        levelHelper(res, root, 0);
+        return res;
+    }
+    
+    public void levelHelper(List<List<Integer>> res, TreeNode root, int height) {
+        if (root == null) return;
+        if (height >= res.size()) {
+            res.add(new LinkedList<Integer>());
+        }
+        res.get(height).add(root.val);
+        levelHelper(res, root.left, height+1);
+        levelHelper(res, root.right, height+1);
+    }
+
