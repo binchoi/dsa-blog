@@ -111,3 +111,35 @@ Remarks and Complexity Analysis:
  * I wonder if interviewers would prefer a more efficient method of computing primes.
  * **Time Complexity**: ``>O(n^2)`` (perhaps ``>O((n!)^2)``) where ``n=numbers.length()``. 
  * **Space Complexity**: ``O(n^2)``
+
+Question 100: Lowest Common Ancestor of a Binary Search Tree
+------------------------------------------------------------------
+Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
+
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    class Solution {
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            while ((root.val<p.val && root.val<q.val) || (root.val>p.val && root.val>q.val)) {
+                root= root.val<p.val ? root.right : root.left;
+            }
+            return root;  
+        }
+    }
+
+    // or 
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        while ((root.val - p.val) * (root.val - q.val) > 0)
+            root = p.val < root.val ? root.left : root.right;
+        return root;
+    }
+
+Remarks and Complexity Analysis: 
+ * Key was to leverage the characteristic of BST (in-order traversal is ascending order)
+ * **Time Complexity**: ``O(log n)`` where ``n=num_of_tree_nodes_in_tree``. 
+ * **Space Complexity**: ``O(1)``
