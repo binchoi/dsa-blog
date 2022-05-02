@@ -17,7 +17,9 @@
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="My Java Toolbox" href="java-toolbox.html" />
+    <link rel="prev" title="Week 11 [25-30 Apr 2022]" href="week11.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +38,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">daily exercises</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
@@ -339,6 +341,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 12 [02-09 May 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#day-54-02-may">Day 54 [02 May]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-99">Question 99: 소수 찾기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-100-lowest-common-ancestor-of-a-binary-search-tree">Question 100: Lowest Common Ancestor of a Binary Search Tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">misc</span></p>
 <ul>
@@ -497,7 +507,12 @@
 <li class="toctree-l3"><a class="reference internal" href="algosummary.html#useful-reference-backtracking">Useful Reference (Backtracking)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algosummary.html#tree-traversal-algorithms">Tree Traversal Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algosummary.html#binary-tree-inorder-traversal-dfs">Binary Tree Inorder Traversal (DFS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algosummary.html#dfs-in-order-traversal-ex">DFS: In-order traversal (ex)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algosummary.html#binary-tree-level-order-traversal-bfs">Binary Tree Level Order Traversal (BFS)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datastructure.html">Data Structure</a><ul>
@@ -651,13 +666,47 @@
 </dd>
 </dl>
 </section>
+<section id="question-100-lowest-common-ancestor-of-a-binary-search-tree">
+<h3>Question 100: Lowest Common Ancestor of a Binary Search Tree<a class="headerlink" href="#question-100-lowest-common-ancestor-of-a-binary-search-tree" title="Permalink to this headline"></a></h3>
+<p>Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.</p>
+<p>According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">p</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="k">while</span> <span class="p">((</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="na">val</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">&lt;</span><span class="n">q</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">&gt;</span><span class="n">p</span><span class="p">.</span><span class="na">val</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">&gt;</span><span class="n">q</span><span class="p">.</span><span class="na">val</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos"> 4</span>            <span class="n">root</span><span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="na">val</span> <span class="o">?</span> <span class="n">root</span><span class="p">.</span><span class="na">right</span> <span class="p">:</span> <span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="p">}</span>
+<span class="linenos"> 6</span>        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos"> 7</span>    <span class="p">}</span>
+<span class="linenos"> 8</span><span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">// or</span>
+<span class="linenos">11</span><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">p</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>    <span class="k">while</span> <span class="p">((</span><span class="n">root</span><span class="p">.</span><span class="na">val</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span> <span class="o">-</span> <span class="n">q</span><span class="p">.</span><span class="na">val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">root</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">root</span><span class="p">.</span><span class="na">val</span> <span class="o">?</span> <span class="n">root</span><span class="p">.</span><span class="na">left</span> <span class="p">:</span> <span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+<span class="linenos">14</span>    <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+<span class="linenos">15</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Key was to leverage the characteristic of BST (in-order traversal is ascending order)</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=num_of_tree_nodes_in_tree</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week11.html" class="btn btn-neutral float-left" title="Week 11 [25-30 Apr 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="java-toolbox.html" class="btn btn-neutral float-right" title="My Java Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
