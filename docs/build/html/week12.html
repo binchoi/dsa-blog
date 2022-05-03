@@ -347,6 +347,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#question-100-lowest-common-ancestor-of-a-binary-search-tree">Question 100: Lowest Common Ancestor of a Binary Search Tree</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#day-55-03-may">Day 55 [03 May]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-101">Question 101: 카펫</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-102">Question 102: 타겟 넘버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-103">Question 103: 네트워크</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -696,6 +702,220 @@
 </ul>
 </dd>
 </dl>
+</section>
+</section>
+<section id="day-55-03-may">
+<h2>Day 55 [03 May]<a class="headerlink" href="#day-55-03-may" title="Permalink to this headline"></a></h2>
+<section id="question-101">
+<h3>Question 101: 카펫<a class="headerlink" href="#question-101" title="Permalink to this headline"></a></h3>
+<p>Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 노란색으로 칠해져 있고 테두리 1줄은 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.</p>
+<p>Leo는 집으로 돌아와서 아까 본 카펫의 노란색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다.</p>
+<p>Leo가 본 카펫에서 갈색 격자의 수 brown, 노란색 격자의 수 yellow가 매개변수로 주어질 때 카펫의 가로, 세로 크기를 순서대로 배열에 담아 return 하도록 solution 함수를 작성해주세요.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>갈색 격자의 수 brown은 8 이상 5,000 이하인 자연수입니다.</p></li>
+<li><p>노란색 격자의 수 yellow는 1 이상 2,000,000 이하인 자연수입니다.</p></li>
+<li><p>카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">brown</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yellow</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="kt">int</span> <span class="n">area</span> <span class="o">=</span> <span class="n">brown</span><span class="o">+</span><span class="n">yellow</span><span class="p">;</span>
+<span class="linenos"> 4</span>        <span class="kt">int</span> <span class="n">s2</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">s1</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">Math</span><span class="p">.</span><span class="na">sqrt</span><span class="p">(</span><span class="n">area</span><span class="p">);</span> <span class="n">s1</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="k">if</span> <span class="p">(</span><span class="n">area</span><span class="o">%</span><span class="n">s1</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+<span class="linenos"> 7</span>            <span class="n">s2</span> <span class="o">=</span> <span class="n">area</span><span class="o">/</span><span class="n">s1</span><span class="p">;</span>
+<span class="linenos"> 8</span>            <span class="k">if</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s2</span><span class="o">-</span><span class="mi">4</span><span class="o">==</span><span class="n">brown</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>                <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{</span><span class="n">s2</span><span class="p">,</span><span class="n">s1</span><span class="p">};</span>
+<span class="linenos">10</span>            <span class="p">}</span>
+<span class="linenos">11</span>        <span class="p">}</span>
+<span class="linenos">12</span>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="p">{};</span>
+<span class="linenos">13</span>    <span class="p">}</span>
+<span class="linenos">14</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Simple brute force question.</p></li>
+<li><p>Really nice when simple math can help solve coding questions</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(sqrt(b+y))</span></code> which is the maximum number of iterations</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Constant time solution using quadratic formula:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">brown</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yellow</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">2</span>    <span class="kt">int</span> <span class="n">s1PlusS2</span> <span class="o">=</span> <span class="p">(</span><span class="n">brown</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="kt">int</span> <span class="n">area</span> <span class="o">=</span> <span class="n">brown</span><span class="o">+</span><span class="n">yellow</span><span class="p">;</span>
+<span class="linenos">4</span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="p">{(</span><span class="kt">int</span><span class="p">)(</span><span class="n">s1PlusS2</span><span class="o">+</span><span class="n">Math</span><span class="p">.</span><span class="na">sqrt</span><span class="p">(</span><span class="n">s1PlusS2</span><span class="o">*</span><span class="n">s1PlusS2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">area</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">,(</span><span class="kt">int</span><span class="p">)(</span><span class="n">s1PlusS2</span><span class="o">-</span><span class="n">Math</span><span class="p">.</span><span class="na">sqrt</span><span class="p">(</span><span class="n">s1PlusS2</span><span class="o">*</span><span class="n">s1PlusS2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">area</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">};</span>
+<span class="linenos">5</span>    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="linenos">6</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-102">
+<h3>Question 102: 타겟 넘버<a class="headerlink" href="#question-102" title="Permalink to this headline"></a></h3>
+<p>n개의 음이 아닌 정수들이 있습니다. 이 정수들을 순서를 바꾸지 않고 적절히 더하거나 빼서 타겟 넘버를 만들려고 합니다. 예를 들어 [1, 1, 1, 1, 1]로 숫자 3을 만들려면 다음 다섯 방법을 쓸 수 있습니다.</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos">2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos">3</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos">4</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos">5</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>사용할 수 있는 숫자가 담긴 배열 numbers, 타겟 넘버 target이 매개변수로 주어질 때 숫자를 적절히 더하고 빼서 타겟 넘버를 만드는 방법의 수를 return 하도록 solution 함수를 작성해주세요.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>주어지는 숫자의 개수는 2개 이상 20개 이하입니다.</p></li>
+<li><p>각 숫자는 1 이상 50 이하인 자연수입니다.</p></li>
+<li><p>타겟 넘버는 1 이상 1000 이하인 자연수입니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//recursive [much easier to read - at cost of overhead and risk of overflow]</span>
+<span class="linenos"> 2</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="linenos"> 4</span><span class="p">}</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">private</span> <span class="kt">int</span> <span class="nf">helper</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sumSoFar</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">numbers</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>        <span class="k">return</span> <span class="p">(</span><span class="n">target</span><span class="o">==</span><span class="n">sumSoFar</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 9</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">sumSoFar</span><span class="o">+</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">helper</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">sumSoFar</span><span class="o">-</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">11</span>    <span class="p">}</span>
+<span class="linenos">12</span><span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1">//iterative dfs</span>
+<span class="linenos">15</span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>    <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="na">length</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">19</span>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">20</span>    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">21</span>    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">:</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">24</span>        <span class="n">stk</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="linenos">25</span>        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">26</span>        <span class="n">sum</span><span class="o">+=</span><span class="n">n</span><span class="p">;</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="k">if</span> <span class="p">(</span><span class="n">sum</span><span class="o">&lt;</span><span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">30</span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">31</span>    <span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">34</span>        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numbers</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">35</span>            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span><span class="p">;</span>
+<span class="linenos">36</span>            <span class="n">sum</span><span class="o">+=</span><span class="n">num</span><span class="p">;</span>
+<span class="linenos">37</span>            <span class="n">stk</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+<span class="linenos">38</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">39</span>            <span class="k">if</span> <span class="p">(</span><span class="n">sum</span><span class="o">==</span><span class="n">target</span><span class="p">)</span> <span class="n">res</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">40</span>            <span class="c1">// remove all the negative nums added</span>
+<span class="linenos">41</span>            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">stk</span><span class="p">.</span><span class="na">peek</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">42</span>                <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">43</span>                <span class="n">sum</span><span class="o">-=</span><span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">44</span>            <span class="p">}</span>
+<span class="linenos">45</span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos">46</span>                <span class="kt">int</span> <span class="n">posN</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">47</span>                <span class="n">sum</span><span class="o">-=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">posN</span><span class="p">);</span>
+<span class="linenos">48</span>                <span class="n">stk</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="o">-</span><span class="n">posN</span><span class="p">);</span>
+<span class="linenos">49</span>            <span class="p">}</span>
+<span class="linenos">50</span>        <span class="p">}</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span>    <span class="p">}</span>
+<span class="linenos">53</span>    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">54</span><span class="p">}</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="c1">//initial disorganized</span>
+<span class="linenos">57</span><span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="p">;</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos">60</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">61</span>        <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="na">length</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">62</span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">65</span>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">66</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span>        <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">69</span>            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numbers</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">70</span>                <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span><span class="p">;</span>
+<span class="linenos">71</span>                <span class="n">sum</span><span class="o">+=</span><span class="n">num</span><span class="p">;</span>
+<span class="linenos">72</span>                <span class="n">stk</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+<span class="linenos">73</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">74</span>                <span class="k">if</span> <span class="p">(</span><span class="n">sum</span><span class="o">==</span><span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">75</span>                    <span class="n">res</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">76</span>                <span class="p">}</span>
+<span class="linenos">77</span>                <span class="k">while</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">stk</span><span class="p">.</span><span class="na">peek</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">78</span>                    <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">79</span>                    <span class="n">sum</span><span class="o">-=</span><span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">80</span>                <span class="p">}</span>
+<span class="linenos">81</span>                <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">82</span>                    <span class="kt">int</span> <span class="n">posN</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="linenos">83</span>                    <span class="n">sum</span><span class="o">-=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">posN</span><span class="p">);</span>
+<span class="linenos">84</span>                    <span class="n">stk</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="o">-</span><span class="n">posN</span><span class="p">);</span>
+<span class="linenos">85</span>                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">86</span>                    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">87</span>                <span class="p">}</span>
+<span class="linenos">88</span>            <span class="p">}</span>
+<span class="linenos">89</span>        <span class="p">}</span>
+<span class="linenos">90</span>    <span class="p">}</span>
+<span class="linenos">91</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Recursive solution is much more intuitive and easier to understand. It is always a trade-off between space vs. time and simplicity vs. minimizing overhead</p></li>
+<li><p>I should not overlook the beauty of recursion.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(2^n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n=numbers.length</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="question-103">
+<h3>Question 103: 네트워크<a class="headerlink" href="#question-103" title="Permalink to this headline"></a></h3>
+<p>네트워크란 컴퓨터 상호 간에 정보를 교환할 수 있도록 연결된 형태를 의미합니다. 예를 들어, 컴퓨터 A와 컴퓨터 B가 직접적으로 연결되어있고, 컴퓨터 B와 컴퓨터 C가 직접적으로 연결되어 있을 때 컴퓨터 A와 컴퓨터 C도 간접적으로 연결되어 정보를 교환할 수 있습니다. 따라서 컴퓨터 A, B, C는 모두 같은 네트워크 상에 있다고 할 수 있습니다.</p>
+<p>컴퓨터의 개수 n, 연결에 대한 정보가 담긴 2차원 배열 computers가 매개변수로 주어질 때, 네트워크의 개수를 return 하도록 solution 함수를 작성하시오.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>컴퓨터의 개수 n은 1 이상 200 이하인 자연수입니다.</p></li>
+<li><p>각 컴퓨터는 0부터 n-1인 정수로 표현합니다.</p></li>
+<li><p>i번 컴퓨터와 j번 컴퓨터가 연결되어 있으면 computers[i][j]를 1로 표현합니다.</p></li>
+<li><p>computer[i][i]는 항상 1입니다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">computers</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 3</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 4</span>        <span class="kt">boolean</span><span class="o">[]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 5</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>                <span class="n">res</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos"> 8</span>                <span class="k">this</span><span class="p">.</span><span class="na">dfs</span><span class="p">(</span><span class="n">computers</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="linenos"> 9</span>            <span class="p">}</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">computers</span><span class="p">,</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">visited</span><span class="p">,</span> <span class="kt">int</span> <span class="n">compNum</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">15</span>        <span class="n">visited</span><span class="o">[</span><span class="n">compNum</span><span class="o">]=</span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">16</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">computers</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>            <span class="k">if</span> <span class="p">(</span><span class="n">computers</span><span class="o">[</span><span class="n">compNum</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">i</span><span class="o">]==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// connected &amp; unvisited</span>
+<span class="linenos">18</span>                <span class="k">this</span><span class="p">.</span><span class="na">dfs</span><span class="p">(</span><span class="n">computers</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">19</span>            <span class="p">}</span>
+<span class="linenos">20</span>        <span class="p">}</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
