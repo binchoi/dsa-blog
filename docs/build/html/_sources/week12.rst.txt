@@ -359,3 +359,96 @@ My solution:
             }
         }
     }
+
+Day 56 [08 May]
+================
+Question 104: 단어 변환
+------------------------------------------------
+두 개의 단어 begin, target과 단어의 집합 words가 있습니다. 아래와 같은 규칙을 이용하여 begin에서 target으로 변환하는 가장 짧은 변환 과정을 찾으려고 합니다.
+
+1. 한 번에 한 개의 알파벳만 바꿀 수 있습니다.
+2. words에 있는 단어로만 변환할 수 있습니다.
+
+예를 들어 begin이 "hit", target가 "cog", words가 ["hot","dot","dog","lot","log","cog"]라면 "hit" -> "hot" -> "dot" -> "dog" -> "cog"와 같이 4단계를 거쳐 변환할 수 있습니다.
+
+두 개의 단어 begin, target과 단어의 집합 words가 매개변수로 주어질 때, 최소 몇 단계의 과정을 거쳐 begin을 target으로 변환할 수 있는지 return 하도록 solution 함수를 작성해주세요.
+
+제한사항
+ * 각 단어는 알파벳 소문자로만 이루어져 있습니다.
+ * 각 단어의 길이는 3 이상 10 이하이며 모든 단어의 길이는 같습니다.
+ * words에는 3개 이상 50개 이하의 단어가 있으며 중복되는 단어는 없습니다.
+ * begin과 target은 같지 않습니다.
+ * 변환할 수 없는 경우에는 0를 return 합니다.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos: 
+
+    import java.util.*;
+    import java.util.stream.*;
+
+    class Solution {
+
+        public int solution(String begin, String target, String[] words) {
+            int res = this.helper(begin, target, new HashSet<String>(), words);
+            if (res>=words.length+1) return 0;
+            return res;
+        }
+        
+        private int helper(String curr, String target, HashSet<String> seen, String[] words) {
+            if (curr.equals(target)) {
+                return seen.size();           
+            }
+            String[] options = this.getOptions(curr, words, seen);
+            int best = words.length+1;
+            for (String o : options) {
+                seen.add(o);
+                best = Math.min(best, this.helper(o, target, new HashSet<String>(seen), words));
+                seen.remove(o);
+            }
+            return best;
+        }
+        
+        private String[] getOptions(String curr, String[] words, HashSet<String> seen) {
+            return Arrays.stream(words).filter(w -> this.diffByOneChar(curr,w) && !seen.contains(w)).toArray(String[]::new); 
+        }
+        
+        private boolean diffByOneChar(String w1, String w2) {
+            int diff = 0;
+            for (int i=0; i<w1.length(); i++) {
+                if (w1.charAt(i)!=w2.charAt(i)) diff++;
+            }
+            return (w1.length()==w2.length() && diff==1);
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * I got stuck for a long time because of a small bug in the helper method diffByOneChar... I wonder what is the best way to prevent
+   this kind of mistake in real coding tests. How can I test the helper functions during interviews?
+ * **Time Complexity**: ``O(n!)`` where ``n=words.length``. 
+ * **Space Complexity**: ``O(n)``
+
+
+Question 105: 나머지가 1이 되는 수 찾기
+------------------------------------------------
+자연수 n이 매개변수로 주어집니다. n을 x로 나눈 나머지가 1이 되도록 하는 가장 작은 자연수 x를 return 하도록 solution 함수를 완성해주세요. 답이 항상 존재함은 증명될 수 있습니다.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos: 
+    
+    class Solution {
+        public int solution(int n) {
+            for (int i=1; i<n; i++){
+                if (n%i==1) return i;
+            }
+            return n-1;
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Level 1 simple question
+ * **Time Complexity**: ``O(n)``
+ * **Space Complexity**: ``O(1)``
