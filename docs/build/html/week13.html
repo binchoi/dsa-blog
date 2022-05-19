@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; DSABlog 1.0 documentation</title>
+  <title>Week 13 [18-25 May 2022] &mdash; DSABlog 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,10 +16,10 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="My Java Toolbox" href="java-toolbox.html" />
+    <link rel="prev" title="Week 12 [02-09 May 2022]" href="week12.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,7 +30,7 @@
             <a href="index.html" class="icon icon-home"> DSABlog
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -38,7 +38,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">daily exercises</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1 [13-17 Oct 2021]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="week1.html#day-1-13-oct">Day 1 [13 Oct]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="week1.html#question-1-two-sum">Question 1: Two Sum</a></li>
@@ -360,9 +360,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="week13.html">Week 13 [18-25 May 2022]</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="week13.html#day-57-18-may">Day 57 [18 May]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="week13.html#question-106">Question 106: 후보키</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 13 [18-25 May 2022]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#day-57-18-may">Day 57 [18 May]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-106">Question 106: 후보키</a></li>
 </ul>
 </li>
 </ul>
@@ -559,7 +559,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Search</li>
+      <li>Week 13 [18-25 May 2022]</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -568,22 +568,189 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search functionality.
-    </p>
-  </div>
-  </noscript>
+  <section id="week-13-18-25-may-2022">
+<h1>Week 13 [18-25 May 2022]<a class="headerlink" href="#week-13-18-25-may-2022" title="Permalink to this headline"></a></h1>
+<section id="day-57-18-may">
+<h2>Day 57 [18 May]<a class="headerlink" href="#day-57-18-may" title="Permalink to this headline"></a></h2>
+<section id="question-106">
+<h3>Question 106: 후보키<a class="headerlink" href="#question-106" title="Permalink to this headline"></a></h3>
+<p>프렌즈대학교 컴퓨터공학과 조교인 제이지는 네오 학과장님의 지시로, 학생들의 인적사항을 정리하는 업무를 담당하게 되었다.</p>
+<p>그의 학부 시절 프로그래밍 경험을 되살려, 모든 인적사항을 데이터베이스에 넣기로 하였고, 이를 위해 정리를 하던 중에 후보키(Candidate Key)에 대한 고민이 필요하게 되었다.</p>
+<p>후보키에 대한 내용이 잘 기억나지 않던 제이지는, 정확한 내용을 파악하기 위해 데이터베이스 관련 서적을 확인하여 아래와 같은 내용을 확인하였다.</p>
+<p>관계 데이터베이스에서 릴레이션(Relation)의 튜플(Tuple)을 유일하게 식별할 수 있는 속성(Attribute) 또는 속성의 집합 중, 다음 두 성질을 만족하는 것을 후보 키(Candidate Key)라고 한다.
+유일성(uniqueness) : 릴레이션에 있는 모든 튜플에 대해 유일하게 식별되어야 한다.
+최소성(minimality) : 유일성을 가진 키를 구성하는 속성(Attribute) 중 하나라도 제외하는 경우 유일성이 깨지는 것을 의미한다. 즉, 릴레이션의 모든 튜플을 유일하게 식별하는 데 꼭 필요한 속성들로만 구성되어야 한다.
+제이지를 위해, 아래와 같은 학생들의 인적사항이 주어졌을 때, 후보 키의 최대 개수를 구하라.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>relation은 2차원 문자열 배열이다.</p></li>
+<li><p>relation의 컬럼(column)의 길이는 1 이상 8 이하이며, 각각의 컬럼은 릴레이션의 속성을 나타낸다.</p></li>
+<li><p>relation의 로우(row)의 길이는 1 이상 20 이하이며, 각각의 로우는 릴레이션의 튜플을 나타낸다.</p></li>
+<li><p>relation의 모든 문자열의 길이는 1 이상 8 이하이며, 알파벳 소문자와 숫자로만 이루어져 있다.</p></li>
+<li><p>relation의 모든 튜플은 유일하게 식별 가능하다.(즉, 중복되는 튜플은 없다.)</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[][]</span> <span class="n">relation</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">found</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos"> 8</span>        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">relation</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="p">.</span><span class="na">boxed</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toSet</span><span class="p">());</span>
+<span class="linenos">10</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">size</span><span class="o">&lt;=</span><span class="n">relation</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">size</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">11</span>            <span class="c1">// System.out.println(&quot;POOL:&quot; + pool);</span>
+<span class="linenos">12</span>            <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">candidates</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findCombinations</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">pool</span><span class="p">),</span> <span class="n">size</span><span class="p">);</span>
+<span class="linenos">13</span>            <span class="k">for</span> <span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">candKey</span> <span class="p">:</span> <span class="n">candidates</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>                <span class="c1">// System.out.println(&quot;&gt;&quot;+candKey);</span>
+<span class="linenos">15</span>                <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">isValidKey</span><span class="p">(</span><span class="n">candKey</span><span class="p">,</span> <span class="n">relation</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">isMinimalKey</span><span class="p">(</span><span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">candKey</span><span class="p">),</span> <span class="n">found</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">16</span>                    <span class="n">res</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">17</span>                    <span class="n">found</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">candKey</span><span class="p">));</span>
+<span class="linenos">18</span>                <span class="p">}</span>
+<span class="linenos">19</span>            <span class="p">}</span>
+<span class="linenos">20</span>        <span class="p">}</span>
+<span class="linenos">21</span>        <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">22</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">23</span>    <span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isMinimalKey</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">candKey</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">found</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">26</span>        <span class="k">for</span> <span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">key</span> <span class="p">:</span> <span class="n">found</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">27</span>            <span class="k">if</span> <span class="p">(</span><span class="n">candKey</span><span class="p">.</span><span class="na">containsAll</span><span class="p">(</span><span class="n">key</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">28</span>                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">29</span>            <span class="p">}</span>
+<span class="linenos">30</span>        <span class="p">}</span>
+<span class="linenos">31</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">32</span>    <span class="p">}</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidKey</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">attributeIdxs</span><span class="p">,</span> <span class="n">String</span><span class="o">[][]</span> <span class="n">relation</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">35</span>        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">seen</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">36</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArr</span> <span class="p">:</span> <span class="n">relation</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">37</span>            <span class="n">StringBuilder</span> <span class="n">cand</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos">38</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">idx</span> <span class="p">:</span> <span class="n">attributeIdxs</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">39</span>                <span class="n">cand</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">stringArr</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">40</span>            <span class="p">}</span>
+<span class="linenos">41</span>            <span class="n">String</span> <span class="n">candStr</span> <span class="o">=</span> <span class="n">cand</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">42</span>            <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">candStr</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">43</span>                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">44</span>            <span class="p">}</span>
+<span class="linenos">45</span>            <span class="n">seen</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">candStr</span><span class="p">);</span>
+<span class="linenos">46</span>        <span class="p">}</span>
+<span class="linenos">47</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">48</span>    <span class="p">}</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span>    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">findCombinations</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">pool</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">51</span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">52</span>        <span class="k">this</span><span class="p">.</span><span class="na">backtrack</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">pool</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="linenos">53</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">54</span>    <span class="p">}</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">pool</span><span class="p">,</span> <span class="kt">int</span> <span class="n">remaining</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">57</span>        <span class="k">if</span> <span class="p">(</span><span class="n">remaining</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="linenos">58</span>        <span class="k">if</span> <span class="p">(</span><span class="n">remaining</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">59</span>            <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
+<span class="linenos">60</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">61</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">pool</span><span class="p">.</span><span class="na">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">62</span>                <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">pool</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="linenos">63</span>                <span class="k">this</span><span class="p">.</span><span class="na">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">remaining</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">64</span>                <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">65</span>            <span class="p">}</span>
+<span class="linenos">66</span>        <span class="p">}</span>
+<span class="linenos">67</span>    <span class="p">}</span>
+<span class="linenos">68</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>My initial (close) solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">String</span><span class="o">[][]</span> <span class="n">relation</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 7</span>        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">relation</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+<span class="linenos"> 8</span>            <span class="p">.</span><span class="na">boxed</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toSet</span><span class="p">());</span>
+<span class="linenos"> 9</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">size</span><span class="o">&lt;=</span><span class="n">relation</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">size</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">10</span>            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;POOL:&quot;</span> <span class="o">+</span> <span class="n">pool</span><span class="p">);</span>
+<span class="linenos">11</span>            <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">candidates</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">findCombinations</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">pool</span><span class="p">),</span> <span class="n">size</span><span class="p">);</span>
+<span class="linenos">12</span>            <span class="k">for</span> <span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">candKey</span> <span class="p">:</span> <span class="n">candidates</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="o">+</span><span class="n">candKey</span><span class="p">);</span>
+<span class="linenos">14</span>                <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">isValidKey</span><span class="p">(</span><span class="n">candKey</span><span class="p">,</span> <span class="n">relation</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">15</span>                    <span class="n">res</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">16</span>                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">attributeIdx</span> <span class="p">:</span> <span class="n">candKey</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">17</span>                        <span class="k">if</span> <span class="p">(</span><span class="n">pool</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">attributeIdx</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">18</span>                            <span class="n">pool</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">attributeIdx</span><span class="p">);</span>
+<span class="linenos">19</span>                        <span class="p">}</span>
+<span class="linenos">20</span>                    <span class="p">}</span>
+<span class="linenos">21</span>                <span class="p">}</span>
+<span class="linenos">22</span>            <span class="p">}</span>
+<span class="linenos">23</span>        <span class="p">}</span>
+<span class="linenos">24</span>        <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">25</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">26</span>    <span class="p">}</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>    <span class="c1">// System.out.println(&quot;result is : &quot; + this.isValidKey(new ArrayList&lt;&gt;(Arrays.asList(1,2)), relation));</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidKey</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">attributeIdxs</span><span class="p">,</span> <span class="n">String</span><span class="o">[][]</span> <span class="n">relation</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">31</span>        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">seen</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">32</span>        <span class="k">for</span> <span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">stringArr</span> <span class="p">:</span> <span class="n">relation</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">33</span>            <span class="n">StringBuilder</span> <span class="n">cand</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos">34</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">idx</span> <span class="p">:</span> <span class="n">attributeIdxs</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">35</span>                <span class="n">cand</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">stringArr</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">36</span>            <span class="p">}</span>
+<span class="linenos">37</span>            <span class="n">String</span> <span class="n">candStr</span> <span class="o">=</span> <span class="n">cand</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">38</span>            <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">candStr</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">39</span>                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="linenos">40</span>            <span class="p">}</span>
+<span class="linenos">41</span>            <span class="n">seen</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">candStr</span><span class="p">);</span>
+<span class="linenos">42</span>        <span class="p">}</span>
+<span class="linenos">43</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">44</span>    <span class="p">}</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="nf">findCombinations</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">pool</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">47</span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos">48</span>        <span class="k">this</span><span class="p">.</span><span class="na">backtrack</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(),</span> <span class="n">pool</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="linenos">49</span>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="linenos">50</span>    <span class="p">}</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">pool</span><span class="p">,</span> <span class="kt">int</span> <span class="n">remaining</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">53</span>        <span class="k">if</span> <span class="p">(</span><span class="n">remaining</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="linenos">54</span>        <span class="k">if</span> <span class="p">(</span><span class="n">remaining</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">55</span>            <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">tempList</span><span class="p">));</span>
+<span class="linenos">56</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">57</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">pool</span><span class="p">.</span><span class="na">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">58</span>                <span class="n">tempList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">pool</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="linenos">59</span>                <span class="k">this</span><span class="p">.</span><span class="na">backtrack</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tempList</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">remaining</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">60</span>                <span class="n">tempList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tempList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">61</span>            <span class="p">}</span>
+<span class="linenos">62</span>        <span class="p">}</span>
+<span class="linenos">63</span>    <span class="p">}</span>
+<span class="linenos">64</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I made a critical error – an inconsiderate assumption – which made me miss the full mark on this question. I assumed that once an attribute has been used in a key once, it can no longer appear in future keys. However, this is an incorrect assumption as the following is possible: [2,3], [3,4], [2,4,5].</p></li>
+<li><p>Dismissing these possibilities without thoughtful consideration led to my confusion and struggle</p></li>
+<li><p>I also took much longer than I should have for this question… How could I have increased my speed (other than regular practice, that is)?</p></li>
+<li><p>Using the backtracking standard structure was helpful in implementing the combinations helper function.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">&gt;O(m*n^2)</span></code> (perhaps <code class="docutils literal notranslate"><span class="pre">&gt;O(m*(n!)^2)</span></code>) where <code class="docutils literal notranslate"><span class="pre">n=relation[0].length()</span></code>.</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+</section>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="week12.html" class="btn btn-neutral float-left" title="Week 12 [02-09 May 2022]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="java-toolbox.html" class="btn btn-neutral float-right" title="My Java Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
@@ -605,14 +772,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-  <script>
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>
