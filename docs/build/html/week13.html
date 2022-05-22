@@ -363,6 +363,12 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Week 13 [18-25 May 2022]</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#day-57-18-may">Day 57 [18 May]</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#question-106">Question 106: 후보키</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-107-random-testdome-question">Question 107: Random TestDome Question</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-58-19-may">Day 58 [19 May]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#question-108">Question 108: 땅따먹기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#question-109">Question 109: 카카오 프렌즈 컬러링북</a></li>
 </ul>
 </li>
 </ul>
@@ -740,6 +746,145 @@
 </ul>
 </dd>
 </dl>
+</section>
+<section id="question-107-random-testdome-question">
+<h3>Question 107: Random TestDome Question<a class="headerlink" href="#question-107-random-testdome-question" title="Permalink to this headline"></a></h3>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserInput</span> <span class="p">{</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">TextInput</span> <span class="p">{</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>        <span class="kd">private</span> <span class="n">StringBuilder</span> <span class="n">inputBuffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>        <span class="kd">protected</span> <span class="n">StringBuilder</span> <span class="nf">getInputBuffer</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="k">return</span> <span class="n">inputBuffer</span><span class="p">;</span>
+<span class="linenos"> 9</span>        <span class="p">}</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getValue</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">12</span>            <span class="k">return</span> <span class="n">inputBuffer</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos">13</span>        <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>            <span class="n">inputBuffer</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="linenos">17</span>        <span class="p">}</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">NumericInput</span> <span class="kd">extends</span> <span class="n">TextInput</span> <span class="p">{</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="nd">@Override</span>
+<span class="linenos">23</span>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">24</span>            <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isDigit</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos">25</span>                <span class="n">getInputBuffer</span><span class="p">().</span><span class="na">append</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="linenos">26</span>            <span class="p">}</span>
+<span class="linenos">27</span>        <span class="p">}</span>
+<span class="linenos">28</span>    <span class="p">}</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">31</span>        <span class="n">TextInput</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NumericInput</span><span class="p">();</span>
+<span class="linenos">32</span>        <span class="n">input</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="sc">&#39;1&#39;</span><span class="p">);</span>
+<span class="linenos">33</span>        <span class="n">input</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
+<span class="linenos">34</span>        <span class="n">input</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+<span class="linenos">35</span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<span class="linenos">36</span>    <span class="p">}</span>
+<span class="linenos">37</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="day-58-19-may">
+<h2>Day 58 [19 May]<a class="headerlink" href="#day-58-19-may" title="Permalink to this headline"></a></h2>
+<section id="question-108">
+<h3>Question 108: 땅따먹기<a class="headerlink" href="#question-108" title="Permalink to this headline"></a></h3>
+<p>땅따먹기 게임을 하려고 합니다. 땅따먹기 게임의 땅(land)은 총 N행 4열로 이루어져 있고, 모든 칸에는 점수가 쓰여 있습니다. 1행부터 땅을 밟으며 한 행씩 내려올 때, 각 행의 4칸 중 한 칸만 밟으면서 내려와야 합니다. 단, 땅따먹기 게임에는 한 행씩 내려올 때, 같은 열을 연속해서 밟을 수 없는 특수 규칙이 있습니다.</p>
+<dl class="simple">
+<dt>제한사항</dt><dd><ul class="simple">
+<li><p>행의 개수 N : 100,000 이하의 자연수</p></li>
+<li><p>열의 개수는 4개이고, 땅(land)은 2차원 배열로 주어집니다.</p></li>
+<li><p>점수 : 100 이하의 자연수</p></li>
+</ul>
+</dd>
+</dl>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 4</span>    <span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">land</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 5</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">land</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">r</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>            <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">+=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="p">),</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 7</span>            <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">+=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="p">),</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 8</span>            <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">+=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">),</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos"> 9</span>            <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span> <span class="o">+=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">),</span> <span class="n">land</span><span class="o">[</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos">10</span>        <span class="p">}</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">land</span><span class="o">[</span><span class="n">land</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">).</span><span class="na">max</span><span class="p">().</span><span class="na">getAsInt</span><span class="p">();</span>
+<span class="linenos">12</span>    <span class="p">}</span>
+<span class="linenos">13</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="question-109">
+<h3>Question 109: 카카오 프렌즈 컬러링북<a class="headerlink" href="#question-109" title="Permalink to this headline"></a></h3>
+<p>출판사의 편집자인 어피치는 네오에게 컬러링북에 들어갈 원화를 그려달라고 부탁하여 여러 장의 그림을 받았다. 여러 장의 그림을 난이도 순으로 컬러링북에 넣고 싶었던 어피치는 영역이 많으면 색칠하기가 까다로워 어려워진다는 사실을 발견하고 그림의 난이도를 영역의 수로 정의하였다. (영역이란 상하좌우로 연결된 같은 색상의 공간을 의미한다.)
+그림에 몇 개의 영역이 있는지와 가장 큰 영역의 넓이는 얼마인지 계산하는 프로그램을 작성해보자.</p>
+<dl class="simple">
+<dt>입력 형식</dt><dd><ul class="simple">
+<li><p>입력은 그림의 크기를 나타내는 m과 n, 그리고 그림을 나타내는 m × n 크기의 2차원 배열 picture로 주어진다. 제한조건은 아래와 같다.</p></li>
+<li><p>1 &lt;= m, n &lt;= 100</p></li>
+<li><p>picture의 원소는 0 이상 2^31 - 1 이하의 임의의 값이다.</p></li>
+<li><p>picture의 원소 중 값이 0인 경우는 색칠하지 않는 영역을 뜻한다.</p></li>
+</ul>
+</dd>
+</dl>
+<p>출력 형식
+리턴 타입은 원소가 두 개인 정수 배열이다. 그림에 몇 개의 영역이 있는지와 가장 큰 영역은 몇 칸으로 이루어져 있는지를 리턴한다.</p>
+<p>My solution:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">visited</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">picture</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>        <span class="kt">int</span> <span class="n">numberOfArea</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 9</span>        <span class="kt">int</span> <span class="n">maxSizeOfOneArea</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">12</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">13</span>                <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]!=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>                    <span class="n">numberOfArea</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">15</span>                    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">picture</span><span class="p">);</span>
+<span class="linenos">16</span>                    <span class="n">maxSizeOfOneArea</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">maxSizeOfOneArea</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+<span class="linenos">17</span>                <span class="p">}</span>
+<span class="linenos">18</span>            <span class="p">}</span>
+<span class="linenos">19</span>        <span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos">22</span>        <span class="n">answer</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">numberOfArea</span><span class="p">;</span>
+<span class="linenos">23</span>        <span class="n">answer</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">maxSizeOfOneArea</span><span class="p">;</span>
+<span class="linenos">24</span>        <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="linenos">25</span>    <span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">picture</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">28</span>        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">29</span>        <span class="c1">//color own square</span>
+<span class="linenos">30</span>        <span class="n">visited</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">31</span>        <span class="c1">//if up exists</span>
+<span class="linenos">32</span>        <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">visited</span><span class="o">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">x</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">33</span>            <span class="n">size</span> <span class="o">+=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">picture</span><span class="p">);</span>
+<span class="linenos">34</span>        <span class="p">}</span>
+<span class="linenos">35</span>        <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">picture</span><span class="p">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">visited</span><span class="o">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">x</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">36</span>            <span class="n">size</span> <span class="o">+=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">picture</span><span class="p">);</span>
+<span class="linenos">37</span>        <span class="p">}</span>
+<span class="linenos">38</span>        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">visited</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">]==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">39</span>            <span class="n">size</span> <span class="o">+=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">picture</span><span class="p">);</span>
+<span class="linenos">40</span>        <span class="p">}</span>
+<span class="linenos">41</span>        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">picture</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">visited</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="o">]==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">]==</span><span class="n">picture</span><span class="o">[</span><span class="n">y</span><span class="o">][</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">42</span>            <span class="n">size</span> <span class="o">+=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">picture</span><span class="p">);</span>
+<span class="linenos">43</span>        <span class="p">}</span>
+<span class="linenos">44</span>        <span class="k">return</span> <span class="n">size</span><span class="p">;</span>
+<span class="linenos">45</span>    <span class="p">}</span>
+<span class="linenos">46</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

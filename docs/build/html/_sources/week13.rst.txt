@@ -177,3 +177,146 @@ Remarks and Complexity Analysis:
  * **Time Complexity**: ``>O(m*n^2)`` (perhaps ``>O(m*(n!)^2)``) where ``n=relation[0].length()``. 
  * **Space Complexity**: ``O(n^2)``
 
+Question 107: Random TestDome Question
+------------------------------------------------
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+    
+    public class UserInput {
+    
+        public static class TextInput {
+            
+            private StringBuilder inputBuffer = new StringBuilder();
+            
+            protected StringBuilder getInputBuffer() {
+                return inputBuffer;
+            }
+            
+            public String getValue() {
+                return inputBuffer.toString();
+            }
+            
+            public void add(char c) {
+                inputBuffer.append(c);
+            }
+        }
+
+        public static class NumericInput extends TextInput {
+                
+            @Override
+            public void add(char c) {
+                if (Character.isDigit(c)) {
+                    getInputBuffer().append(c);
+                }
+            }
+        }
+
+        public static void main(String[] args) {
+            TextInput input = new NumericInput();
+            input.add('1');
+            input.add('a');
+            input.add('0');
+            System.out.println(input.getValue());
+        }
+    }
+
+Day 58 [19 May]
+================
+Question 108: 땅따먹기
+------------------------------------------------
+
+땅따먹기 게임을 하려고 합니다. 땅따먹기 게임의 땅(land)은 총 N행 4열로 이루어져 있고, 모든 칸에는 점수가 쓰여 있습니다. 1행부터 땅을 밟으며 한 행씩 내려올 때, 각 행의 4칸 중 한 칸만 밟으면서 내려와야 합니다. 단, 땅따먹기 게임에는 한 행씩 내려올 때, 같은 열을 연속해서 밟을 수 없는 특수 규칙이 있습니다.
+
+제한사항
+ * 행의 개수 N : 100,000 이하의 자연수
+ * 열의 개수는 4개이고, 땅(land)은 2차원 배열로 주어집니다.
+ * 점수 : 100 이하의 자연수
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+    
+    import java.util.Arrays;
+
+    class Solution {
+        int solution(int[][] land) {
+            for (int r = 1; r < land.length; r++) {
+                land[r][0] += Math.max(Math.max(land[r-1][1], land[r-1][2]), land[r-1][3]);
+                land[r][1] += Math.max(Math.max(land[r-1][0], land[r-1][2]), land[r-1][3]);
+                land[r][2] += Math.max(Math.max(land[r-1][0], land[r-1][1]), land[r-1][3]);
+                land[r][3] += Math.max(Math.max(land[r-1][0], land[r-1][1]), land[r-1][2]);
+            }
+            return Arrays.stream(land[land.length-1]).max().getAsInt();
+        }
+    }
+
+Question 109: 카카오 프렌즈 컬러링북
+------------------------------------------------
+
+출판사의 편집자인 어피치는 네오에게 컬러링북에 들어갈 원화를 그려달라고 부탁하여 여러 장의 그림을 받았다. 여러 장의 그림을 난이도 순으로 컬러링북에 넣고 싶었던 어피치는 영역이 많으면 색칠하기가 까다로워 어려워진다는 사실을 발견하고 그림의 난이도를 영역의 수로 정의하였다. (영역이란 상하좌우로 연결된 같은 색상의 공간을 의미한다.)
+그림에 몇 개의 영역이 있는지와 가장 큰 영역의 넓이는 얼마인지 계산하는 프로그램을 작성해보자.
+
+입력 형식
+ * 입력은 그림의 크기를 나타내는 m과 n, 그리고 그림을 나타내는 m × n 크기의 2차원 배열 picture로 주어진다. 제한조건은 아래와 같다.
+ * 1 <= m, n <= 100
+ * picture의 원소는 0 이상 2^31 - 1 이하의 임의의 값이다.
+ * picture의 원소 중 값이 0인 경우는 색칠하지 않는 영역을 뜻한다.
+
+출력 형식
+리턴 타입은 원소가 두 개인 정수 배열이다. 그림에 몇 개의 영역이 있는지와 가장 큰 영역은 몇 칸으로 이루어져 있는지를 리턴한다.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+    
+    class Solution {
+        
+        private int[][] visited;
+        
+        public int[] solution(int m, int n, int[][] picture) {
+            visited = new int[m][n];
+            
+            int numberOfArea = 0;
+            int maxSizeOfOneArea = 0;
+
+            for (int y = 0; y < m; y++) {
+                for (int x = 0; x < n; x++) {
+                    if (visited[y][x]==0 && picture[y][x]!=0) {
+                        numberOfArea++;
+                        int size = dfs(y, x, picture);
+                        maxSizeOfOneArea = Math.max(maxSizeOfOneArea, size);
+                    }
+                }
+            }
+            
+            int[] answer = new int[2];
+            answer[0] = numberOfArea;
+            answer[1] = maxSizeOfOneArea;
+            return answer;
+        }
+        
+        private int dfs(int y, int x, int[][] picture) {
+            int size = 1; 
+            //color own square
+            visited[y][x] = 1;
+            //if up exists
+            if (y-1>=0 && visited[y-1][x]==0 && picture[y][x]==picture[y-1][x]) {
+                size += dfs(y-1, x, picture);
+            }
+            if (y+1<picture.length && visited[y+1][x]==0 && picture[y][x]==picture[y+1][x]) {
+                size += dfs(y+1, x, picture);
+            }
+            if (x-1>=0 && visited[y][x-1]==0 && picture[y][x]==picture[y][x-1]) {
+                size += dfs(y, x-1, picture);
+            }
+            if (x+1<picture[0].length && visited[y][x+1]==0 && picture[y][x]==picture[y][x+1]) {
+                size += dfs(y, x+1, picture);
+            }
+            return size;  
+        }
+    }
