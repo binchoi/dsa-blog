@@ -8,7 +8,7 @@ Data Structures and Algorithm Blog
 
 **AIM**: to record my learning process of data structures and algorithms 
 
-[**i.e**: my path to becoming ALGOAT 🐐]
+[**i.e**: my path to becoming an ALGOAT 🐐]
 
 .. toctree::
    :maxdepth: 1

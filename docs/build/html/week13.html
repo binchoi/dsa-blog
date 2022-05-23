@@ -789,6 +789,12 @@
 <span class="linenos">37</span><span class="p">}</span>
 </pre></div>
 </div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Good practice of OOP!</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 <section id="day-58-19-may">
@@ -820,6 +826,15 @@
 <span class="linenos">13</span><span class="p">}</span>
 </pre></div>
 </div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>I had the right approach initially (looking up, rather than looking down) but lacked the ability to find pattern and divide the question into smaller, digestable bits. As a result it took me way longer than it should have</p></li>
+<li><p>Next time, when I am stuck I should consider smaller test cases and solve them by hand with various methods and gradually grow the test cases such that the pattern can evolve</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">land.length</span></code> as <code class="docutils literal notranslate"><span class="pre">m=4</span></code> is fixed – one iteration down the matrix</p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> - we use the provided array input as our main data structure</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section id="question-109">
 <h3>Question 109: 카카오 프렌즈 컬러링북<a class="headerlink" href="#question-109" title="Permalink to this headline"></a></h3>
@@ -834,8 +849,8 @@
 </ul>
 </dd>
 </dl>
-<p>출력 형식
-리턴 타입은 원소가 두 개인 정수 배열이다. 그림에 몇 개의 영역이 있는지와 가장 큰 영역은 몇 칸으로 이루어져 있는지를 리턴한다.</p>
+<p>출력 형식</p>
+<p>리턴 타입은 원소가 두 개인 정수 배열이다. 그림에 몇 개의 영역이 있는지와 가장 큰 영역은 몇 칸으로 이루어져 있는지를 리턴한다.</p>
 <p>My solution:</p>
 <div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="linenos"> 2</span>
@@ -885,6 +900,15 @@
 <span class="linenos">46</span><span class="p">}</span>
 </pre></div>
 </div>
+<dl class="simple">
+<dt>Remarks and Complexity Analysis:</dt><dd><ul class="simple">
+<li><p>Solved this question faster than expected (which made me very glad!)</p></li>
+<li><p>Standard dfs with visited matrix and iterating throw all cells sequentially. Pretty simple question compared to leetcode dfs problems.</p></li>
+<li><p><strong>Time Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(m*n)</span></code></p></li>
+<li><p><strong>Space Complexity</strong>: <code class="docutils literal notranslate"><span class="pre">O(m*n)</span></code> for visited table</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 </section>
 </section>

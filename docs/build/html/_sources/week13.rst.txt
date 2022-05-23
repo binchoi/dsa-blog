@@ -223,6 +223,9 @@ My solution:
         }
     }
 
+Remarks and Complexity Analysis: 
+ * Good practice of OOP!
+
 Day 58 [19 May]
 ================
 Question 108: 땅따먹기
@@ -254,6 +257,12 @@ My solution:
         }
     }
 
+Remarks and Complexity Analysis: 
+ * I had the right approach initially (looking up, rather than looking down) but lacked the ability to find pattern and divide the question into smaller, digestable bits. As a result it took me way longer than it should have
+ * Next time, when I am stuck I should consider smaller test cases and solve them by hand with various methods and gradually grow the test cases such that the pattern can evolve
+ * **Time Complexity**: ``O(n)`` where ``n = land.length`` as ``m=4`` is fixed -- one iteration down the matrix
+ * **Space Complexity**: ``O(1)`` - we use the provided array input as our main data structure
+
 Question 109: 카카오 프렌즈 컬러링북
 ------------------------------------------------
 
@@ -267,6 +276,7 @@ Question 109: 카카오 프렌즈 컬러링북
  * picture의 원소 중 값이 0인 경우는 색칠하지 않는 영역을 뜻한다.
 
 출력 형식
+
 리턴 타입은 원소가 두 개인 정수 배열이다. 그림에 몇 개의 영역이 있는지와 가장 큰 영역은 몇 칸으로 이루어져 있는지를 리턴한다.
 
 My solution: 
@@ -320,3 +330,10 @@ My solution:
             return size;  
         }
     }
+
+Remarks and Complexity Analysis: 
+ * Solved this question faster than expected (which made me very glad!)
+ * Standard dfs with visited matrix and iterating throw all cells sequentially. Pretty simple question compared to leetcode dfs problems. 
+ * **Time Complexity**: ``O(m*n)``
+ * **Space Complexity**: ``O(m*n)`` for visited table
+
