@@ -337,3 +337,142 @@ Remarks and Complexity Analysis:
  * **Time Complexity**: ``O(m*n)``
  * **Space Complexity**: ``O(m*n)`` for visited table
 
+Day 59 [24 May]
+================
+Question 110: 124 나라의 숫자
+------------------------------------------------
+124 나라가 있습니다. 124 나라에서는 10진법이 아닌 다음과 같은 자신들만의 규칙으로 수를 표현합니다.
+
+124 나라에는 자연수만 존재합니다.
+124 나라에는 모든 수를 표현할 때 1, 2, 4만 사용합니다.
+예를 들어서 124 나라에서 사용하는 숫자는 다음과 같이 변환됩니다.
+
+.. list-table:: 
+    :header-rows: 1
+
+    * - 10진법	
+      - 124 나라	
+      - 10진법	
+      - 124 나라
+    * - 1	
+      - 1	
+      - 6	
+      - 14
+    * - 2	
+      - 2	
+      - 7	
+      - 21
+    * - 3	
+      - 4	
+      - 8	
+      - 22
+    * - 4	
+      - 11	
+      - 9	
+      - 24
+    * - 5	
+      - 12	
+      - 10	
+      - 41
+
+자연수 n이 매개변수로 주어질 때, n을 124 나라에서 사용하는 숫자로 바꾼 값을 return 하도록 solution 함수를 완성해 주세요.
+    
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.HashMap;
+
+    class Solution {
+        public String solution(int n) {
+            int curr = n;
+            StringBuilder res = new StringBuilder();
+            HashMap<Integer, Character> remainderToCode = new HashMap<>();
+            remainderToCode.put(0,'1');
+            remainderToCode.put(1,'2');
+            remainderToCode.put(2,'4');
+            
+            while (curr>0) {
+                res.append(remainderToCode.get((curr-1)%3));
+                curr=(curr-1)/3;
+            }
+            
+            return res.reverse().toString();
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * What a clean, satisfying problem-solving experience! I used pen and paper to quickly notice that it is similar to how we convert
+   decimal to binary by repeated division where the unit is 3 (because there are three possibilities for the value in each place)
+ * So this is actually simply base-3 representation of numbers
+ * I also like how I used the hashtable to simplify my code!
+ * **Time Complexity**: ``O(log_3 n)``
+ * **Space Complexity**: ``O(1)`` 
+
+    
+Question 111: RoutePlanner
+------------------------------------------------
+As a part of the route planner, the routeExists method is used as a quick filter if the destination is reachable, before using more computationally intensive procedures for finding the optimal route.
+
+The roads on the map are rasterized and produce a matrix of boolean values - true if the road is present or false if it is not. The roads in the matrix are connected only if the road is immediately left, right, below or above it.
+
+Finish the routeExists method so that it returns true if the destination is reachable or false if it is not. The fromRow and fromColumn parameters are the starting row and column in the mapMatrix. The toRow and toColumn are the destination row and column in the mapMatrix. The mapMatrix parameter is the above mentioned matrix produced from the map.
+
+My solution: 
+
+.. code-block:: Java
+    :linenos:
+
+    import java.util.*;
+
+    public class RoutePlanner {
+
+        static boolean[][] visited;
+
+        public static boolean routeExists(int fromRow, int fromColumn, int toRow, int toColumn,
+                                        boolean[][] mapMatrix) {
+            if (mapMatrix.length<1) return true;
+            visited = new boolean[mapMatrix.length][mapMatrix[0].length];
+            return routeHelper(fromRow, fromColumn, toRow, toColumn, mapMatrix);
+        }
+
+        public static boolean routeHelper(int fromRow, int fromColumn, int toRow, int toColumn,
+                                        boolean[][] mapMatrix) {
+            visited[fromRow][fromColumn] = true;
+            if (fromRow==toRow && fromColumn==toColumn) return true;
+
+            boolean res = false;
+
+            if (fromRow>0 && mapMatrix[fromRow-1][fromColumn] && !visited[fromRow-1][fromColumn]) {
+                res = res || routeHelper(fromRow-1, fromColumn, toRow, toColumn, mapMatrix);
+            }
+            if (!res && fromRow<mapMatrix.length-1 && mapMatrix[fromRow+1][fromColumn] && !visited[fromRow+1][fromColumn]) {
+                res = res || routeHelper(fromRow+1, fromColumn, toRow, toColumn, mapMatrix);
+            }
+            if (!res && fromColumn>0 && mapMatrix[fromRow][fromColumn-1] && !visited[fromRow][fromColumn-1]) {
+                res = res || routeHelper(fromRow, fromColumn-1, toRow, toColumn, mapMatrix);
+            }
+            if (!res && fromColumn<mapMatrix[0].length-1 && mapMatrix[fromRow][fromColumn+1] && !visited[fromRow][fromColumn+1]) {
+                res = res || routeHelper(fromRow, fromColumn+1, toRow, toColumn, mapMatrix);
+            }
+
+            return res;
+        }
+        
+        public static void main(String[] args) {
+            boolean[][] mapMatrix = {
+                    {true,  false, false},
+                    {true,  true,  false},
+                    {false, true,  true}
+            };
+
+            System.out.println(routeExists(0, 0, 2, 2, mapMatrix));
+        }
+    }
+
+Remarks and Complexity Analysis: 
+ * Pretty easy question! Classic dfs.
+ * **Time Complexity**: ``O(m*n)``
+ * **Space Complexity**: ``O(m*n)`` for visited matrix
