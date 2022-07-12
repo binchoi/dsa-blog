@@ -1,2 +1,3 @@
-# leetcode
-repo for github page LeetCodeDoc
+# DSA Blog
+
+Repo for my Data Structures and Algorithms Blog
