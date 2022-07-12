@@ -27,6 +27,7 @@ Data Structures and Algorithm Blog
    week11
    week12
    week13
+   week14
 
 .. toctree::
    :maxdepth: 1
