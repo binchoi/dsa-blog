@@ -6,9 +6,7 @@
 Data Structures and Algorithm Blog 
 ========================================================
 
-**AIM**: to record my learning process of data structures and algorithms 
-
-[**i.e**: my path to becoming an ALGOAT 🐐]
+I record my journey of learning Data Structures and Algorithms (DSA) by posting in this blog. My primary method of exploring DSA is through problem-solving.
 
 .. toctree::
    :maxdepth: 1
