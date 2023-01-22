@@ -33,7 +33,7 @@ I record my journey of learning Data Structures and Algorithms (DSA) by posting 
    :caption: misc
 
    java-toolbox
-   toolbox
+   python-toolbox
    algosummary
    datastructure
 

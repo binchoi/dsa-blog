@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; DSABlog 1.0 documentation</title>
+  <title>Python Toolbox &mdash; DSABlog 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,8 +16,10 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Useful Algorithms" href="algosummary.html" />
+    <link rel="prev" title="Java Toolbox" href="java-toolbox.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -391,7 +394,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">misc</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="java-toolbox.html">Java Toolbox</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#iterable">Iterable</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="java-toolbox.html#iterator">iterator()</a></li>
@@ -529,17 +532,17 @@
 <li class="toctree-l2"><a class="reference internal" href="java-toolbox.html#comparing-types">Comparing Types</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="python-toolbox.html">Python Toolbox</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="python-toolbox.html#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="python-toolbox.html#dictionary">Dictionary</a></li>
-<li class="toctree-l3"><a class="reference internal" href="python-toolbox.html#list">List</a></li>
-<li class="toctree-l3"><a class="reference internal" href="python-toolbox.html#using-lists-as-stacks">Using Lists as Stacks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="python-toolbox.html#using-lists-as-queues">Using Lists as Queues</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Toolbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-purpose-built-in-containers">General Purpose Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dictionary">Dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list">List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-lists-as-stacks">Using Lists as Stacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-lists-as-queues">Using Lists as Queues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="python-toolbox.html#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="python-toolbox.html#collections">Collections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="python-toolbox.html#counter">Counter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specialized-built-in-containers">Specialized Built-in Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collections">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#counter">Counter</a></li>
 </ul>
 </li>
 </ul>
@@ -583,7 +586,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li>Python Toolbox</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -592,17 +595,206 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="python-toolbox">
+<h1>Python Toolbox<a class="headerlink" href="#python-toolbox" title="Permalink to this headline"></a></h1>
+<section id="general-purpose-built-in-containers">
+<h2>General Purpose Built-in Containers<a class="headerlink" href="#general-purpose-built-in-containers" title="Permalink to this headline"></a></h2>
+<section id="dictionary">
+<h3>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline"></a></h3>
+<p>[From Python Documentation:] Dictionaries are sometimes found in other languages as “associative memories” or “associative arrays”. Unlike sequences,
+which are indexed by a range of numbers, dictionaries are indexed by keys, which can be any <em>immutable type</em>; strings and
+numbers can always be keys. Tuples can be used as keys if they contain only strings, numbers, or tuples; if a tuple
+contains any mutable object either directly or indirectly, it cannot be used as a key. You can’t use lists as keys,
+since lists can be modified in place using index assignments, slice assignments, or methods like <code class="docutils literal notranslate"><span class="pre">append()</span></code> and <code class="docutils literal notranslate"><span class="pre">extend()</span></code>.</p>
+<p>It is best to think of a dictionary as a <em>set of key: value pairs</em>, with the requirement that the keys are unique
+(within one dictionary). A pair of braces creates an empty dictionary: <code class="docutils literal notranslate"><span class="pre">{}</span></code>. Placing a comma-separated list of key:value
+pairs within the braces adds initial key:value pairs to the dictionary; this is also the way dictionaries are written on
+output.</p>
+<p>The main operations on a dictionary are storing a value with some key and extracting the value given the key. It is also
+possible to delete a key:value pair with <code class="docutils literal notranslate"><span class="pre">del</span></code>. If you store using a key that is already in use, the old value associated
+with that key is forgotten. It is an error to extract a value using a non-existent key.</p>
+<p>Performing <code class="docutils literal notranslate"><span class="pre">list(d)</span></code> on a dictionary returns a <strong>list of all the keys</strong> used in the dictionary, in insertion order (if you
+want it sorted, just use <code class="docutils literal notranslate"><span class="pre">sorted(d)</span></code> instead). To check whether a single key is in the dictionary, use the <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># to instantiate (common)</span>
+<span class="linenos"> 2</span><span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s1">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">,</span> <span class="s1">&#39;john&#39;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;cena&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="linenos"> 3</span><span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;sape&#39;</span><span class="p">,</span> <span class="mi">4139</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;guido&#39;</span><span class="p">,</span> <span class="mi">4127</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;jack&#39;</span><span class="p">,</span> <span class="mi">4098</span><span class="p">)])</span>  <span class="c1"># from a sequence of kv pairs</span>
+<span class="linenos"> 4</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>  <span class="c1"># dict comprehension</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1"># to instantiate (variety)</span>
+<span class="linenos"> 7</span><span class="n">a</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">one</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">two</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">three</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="linenos"> 9</span><span class="n">c</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="linenos">10</span><span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+<span class="linenos">11</span><span class="n">e</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="linenos">12</span><span class="n">f</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="n">two</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">13</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="o">==</span> <span class="n">c</span> <span class="o">==</span> <span class="n">d</span> <span class="o">==</span> <span class="n">e</span> <span class="o">==</span> <span class="n">f</span>  <span class="c1"># returns True</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1"># to get key list</span>
+<span class="linenos">16</span><span class="nb">list</span><span class="p">(</span><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="linenos">17</span><span class="nb">list</span><span class="p">(</span><span class="n">tel</span><span class="p">)</span>    <span class="c1"># [&#39;jack&#39;, &#39;sape&#39;, &#39;john&#39;, &#39;cena&#39;]</span>
+<span class="linenos">18</span><span class="nb">sorted</span><span class="p">(</span><span class="n">tel</span><span class="p">)</span>  <span class="c1"># [&#39;cena&#39;, &#39;jack&#39;, &#39;john&#39;, &#39;sape&#39;]</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="c1"># to get key view/iterator</span>
+<span class="linenos">21</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1"># to get val list</span>
+<span class="linenos">24</span><span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="c1"># to get val view/iterator</span>
+<span class="linenos">27</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="c1"># to add kv-pair</span>
+<span class="linenos">30</span><span class="n">tel</span><span class="p">[</span><span class="s1">&#39;guido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4128</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="c1"># to get - 2 ways</span>
+<span class="linenos">33</span><span class="n">tel</span><span class="p">[</span><span class="s1">&#39;jack&#39;</span><span class="p">]</span>      <span class="c1"># if non-existant, raises KeyError</span>
+<span class="linenos">34</span><span class="n">tel</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jack2&#39;</span><span class="p">)</span> <span class="c1"># if non-existant, returns None</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="c1"># to delete</span>
+<span class="linenos">37</span><span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s1">&#39;sape&#39;</span><span class="p">]</span>  <span class="c1"># if non-existant, raises KeyError</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="c1"># to pop (delete &amp; return val)</span>
+<span class="linenos">40</span><span class="n">tel</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;jack2&#39;</span><span class="p">)</span>  <span class="c1"># if non-existant, raises KeyError</span>
+<span class="linenos">41</span><span class="n">tel</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;jack2&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># returns default</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="c1"># to stack pop (LIFO) [from version 3.7: LIFO order is now guaranteed]</span>
+<span class="linenos">44</span><span class="n">tel</span><span class="p">[</span><span class="s1">&#39;just_pushed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">45</span><span class="n">tel</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>  <span class="c1"># returns (&#39;just_pushed&#39;, 1) tuple; raises KeyError if empty</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="c1"># to check if key in dict</span>
+<span class="linenos">48</span><span class="s1">&#39;guido&#39;</span> <span class="ow">in</span> <span class="n">tel</span>
+<span class="linenos">49</span><span class="s1">&#39;jack&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tel</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="c1"># to get (key, value) pair view/iterator</span>
+<span class="linenos">52</span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tel</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos">53</span>    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; -&gt; &quot;</span><span class="p">)</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="c1"># to set default</span>
+<span class="linenos">56</span><span class="n">tel</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;oh&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># if &#39;oh&#39; exists, return its val, else set val to 1</span>
+<span class="linenos">57</span><span class="n">tel</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;asdf&#39;</span><span class="p">)</span>  <span class="c1"># default value is None</span>
+</pre></div>
 </div>
+</section>
+<section id="list">
+<h3>List<a class="headerlink" href="#list" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># to instantiate (common)</span>
+<span class="linenos"> 2</span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;pear&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1"># to count (freq of particular item)</span>
+<span class="linenos"> 5</span><span class="n">fruits</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;apple&#39;</span><span class="p">)</span>  <span class="c1"># 2</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># to find the index of item using list.index(x[, start[, end]])</span>
+<span class="linenos"> 8</span><span class="n">fruits</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;banana&#39;</span><span class="p">)</span>  <span class="c1"># first occurance -&gt; 3, raise ValueError if absent</span>
+<span class="linenos"> 9</span><span class="n">fruits</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># find occurance starting at position 4 -&gt; 6, raise ValueError if absent</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># to reverse list in-place</span>
+<span class="linenos">12</span><span class="n">fruits</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="linenos">13</span><span class="n">fruits</span>  <span class="c1"># [&#39;banana&#39;, &#39;apple&#39;, &#39;kiwi&#39;, &#39;banana&#39;, &#39;pear&#39;, &#39;apple&#39;, &#39;orange&#39;]</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1"># to append</span>
+<span class="linenos">16</span><span class="n">fruits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;grape&#39;</span><span class="p">)</span>  <span class="c1"># [&#39;banana&#39;, &#39;apple&#39;, &#39;kiwi&#39;, &#39;banana&#39;, &#39;pear&#39;, &#39;apple&#39;, &#39;orange&#39;, &#39;grape&#39;]</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="c1"># to insert (first arg = idx of element before which to insert)</span>
+<span class="linenos">19</span><span class="n">fruits</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;jackfruit&quot;</span><span class="p">)</span>  <span class="c1"># insert &quot;jackfruit&quot; to beginning of list</span>
+<span class="linenos">20</span><span class="n">fruits</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">),</span> <span class="s2">&quot;passionfruit&quot;</span><span class="p">)</span>  <span class="c1"># identical to append</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="c1"># to sort in-place (default: ascending)</span>
+<span class="linenos">23</span><span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="linenos">24</span><span class="n">fruits</span>  <span class="c1"># [&#39;apple&#39;, &#39;apple&#39;, &#39;banana&#39;, &#39;banana&#39;, &#39;grape&#39;, &#39;kiwi&#39;, &#39;orange&#39;, &#39;pear&#39;]</span>
+<span class="linenos">25</span><span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># in descending</span>
+<span class="linenos">26</span><span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># define custom key (e.g. length of str)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="c1"># to pop</span>
+<span class="linenos">29</span><span class="n">fruits</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># remove the item at end of list, and return it</span>
+<span class="linenos">30</span><span class="n">fruits</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># remove the item at index 1, and return it</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="c1"># to remove (by element, not idx)</span>
+<span class="linenos">33</span><span class="n">fruits</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;banana&quot;</span><span class="p">)</span>  <span class="c1"># remove first instance of &quot;banana&quot;, raise ValueError if absent</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="c1"># to extend</span>
+<span class="linenos">36</span><span class="n">fruits</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;more&quot;</span><span class="p">,</span> <span class="s2">&quot;fruits&quot;</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="s2">&quot;add&quot;</span><span class="p">])</span>  <span class="c1"># identical to a[len(a):] = iterable</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="c1"># to clear</span>
+<span class="linenos">39</span><span class="n">fruits</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="linenos">40</span><span class="k">del</span> <span class="n">fruits</span><span class="p">[:]</span>  <span class="c1"># identical to above</span>
+</pre></div>
+</div>
+<p>When creating multi-dimensional arrays (i.e. matrices), be cautious of using multiplication:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># multiplication is okay when dealing with immutables (e.g. int)</span>
+<span class="linenos"> 2</span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>  <span class="c1"># [0, 0, 0, 0, 0]</span>
+<span class="linenos"> 3</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 4</span><span class="n">a</span>   <span class="c1"># [0, 1, 0, 0, 0]</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1"># but when with mutables (like list)...</span>
+<span class="linenos"> 7</span><span class="n">t</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="linenos"> 8</span><span class="n">t</span>  <span class="c1"># [[], [], [], [], []]</span>
+<span class="linenos"> 9</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">10</span><span class="n">t</span>  <span class="c1"># [[5], [5], [5], [5], [5]]  - Uh Oh!</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1"># CORRECT WAY</span>
+<span class="linenos">13</span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="linenos">14</span><span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>  <span class="c1"># also correct</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span>  <span class="c1"># using numpy</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The runtime complexity of the len() function on your Python list is O(1). Because the list object maintains an integer counter that increases and decreases as you add and remove list elements.</p>
+</div>
+</section>
+<section id="using-lists-as-stacks">
+<h3>Using Lists as Stacks<a class="headerlink" href="#using-lists-as-stacks" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="linenos">2</span><span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos">3</span><span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="linenos">4</span><span class="n">stack</span>        <span class="c1"># [3, 4, 5, 6, 7]</span>
+<span class="linenos">5</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 7</span>
+<span class="linenos">6</span><span class="n">stack</span>        <span class="c1"># [3, 4, 5, 6]</span>
+<span class="linenos">7</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 6</span>
+<span class="linenos">8</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 5</span>
+<span class="linenos">9</span><span class="n">stack</span>        <span class="c1"># [3, 4]</span>
+</pre></div>
+</div>
+</section>
+<section id="using-lists-as-queues">
+<h3>Using Lists as Queues<a class="headerlink" href="#using-lists-as-queues" title="Permalink to this headline"></a></h3>
+<p>It is also possible to use a list as a queue, where the first element added is the first element retrieved (“first-in, first-out”); however, <strong>lists are not efficient for this purpose</strong>. While appends and pops from the end of list are fast, doing <strong>inserts or pops from the beginning of a list is slow</strong> (because all of the other elements have to be shifted by one).</p>
+<p>To implement a queue, use collections.deque which was designed to have fast appends and pops from both ends. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="linenos"> 2</span><span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="s2">&quot;Eric&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Michael&quot;</span><span class="p">])</span>
+<span class="linenos"> 3</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Terry&quot;</span><span class="p">)</span>           <span class="c1"># Terry arrives</span>
+<span class="linenos"> 4</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Graham&quot;</span><span class="p">)</span>          <span class="c1"># Graham arrives</span>
+<span class="linenos"> 5</span><span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>                 <span class="c1"># The first to arrive now leaves</span>
+<span class="linenos"> 6</span><span class="c1"># &#39;Eric&#39;</span>
+<span class="linenos"> 7</span><span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>                 <span class="c1"># The second to arrive now leaves</span>
+<span class="linenos"> 8</span><span class="c1"># &#39;John&#39;</span>
+<span class="linenos"> 9</span><span class="n">queue</span>                           <span class="c1"># Remaining queue in order of arrival</span>
+<span class="linenos">10</span><span class="c1"># deque([&#39;Michael&#39;, &#39;Terry&#39;, &#39;Graham&#39;])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="specialized-built-in-containers">
+<h2>Specialized Built-in Containers<a class="headerlink" href="#specialized-built-in-containers" title="Permalink to this headline"></a></h2>
+<section id="collections">
+<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline"></a></h3>
+<p>Fill in soon <a class="reference external" href="https://docs.python.org/3/library/collections.html#module-collections">link1</a></p>
+</section>
+<section id="counter">
+<h3>Counter<a class="headerlink" href="#counter" title="Permalink to this headline"></a></h3>
+<p>Fill in soon <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter">link2</a></p>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="java-toolbox.html" class="btn btn-neutral float-left" title="Java Toolbox" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="algosummary.html" class="btn btn-neutral float-right" title="Useful Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

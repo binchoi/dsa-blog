@@ -1,5 +1,5 @@
 ****************
-My Java Toolbox
+Java Toolbox
 ****************
 
 .. image:: img/col-img.png
