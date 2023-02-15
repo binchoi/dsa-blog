@@ -8,6 +8,8 @@ Data Structures and Algorithm Blog
 
 I record my journey of learning Data Structures and Algorithms (DSA) by posting in this blog. My primary method of exploring DSA is through problem-solving.
 
+**2023/02/16**: I have been solving problems regularly but have not been able to post on this blog as of late! See `here <https://github.com/binchoi/study/tree/master/python/05-top-leet-questions>`_ to check out some of the questions and my solutions.
+
 .. toctree::
    :maxdepth: 1
    :caption: daily exercises

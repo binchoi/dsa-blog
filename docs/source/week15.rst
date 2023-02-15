@@ -78,3 +78,85 @@ Remarks and Complexity Analysis:
  * I added the stk for extension of the question (not necessary)
  * **Time Complexity**: ``O(n)`` where ``n=len(sequence)``
  * **Space Complexity**: ``O(1)`` (considering the stack unnecessary and negligible)
+
+
+Day 62 [18 Jan]
+================
+Redirect to Study Repo
+-----------------------
+
+I've been recording a lot of my solutions to algorithm problems in my ``study`` repository (`link <https://github.com/binchoi/study/tree/master/python/05-top-leet-questions>`_).
+
+
+As of 2023/02/16, the repository contains my solutions to the following problems.
+
+.. code-block:: Yaml
+
+    best-time-to-buy-sell-stock-2.py
+    contains-duplicates.py
+    intersection-of-two-arrays-ii.py
+    move-zeros.py
+    plus-one.py
+    remove-duplicates-from-sorted-array.py
+    rotate-array.py
+    rotate-image.py
+    single-number.py
+    two-sum.py
+    valid-sudoku.py
+    first-unique-character-in-a-string.py
+    implement-strstr.py
+    longest-common-prefix.py
+    reverse-integer.py
+    reverse-string.py
+    string-to-integer-atoi.py
+    valid-anagram.py
+    valid-palindrome.py
+    linked-list-cycle.py
+    merge-two-sorted-list.py
+    reverse-linked-list.py
+    binary-tree-level-order-traversal.py
+    convert-sorted-array-to-bst.py
+    maximum-depth-of-binary-tree.py
+    tree-traversal-guide.py
+    util.py
+    validate-binary-search-tree.py
+    best-time-to-buy-and-sell-stock.py
+    climbing-stairs.py
+    maximum-subarray.py
+    count-primes.py
+    fizzbuzz.py
+    power-of-three.py
+    first-bad-version.py
+    min-stack.py
+    shuffle-an-array.py
+    number-of-1-bits.py
+    pascals-triangle.py
+    reverse-bits.py
+    valid-parenthesis.py
+    group-anagrams.py
+    longest-palindromic-substring.py
+    longest-substring-without-repeating-chars.py
+    add-two-numbers.py
+    intersection-of-two-linked-lists.py
+    binary-tree-in-order-traversal.py
+    number-of-islands.py
+    populating-next-right-pointers-in-each-node.py
+    generate-parenthesis.py
+    letter-combinations-of-a-phone-number.py
+    palindrome-partitioning.py
+    permutations-ii.py
+    permutations.py
+    subsets.py
+    merge-intervals.py
+    search-for-a-range.py
+    search-in-rotated-array.py
+    sort-colors.py
+    unique-paths.py
+    excel-sheet-column-number.py
+    majority-element.py
+    pow(x,n).py
+    scientific-notation.py
+    choosing-houses.py
+    continguous-subarray-twosum.py
+    digit-anagrams.py
+    pattern-substrings.py
